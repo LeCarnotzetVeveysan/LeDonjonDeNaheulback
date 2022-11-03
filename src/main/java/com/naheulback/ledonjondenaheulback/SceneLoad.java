@@ -8,11 +8,13 @@ import java.io.IOException;
 
 public class SceneLoad {
 
-    public static void initUI(Stage stage) throws IOException {
+    public static void initUI(Stage stage, String fxmlToShow) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(AppLaunch.class.getResource("sample.fxml"));
+        fxmlToShow += ".fxml";
+
+        FXMLLoader fxmlLoader = new FXMLLoader(AppLaunch.class.getResource(fxmlToShow));
         Scene scene = new Scene(fxmlLoader.load(), 960, 540);
-        stage.setTitle("Hello!");
+        stage.setTitle("Le Donjon de Naheulback v1.0");
         stage.setScene(scene);
         stage.show();
 
