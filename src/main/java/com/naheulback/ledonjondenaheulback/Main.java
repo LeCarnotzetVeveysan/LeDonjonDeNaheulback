@@ -7,14 +7,18 @@ import java.io.IOException;
 
 public class Main {
 
-    public Main(){}
+    private Stage mainStage;
+
+    public Main(Stage inputStage){
+
+        this.mainStage = inputStage;
+
+    }
 
     public void startMain() throws IOException {
 
-        SceneLoad sl = new SceneLoad();
-        Stage stage = new Stage();
-
-        SceneLoad.initUI(stage, "main-menu");
+        SceneLoad sl = new SceneLoad(this.mainStage);
+        sl.initUI("main-menu");
 
         Game game = new Game();
         game.printText();

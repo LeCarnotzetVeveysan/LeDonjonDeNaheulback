@@ -8,7 +8,8 @@ public class AppLaunch extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        Main main = new Main();
+        Stage mainStage = new Stage();
+        Main main = new Main(mainStage);
         main.startMain();
 
     }
