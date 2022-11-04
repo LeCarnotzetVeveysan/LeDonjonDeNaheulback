@@ -21,10 +21,6 @@ public class Main {
         sl.initUI("main-menu");
 
         Game game = new Game();
-        game.printText();
-
-
-
 
     }
 
