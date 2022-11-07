@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.ledonjondenaheulback.controllers.NewGameController">
+<AnchorPane prefHeight="540.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.ledonjondenaheulback.controllers.NewGameController">
    <children>
-      <Label layoutX="271.0" layoutY="191.0" text="New game" />
+      <Label layoutX="451.0" layoutY="55.0" text="Level selection" />
+      <Button layoutX="179.0" layoutY="258.0" mnemonicParsing="false" onAction="#level1ButtonClicked" text="Level 1" />
+      <Button layoutX="366.0" layoutY="258.0" mnemonicParsing="false" onAction="#level2ButtonClicked" text="Level 2" />
+      <Button layoutX="564.0" layoutY="258.0" mnemonicParsing="false" onAction="#level3ButtonClicked" text="Level 3" />
+      <Button layoutX="761.0" layoutY="258.0" mnemonicParsing="false" onAction="#level4ButtonClicked" text="Level 4" />
    </children>
 </AnchorPane>

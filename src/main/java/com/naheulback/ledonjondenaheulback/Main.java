@@ -11,16 +11,14 @@ public class Main {
 
     public Main(Stage inputStage){
 
-        this.mainStage = inputStage;
+        mainStage = inputStage;
 
     }
 
     public void startMain() throws IOException {
 
-        SceneLoad sl = new SceneLoad(this.mainStage);
-        sl.initUI("main-menu");
-
-        Game game = new Game();
+        Game mainGame = new Game(mainStage);
+        mainGame.main();
 
     }
 

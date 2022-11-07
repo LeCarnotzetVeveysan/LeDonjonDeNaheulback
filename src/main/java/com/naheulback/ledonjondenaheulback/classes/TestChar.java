@@ -1,4 +1,4 @@
-package com.naheulback.ledonjondenaheulback.heroClasses;
+package com.naheulback.ledonjondenaheulback.classes;
 
 public class TestChar {
 

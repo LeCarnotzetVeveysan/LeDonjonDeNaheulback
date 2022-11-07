@@ -7,8 +7,8 @@ module com.naheulback.ledonjondenaheulback {
 
     opens com.naheulback.ledonjondenaheulback to javafx.fxml;
     exports com.naheulback.ledonjondenaheulback;
-    exports com.naheulback.ledonjondenaheulback.heroClasses;
-    opens com.naheulback.ledonjondenaheulback.heroClasses to javafx.fxml;
     exports com.naheulback.ledonjondenaheulback.controllers;
     opens com.naheulback.ledonjondenaheulback.controllers to javafx.fxml;
+    exports com.naheulback.ledonjondenaheulback.classes;
+    opens com.naheulback.ledonjondenaheulback.classes to javafx.fxml;
 }
