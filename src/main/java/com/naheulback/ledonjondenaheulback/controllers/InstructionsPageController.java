@@ -1,12 +1,12 @@
 package com.naheulback.ledonjondenaheulback.controllers;
 
-import com.naheulback.ledonjondenaheulback.SceneLoad;
+import com.naheulback.ledonjondenaheulback.LoadScene;
 
 import java.io.IOException;
 
 public class InstructionsPageController {
     public void onReturnButtonClick() throws IOException {
 
-        SceneLoad.changeScene("main-menu");
+        LoadScene.changeScene("main-menu");
     }
 }

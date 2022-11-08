@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-
 <AnchorPane prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.ledonjondenaheulback.controllers.MainMenuController">
    <children>
       <ImageView fitHeight="540.0" fitWidth="960.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
@@ -16,16 +15,16 @@
       </ImageView>
       <HBox alignment="CENTER" layoutY="350.0" prefHeight="135.0" prefWidth="960.0" spacing="69.0">
          <children>
-            <Button onAction="#onNewGameButtonClick" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" style="-fx-background-color: transparent;">
+            <Button fx:id="newGameButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#onNewGameButtonClick" onMouseEntered="#startedHovering" onMouseExited="#stoppedHovering" prefHeight="88.0" prefWidth="78.0" style="-fx-background-color: transparent;">
                <graphic>
-                  <ImageView fitHeight="80.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="newGameBtnIV" fitHeight="80.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@mainMenuImages/newgame.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button onAction="#onSavedGameButtonClick" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" style="-fx-background-color: transparent;">
+            <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#onSavedGameButtonClick" prefHeight="83.0" prefWidth="110.0" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -34,7 +33,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button onAction="#onInstructionsButtonClick" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" style="-fx-background-color: transparent;">
+            <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#onInstructionsButtonClick" prefHeight="83.0" prefWidth="110.0" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -43,9 +42,9 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button onAction="#onQuitButtonClick" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" style="-fx-background-color: transparent;">
+            <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#onQuitButtonClick" prefHeight="83.0" prefWidth="110.0" style="-fx-background-color: transparent;">
                <graphic>
-                  <ImageView fitHeight="75.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" >
+                  <ImageView fitHeight="75.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@mainMenuImages/quit.png" />
                      </image>

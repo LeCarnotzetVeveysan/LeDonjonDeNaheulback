@@ -4,7 +4,6 @@ import com.naheulback.ledonjondenaheulback.classes.GameData;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Game {
 
@@ -20,8 +19,8 @@ public class Game {
 
     public void main() throws IOException {
 
-          SceneLoad sl = new SceneLoad(mainStage);
-          sl.changeScene("main-menu");
+          LoadScene ls = new LoadScene(mainStage);
+          ls.changeScene("main-menu");
 
     }
 

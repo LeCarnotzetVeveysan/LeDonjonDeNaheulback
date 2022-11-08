@@ -6,11 +6,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SceneLoad {
+public class LoadScene {
 
     private static Stage principalStage;
 
-    public SceneLoad(Stage inputStage){
+    public LoadScene(Stage inputStage){
 
         principalStage = inputStage;
 
