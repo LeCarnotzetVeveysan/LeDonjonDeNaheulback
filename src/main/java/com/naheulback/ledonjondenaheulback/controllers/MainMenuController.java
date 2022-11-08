@@ -6,8 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class MainMenuController {
 
@@ -38,18 +37,27 @@ public class MainMenuController {
 
     }
 
-    public void startedHovering() {
-        //System.out.println("Hovering");
-        File file = new File("/mainMenuImages/newgameinv.png");
-        Image image = new Image(file.toURI().toString());
+    @FXML
+    public void startedHovering() throws FileNotFoundException {
+        System.out.println("Hovering");
+
+        String path = "src/main/resources/com/naheulback/ledonjondenaheulback";
+        InputStream stream = new FileInputStream(path + "/mainMenuImages/newgameinv.png");
+        Image image = new Image(stream);
+
         newGameBtnIV.setImage(image);
 
     }
 
-    public void stoppedHovering() {
-        //System.out.println("Stopped hovering");
-        File file = new File("/mainMenuImages/newgame.png");
-        Image image = new Image(file.toURI().toString());
+
+    @FXML
+    public void stoppedHovering() throws FileNotFoundException {
+        System.out.println("Stopped hovering");
+
+        String path = "src/main/resources/com/naheulback/ledonjondenaheulback";
+        InputStream stream = new FileInputStream(path + "/mainMenuImages/newgame.png");
+        Image image = new Image(stream);
+
         newGameBtnIV.setImage(image);
 
     }
