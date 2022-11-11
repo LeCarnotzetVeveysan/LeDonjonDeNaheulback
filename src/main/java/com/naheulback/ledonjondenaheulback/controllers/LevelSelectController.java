@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
-public class NewGameController {
+public class LevelSelectController {
 
     @FXML
     public void level1ButtonClicked() throws IOException {

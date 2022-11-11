@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="540.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.ledonjondenaheulback.controllers.OutsideController">
+   <children>
+      <ImageView fx:id="dungeonIV" fitHeight="540.0" fitWidth="980.0" layoutX="2.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Button fx:id="backButton" layoutX="59.0" layoutY="464.0" mnemonicParsing="false" onMouseClicked="#onBackButtonClicked" text="Back" />
+      <Button fx:id="enterButton" layoutX="451.0" layoutY="168.0" mnemonicParsing="false">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@otherImages/door.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

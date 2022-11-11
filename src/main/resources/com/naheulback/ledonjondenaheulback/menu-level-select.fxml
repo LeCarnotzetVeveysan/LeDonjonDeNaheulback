@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="540.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.ledonjondenaheulback.controllers.NewGameController">
+<AnchorPane prefHeight="540.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.ledonjondenaheulback.controllers.LevelSelectController">
    <children>
       <Label layoutX="451.0" layoutY="55.0" text="Level selection" />
       <Button layoutX="179.0" layoutY="258.0" mnemonicParsing="false" onAction="#level1ButtonClicked" text="Level 1" />

@@ -2,18 +2,16 @@ package com.naheulback.ledonjondenaheulback.controllers;
 
 import com.naheulback.ledonjondenaheulback.Game;
 import com.naheulback.ledonjondenaheulback.LoadScene;
-import com.naheulback.ledonjondenaheulback.classes.GameData;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class OutsideDungeonController {
+public class OutsideController {
 
     @FXML
     private ImageView dungeonIV;
