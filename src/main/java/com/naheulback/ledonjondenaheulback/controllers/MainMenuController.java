@@ -42,7 +42,7 @@ public class MainMenuController {
         //System.out.println("Hovering");
 
         String path = "src/main/resources/com/naheulback/ledonjondenaheulback";
-        InputStream stream = new FileInputStream(path + "/mainMenuImages/newgameinv.png");
+        InputStream stream = new FileInputStream(path + "/menuImages/newgameinv.png");
         Image image = new Image(stream);
 
         newGameBtnIV.setImage(image);
@@ -55,7 +55,7 @@ public class MainMenuController {
         //System.out.println("Stopped hovering");
 
         String path = "src/main/resources/com/naheulback/ledonjondenaheulback";
-        InputStream stream = new FileInputStream(path + "/mainMenuImages/newgame.png");
+        InputStream stream = new FileInputStream(path + "/menuImages/newgame.png");
         Image image = new Image(stream);
 
         newGameBtnIV.setImage(image);

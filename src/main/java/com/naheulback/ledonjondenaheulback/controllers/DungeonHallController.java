@@ -1,12 +1,15 @@
 package com.naheulback.ledonjondenaheulback.controllers;
 
 import com.naheulback.ledonjondenaheulback.Game;
+import com.naheulback.ledonjondenaheulback.LoadScene;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 public class DungeonHallController {
@@ -18,11 +21,13 @@ public class DungeonHallController {
 
         System.out.println("Entered dungeon " + Game.getZone());
 
+        String path = "src/main/resources/com/naheulback/ledonjondenaheulback/dungeonImages";
+
         switch (Game.getZone()){
 
             case 1:
-                String path = "src/main/resources/com/naheulback/ledonjondenaheulback";
-                InputStream stream = new FileInputStream(path + "/otherImages/donj1hall.png");
+
+                InputStream stream = new FileInputStream(path + "/d1_hall_background.png");
                 Image image = new Image(stream);
                 mainIV.setImage(image);
 
@@ -31,4 +36,30 @@ public class DungeonHallController {
 
     }
 
+    public void onDungeonButtonClick() throws IOException {
+
+        if(Game.getZone() == 10){
+
+            LoadScene.changeScene("dungeon-boss-floor");
+
+        } else {
+
+            LoadScene.changeScene("dungeon-simple-floor");
+        }
+
+
+
+
+
+    }
+
+    public void onTavernButtonClicked() throws IOException {
+        LoadScene.changeScene("dungeon-tavern");
+    }
+
+    public void onArmouryButtonClicked() throws IOException {
+
+        LoadScene.changeScene("dungeon-armoury");
+
+    }
 }

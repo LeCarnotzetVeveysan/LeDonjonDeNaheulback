@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="540.0" fitWidth="980.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@otherImages/cartenaheulbeuk.png" />
+            <Image url="@mapImages/cartenaheulbeuk.png" />
          </image>
       </ImageView>
       <Button layoutX="413.0" layoutY="104.0" mnemonicParsing="false" onMouseClicked="#onDonj1ButtonClicked" text="Donj1" />

@@ -28,11 +28,11 @@ public class Game {
     }
 
     public static void setLevel(int inputLevel){
-        playerData.setLevel(inputLevel);
+        gameData.setLevel(inputLevel);
     }
 
     public static int getLevel(){
-        return playerData.getLevel();
+        return gameData.getLevel();
     }
 
     public static int getZone(){ return playerData.getZone(); }
