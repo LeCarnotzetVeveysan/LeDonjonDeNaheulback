@@ -11,21 +11,21 @@ public class NewGameController {
     @FXML
     public void level1ButtonClicked() throws IOException {
         Game.setLevel(1);
-        LoadScene.changeScene("display-scene");
+        LoadScene.changeScene("terre-fangh");
     }
 
     public void level2ButtonClicked() throws IOException {
         Game.setLevel(2);
-        LoadScene.changeScene("display-scene");
+        LoadScene.changeScene("terre-fangh");
     }
 
     public void level3ButtonClicked() throws IOException {
         Game.setLevel(3);
-        LoadScene.changeScene("display-scene");
+        LoadScene.changeScene("terre-fangh");
     }
 
     public void level4ButtonClicked() throws IOException {
         Game.setLevel(4);
-        LoadScene.changeScene("display-scene");
+        LoadScene.changeScene("terre-fangh");
     }
 }

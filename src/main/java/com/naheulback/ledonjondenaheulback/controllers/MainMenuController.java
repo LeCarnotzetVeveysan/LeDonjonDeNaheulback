@@ -39,7 +39,7 @@ public class MainMenuController {
 
     @FXML
     public void startedHovering() throws FileNotFoundException {
-        System.out.println("Hovering");
+        //System.out.println("Hovering");
 
         String path = "src/main/resources/com/naheulback/ledonjondenaheulback";
         InputStream stream = new FileInputStream(path + "/mainMenuImages/newgameinv.png");
@@ -52,7 +52,7 @@ public class MainMenuController {
 
     @FXML
     public void stoppedHovering() throws FileNotFoundException {
-        System.out.println("Stopped hovering");
+        //System.out.println("Stopped hovering");
 
         String path = "src/main/resources/com/naheulback/ledonjondenaheulback";
         InputStream stream = new FileInputStream(path + "/mainMenuImages/newgame.png");

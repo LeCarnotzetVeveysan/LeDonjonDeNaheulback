@@ -7,6 +7,7 @@ public class GameData {
     private String teamName;
     private int level;
     private ArrayList<Hero> heroes;
+    private int[] currentLocation;
 
 
     public GameData(){
@@ -14,6 +15,7 @@ public class GameData {
         teamName = "La compagnie des forts de café";
         heroes = new ArrayList<>();
         level = 0;
+        currentLocation = new int[]{0, 0};
 
     }
 
@@ -32,4 +34,8 @@ public class GameData {
     public int getLevel(){
         return level;
     }
+
+    public int getZone(){ return currentLocation[0]; }
+
+    public int getRoom(){ return currentLocation[1]; }
 }

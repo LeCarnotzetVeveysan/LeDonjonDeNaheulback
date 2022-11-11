@@ -39,4 +39,8 @@ public class Game {
         return gameData.getLevel();
     }
 
+    public static int getZone(){ return gameData.getZone(); }
+
+    public static int getRoom(){ return gameData.getRoom(); }
+
 }
