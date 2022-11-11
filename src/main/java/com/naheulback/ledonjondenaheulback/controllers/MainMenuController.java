@@ -24,11 +24,11 @@ public class MainMenuController {
     }
 
     public void onInstructionsButtonClick() throws IOException {
-        LoadScene.changeScene("instructions-page");
+        LoadScene.changeScene("menu-instructions");
     }
 
     public void onNewGameButtonClick() throws IOException {
-        LoadScene.changeScene("new-game");
+        LoadScene.changeScene("menu-level-select");
     }
 
     public void onSavedGameButtonClick() {
