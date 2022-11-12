@@ -22,7 +22,7 @@ public class LoadScene {
         fxmlToShow += ".fxml";
 
         FXMLLoader fxmlLoader = new FXMLLoader(AppLaunch.class.getResource(fxmlToShow));
-        Scene scene = new Scene(fxmlLoader.load(), 960, 540);
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
 
         principalStage.setTitle("Le Donjon de Naheulback v1.0");
         principalStage.setScene(scene);

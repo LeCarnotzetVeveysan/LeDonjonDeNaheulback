@@ -18,7 +18,7 @@ public class PlayerData {
         livingHeroes = new ArrayList<>();
         deadHeroes = new ArrayList<>();
 
-        currentLocation = new int[]{0, 0};
+        currentLocation = new int[]{0, 0, 0};
         goldPieces = 0;
 
     }
@@ -29,11 +29,15 @@ public class PlayerData {
 
     public int getDungeon(){ return currentLocation[0]; }
 
-    public void setDungeon(int zone){ currentLocation[0] = zone;}
+    public void setDungeon(int dungeon){ currentLocation[0] = dungeon;}
 
     public int getRoom(){ return currentLocation[1]; }
 
     public void setRoom(int room){ currentLocation[1] = room;}
+
+    public int getTable(){ return currentLocation[2]; }
+
+    public void setTable(int table){ currentLocation[2] = table;}
 
     public static void initGoldPieces(){
         switch (GameData.getLevel()) {

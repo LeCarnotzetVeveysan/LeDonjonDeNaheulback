@@ -1,23 +1,22 @@
 package com.naheulback.ledonjondenaheulback.controllers;
 
-import com.naheulback.ledonjondenaheulback.Functions;
 import com.naheulback.ledonjondenaheulback.LoadScene;
-import com.naheulback.ledonjondenaheulback.classes.Hero;
-import com.naheulback.ledonjondenaheulback.classes.PlayerData;
-import com.naheulback.ledonjondenaheulback.classes.Warrior;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainMenuController {
 
     @FXML
     private ImageView newGameBtnIV;
 
-    public void initialize() throws IOException {
+    public void initialize() {
 
         System.out.println("Main menu entered");
         //System.out.println(PlayerData.getLivingHeroes());
