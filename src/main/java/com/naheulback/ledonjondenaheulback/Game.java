@@ -35,9 +35,9 @@ public class Game {
         return gameData.getLevel();
     }
 
-    public static int getZone(){ return playerData.getZone(); }
+    public static int getDungeon(){ return playerData.getDungeon(); }
 
-    public static void setZone(int zone){ playerData.setZone(zone);}
+    public static void setDungeon(int dungeon){ playerData.setDungeon(dungeon);}
 
     public static int getRoom(){ return playerData.getRoom(); }
 

@@ -26,6 +26,10 @@ public abstract class Hero {
         speed = 100;
     }
 
+    public String toString(){
+        return "name : " + name + ", level : " + level;
+    }
+
     public abstract void speak();
 
     public void printTest(){

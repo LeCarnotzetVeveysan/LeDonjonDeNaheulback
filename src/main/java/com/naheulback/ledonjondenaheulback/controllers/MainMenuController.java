@@ -1,6 +1,9 @@
 package com.naheulback.ledonjondenaheulback.controllers;
 
 import com.naheulback.ledonjondenaheulback.LoadScene;
+import com.naheulback.ledonjondenaheulback.classes.Hero;
+import com.naheulback.ledonjondenaheulback.classes.PlayerData;
+import com.naheulback.ledonjondenaheulback.classes.Warrior;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -16,6 +19,17 @@ public class MainMenuController {
     public void initialize(){
 
         System.out.println("Main menu entered");
+
+        Hero testHero = new Warrior("Test");
+        PlayerData.recruitHero(testHero);
+        System.out.println(PlayerData.getLivingHeroes());
+        System.out.println(PlayerData.getDeadHeroes());
+        PlayerData.heroDies(testHero);
+        System.out.println(PlayerData.getLivingHeroes());
+        System.out.println(PlayerData.getDeadHeroes());
+        PlayerData.reviveHero(testHero);
+        System.out.println(PlayerData.getLivingHeroes());
+        System.out.println(PlayerData.getDeadHeroes());
 
     }
     @FXML

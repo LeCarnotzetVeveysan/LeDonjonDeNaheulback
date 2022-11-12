@@ -6,8 +6,8 @@ public class PlayerData {
 
     private String teamName;
 
-    private ArrayList<Hero> livingHeroes;
-    private ArrayList<Hero> deadHeroes;
+    private static ArrayList<Hero> livingHeroes;
+    private static ArrayList<Hero> deadHeroes;
     private int[] currentLocation;
     private static int goldPieces;
 
@@ -27,9 +27,9 @@ public class PlayerData {
         return teamName;
     }
 
-    public int getZone(){ return currentLocation[0]; }
+    public int getDungeon(){ return currentLocation[0]; }
 
-    public void setZone(int zone){ currentLocation[0] = zone;}
+    public void setDungeon(int zone){ currentLocation[0] = zone;}
 
     public int getRoom(){ return currentLocation[1]; }
 
@@ -62,5 +62,28 @@ public class PlayerData {
     public static int getGoldPieces(){
         return goldPieces;
     }
+
+    public static String getLivingHeroes(){
+        return livingHeroes.toString();
+    }
+
+    public static String getDeadHeroes(){
+        return deadHeroes.toString();
+    }
+    public static void recruitHero(Hero hero){
+        livingHeroes.add(hero);
+    }
+
+    public static void heroDies(Hero hero){
+        //int index = livingHeroes.indexOf(hero);
+        deadHeroes.add(hero);
+        livingHeroes.remove(hero);
+    }
+
+    public static void reviveHero(Hero hero){
+        deadHeroes.remove(hero);
+        livingHeroes.add(hero);
+    }
+
 
 }

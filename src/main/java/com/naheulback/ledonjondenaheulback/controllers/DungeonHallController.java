@@ -19,11 +19,11 @@ public class DungeonHallController {
 
     public void initialize() throws FileNotFoundException {
 
-        System.out.println("Entered dungeon " + Game.getZone());
+        System.out.println("Entered dungeon " + Game.getDungeon());
 
         String path = "src/main/resources/com/naheulback/ledonjondenaheulback/dungeonImages";
 
-        switch (Game.getZone()){
+        switch (Game.getDungeon()){
 
             case 1:
 
@@ -38,7 +38,7 @@ public class DungeonHallController {
 
     public void onDungeonButtonClick() throws IOException {
 
-        if(Game.getZone() == 10){
+        if(Game.getDungeon() == 10){
 
             LoadScene.changeScene("dungeon-boss-floor");
 

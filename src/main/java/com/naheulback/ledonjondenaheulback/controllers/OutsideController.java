@@ -24,7 +24,7 @@ public class OutsideController {
 
         String path = "src/main/resources/com/naheulback/ledonjondenaheulback/dungeonImages/";
 
-        switch (Game.getZone()){
+        switch (Game.getDungeon()){
 
             case 1:
 
@@ -43,7 +43,7 @@ public class OutsideController {
 
     public void onBackButtonClicked() throws IOException {
 
-        Game.setZone(0);
+        Game.setDungeon(0);
         Game.setRoom(0);
         LoadScene.changeScene("menu-travel-map");
 
