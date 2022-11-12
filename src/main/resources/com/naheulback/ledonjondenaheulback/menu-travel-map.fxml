@@ -14,7 +14,7 @@
          </image>
       </ImageView>
       <Button layoutX="413.0" layoutY="104.0" mnemonicParsing="false" onMouseClicked="#onDonj1ButtonClicked" text="Donj1" />
-      <Button layoutX="157.0" layoutY="39.0" mnemonicParsing="false" text="Donj2" />
+      <Button layoutX="157.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#onDonj2ButtonClicked" text="Donj2" />
       <Button layoutX="803.0" layoutY="71.0" mnemonicParsing="false" text="Donj3" />
    </children>
 </AnchorPane>
