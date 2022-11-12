@@ -53,7 +53,6 @@ public class MainMenuController {
         Image image = new Image(stream);
 
         newGameBtnIV.setImage(image);
-
     }
 
 
