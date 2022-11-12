@@ -2,6 +2,7 @@ package com.naheulback.ledonjondenaheulback.classes;
 
 public abstract class Hero {
 
+    private String name;
     private int level;
     private int experience;
     private int health;
@@ -12,8 +13,9 @@ public abstract class Hero {
     private int speed;
     private String testSpeak;
 
-    public Hero(){
+    public Hero(String inputName){
 
+        name = inputName;
         level = 1;
         experience = 0;
         health = 100;

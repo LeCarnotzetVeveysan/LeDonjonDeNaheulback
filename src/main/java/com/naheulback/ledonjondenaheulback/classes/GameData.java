@@ -23,9 +23,7 @@ public class GameData {
     }
 
     public static int getMaxHeroes(){
-
         return maxHeroes;
-
     }
 
     public void setLevel(int inputLevel){
