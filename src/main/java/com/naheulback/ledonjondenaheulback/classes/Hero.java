@@ -9,6 +9,7 @@ import org.json.*;
 
 public abstract class Hero {
 
+    private String slug;
     private String name;
     private int level;
     private int experience;
@@ -21,8 +22,9 @@ public abstract class Hero {
     private int speed;
     private String testSpeak;
 
-    public Hero(String inputName){
+    public Hero(String inputSlug, String inputName){
 
+        slug = inputSlug;
         name = inputName;
         level = 1;
         experience = 0;
@@ -41,13 +43,20 @@ public abstract class Hero {
 
     public static Hero buildHeroFromDict(HashMap<String,String> hm) throws FileNotFoundException {
 
+        String slug = hm.get("slug");
         String name = hm.get("name");
 
-        Hero toReturn = new Warrior(name);
+        Hero toReturn = new Warrior(slug, name);
         return toReturn;
     }
 
     public abstract void speak();
+
+    public String getName(){
+
+        return name;
+
+    }
 
     public int getCost(){
 

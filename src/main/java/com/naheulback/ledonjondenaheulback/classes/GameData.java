@@ -10,7 +10,6 @@ public class GameData {
         level = 0;
         maxHeroes = 0;
 
-
     }
 
     public static void setMaxHeroes(){

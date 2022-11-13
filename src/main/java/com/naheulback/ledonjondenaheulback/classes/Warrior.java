@@ -4,9 +4,9 @@ public class Warrior extends Hero {
 
     private String saySomething;
 
-    public Warrior(String name){
+    public Warrior(String slug, String name){
 
-        super(name);
+        super(slug, name);
         saySomething = "I am a warrior";
 
     }
