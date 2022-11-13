@@ -19,20 +19,10 @@ public class DungeonHallController {
 
     public void initialize() throws FileNotFoundException {
 
-        System.out.println("Entered dungeon " + Game.getDungeon());
-
-        String path = "src/main/resources/com/naheulback/ledonjondenaheulback/dungeonImages";
-
-        switch (Game.getDungeon()){
-
-            case 1:
-
-                InputStream stream = new FileInputStream(path + "/d1_hall_background.png");
-                Image image = new Image(stream);
-                mainIV.setImage(image);
-
-
-        }
+        String path = "src/main/resources/com/naheulback/ledonjondenaheulback/dungeonImages/d";
+        InputStream stream = new FileInputStream(path + Game.getDungeon() + "_hall_background.png");
+        Image image = new Image(stream);
+        mainIV.setImage(image);
 
     }
 

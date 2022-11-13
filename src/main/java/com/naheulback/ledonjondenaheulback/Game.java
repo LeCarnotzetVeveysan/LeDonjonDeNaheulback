@@ -43,4 +43,12 @@ public class Game {
 
     public static void setRoom(int room){ playerData.setRoom(room);}
 
+    public static int getTable(){ return playerData.getTable(); }
+
+    public static void setTable(int table){ playerData.setTable(table);}
+
+    public static int getSpeakingHero(){ return playerData.getSpeakingHero(); }
+
+    public static void setSpeakingHero(int hero){ playerData.setSpeakingHero(hero);}
+
 }

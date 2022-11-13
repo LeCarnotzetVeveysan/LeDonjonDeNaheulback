@@ -18,7 +18,7 @@ public class PlayerData {
         livingHeroes = new ArrayList<>();
         deadHeroes = new ArrayList<>();
 
-        currentLocation = new int[]{0, 0, 0};
+        currentLocation = new int[]{0, 0, 0, 0};
         goldPieces = 0;
 
     }
@@ -38,6 +38,10 @@ public class PlayerData {
     public int getTable(){ return currentLocation[2]; }
 
     public void setTable(int table){ currentLocation[2] = table;}
+
+    public int getSpeakingHero(){ return currentLocation[3]; }
+
+    public void setSpeakingHero(int hero){ currentLocation[3] = hero;}
 
     public static void initGoldPieces(){
         switch (GameData.getLevel()) {

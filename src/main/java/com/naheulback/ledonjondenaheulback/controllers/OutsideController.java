@@ -15,7 +15,7 @@ import java.io.InputStream;
 public class OutsideController {
 
     @FXML
-    private ImageView dungeonIV;
+    private ImageView mainIV;
     @FXML
     private ImageView enterButtonIV;
 
@@ -24,12 +24,11 @@ public class OutsideController {
         System.out.println("Entered dungeon " + Game.getDungeon());
 
         String path = "src/main/resources/com/naheulback/ledonjondenaheulback/dungeonImages/d";
-        path += Game.getDungeon();
-
-        InputStream stream = new FileInputStream(path + "_outside_background.png");
+        InputStream stream = new FileInputStream(path + Game.getDungeon() + "_outside_background.png");
         Image image = new Image(stream);
-        dungeonIV.setImage(image);
-        stream = new FileInputStream(path + "_outside_door.png");
+        mainIV.setImage(image);
+
+        stream = new FileInputStream(path + Game.getDungeon() + "_outside_door.png");
         image = new Image(stream);
         enterButtonIV.setImage(image);
 
@@ -39,6 +38,7 @@ public class OutsideController {
 
         Game.setDungeon(0);
         Game.setRoom(0);
+        Game.setTable(0);
         LoadScene.changeScene("menu-travel-map");
 
     }
