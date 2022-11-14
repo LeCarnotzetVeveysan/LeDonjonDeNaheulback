@@ -1,17 +1,19 @@
 package com.naheulback.ledonjondenaheulback;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Dictionary;
-import java.util.Enumeration;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Functions {
 
+    private static String resPath = "src/main/resources/com/naheulback/ledonjondenaheulback/";
+
     public static HashMap<String, String> getHeroDictFromFile(String fileName) throws IOException {
 
-        String path = "src/main/resources/com/naheulback/ledonjondenaheulback/heroFiles/" + fileName;
+        String path = resPath + "heroFiles/" + fileName;
         BufferedReader br = new BufferedReader(new FileReader(path));
 
         HashMap<String, String> toReturn = new HashMap<>() {};
@@ -22,6 +24,31 @@ public class Functions {
         }
 
         return toReturn;
+    }
+
+    public static void setTableImages(ArrayList<ImageView> al) throws IOException {
+
+        int dungeon = Game.getDungeon();
+        int table = Game.getTable();
+
+        String path = resPath + "gameFiles/" + "tavern" + dungeon + "table" + table;
+        BufferedReader br = new BufferedReader(new FileReader(path));
+        ArrayList<String> slugList = new ArrayList<>();
+        for (String line = br.readLine(); line != null; line = br.readLine()) {
+            String[] parts = line.split(":");
+            slugList.add(parts[1]);
+        }
+
+        for(int i=0;i<=5;i++){
+
+            if(!slugList.get(i).equals("empty")) {
+                path = resPath + "/tavernImages/" + slugList.get(i) + "_table.png";
+                InputStream stream = new FileInputStream(path);
+                Image image = new Image(stream);
+                al.get(i).setImage(image);
+            }
+        }
+
     }
 
 }

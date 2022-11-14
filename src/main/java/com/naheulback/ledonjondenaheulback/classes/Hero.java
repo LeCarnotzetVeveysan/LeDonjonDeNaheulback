@@ -5,8 +5,6 @@ import java.io.FileReader;
 import java.util.Dictionary;
 import java.util.HashMap;
 
-import org.json.*;
-
 public abstract class Hero {
 
     private String slug;

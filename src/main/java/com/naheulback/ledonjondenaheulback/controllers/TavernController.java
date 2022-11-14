@@ -1,5 +1,6 @@
 package com.naheulback.ledonjondenaheulback.controllers;
 
+import com.naheulback.ledonjondenaheulback.Functions;
 import com.naheulback.ledonjondenaheulback.Game;
 import com.naheulback.ledonjondenaheulback.LoadScene;
 import javafx.fxml.FXML;
@@ -11,18 +12,24 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TavernController {
 
     @FXML
     private ImageView mainIV;
 
-    public void initialize() throws FileNotFoundException {
+
+
+    public void initialize() throws IOException {
 
         String path = "src/main/resources/com/naheulback/ledonjondenaheulback/dungeonImages/d";
         InputStream stream = new FileInputStream(path + Game.getDungeon() + "_tavern_background.png");
         Image image = new Image(stream);
         mainIV.setImage(image);
+
+
 
     }
 
