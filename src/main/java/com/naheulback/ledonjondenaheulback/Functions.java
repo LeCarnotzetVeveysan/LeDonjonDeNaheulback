@@ -34,14 +34,16 @@ public class Functions {
         String path = resPath + "gameFiles/" + "tavern" + dungeon + "table" + table;
         BufferedReader br = new BufferedReader(new FileReader(path));
         ArrayList<String> slugList = new ArrayList<>();
+        ArrayList<String> recruited = new ArrayList<>();
         for (String line = br.readLine(); line != null; line = br.readLine()) {
             String[] parts = line.split(":");
             slugList.add(parts[1]);
+            recruited.add(parts[3]);
         }
 
         for(int i=0;i<=5;i++){
 
-            if(!slugList.get(i).equals("empty")) {
+            if(!slugList.get(i).equals("empty") && recruited.get(i).equals("false")) {
                 path = resPath + "/tavernImages/" + slugList.get(i) + "_table.png";
                 InputStream stream = new FileInputStream(path);
                 Image image = new Image(stream);

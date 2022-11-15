@@ -1,6 +1,6 @@
-hero1:lenain
-hero2:empty
-hero3:lebarbare
-hero4:empty
-hero5:empty
-hero6:empty
+hero1:lenain:recruited:false
+hero2:empty:recruited:false
+hero3:empty:recruited:false
+hero4:empty:recruited:false
+hero5:empty:recruited:false
+hero6:lebarbare:recruited:false

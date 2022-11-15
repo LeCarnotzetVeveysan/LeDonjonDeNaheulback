@@ -42,12 +42,16 @@
             </Button>
          </children>
       </HBox>
-      <ImageView fx:id="hero1IV" fitHeight="139.0" fitWidth="133.0" layoutX="14.0" layoutY="172.0" onMouseClicked="#onHero1Clicked" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="hero2IV" fitHeight="139.0" fitWidth="133.0" layoutX="164.0" layoutY="172.0" onMouseClicked="#onHero2Clicked" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="hero3IV" fitHeight="139.0" fitWidth="133.0" layoutX="309.0" layoutY="172.0" onMouseClicked="#onHero3Clicked" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="hero4IV" fitHeight="139.0" fitWidth="133.0" layoutX="464.0" layoutY="159.0" onMouseClicked="#onHero4Clicked" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="hero5IV" fitHeight="139.0" fitWidth="133.0" layoutX="621.0" layoutY="159.0" onMouseClicked="#onHero5Clicked" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="hero6IV" fitHeight="139.0" fitWidth="133.0" layoutX="787.0" layoutY="172.0" onMouseClicked="#onHero6Clicked" pickOnBounds="true" preserveRatio="true" />
+      <HBox alignment="CENTER" layoutX="35.0" layoutY="150.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+         <children>
+            <ImageView fx:id="hero1IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHero1Clicked" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="hero2IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHero2Clicked" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="hero3IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHero3Clicked" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="hero4IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHero4Clicked" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="hero5IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHero5Clicked" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="hero6IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHero6Clicked" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
       <ImageView fx:id="smallTextLeftIV" fitHeight="120.0" fitWidth="422.0" layoutX="35.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="smallTextRightIV" fitHeight="120.0" fitWidth="422.0" layoutX="503.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="bigTextIV" fitHeight="119.0" fitWidth="931.0" layoutX="33.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
