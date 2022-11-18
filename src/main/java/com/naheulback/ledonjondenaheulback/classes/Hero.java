@@ -20,10 +20,10 @@ public abstract class Hero {
     private int speed;
     private String testSpeak;
 
-    public Hero(String inputSlug, String inputName){
+    public Hero(String inputSlug){
 
         slug = inputSlug;
-        name = inputName;
+        name = "thename";
         level = 1;
         experience = 0;
         recruitementCost = 100;
@@ -39,14 +39,6 @@ public abstract class Hero {
         return "name : " + name + ", level : " + level;
     }
 
-    public static Hero buildHeroFromDict(HashMap<String,String> hm) throws FileNotFoundException {
-
-        String slug = hm.get("slug");
-        String name = hm.get("name");
-
-        Hero toReturn = new Warrior(slug, name);
-        return toReturn;
-    }
 
     public abstract void speak();
 

@@ -1,6 +1,7 @@
 package com.naheulback.ledonjondenaheulback;
 
 import com.naheulback.ledonjondenaheulback.classes.GameData;
+import com.naheulback.ledonjondenaheulback.classes.Hero;
 import com.naheulback.ledonjondenaheulback.classes.PlayerData;
 import javafx.stage.Stage;
 
@@ -50,5 +51,16 @@ public class Game {
     public static int getSpeakingHero(){ return playerData.getSpeakingHero(); }
 
     public static void setSpeakingHero(int hero){ playerData.setSpeakingHero(hero);}
+
+    public static void addGoldPieces(int amount){ playerData.addGoldPieces(amount); }
+
+    public static void takeGoldPieces(int amount){ playerData.takeGoldPieces(amount); }
+
+    public static boolean hasEnoughGoldPieces(int amount){ return playerData.hasEnoughGoldPieces(amount);}
+
+    public static int getGoldPieces(){ return PlayerData.getGoldPieces(); }
+
+    public static void recruitHero(Hero hero){ playerData.recruitHero(hero);}
+
 
 }

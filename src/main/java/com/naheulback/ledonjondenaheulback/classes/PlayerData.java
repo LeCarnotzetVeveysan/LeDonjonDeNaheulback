@@ -27,6 +27,8 @@ public class PlayerData {
         return teamName;
     }
 
+    public int getNumberLivingHeroes(){ return livingHeroes.size(); }
+
     public int getDungeon(){ return currentLocation[0]; }
 
     public void setDungeon(int dungeon){ currentLocation[0] = dungeon;}
@@ -56,7 +58,7 @@ public class PlayerData {
         goldPieces += gold;
     }
 
-    public static boolean takeGoldPieces(int gold){
+    public static boolean hasEnoughGoldPieces(int gold){
 
         if(goldPieces >= gold){
             goldPieces -= gold;
@@ -66,6 +68,8 @@ public class PlayerData {
         }
 
     }
+
+    public static void takeGoldPieces(int gold){ goldPieces -= gold; }
 
     public static int getGoldPieces(){
         return goldPieces;

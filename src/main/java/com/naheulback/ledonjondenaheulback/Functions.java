@@ -13,6 +13,10 @@ public class Functions {
 
     public static HashMap<String, String> getHeroDictFromFile(String fileName) throws IOException {
 
+        if(fileName == "empty"){
+            return new HashMap<String,String>();
+        }
+
         String path = resPath + "heroFiles/" + fileName;
         BufferedReader br = new BufferedReader(new FileReader(path));
 
@@ -26,31 +30,54 @@ public class Functions {
         return toReturn;
     }
 
-    public static void setTableImages(ArrayList<ImageView> al) throws IOException {
+    public static void updateTableFile() throws IOException {
 
-        int dungeon = Game.getDungeon();
-        int table = Game.getTable();
+        ArrayList<String> slugList = getTableSlugList();
+        slugList.set(Game.getSpeakingHero(), "empty");
 
-        String path = resPath + "gameFiles/" + "tavern" + dungeon + "table" + table;
+        String path = resPath + "gameFiles/tavern" + Game.getDungeon() + "table" + Game.getTable();
+        BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+
+        for(int i = 0; i <= 5; i++){
+            writer.write("hero" + (i + 1) + ":" + slugList.get(i));
+            writer.newLine();
+        }
+
+        writer.close();
+        System.out.println("fichier est censé etre mis à jour");
+
+
+    }
+
+    private static ArrayList<String> getTableSlugList() throws IOException {
+        String path = resPath + "gameFiles/" + "tavern" + Game.getDungeon() + "table" + Game.getTable();
         BufferedReader br = new BufferedReader(new FileReader(path));
         ArrayList<String> slugList = new ArrayList<>();
-        ArrayList<String> recruited = new ArrayList<>();
         for (String line = br.readLine(); line != null; line = br.readLine()) {
             String[] parts = line.split(":");
             slugList.add(parts[1]);
-            recruited.add(parts[3]);
         }
+
+        return slugList;
+    }
+
+    public static void setTableImages(ArrayList<ImageView> al) throws IOException {
+
+        ArrayList<String> slugList = getTableSlugList();
 
         for(int i=0;i<=5;i++){
-
-            if(!slugList.get(i).equals("empty") && recruited.get(i).equals("false")) {
-                path = resPath + "/tavernImages/" + slugList.get(i) + "_table.png";
-                InputStream stream = new FileInputStream(path);
-                Image image = new Image(stream);
-                al.get(i).setImage(image);
-            }
+            String path = resPath + "/tavernImages/" + slugList.get(i) + "_table.png";
+            InputStream stream = new FileInputStream(path);
+            Image image = new Image(stream);
+            al.get(i).setImage(image);
         }
-
     }
+
+    public static String getSpeakingHeroSlug() throws IOException {
+        ArrayList<String> slugList = getTableSlugList();
+        return slugList.get(Game.getSpeakingHero());
+    }
+
+
 
 }
