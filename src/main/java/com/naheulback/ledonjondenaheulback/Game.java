@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static com.naheulback.ledonjondenaheulback.Functions.initTableFiles;
+
 public class Game {
 
     private Stage mainStage;
@@ -23,8 +25,9 @@ public class Game {
 
     public void main() throws IOException {
 
-          LoadScene ls = new LoadScene(mainStage);
-          ls.changeScene("menu-main-menu");
+        initTableFiles();
+        LoadScene ls = new LoadScene(mainStage);
+        ls.changeScene("menu-main-menu");
 
     }
 

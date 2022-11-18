@@ -4,7 +4,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Functions {
@@ -30,6 +32,27 @@ public class Functions {
         return toReturn;
     }
 
+    public static void initTableFiles() throws IOException {
+
+        String[] d1t1 = {"tavern1table1","hero1:lenain&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:lebarbare"};
+        String[] d1t2 = {"tavern1table2","hero1:logre&hero2:empty&hero3:lamagicienne&hero4:empty&hero5:lelfe&hero6:empty"};
+        String[] d1t3 = {"tavern1table3","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
+        String[] d2t1 = {"tavern2table1","hero1:levoleur&hero2:empty&hero3:gontran&hero4:empty&hero5:empty&hero6:empty"};
+        ArrayList<String[]> partList = new ArrayList<String[]>(Arrays.asList(d1t1, d1t2, d1t3, d2t1));
+
+        for(String[] strar : partList){
+
+            String path = resPath + "gameFiles/" + strar[0];
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+            String[] parts = strar[1].split("&");
+            for(int i = 0; i <= 5; i++){
+                writer.write(parts[i]);
+                writer.newLine();
+            }
+            writer.close();
+        }
+
+    }
     public static void updateTableFile() throws IOException {
 
         ArrayList<String> slugList = getTableSlugList();
