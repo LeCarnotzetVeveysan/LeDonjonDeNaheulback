@@ -18,7 +18,6 @@ public class LoadScene {
 
     public static void changeScene(String fxmlToShow) throws IOException {
 
-
         fxmlToShow += ".fxml";
 
         FXMLLoader fxmlLoader = new FXMLLoader(AppLaunch.class.getResource(fxmlToShow));

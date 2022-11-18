@@ -101,24 +101,19 @@ public class DungeonTableController {
             switch (dict.get("class")){
 
                 case "warrior":
-                    System.out.println("coucou");
                     toAdd = new Warrior(dict.get("slug"));
                     updateTableFile();
                     setTableImages(heroImages);
                     break;
                 case "nain":
-                    System.out.println("coucou2");
                     toAdd = new Nain(dict.get("slug"));
                     updateTableFile();
                     setTableImages(heroImages);
                     break;
 
             }
-
             Game.recruitHero(toAdd);
-
         }
-
     }
 
     public void onHero1Clicked() throws IOException {
