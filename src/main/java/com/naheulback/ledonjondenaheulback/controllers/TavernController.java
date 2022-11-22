@@ -29,8 +29,6 @@ public class TavernController {
         Image image = new Image(stream);
         mainIV.setImage(image);
 
-
-
     }
 
     public void onTable1ButtonClicked() throws IOException {
@@ -52,5 +50,9 @@ public class TavernController {
         Game.setTable(3);
         LoadScene.changeScene("dungeon-table");
 
+    }
+
+    public void onBarButtonClicked(MouseEvent mouseEvent) throws IOException {
+        LoadScene.changeScene("dungeon-bar");
     }
 }

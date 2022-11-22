@@ -6,6 +6,7 @@ import com.naheulback.ledonjondenaheulback.classes.PlayerData;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static com.naheulback.ledonjondenaheulback.Functions.initTableFiles;
 
@@ -64,6 +65,8 @@ public class Game {
     public static int getGoldPieces(){ return PlayerData.getGoldPieces(); }
 
     public static void recruitHero(Hero hero){ playerData.recruitHero(hero);}
+
+    public static ArrayList<String> getLivingHeroSlugs(){ return PlayerData.getLivingHeroSlugs();}
 
 
 }

@@ -1,6 +1,9 @@
 package com.naheulback.ledonjondenaheulback.classes;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class PlayerData {
 
@@ -79,6 +82,15 @@ public class PlayerData {
         return livingHeroes.toString();
     }
 
+    public static ArrayList<String> getLivingHeroSlugs(){
+
+        ArrayList<String> lhs = new ArrayList<>(Arrays.asList("empty","empty","empty","empty","empty","empty"));
+        for(int i = 0; i < livingHeroes.size(); i++){
+            lhs.set(i,livingHeroes.get(i).getSlug());
+        }
+        return lhs;
+    }
+
     public static String getDeadHeroes(){
         return deadHeroes.toString();
     }
@@ -96,6 +108,8 @@ public class PlayerData {
         deadHeroes.remove(hero);
         livingHeroes.add(hero);
     }
+
+
 
 
 }

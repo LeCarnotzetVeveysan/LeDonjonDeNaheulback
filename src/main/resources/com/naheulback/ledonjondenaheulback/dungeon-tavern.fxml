@@ -10,6 +10,6 @@
       <Button layoutX="440.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#onTable1ButtonClicked" text="Table1" />
       <Button layoutX="686.0" layoutY="395.0" mnemonicParsing="false" onMouseClicked="#onTable2ButtonClicked" text="Table2" />
       <Button layoutX="431.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#onTable3ButtonClicked" text="Table3" />
-      <Button layoutX="142.0" layoutY="126.0" mnemonicParsing="false" text="Bar" />
+      <Button layoutX="142.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#onBarButtonClicked" text="Bar" />
    </children>
 </AnchorPane>

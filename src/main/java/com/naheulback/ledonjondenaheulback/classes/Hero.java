@@ -60,4 +60,9 @@ public abstract class Hero {
 
     }
 
+    public String getSlug() {
+
+        return slug;
+
+    }
 }

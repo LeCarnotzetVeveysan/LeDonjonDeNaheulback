@@ -5,9 +5,7 @@ import javafx.scene.image.ImageView;
 
 import java.io.*;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public class Functions {
 
@@ -101,6 +99,17 @@ public class Functions {
         return slugList.get(Game.getSpeakingHero());
     }
 
+    public static void setBarImages(ArrayList<ImageView> al) throws FileNotFoundException {
 
+        ArrayList<String> lhs = Game.getLivingHeroSlugs();
+        Collections.shuffle(lhs);
 
+        for(int i=0;i<=5;i++){
+            String path = resPath + "/tavernImages/" + lhs.get(i) + "_bar.png";
+            InputStream stream = new FileInputStream(path);
+            Image image = new Image(stream);
+            al.get(i).setImage(image);
+        }
+
+    }
 }
