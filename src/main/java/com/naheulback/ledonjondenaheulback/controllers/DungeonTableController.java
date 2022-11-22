@@ -5,16 +5,13 @@ import com.naheulback.ledonjondenaheulback.Game;
 import com.naheulback.ledonjondenaheulback.LoadScene;
 import com.naheulback.ledonjondenaheulback.classes.Hero;
 import com.naheulback.ledonjondenaheulback.classes.Nain;
-import com.naheulback.ledonjondenaheulback.classes.PlayerData;
 import com.naheulback.ledonjondenaheulback.classes.Warrior;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -136,21 +133,24 @@ public class DungeonTableController {
             HashMap<String, String> dict = getHeroDictFromFile(slug);
             System.out.println(dict.get("name"));
             int cost = Integer.valueOf(dict.get("cost"));
+            ArrayList<String> slugList = getTableSlugList();
 
             if (Game.hasEnoughGoldPieces(cost)) {
 
                 Hero toAdd = null;
+                slugList.set(Game.getSpeakingHero(), "empty");
 
                 switch (dict.get("class")) {
 
                     case "warrior":
                         toAdd = new Warrior(dict.get("slug"));
-                        updateTableFile();
+
+                        updateTableFile(slugList);
                         setTableImages(heroImages);
                         break;
                     case "nain":
                         toAdd = new Nain(dict.get("slug"));
-                        updateTableFile();
+                        updateTableFile(slugList);
                         setTableImages(heroImages);
                         break;
 
@@ -168,21 +168,19 @@ public class DungeonTableController {
     public void onSitButtonClicked() throws FileNotFoundException {
 
         sitButtonsHB.getChildren().clear();
-        System.out.println(sitButtonsHB.getChildren());
         sitButtons = new ArrayList<>(Arrays.asList(sitButton1, sitButton2, sitButton3, sitButton4, sitButton5, sitButton6));
         for(Button validBtn : sitButtons){
             sitButtonsHB.getChildren().add(validBtn);
         }
+
         sitButtonsHB.setVisible(true);
         sitButtonsHB.setDisable(false);
-
         interactionButtonsHB.setVisible(false);
         interactionButtonsHB.setDisable(true);
 
         ArrayList<String> sl = Game.getLivingHeroSlugs();
         for (int i = 5; i >= 0; i--){
 
-            System.out.println(i + " " + sl.get(i));
             if(sl.get(i).equals("empty")){
                 sitButtonsHB.getChildren().remove(i);
             } else {
@@ -193,9 +191,59 @@ public class DungeonTableController {
                 sitButtons.get(i).setVisible(true);
                 sitButtonImages.get(i).setImage(image);
             }
+        }
+    }
 
+    public void onHeroSitButtonClicked(int index) throws IOException {
+
+        boolean seated = false;
+        String slugToSit = Game.getLivingHeroSlugs().get(index);
+        ArrayList<String> tsl = getTableSlugList();
+
+        for (int i = 0; i <= 5; i++){
+            if(tsl.get(i).equals("empty")){
+                Game.sitHero(index);
+                System.out.println("On est dans la boucle");
+                tsl.set(i, slugToSit);
+                seated = true;
+                break;
+            }
         }
 
+        if(!seated){
+            System.out.println("all seats are taken");
+        }
+
+        System.out.println(Game.getGoldPieces());
+
+        Functions.updateTableFile(tsl);
+        onSitButtonClicked();
+        Functions.setTableImages(heroImages);
+
+    }
+
+    public void onHero1SitButtonClicked() throws IOException {
+        onHeroSitButtonClicked(0);
+    }
+
+    public void onHero2SitButtonClicked() throws IOException {
+        onHeroSitButtonClicked(1);
+    }
+
+    public void onHero3SitButtonClicked() throws IOException {
+        onHeroSitButtonClicked(2);
+    }
+
+    public void onHero4SitButtonClicked() throws IOException {
+        onHeroSitButtonClicked(3);
+    }
+
+    public void onHero5SitButtonClicked() throws IOException {
+        onHeroSitButtonClicked(4);
+    }
+
+    public void onHero6SitButtonClicked() throws IOException {
+        onHeroSitButtonClicked(5);
     }
 
     private void onHeroIVClicked() throws IOException {
@@ -239,8 +287,6 @@ public class DungeonTableController {
         Game.setSpeakingHero(5);
         onHeroIVClicked();
     }
-
-
 
 
 }

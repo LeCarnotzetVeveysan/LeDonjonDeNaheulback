@@ -51,10 +51,7 @@ public class Functions {
         }
 
     }
-    public static void updateTableFile() throws IOException {
-
-        ArrayList<String> slugList = getTableSlugList();
-        slugList.set(Game.getSpeakingHero(), "empty");
+    public static void updateTableFile(ArrayList<String> slugList) throws IOException {
 
         String path = resPath + "gameFiles/tavern" + Game.getDungeon() + "table" + Game.getTable();
         BufferedWriter writer = new BufferedWriter(new FileWriter(path));
@@ -65,13 +62,11 @@ public class Functions {
         }
 
         writer.close();
-        System.out.println("fichier est censé etre mis à jour");
-
 
     }
 
     public static ArrayList<String> getTableSlugList() throws IOException {
-        String path = resPath + "gameFiles/" + "tavern" + Game.getDungeon() + "table" + Game.getTable();
+        String path = resPath + "gameFiles/tavern" + Game.getDungeon() + "table" + Game.getTable();
         BufferedReader br = new BufferedReader(new FileReader(path));
         ArrayList<String> slugList = new ArrayList<>();
         for (String line = br.readLine(); line != null; line = br.readLine()) {

@@ -65,32 +65,32 @@
          </graphic></Button>
       <HBox fx:id="sitButtonsHB" alignment="CENTER" layoutX="129.0" layoutY="438.0" prefHeight="100.0" prefWidth="659.0" spacing="20.0">
          <children>
-            <Button fx:id="sitButton1" mnemonicParsing="false" onMouseClicked="#onYouButtonClicked">
+            <Button fx:id="sitButton1" mnemonicParsing="false" onMouseClicked="#onHero1SitButtonClicked">
                <graphic>
                   <ImageView fx:id="sitButton1IV" fitHeight="67.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
-            <Button fx:id="sitButton2" mnemonicParsing="false">
+            <Button fx:id="sitButton2" mnemonicParsing="false" onMouseClicked="#onHero2SitButtonClicked">
                <graphic>
                   <ImageView fx:id="sitButton2IV" fitHeight="67.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
-            <Button fx:id="sitButton3" mnemonicParsing="false" onMouseClicked="#onQuoteButtonClicked">
+            <Button fx:id="sitButton3" mnemonicParsing="false" onMouseClicked="#onHero3SitButtonClicked">
                <graphic>
                   <ImageView fx:id="sitButton3IV" fitHeight="67.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
-            <Button fx:id="sitButton4" mnemonicParsing="false" onMouseClicked="#onJokeButtonClicked">
+            <Button fx:id="sitButton4" mnemonicParsing="false" onMouseClicked="#onHero4SitButtonClicked">
                <graphic>
                   <ImageView fx:id="sitButton4IV" fitHeight="67.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
-            <Button fx:id="sitButton5" mnemonicParsing="false" onMouseClicked="#onRecruitPriceButtonClicked">
+            <Button fx:id="sitButton5" mnemonicParsing="false" onMouseClicked="#onHero5SitButtonClicked">
                <graphic>
                   <ImageView fx:id="sitButton5IV" fitHeight="67.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
-            <Button fx:id="sitButton6" mnemonicParsing="false" onMouseClicked="#onRecruitButtonClicked">
+            <Button fx:id="sitButton6" mnemonicParsing="false" onMouseClicked="#onHero6SitButtonClicked">
                <graphic>
                   <ImageView fx:id="sitButton6IV" fitHeight="67.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>

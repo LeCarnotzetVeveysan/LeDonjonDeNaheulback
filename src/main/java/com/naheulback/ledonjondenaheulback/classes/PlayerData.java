@@ -96,6 +96,8 @@ public class PlayerData {
         livingHeroes.add(hero);
     }
 
+    public static void sitHero(int index){ livingHeroes.remove(index); }
+
     public static void heroDies(Hero hero){
         //int index = livingHeroes.indexOf(hero);
         deadHeroes.add(hero);

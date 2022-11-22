@@ -70,6 +70,8 @@ public class Game {
 
     public static void recruitHero(Hero hero){ playerData.recruitHero(hero);}
 
+    public static void sitHero(int index){ playerData.sitHero(index); }
+
     public static ArrayList<String> getLivingHeroSlugs(){ return PlayerData.getLivingHeroSlugs();}
 
 
