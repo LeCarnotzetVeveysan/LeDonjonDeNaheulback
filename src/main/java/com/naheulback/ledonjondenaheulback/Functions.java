@@ -70,7 +70,7 @@ public class Functions {
 
     }
 
-    private static ArrayList<String> getTableSlugList() throws IOException {
+    public static ArrayList<String> getTableSlugList() throws IOException {
         String path = resPath + "gameFiles/" + "tavern" + Game.getDungeon() + "table" + Game.getTable();
         BufferedReader br = new BufferedReader(new FileReader(path));
         ArrayList<String> slugList = new ArrayList<>();

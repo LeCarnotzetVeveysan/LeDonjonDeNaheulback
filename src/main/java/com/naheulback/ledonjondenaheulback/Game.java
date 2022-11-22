@@ -32,6 +32,8 @@ public class Game {
 
     }
 
+    public static int getNumberOfLivingHeroes(){ return PlayerData.getNumberOfLivingHeroes(); }
+
     public static void setLevel(int inputLevel){
         gameData.setLevel(inputLevel);
     }
@@ -39,6 +41,8 @@ public class Game {
     public static int getLevel(){
         return gameData.getLevel();
     }
+
+    public static int getMaxHeroes(){ return GameData.getMaxHeroes(); }
 
     public static int getDungeon(){ return playerData.getDungeon(); }
 

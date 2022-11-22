@@ -1,9 +1,7 @@
 package com.naheulback.ledonjondenaheulback.classes;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class PlayerData {
 
@@ -30,7 +28,7 @@ public class PlayerData {
         return teamName;
     }
 
-    public int getNumberLivingHeroes(){ return livingHeroes.size(); }
+    public static int getNumberOfLivingHeroes(){ return livingHeroes.size(); }
 
     public int getDungeon(){ return currentLocation[0]; }
 

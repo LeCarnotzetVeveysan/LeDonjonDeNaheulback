@@ -19,6 +19,7 @@ public class Main {
 
         Game mainGame = new Game(mainStage);
         mainGame.main();
+        //implémenter jeu avec images alpha et bonnes images
 
     }
 

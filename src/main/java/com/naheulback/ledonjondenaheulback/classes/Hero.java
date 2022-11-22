@@ -13,7 +13,9 @@ public abstract class Hero {
     private int experience;
     private int recruitementCost;
     private int health;
+    private int maxHealth;
     private int armor;
+    private int maxArmor;
     private int attack;
     private int magic;
     private int mana;
@@ -28,6 +30,7 @@ public abstract class Hero {
         experience = 0;
         recruitementCost = 100;
         health = 100;
+        maxHealth = 100;
         armor = 100;
         attack = 100;
         magic = 100;
@@ -42,27 +45,17 @@ public abstract class Hero {
 
     public abstract void speak();
 
-    public String getName(){
+    public String getName(){ return name; }
 
-        return name;
+    public int getCost(){ return recruitementCost; }
 
-    }
+    private int getHealth(){ return health; }
 
-    public int getCost(){
+    private int getMaxHealth(){ return maxHealth; }
 
-        return recruitementCost;
+    private int getArmor(){ return armor; }
 
-    }
+    private int getMaxArmor(){ return maxArmor; }
 
-    private int getHealth(){
-
-        return health;
-
-    }
-
-    public String getSlug() {
-
-        return slug;
-
-    }
+    public String getSlug() { return slug; }
 }
