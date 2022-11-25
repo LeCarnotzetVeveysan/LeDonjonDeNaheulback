@@ -62,7 +62,6 @@ public class PlayerData {
     public static boolean hasEnoughGoldPieces(int gold){
 
         if(goldPieces >= gold){
-            goldPieces -= gold;
             return true;
         } else {
             return false;

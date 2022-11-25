@@ -46,7 +46,7 @@
             </Button>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="35.0" layoutY="150.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+      <HBox alignment="CENTER" layoutX="60.0" layoutY="144.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
          <children>
             <ImageView fx:id="hero1IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHero1Clicked" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="hero2IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHero2Clicked" pickOnBounds="true" preserveRatio="true" />
@@ -59,9 +59,12 @@
       <ImageView fx:id="smallTextLeftIV" fitHeight="120.0" fitWidth="422.0" layoutX="35.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="smallTextRightIV" fitHeight="120.0" fitWidth="422.0" layoutX="503.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="bigTextIV" fitHeight="120.0" fitWidth="931.0" layoutX="33.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="sitButton" layoutX="431.0" layoutY="552.0" onMouseClicked="#onSitButtonClicked" mnemonicParsing="false" prefHeight="100.0" prefWidth="144.0">
+      <Button fx:id="sitButton" layoutX="449.0" layoutY="563.0" mnemonicParsing="false" onMouseEntered="#onSitButtonHovering" onMouseExited="#onSitButtonStoppedHovering" onMouseClicked="#onSitButtonClicked" prefHeight="75.0" prefWidth="108.0">
          <graphic>
-            <ImageView fx:id="sitButtonIV" fitHeight="69.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="sitButtonIV" fitHeight="69.0" fitWidth="86.0"  pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@tavernImages/d1_tabouret.png" />
+               </image></ImageView>
          </graphic></Button>
       <HBox fx:id="sitButtonsHB" alignment="CENTER" layoutX="129.0" layoutY="438.0" prefHeight="100.0" prefWidth="659.0" spacing="20.0">
          <children>

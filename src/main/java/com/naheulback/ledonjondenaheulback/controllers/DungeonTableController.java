@@ -3,9 +3,7 @@ package com.naheulback.ledonjondenaheulback.controllers;
 import com.naheulback.ledonjondenaheulback.Functions;
 import com.naheulback.ledonjondenaheulback.Game;
 import com.naheulback.ledonjondenaheulback.LoadScene;
-import com.naheulback.ledonjondenaheulback.classes.Hero;
-import com.naheulback.ledonjondenaheulback.classes.Nain;
-import com.naheulback.ledonjondenaheulback.classes.Warrior;
+import com.naheulback.ledonjondenaheulback.classes.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -144,7 +142,6 @@ public class DungeonTableController {
 
                     case "warrior":
                         toAdd = new Warrior(dict.get("slug"));
-
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                         break;
@@ -153,9 +150,30 @@ public class DungeonTableController {
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                         break;
+                    case "mage":
+                        toAdd = new Mage(dict.get("slug"));
+                        updateTableFile(slugList);
+                        setTableImages(heroImages);
+                        break;
+                    case "elfe":
+                        toAdd = new Elfe(dict.get("slug"));
+                        updateTableFile(slugList);
+                        setTableImages(heroImages);
+                        break;
+                    case "ogre":
+                        toAdd = new Ogre(dict.get("slug"));
+                        updateTableFile(slugList);
+                        setTableImages(heroImages);
+                        break;
+                    case "ranger":
+                        toAdd = new Ranger(dict.get("slug"));
+                        updateTableFile(slugList);
+                        setTableImages(heroImages);
+                        break;
 
                 }
                 Game.recruitHero(toAdd);
+                Game.takeGoldPieces(cost);
             }
         } else {
 
@@ -203,7 +221,7 @@ public class DungeonTableController {
         for (int i = 0; i <= 5; i++){
             if(tsl.get(i).equals("empty")){
                 Game.sitHero(index);
-                System.out.println("On est dans la boucle");
+                //System.out.println("On est dans la boucle");
                 tsl.set(i, slugToSit);
                 seated = true;
                 break;
@@ -213,8 +231,6 @@ public class DungeonTableController {
         if(!seated){
             System.out.println("all seats are taken");
         }
-
-        System.out.println(Game.getGoldPieces());
 
         Functions.updateTableFile(tsl);
         onSitButtonClicked();
@@ -289,4 +305,21 @@ public class DungeonTableController {
     }
 
 
+    public void onSitButtonHovering() throws FileNotFoundException {
+
+        String path = resPath + "tavernImages/d";
+        InputStream stream = new FileInputStream(path + Game.getDungeon() + "_tabouret_fleche.png");
+        Image image = new Image(stream);
+        sitButtonIV.setImage(image);
+
+    }
+
+    public void onSitButtonStoppedHovering() throws FileNotFoundException {
+
+        String path = resPath + "tavernImages/d";
+        InputStream stream = new FileInputStream(path + Game.getDungeon() + "_tabouret.png");
+        Image image = new Image(stream);
+        sitButtonIV.setImage(image);
+
+    }
 }
