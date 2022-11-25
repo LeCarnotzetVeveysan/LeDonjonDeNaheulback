@@ -17,18 +17,18 @@
             <Image url="@mapImages/cartenaheulbeuk.png" />
          </image>
       </ImageView>
-      <Button layoutX="547.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#onDonj1ButtonClicked" text="Donj1" />
-      <Button layoutX="157.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#onDonj2ButtonClicked" text="Donj2" />
-      <Button layoutX="803.0" layoutY="71.0" mnemonicParsing="false" text="Donj3" />
-      <Button layoutX="123.0" layoutY="531.0" mnemonicParsing="false" text="Donj5" />
-      <Button layoutX="448.0" layoutY="439.0" mnemonicParsing="false" text="Donj6" />
-      <Button layoutX="816.0" layoutY="414.0" mnemonicParsing="false" text="Donj8" />
-      <Button layoutX="657.0" layoutY="519.0" mnemonicParsing="false" text="Donj7" />
-      <Button layoutX="438.0" layoutY="39.0" mnemonicParsing="false" text="Donj9" />
-      <Button layoutX="188.0" layoutY="610.0" mnemonicParsing="false" text="Donj10" />
+      <Button layoutX="547.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#onDonj1ButtonClicked" text="Donj1" style="-fx-background-color: transparent;" />
+      <Button layoutX="157.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#onDonj2ButtonClicked" text="Donj2" style="-fx-background-color: transparent;" />
+      <Button layoutX="803.0" layoutY="71.0" mnemonicParsing="false" text="Donj3" style="-fx-background-color: transparent;" />
+      <Button layoutX="123.0" layoutY="531.0" mnemonicParsing="false" text="Donj5" style="-fx-background-color: transparent;" />
+      <Button layoutX="448.0" layoutY="439.0" mnemonicParsing="false" text="Donj6" style="-fx-background-color: transparent;" />
+      <Button layoutX="816.0" layoutY="414.0" mnemonicParsing="false" text="Donj8" style="-fx-background-color: transparent;" />
+      <Button layoutX="657.0" layoutY="519.0" mnemonicParsing="false" text="Donj7" style="-fx-background-color: transparent;" />
+      <Button layoutX="438.0" layoutY="39.0" mnemonicParsing="false" text="Donj9" style="-fx-background-color: transparent;" />
+      <Button layoutX="188.0" layoutY="610.0" mnemonicParsing="false" text="Donj10" style="-fx-background-color: transparent;" />
       <VBox alignment="CENTER" layoutX="130.0" layoutY="245.0" prefHeight="184.0" prefWidth="137.0">
          <children>
-            <Button fx:id="donj4Btn" alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#onDonj4ButtonHover" onMouseExited="#onDonj4ButtonStoppedHover">
+            <Button fx:id="donj4Btn" alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;" onMouseEntered="#onDonj4ButtonHover" onMouseExited="#onDonj4ButtonStoppedHover">
                <graphic>
                   <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -9,6 +9,7 @@ public class AppLaunch extends Application {
     public void start(Stage stage) throws IOException {
 
         Stage mainStage = new Stage();
+        mainStage.setResizable(false);
         Main main = new Main(mainStage);
         main.startMain();
 
