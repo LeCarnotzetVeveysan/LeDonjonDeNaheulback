@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -17,18 +18,99 @@
             <Image url="@mapImages/cartenaheulbeuk.png" />
          </image>
       </ImageView>
-      <Button layoutX="547.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#onDonj1ButtonClicked" text="Donj1" style="-fx-background-color: transparent;" />
-      <Button layoutX="157.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#onDonj2ButtonClicked" text="Donj2" style="-fx-background-color: transparent;" />
-      <Button layoutX="803.0" layoutY="71.0" mnemonicParsing="false" text="Donj3" style="-fx-background-color: transparent;" />
-      <Button layoutX="123.0" layoutY="531.0" mnemonicParsing="false" text="Donj5" style="-fx-background-color: transparent;" />
-      <Button layoutX="448.0" layoutY="439.0" mnemonicParsing="false" text="Donj6" style="-fx-background-color: transparent;" />
-      <Button layoutX="816.0" layoutY="414.0" mnemonicParsing="false" text="Donj8" style="-fx-background-color: transparent;" />
-      <Button layoutX="657.0" layoutY="519.0" mnemonicParsing="false" text="Donj7" style="-fx-background-color: transparent;" />
-      <Button layoutX="438.0" layoutY="39.0" mnemonicParsing="false" text="Donj9" style="-fx-background-color: transparent;" />
-      <Button layoutX="188.0" layoutY="610.0" mnemonicParsing="false" text="Donj10" style="-fx-background-color: transparent;" />
+      <VBox alignment="CENTER" layoutX="547.0" layoutY="206.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#onDonjButtonClicked" onMouseEntered="#onDonj1ButtonHover" onMouseExited="#onDonj1StoppedButtonHover" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/donj1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <StackPane fx:id="donj1InfoSP" alignment="TOP_LEFT" prefHeight="81.0" prefWidth="138.0">
+               <children>
+                  <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/dungeon_info_background.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="donj1StatsLbl" text="Label">
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="157.0" layoutY="39.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#onDonjButtonClicked" onMouseEntered="#onDonj2ButtonHover" onMouseExited="#onDonj2StoppedButtonHover" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/donj2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <StackPane fx:id="donj2InfoSP" alignment="TOP_LEFT" prefHeight="81.0" prefWidth="138.0">
+               <children>
+                  <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/dungeon_info_background.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="donj2StatsLbl" text="Label">
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="810.0" layoutY="74.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#onDonjButtonClicked" onMouseEntered="#onDonj3ButtonHover" onMouseExited="#onDonj3StoppedButtonHover" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/donj3.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <StackPane fx:id="donj3InfoSP" alignment="TOP_LEFT" prefHeight="81.0" prefWidth="138.0">
+               <children>
+                  <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/dungeon_info_background.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="donj3StatsLbl" text="Label">
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
       <VBox alignment="CENTER" layoutX="130.0" layoutY="245.0" prefHeight="184.0" prefWidth="137.0">
          <children>
-            <Button fx:id="donj4Btn" alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;" onMouseEntered="#onDonj4ButtonHover" onMouseExited="#onDonj4ButtonStoppedHover">
+            <Button alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#onDonjButtonClicked" onMouseEntered="#onDonj4ButtonHover" onMouseExited="#onDonj4StoppedButtonHover" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -44,6 +126,186 @@
                      </image>
                   </ImageView>
                   <Label fx:id="donj4StatsLbl" text="Label">
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="94.0" layoutY="445.0" prefHeight="184.0" prefWidth="137.0">
+         <children>
+            <Button alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#onDonj5ButtonHover" onMouseExited="#onDonj5StoppedButtonHover" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/donj5.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <StackPane fx:id="donj5InfoSP" alignment="TOP_LEFT" prefHeight="81.0" prefWidth="138.0">
+               <children>
+                  <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/dungeon_info_background.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="donj5StatsLbl" text="Label">
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="380.0" layoutY="70.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#onDonjButtonClicked" onMouseEntered="#onDonj6ButtonHover" onMouseExited="#onDonj6StoppedButtonHover" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/donj6.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <StackPane fx:id="donj6InfoSP" alignment="TOP_LEFT" prefHeight="81.0" prefWidth="138.0">
+               <children>
+                  <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/dungeon_info_background.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="donj6StatsLbl" text="Label">
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="387.0" layoutY="321.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#onDonjButtonClicked" onMouseEntered="#onDonj7ButtonHover" onMouseExited="#onDonj7StoppedButtonHover" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/donj7.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <StackPane fx:id="donj7InfoSP" alignment="TOP_LEFT" prefHeight="81.0" prefWidth="138.0">
+               <children>
+                  <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/dungeon_info_background.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="donj7StatsLbl" text="Label">
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="577.0" layoutY="424.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#onDonjButtonClicked" onMouseEntered="#onDonj8ButtonHover" onMouseExited="#onDonj8StoppedButtonHover" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/donj8.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <StackPane fx:id="donj8InfoSP" alignment="TOP_LEFT" prefHeight="81.0" prefWidth="138.0">
+               <children>
+                  <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/dungeon_info_background.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="donj8StatsLbl" text="Label">
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER_LEFT" layoutX="327.0" layoutY="509.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#onDonjButtonClicked" onMouseEntered="#onDonj9ButtonHover" onMouseExited="#onDonj9StoppedButtonHover" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/donj9.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <StackPane fx:id="donj9InfoSP" alignment="TOP_LEFT" prefHeight="81.0" prefWidth="138.0">
+               <children>
+                  <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/dungeon_info_background.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="donj9StatsLbl" text="Label">
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" layoutX="769.0" layoutY="304.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#onDonjButtonClicked" onMouseEntered="#onDonj10ButtonHover" onMouseExited="#onDonj10StoppedButtonHover" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/donj10.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <StackPane fx:id="donj10InfoSP" alignment="TOP_LEFT" prefHeight="81.0" prefWidth="138.0">
+               <children>
+                  <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mapImages/dungeon_info_background.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="donj10StatsLbl" text="Label">
                      <padding>
                         <Insets left="10.0" top="10.0" />
                      </padding>
