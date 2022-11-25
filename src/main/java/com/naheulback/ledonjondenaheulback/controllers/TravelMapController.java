@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static javafx.scene.layout.BackgroundPosition.CENTER;
 import static javafx.scene.layout.BackgroundRepeat.NO_REPEAT;
@@ -25,26 +26,35 @@ import static javafx.scene.layout.BackgroundSize.DEFAULT;
 public class TravelMapController {
 
     private static String resPath = "src/main/resources/com/naheulback/ledonjondenaheulback/";
+
     @FXML
     private StackPane donj4InfoSP;
+
+
     @FXML
     private Label donj4StatsLbl;
 
     public void initialize() throws IOException {
 
-        donj4InfoSP.setVisible(false);
-        String path = resPath + "mapFiles/donj4_stats";
-        BufferedReader br = new BufferedReader(new FileReader(path));
-        String toDisplay = "";
-        for (String line = br.readLine(); line != null; line = br.readLine()) {
-            toDisplay += line;
-            if(!line.equals("")){
-                toDisplay += "\n";
-            }
-        }
-        donj4StatsLbl.setText(toDisplay);
+        ArrayList<StackPane> stackPanes = new ArrayList<>(Arrays.asList(donj4InfoSP));
+        ArrayList<Label> statLabels = new ArrayList<>(Arrays.asList(donj4StatsLbl));
 
+        for (StackPane sp : stackPanes){ sp.setVisible(false); }
+
+        for(Label lbl : statLabels){
+            String path = resPath + "mapFiles/" + lbl.getId().substring(0,5) + "_stats";
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            String toDisplay = "";
+            for (String line = br.readLine(); line != null; line = br.readLine()) {
+                toDisplay += line;
+                if(!line.equals("")){
+                    toDisplay += "\n";
+                }
+            }
+            lbl.setText(toDisplay);
+        }
     }
+
     public void onDonj1ButtonClicked() throws IOException {
 
         Game.setDungeon(1);
