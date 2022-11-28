@@ -105,10 +105,27 @@ public class Functions {
         return slugList.get(Game.getSpeakingHero());
     }
 
-    public static void setBarImages(ArrayList<ImageView> al) throws FileNotFoundException {
-
-        ArrayList<String> lhs = Game.getLivingHeroSlugs();
-        Collections.shuffle(lhs);
+    public static void setBarImages(ArrayList<String> lhs, ArrayList<ImageView> al) throws FileNotFoundException {
+        switch (Game.getNumberOfLivingHeroes()){
+            case 1:
+                lhs.set(2,lhs.get(0));
+                lhs.set(0,"empty");
+                break;
+            case 2:
+                lhs.set(2,lhs.get(0));
+                lhs.set(3,lhs.get(1));
+                lhs.set(0,"empty");
+                lhs.set(1,"empty");
+                break;
+            case 3:
+                lhs.set(3,lhs.get(0));
+                lhs.set(0,"empty");
+                break;
+            case 4:
+                lhs.set(4,lhs.get(0));
+                lhs.set(0,"empty");
+                break;
+        }
 
         for(int i=0;i<=5;i++){
             String path = resPath + "/tavernImages/" + lhs.get(i) + "_bar.png";

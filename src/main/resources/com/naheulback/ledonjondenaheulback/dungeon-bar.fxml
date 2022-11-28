@@ -15,12 +15,12 @@
       <ImageView fx:id="mainIV" fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" />
       <HBox alignment="CENTER" layoutX="43.0" layoutY="406.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
          <children>
-            <ImageView fx:id="hero1IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="hero2IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="hero3IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="hero4IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="hero5IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="hero6IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="hero1IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero1Hover" onMouseExited="#onHero1StoppedHover" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="hero2IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero2Hover" onMouseExited="#onHero2StoppedHover" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="hero3IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero3Hover" onMouseExited="#onHero3StoppedHover" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="hero4IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero4Hover" onMouseExited="#onHero4StoppedHover" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="hero5IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero5Hover" onMouseExited="#onHero5StoppedHover" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="hero6IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero6Hover" onMouseExited="#onHero6StoppedHover" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
       <Button layoutX="14.0" layoutY="625.0" mnemonicParsing="false" onMouseClicked="#onBackButtonClicked" prefHeight="61.0" prefWidth="92.0" text="Back" />
@@ -143,7 +143,7 @@
             </VBox>
          </children>
       </HBox>
-      <HBox layoutX="300.0" layoutY="269.0" spacing="25.0">
+      <HBox layoutX="337.0" layoutY="268.0" spacing="25.0">
          <children>
             <ImageView fx:id="foodMenuIV" fitHeight="100.0" fitWidth="150.0" onMouseClicked="#onFoodMenuClicked" onMouseEntered="#onFoodMenuHovering" onMouseExited="#onFoodMenuStoppedHovering" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>

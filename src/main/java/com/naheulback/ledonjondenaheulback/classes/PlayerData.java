@@ -28,6 +28,14 @@ public class PlayerData {
         return teamName;
     }
 
+    public static ArrayList<Hero> getLivingHeroes(){ return livingHeroes; }
+
+    public static void setLivingHeroes(ArrayList<Hero> al){ livingHeroes = al; }
+
+    public static ArrayList<Hero> getDeadHeroes(){ return deadHeroes; }
+
+    public static void setDeadHeroes(ArrayList<Hero> al){ deadHeroes = al; }
+
     public static int getNumberOfLivingHeroes(){ return livingHeroes.size(); }
 
     public int getDungeon(){ return currentLocation[0]; }
@@ -75,10 +83,6 @@ public class PlayerData {
         return goldPieces;
     }
 
-    public static String getLivingHeroes(){
-        return livingHeroes.toString();
-    }
-
     public static ArrayList<String> getLivingHeroSlugs(){
 
         ArrayList<String> lhs = new ArrayList<>(Arrays.asList("empty","empty","empty","empty","empty","empty"));
@@ -86,10 +90,6 @@ public class PlayerData {
             lhs.set(i,livingHeroes.get(i).getSlug());
         }
         return lhs;
-    }
-
-    public static String getDeadHeroes(){
-        return deadHeroes.toString();
     }
     public static void recruitHero(Hero hero){
         livingHeroes.add(hero);

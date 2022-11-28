@@ -32,6 +32,10 @@ public class Game {
 
     }
 
+    public static ArrayList<Hero> getLivingHeroes(){ return PlayerData.getLivingHeroes(); }
+
+    public static void setLivingHeroes(ArrayList<Hero> al){ PlayerData.setLivingHeroes(al);}
+
     public static int getNumberOfLivingHeroes(){ return PlayerData.getNumberOfLivingHeroes(); }
 
     public static void setLevel(int inputLevel){

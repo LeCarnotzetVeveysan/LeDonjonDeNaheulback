@@ -22,10 +22,10 @@ public abstract class Hero {
     private int speed;
     private String testSpeak;
 
-    public Hero(String inputSlug){
+    public Hero(String inputSlug, String inputName){
 
         slug = inputSlug;
-        name = "thename";
+        name = inputName;
         level = 1;
         experience = 0;
         recruitementCost = 100;

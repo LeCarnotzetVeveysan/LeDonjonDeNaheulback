@@ -4,9 +4,9 @@ public class Mage extends Hero {
 
     private String saySomething;
 
-    public Mage(String slug){
+    public Mage(String slug, String name){
 
-        super(slug);
+        super(slug, name);
         saySomething = "J'aime les ogres ;)";
 
     }

@@ -4,9 +4,9 @@ public class Ranger extends Hero {
 
     private String saySomething;
 
-    public Ranger(String slug){
+    public Ranger(String slug, String name){
 
-        super(slug);
+        super(slug, name);
         saySomething = "Hop ! Hop ! Hop !";
 
     }

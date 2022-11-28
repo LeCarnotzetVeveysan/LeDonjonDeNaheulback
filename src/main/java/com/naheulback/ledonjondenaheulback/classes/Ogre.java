@@ -4,9 +4,9 @@ public class Ogre extends Hero {
 
     private String saySomething;
 
-    public Ogre(String slug){
+    public Ogre(String slug, String name){
 
-        super(slug);
+        super(slug, name);
         saySomething = "TAGAZOG !";
 
     }

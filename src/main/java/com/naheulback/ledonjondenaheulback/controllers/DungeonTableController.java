@@ -141,32 +141,32 @@ public class DungeonTableController {
                 switch (dict.get("class")) {
 
                     case "warrior":
-                        toAdd = new Warrior(dict.get("slug"));
+                        toAdd = new Warrior(dict.get("slug"), dict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                         break;
                     case "nain":
-                        toAdd = new Nain(dict.get("slug"));
+                        toAdd = new Nain(dict.get("slug"), dict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                         break;
                     case "mage":
-                        toAdd = new Mage(dict.get("slug"));
+                        toAdd = new Mage(dict.get("slug"), dict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                         break;
                     case "elfe":
-                        toAdd = new Elfe(dict.get("slug"));
+                        toAdd = new Elfe(dict.get("slug"), dict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                         break;
                     case "ogre":
-                        toAdd = new Ogre(dict.get("slug"));
+                        toAdd = new Ogre(dict.get("slug"), dict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                         break;
                     case "ranger":
-                        toAdd = new Ranger(dict.get("slug"));
+                        toAdd = new Ranger(dict.get("slug"), dict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                         break;

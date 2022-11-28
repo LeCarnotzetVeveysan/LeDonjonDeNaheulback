@@ -4,9 +4,9 @@ public class Elfe extends Hero {
 
     private String saySomething;
 
-    public Elfe(String slug){
+    public Elfe(String slug, String name){
 
-        super(slug);
+        super(slug, name);
         saySomething = "J'aime pas les nain";
 
     }
