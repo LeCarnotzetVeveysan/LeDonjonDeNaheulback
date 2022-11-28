@@ -4,7 +4,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Functions {
@@ -89,6 +88,18 @@ public class Functions {
         }
     }
 
+    public static ArrayList<String> getBarItems(String type) throws IOException {
+        String path = resPath + "tavernFiles/bar" + Game.getDungeon() + "_" + type;
+        BufferedReader br = new BufferedReader(new FileReader(path));
+        ArrayList<String> itemList = new ArrayList<>();
+        for (String line = br.readLine(); line != null; line = br.readLine()) {
+            String[] parts = line.split(":");
+            itemList.add(parts[1]);
+        }
+        return itemList;
+
+    }
+
     public static String getSpeakingHeroSlug() throws IOException {
         ArrayList<String> slugList = getTableSlugList();
         return slugList.get(Game.getSpeakingHero());
@@ -107,4 +118,7 @@ public class Functions {
         }
 
     }
+
+
+
 }
