@@ -10,13 +10,13 @@ public class Functions {
 
     private static String resPath = "src/main/resources/com/naheulback/ledonjondenaheulback/";
 
-    public static HashMap<String, String> getHeroDictFromFile(String fileName) throws IOException {
+    public static HashMap<String, String> getDictFromFile(String folder, String fileName) throws IOException {
 
         if(fileName == "empty"){
             return new HashMap<String,String>();
         }
 
-        String path = resPath + "heroFiles/" + fileName;
+        String path = resPath + folder + "Files/" + fileName;
         BufferedReader br = new BufferedReader(new FileReader(path));
 
         HashMap<String, String> toReturn = new HashMap<>() {};

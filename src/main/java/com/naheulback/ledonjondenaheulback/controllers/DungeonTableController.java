@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 import java.io.FileInputStream;
@@ -44,8 +43,6 @@ public class DungeonTableController {
     private ImageView hero5IV;
     @FXML
     private ImageView hero6IV;
-    @FXML
-    private Button sitButton;
     @FXML
     private ImageView sitButtonIV;
     @FXML
@@ -119,8 +116,11 @@ public class DungeonTableController {
 
     public void onRecruitPriceButtonClicked() throws IOException {
         slug = getSpeakingHeroSlug();
-        HashMap<String,String> dict = getHeroDictFromFile(slug);
-        System.out.println("Je coûte " + dict.get("cost") + " pièces d'or.");
+        if(!slug.equals("empty")){
+            HashMap<String,String> dict = getDictFromFile("hero", slug);
+            System.out.println("Je coûte " + dict.get("cost") + " pièces d'or.");
+        }
+
     }
 
     public void onRecruitButtonClicked() throws IOException {
@@ -128,9 +128,9 @@ public class DungeonTableController {
         if(Game.getNumberOfLivingHeroes() < Game.getMaxHeroes()) {
 
             slug = getSpeakingHeroSlug();
-            HashMap<String, String> dict = getHeroDictFromFile(slug);
+            HashMap<String, String> dict = getDictFromFile("hero", slug);
             System.out.println(dict.get("name"));
-            int cost = Integer.valueOf(dict.get("cost"));
+            int cost = Integer.parseInt(dict.get("cost"));
             ArrayList<String> slugList = getTableSlugList();
 
             if (Game.hasEnoughGoldPieces(cost)) {
@@ -139,47 +139,46 @@ public class DungeonTableController {
                 slugList.set(Game.getSpeakingHero(), "empty");
 
                 switch (dict.get("class")) {
-
-                    case "warrior":
+                    case "warrior" -> {
                         toAdd = new Warrior(dict.get("slug"), dict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
-                        break;
-                    case "nain":
+                    }
+                    case "nain" -> {
                         toAdd = new Nain(dict.get("slug"), dict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
-                        break;
-                    case "mage":
+                    }
+                    case "mage" -> {
                         toAdd = new Mage(dict.get("slug"), dict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
-                        break;
-                    case "elfe":
+                    }
+                    case "elfe" -> {
                         toAdd = new Elfe(dict.get("slug"), dict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
-                        break;
-                    case "ogre":
+                    }
+                    case "ogre" -> {
                         toAdd = new Ogre(dict.get("slug"), dict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
-                        break;
-                    case "ranger":
+                    }
+                    case "ranger" -> {
                         toAdd = new Ranger(dict.get("slug"), dict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
-                        break;
-
+                    }
                 }
                 Game.recruitHero(toAdd);
                 Game.takeGoldPieces(cost);
+            } else {
+
+                System.out.println("Tu n'as pass assez de pièces d'or");
             }
         } else {
-
             //Faire en sorte que héros dise que la team est pleine
             System.out.println("Too many heroes in your team");
-
         }
     }
 
@@ -221,7 +220,6 @@ public class DungeonTableController {
         for (int i = 0; i <= 5; i++){
             if(tsl.get(i).equals("empty")){
                 Game.sitHero(index);
-                //System.out.println("On est dans la boucle");
                 tsl.set(i, slugToSit);
                 seated = true;
                 break;

@@ -16,6 +16,12 @@ import javafx.scene.layout.VBox;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
+import static com.naheulback.ledonjondenaheulback.Functions.getDictFromFile;
+import static com.naheulback.ledonjondenaheulback.Functions.getSpeakingHeroSlug;
 
 public class DungeonBarController {
 
@@ -36,6 +42,8 @@ public class DungeonBarController {
     @FXML
     private ImageView barFoodButton5IV;
     @FXML
+    private ImageView barmanIV;
+    @FXML
     private Label barFoodLabel1;
     @FXML
     private Label barFoodLabel2;
@@ -45,6 +53,10 @@ public class DungeonBarController {
     private Label barFoodLabel4;
     @FXML
     private Label barFoodLabel5;
+    @FXML
+    private Label barmanSpeakLbl;
+    @FXML
+    private ImageView barmanSpeakIV;
     @FXML
     private HBox barItemsHB;
     @FXML
@@ -74,10 +86,17 @@ public class DungeonBarController {
 
     private String currentHeroName;
     private int currentItem;
+
+    private int currentHeroIndex;
     private Hero currentHero;
     private ArrayList<String> livingHeroSlugs;
+    private ArrayList<String> itemList;
 
     public void initialize() throws FileNotFoundException {
+
+        currentHero = null;
+        currentHeroIndex = 0;
+        barmanSpeakLbl.setText("");
 
         barItemsHB.setDisable(true);
         barItemsHB.setVisible(false);
@@ -97,6 +116,12 @@ public class DungeonBarController {
 
         livingHeroSlugs = Game.getLivingHeroSlugs();
         Functions.setBarImages(livingHeroSlugs, heroImages);
+
+        path = resPath + "tavernImages/d";
+        barmanIV.setVisible(false);
+        stream = new FileInputStream(path + Game.getDungeon() + "_barman.png");
+        image = new Image(stream);
+        barmanIV.setImage(image);
 
     }
 
@@ -118,7 +143,7 @@ public class DungeonBarController {
             barItemsHB.getChildren().add(validVBox);
         }
 
-        ArrayList<String> itemList = Functions.getBarItems(type);
+        itemList = Functions.getBarItems(type);
         for (int i = 4; i >= 0; i--){
             if(itemList.get(i).equals("empty")){
                 barItemsHB.getChildren().remove(i);
@@ -182,21 +207,68 @@ public class DungeonBarController {
 
     @FXML
     void onHeroClicked() {
-
         if (!currentHeroName.equals("empty")) {
             currentHero = Game.getLivingHeroes().get(Game.getLivingHeroSlugs().indexOf(currentHeroName));
             System.out.println(currentHero.getName());
+            //set image with barman
+            barmanIV.setVisible(true);
+            barmanIV.setLayoutX(25 + currentHeroIndex*153);
         }
-        //set image with barman
-
     }
 
     @FXML
-    void onItemButtonClicked() {
+    void onItemButtonClicked() throws IOException, InterruptedException {
 
-        //make switch case with all possible actions
-        //and implement decrease of money
+        String itemName = itemList.get(currentItem);
+        HashMap<String, String> dict = getDictFromFile("tavern", itemName);
+        int cost = Integer.parseInt(dict.get("cost"));
+        if (!(currentHero == null)) {
+            if (Game.hasEnoughGoldPieces(cost)) {
 
+                Game.takeGoldPieces(cost);
+
+                switch (itemName) {
+                    case "saucisse_puree" -> {
+                        System.out.println("saucisse-puree");
+                        currentHero.addHP(5);
+
+                    }
+                    case "demi_blonde" -> {
+                        System.out.println("demi de blonde");
+                    }
+                }
+
+                switch (new Random().nextInt(5)){
+                    case 1 -> {
+                        barmanSpeakLbl.setText("Bon choix");
+                    }
+                    case 2 -> {
+                        barmanSpeakLbl.setText("Bon appétit");
+                    }
+                    case 3 -> {
+                        barmanSpeakLbl.setText("Vous avez fait un bon choix");
+                    }
+                    case 4 -> {
+                        barmanSpeakLbl.setText("Vos papilles vont se régaler");
+                    }
+                }
+
+            } else {
+                barmanSpeakLbl.setText("Tu n'as pas assez de pièces d'or pour ça");
+                String path = "src/main/resources/com/naheulback/ledonjondenaheulback/tavernImages/";
+                InputStream stream = new FileInputStream(path + "barman_pos" + currentHeroIndex + "_bubble.png");
+                Image image = new Image(stream);
+                barmanSpeakIV.setImage(image);
+            }
+        } else {
+            barmanSpeakLbl.setText("Tu n'as pas choisi de héros");
+            barmanIV.setVisible(true);
+            barmanIV.setLayoutX(25);
+            String path = "src/main/resources/com/naheulback/ledonjondenaheulback/tavernImages/";
+            InputStream stream = new FileInputStream(path + "barman_pos0_bubble.png");
+            Image image = new Image(stream);
+            barmanSpeakIV.setImage(image);
+        }
     }
 
     @FXML
@@ -251,12 +323,13 @@ public class DungeonBarController {
 
     @FXML
     void onItem5StoppedButtonHovering() {
-        itemStackPanes.get(4).setVisible(true);
+        itemStackPanes.get(4).setVisible(false);
     }
 
     @FXML
     void onHero1Hover() {
         currentHeroName = livingHeroSlugs.get(0);
+        currentHeroIndex = 0;
         //setImage
     }
 
@@ -268,6 +341,7 @@ public class DungeonBarController {
     @FXML
     void onHero2Hover() {
         currentHeroName = livingHeroSlugs.get(1);
+        currentHeroIndex = 1;
     }
 
     @FXML
@@ -278,6 +352,7 @@ public class DungeonBarController {
     @FXML
     void onHero3Hover() {
         currentHeroName = livingHeroSlugs.get(2);
+        currentHeroIndex = 2;
     }
 
     @FXML
@@ -288,6 +363,7 @@ public class DungeonBarController {
     @FXML
     void onHero4Hover() {
         currentHeroName = livingHeroSlugs.get(3);
+        currentHeroIndex = 3;
     }
 
     @FXML
@@ -298,6 +374,7 @@ public class DungeonBarController {
     @FXML
     void onHero5Hover() {
         currentHeroName = livingHeroSlugs.get(4);
+        currentHeroIndex = 4;
     }
 
     @FXML
@@ -308,6 +385,7 @@ public class DungeonBarController {
     @FXML
     void onHero6Hover() {
         currentHeroName = livingHeroSlugs.get(5);
+        currentHeroIndex = 5;
     }
 
     @FXML

@@ -29,7 +29,7 @@ public abstract class Hero {
         level = 1;
         experience = 0;
         recruitementCost = 100;
-        health = 100;
+        health = 90;
         maxHealth = 100;
         armor = 100;
         attack = 100;
@@ -49,13 +49,20 @@ public abstract class Hero {
 
     public int getCost(){ return recruitementCost; }
 
-    private int getHealth(){ return health; }
+    public int getHealth(){ return health; }
 
-    private int getMaxHealth(){ return maxHealth; }
+    public int getMaxHealth(){ return maxHealth; }
 
-    private int getArmor(){ return armor; }
+    public int getArmor(){ return armor; }
 
-    private int getMaxArmor(){ return maxArmor; }
+    public int getMaxArmor(){ return maxArmor; }
 
     public String getSlug() { return slug; }
+
+    public void addHP(int inputHealth) {
+        health += inputHealth;
+        if(health > maxHealth){
+            health = maxHealth;
+        }
+    }
 }
