@@ -52,7 +52,11 @@ public class TavernController {
 
     }
 
-    public void onBarButtonClicked(MouseEvent mouseEvent) throws IOException {
+    public void onBarButtonClicked() throws IOException {
         LoadScene.changeScene("dungeon-bar");
+    }
+
+    public void onBackButtonClicked() throws IOException {
+        LoadScene.changeScene("dungeon-entry-hall");
     }
 }

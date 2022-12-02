@@ -64,13 +64,13 @@ public class Game {
 
     public static void setSpeakingHero(int hero){ playerData.setSpeakingHero(hero);}
 
-    public static void addGoldPieces(int amount){ playerData.addGoldPieces(amount); }
+    public static void addGoldPieces(double amount){ playerData.addGoldPieces(amount); }
 
-    public static void takeGoldPieces(int amount){ playerData.takeGoldPieces(amount); }
+    public static void takeGoldPieces(double amount){ playerData.takeGoldPieces(amount); }
 
-    public static boolean hasEnoughGoldPieces(int amount){ return playerData.hasEnoughGoldPieces(amount);}
+    public static boolean hasEnoughGoldPieces(double amount){ return playerData.hasEnoughGoldPieces(amount);}
 
-    public static int getGoldPieces(){ return PlayerData.getGoldPieces(); }
+    public static double getGoldPieces(){ return PlayerData.getGoldPieces(); }
 
     public static void recruitHero(Hero hero){ playerData.recruitHero(hero);}
 

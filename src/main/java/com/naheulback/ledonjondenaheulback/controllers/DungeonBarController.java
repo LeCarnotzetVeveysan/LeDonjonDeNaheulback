@@ -221,7 +221,7 @@ public class DungeonBarController {
 
         String itemName = itemList.get(currentItem);
         HashMap<String, String> dict = getDictFromFile("tavern", itemName);
-        int cost = Integer.parseInt(dict.get("cost"));
+        double cost = Integer.parseInt(dict.get("cost"));
         if (!(currentHero == null)) {
             if (Game.hasEnoughGoldPieces(cost)) {
 

@@ -10,7 +10,7 @@ public class PlayerData {
     private static ArrayList<Hero> livingHeroes;
     private static ArrayList<Hero> deadHeroes;
     private int[] currentLocation;
-    private static int goldPieces;
+    private static double goldPieces;
 
 
     public PlayerData(){
@@ -20,7 +20,7 @@ public class PlayerData {
         deadHeroes = new ArrayList<>();
 
         currentLocation = new int[]{0, 0, 0, 0};
-        goldPieces = 0;
+        goldPieces = 0.0;
 
     }
 
@@ -56,18 +56,18 @@ public class PlayerData {
 
     public static void initGoldPieces(){
         switch (GameData.getLevel()) {
-            case 1 -> goldPieces = 2000;
-            case 2 -> goldPieces = 1500;
-            case 3 -> goldPieces = 1000;
-            case 4 -> goldPieces = 500;
+            case 1 -> goldPieces = 2000.0;
+            case 2 -> goldPieces = 1500.0;
+            case 3 -> goldPieces = 1000.0;
+            case 4 -> goldPieces = 500.0;
         }
     }
 
-    public static void addGoldPieces(int gold){
+    public static void addGoldPieces(double gold){
         goldPieces += gold;
     }
 
-    public static boolean hasEnoughGoldPieces(int gold){
+    public static boolean hasEnoughGoldPieces(double gold){
 
         if(goldPieces >= gold){
             return true;
@@ -77,9 +77,9 @@ public class PlayerData {
 
     }
 
-    public static void takeGoldPieces(int gold){ goldPieces -= gold; }
+    public static void takeGoldPieces(double gold){ goldPieces -= gold; }
 
-    public static int getGoldPieces(){
+    public static double getGoldPieces(){
         return goldPieces;
     }
 
