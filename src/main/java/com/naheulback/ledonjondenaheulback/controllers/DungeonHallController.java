@@ -29,18 +29,10 @@ public class DungeonHallController {
     public void onDungeonButtonClick() throws IOException {
 
         if(Game.getDungeon() == 10){
-
             LoadScene.changeScene("dungeon-boss-floor");
-
         } else {
-
             LoadScene.changeScene("dungeon-simple-floor");
         }
-
-
-
-
-
     }
 
     public void onTavernButtonClicked() throws IOException {
@@ -48,8 +40,6 @@ public class DungeonHallController {
     }
 
     public void onArmouryButtonClicked() throws IOException {
-
         LoadScene.changeScene("dungeon-armoury");
-
     }
 }

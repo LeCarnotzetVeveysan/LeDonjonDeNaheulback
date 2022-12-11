@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.ledonjondenaheulback.controllers.DungeonBarController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.ledonjondenaheulback.controllers.DungeonBarController">
    <children>
       <ImageView fx:id="mainIV" fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="barmanIV" fitHeight="175.0" fitWidth="133.0" layoutX="25.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true" />
@@ -29,12 +29,12 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="37.0" layoutY="440.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
          <children>
+            <ImageView fx:id="hero6IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero6Hover" onMouseExited="#onHero6StoppedHover" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="hero3IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero3Hover" onMouseExited="#onHero3StoppedHover" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="hero1IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero1Hover" onMouseExited="#onHero1StoppedHover" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="hero2IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero2Hover" onMouseExited="#onHero2StoppedHover" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="hero3IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero3Hover" onMouseExited="#onHero3StoppedHover" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="hero4IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero4Hover" onMouseExited="#onHero4StoppedHover" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="hero5IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero5Hover" onMouseExited="#onHero5StoppedHover" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="hero6IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero6Hover" onMouseExited="#onHero6StoppedHover" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
       <Button layoutX="14.0" layoutY="624.0" mnemonicParsing="false" onMouseClicked="#onBackButtonClicked" prefHeight="61.0" prefWidth="92.0" text="Back" />

@@ -6,7 +6,7 @@ public class Elfe extends Hero {
 
     public Elfe(String slug, String name){
 
-        super(slug, name);
+        super(slug, name, "elfe");
         saySomething = "J'aime pas les nain";
 
     }

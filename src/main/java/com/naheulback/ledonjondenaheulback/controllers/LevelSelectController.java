@@ -26,15 +26,15 @@ public class LevelSelectController {
 
         titleLabel.setText("CHOIX DU NIVEAU");
         titleLabel.setFont(folkard);
-        level1Lbl.setText("Difficulté: Facile\nHéros max: 6\nPièces d'or: 2000\nForce ennemie: x1\nGain d'XP: x1");
-        level1Lbl.setFont(augusta);
-        level2Lbl.setText("Difficulté: Moyen\nHéros max: 4\nPièces d'or: 1500\nForce ennemie: x1.5\nGain d'XP: x1.25");
-        level2Lbl.setFont(augusta);
-        level3Lbl.setText("Difficulté: Difficile\nHéros max: 3\nPièces d'or: 1000\nForce ennemie: x2\nGain d'XP: x1.5");
-        level3Lbl.setFont(augusta);
-        level4Lbl.setText("Difficulté: Expert\nHéros max: 1\nPièces d'or: 500\nForce ennemie: x3\nGain d'XP: x1.5");
-        level4Lbl.setFont(augusta);
 
+        level1Lbl.setText("Difficulté: Facile\nHéros max: 6\nPièces d'or: 2000\nForce ennemie: x1\nRécompenses: x1");
+        level1Lbl.setFont(augusta);
+        level2Lbl.setText("Difficulté: Moyen\nHéros max: 4\nPièces d'or: 1500\nForce ennemie: x1.5\nRécompenses: x1.25");
+        level2Lbl.setFont(augusta);
+        level3Lbl.setText("Difficulté: Difficile\nHéros max: 3\nPièces d'or: 1000\nForce ennemie: x2\nRécompenses: x1.5");
+        level3Lbl.setFont(augusta);
+        level4Lbl.setText("Difficulté: Expert\nHéros max: 1\nPièces d'or: 500\nForce ennemie: x3\nRécompenses: x1.5");
+        level4Lbl.setFont(augusta);
     }
 
     @FXML

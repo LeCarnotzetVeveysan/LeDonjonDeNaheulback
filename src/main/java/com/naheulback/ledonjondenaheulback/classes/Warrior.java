@@ -6,7 +6,7 @@ public class Warrior extends Hero {
 
     public Warrior(String slug, String name){
 
-        super(slug, name);
+        super(slug, name, "warrior");
         saySomething = "I am a warrior";
 
     }

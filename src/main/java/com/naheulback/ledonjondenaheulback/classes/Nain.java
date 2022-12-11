@@ -6,7 +6,7 @@ public class Nain extends Hero {
 
     public Nain(String slug, String name){
 
-        super(slug, name);
+        super(slug, name, "nain");
         saySomething = "J'aime pas les elfes";
 
     }

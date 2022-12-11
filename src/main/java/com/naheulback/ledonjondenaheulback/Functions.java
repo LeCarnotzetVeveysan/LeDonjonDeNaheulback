@@ -100,40 +100,30 @@ public class Functions {
 
     }
 
+    public static ArrayList<String> getArmouryItems(String type) throws IOException {
+        String path = resPath + "armouryFiles/armoury" + Game.getDungeon() + "_" + type;
+        BufferedReader br = new BufferedReader(new FileReader(path));
+        ArrayList<String> itemList = new ArrayList<>();
+        for (String line = br.readLine(); line != null; line = br.readLine()) {
+            String[] parts = line.split(":");
+            itemList.add(parts[1]);
+        }
+        return itemList;
+
+    }
+
     public static String getSpeakingHeroSlug() throws IOException {
         ArrayList<String> slugList = getTableSlugList();
         return slugList.get(Game.getSpeakingHero());
     }
 
     public static void setBarImages(ArrayList<String> lhs, ArrayList<ImageView> al) throws FileNotFoundException {
-        switch (Game.getNumberOfLivingHeroes()){
-            case 1:
-                lhs.set(2,lhs.get(0));
-                lhs.set(0,"empty");
-                break;
-            case 2:
-                lhs.set(2,lhs.get(0));
-                lhs.set(3,lhs.get(1));
-                lhs.set(0,"empty");
-                lhs.set(1,"empty");
-                break;
-            case 3:
-                lhs.set(3,lhs.get(0));
-                lhs.set(0,"empty");
-                break;
-            case 4:
-                lhs.set(4,lhs.get(0));
-                lhs.set(0,"empty");
-                break;
-        }
-
         for(int i=0;i<=5;i++){
             String path = resPath + "/tavernImages/" + lhs.get(i) + "_bar.png";
             InputStream stream = new FileInputStream(path);
             Image image = new Image(stream);
             al.get(i).setImage(image);
         }
-
     }
 
 

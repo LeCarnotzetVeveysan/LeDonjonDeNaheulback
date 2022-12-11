@@ -9,6 +9,7 @@ public abstract class Hero {
 
     private String slug;
     private String name;
+    private String type;
     private int level;
     private int experience;
     private int recruitementCost;
@@ -20,22 +21,24 @@ public abstract class Hero {
     private int magic;
     private int mana;
     private int speed;
-    private String testSpeak;
+    private Weapon mainWeapon;
 
-    public Hero(String inputSlug, String inputName){
+    public Hero(String inputSlug, String inputName, String inputType){
 
         slug = inputSlug;
+        type = inputType;
         name = inputName;
         level = 1;
         experience = 0;
         recruitementCost = 100;
-        health = 90;
+        health = 100;
         maxHealth = 100;
         armor = 100;
         attack = 100;
         magic = 100;
         mana = 100;
         speed = 100;
+        mainWeapon = null;
     }
 
     public String toString(){
@@ -64,5 +67,19 @@ public abstract class Hero {
         if(health > maxHealth){
             health = maxHealth;
         }
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setMainWeapon(String weaponName, int weaponLevel){
+        Weapon wpn = new Weapon(weaponName, weaponLevel);
+        mainWeapon = wpn;
+    }
+
+
+    public Weapon getWeapon() {
+        return mainWeapon;
     }
 }

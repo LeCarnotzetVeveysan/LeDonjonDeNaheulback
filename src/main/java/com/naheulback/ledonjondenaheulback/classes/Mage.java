@@ -6,7 +6,7 @@ public class Mage extends Hero {
 
     public Mage(String slug, String name){
 
-        super(slug, name);
+        super(slug, name, "mage");
         saySomething = "J'aime les ogres ;)";
 
     }

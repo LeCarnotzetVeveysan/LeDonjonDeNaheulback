@@ -6,7 +6,7 @@ public class Ogre extends Hero {
 
     public Ogre(String slug, String name){
 
-        super(slug, name);
+        super(slug, name, "ogre");
         saySomething = "TAGAZOG !";
 
     }

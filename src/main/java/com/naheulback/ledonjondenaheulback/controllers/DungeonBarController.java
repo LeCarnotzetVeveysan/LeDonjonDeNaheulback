@@ -208,7 +208,7 @@ public class DungeonBarController {
     @FXML
     void onHeroClicked() {
         if (!currentHeroName.equals("empty")) {
-            currentHero = Game.getLivingHeroes().get(Game.getLivingHeroSlugs().indexOf(currentHeroName));
+            currentHero = Game.getLivingHeroes().get(currentHeroIndex);
             System.out.println(currentHero.getName());
             //set image with barman
             barmanIV.setVisible(true);
@@ -217,10 +217,10 @@ public class DungeonBarController {
     }
 
     @FXML
-    void onItemButtonClicked() throws IOException, InterruptedException {
+    void onItemButtonClicked() throws IOException {
 
         String itemName = itemList.get(currentItem);
-        HashMap<String, String> dict = getDictFromFile("tavern", itemName);
+        HashMap<String, String> dict = getDictFromFile("armoury", itemName);
         double cost = Integer.parseInt(dict.get("cost"));
         if (!(currentHero == null)) {
             if (Game.hasEnoughGoldPieces(cost)) {
@@ -392,10 +392,4 @@ public class DungeonBarController {
     void onHero6StoppedHover() {
 
     }
-
-
-
-
-
-
 }
