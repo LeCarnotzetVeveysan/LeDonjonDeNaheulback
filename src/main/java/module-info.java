@@ -5,10 +5,10 @@ module com.naheulback.ledonjondenaheulback {
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
 
-    opens com.naheulback.ledonjondenaheulback to javafx.fxml;
-    exports com.naheulback.ledonjondenaheulback;
-    exports com.naheulback.ledonjondenaheulback.controllers;
-    opens com.naheulback.ledonjondenaheulback.controllers to javafx.fxml;
-    exports com.naheulback.ledonjondenaheulback.classes;
-    opens com.naheulback.ledonjondenaheulback.classes to javafx.fxml;
+    opens com.naheulback.nhlbck to javafx.fxml;
+    exports com.naheulback.nhlbck;
+    exports com.naheulback.nhlbck.controllers;
+    opens com.naheulback.nhlbck.controllers to javafx.fxml;
+    exports com.naheulback.nhlbck.classes;
+    opens com.naheulback.nhlbck.classes to javafx.fxml;
 }

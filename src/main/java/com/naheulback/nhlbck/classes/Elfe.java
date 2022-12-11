@@ -1,0 +1,20 @@
+package com.naheulback.nhlbck.classes;
+
+public class Elfe extends Hero {
+
+    private String saySomething;
+
+    public Elfe(String slug, String name){
+
+        super(slug, name, "elfe");
+        saySomething = "J'aime pas les nain";
+
+    }
+
+    @Override
+    public void speak() {
+
+        System.out.println(saySomething);
+
+    }
+}
