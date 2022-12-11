@@ -75,19 +75,23 @@ public class DungeonBarController {
     private ImageView hero5IV;
     @FXML
     private ImageView hero6IV;
+    @FXML
+    private ImageView hero1HPBarIV, hero2HPBarIV, hero3HPBarIV, hero4HPBarIV, hero5HPBarIV, hero6HPBarIV;
+    @FXML
+    private Label hero1HPBarLB, hero2HPBarLB, hero3HPBarLB, hero4HPBarLB, hero5HPBarLB, hero6HPBarLB;
     private ArrayList<ImageView> itemImages;
-    private ArrayList<Label> itemLabels;
+    private ArrayList<Label> itemLabels, heroHPLabels;
     private ArrayList<VBox> barItems;
     private ArrayList<StackPane> itemStackPanes;
-    private ArrayList<ImageView> heroImages;
+    private ArrayList<ImageView> heroImages,  heroHPIVs;
+    ArrayList<Hero> livingHeroes;
 
     private String currentHeroName;
     private int currentItem;
 
     private int currentHeroIndex;
     private Hero currentHero;
-    private ArrayList<String> livingHeroSlugs;
-    private ArrayList<String> itemList;
+    private ArrayList<String> livingHeroSlugs, itemList;
 
     public void initialize() throws FileNotFoundException {
 
@@ -101,25 +105,21 @@ public class DungeonBarController {
         itemLabels = new ArrayList<>(Arrays.asList(barFoodLabel1, barFoodLabel2, barFoodLabel3, barFoodLabel4, barFoodLabel5));
         itemStackPanes = new ArrayList<>(Arrays.asList(barItem1SP, barItem2SP, barItem3SP, barItem4SP, barItem5SP));
         heroImages = new ArrayList(Arrays.asList(hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV));
+        heroHPIVs = new ArrayList(Arrays.asList(hero1HPBarIV, hero2HPBarIV, hero3HPBarIV, hero4HPBarIV, hero5HPBarIV, hero6HPBarIV));
+        heroHPLabels = new ArrayList(Arrays.asList(hero1HPBarLB, hero2HPBarLB, hero3HPBarLB, hero4HPBarLB, hero5HPBarLB, hero6HPBarLB));
 
         for(StackPane sp : itemStackPanes){
             sp.setVisible(false);
         }
 
-        String path = resPath + "dungeonImages/d";
-        InputStream stream = new FileInputStream(path + Game.getDungeon() + "_bar_background.png");
-        Image image = new Image(stream);
-        mainIV.setImage(image);
+        setImage(mainIV, "dungeonImages", "d" + Game.getDungeon() + "_bar_background");
+        setImage(barmanIV, "tavernImages", "d" + Game.getDungeon() + "_barman");
+
+        livingHeroes = Game.getLivingHeroes();
+        Functions.setBarImages(livingHeroes, heroImages);
+        Functions.setBarHPBars(livingHeroes, heroHPIVs, heroHPLabels);
 
         livingHeroSlugs = Game.getLivingHeroSlugs();
-        Functions.setBarImages(livingHeroSlugs, heroImages);
-
-        path = resPath + "tavernImages/d";
-        barmanIV.setVisible(false);
-        stream = new FileInputStream(path + Game.getDungeon() + "_barman.png");
-        image = new Image(stream);
-        barmanIV.setImage(image);
-
     }
 
     public void onBackButtonClicked() throws IOException { LoadScene.changeScene("dungeon-tavern"); }

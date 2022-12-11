@@ -31,4 +31,6 @@ public class Weapon {
         quality -= factor;
     }
 
+    public int getPower(){ return power;}
+
 }

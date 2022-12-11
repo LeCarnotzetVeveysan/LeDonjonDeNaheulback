@@ -1,16 +1,14 @@
 package com.naheulback.nhlbck.controllers;
 
+import com.naheulback.nhlbck.Functions;
 import com.naheulback.nhlbck.Game;
-import com.naheulback.nhlbck.LoadScene;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
+
+import static com.naheulback.nhlbck.Game.getDungeon;
+import static com.naheulback.nhlbck.LoadScene.changeScene;
 
 public class DungeonHallController {
 
@@ -18,28 +16,27 @@ public class DungeonHallController {
     private ImageView mainIV;
 
     public void initialize() throws FileNotFoundException {
-
-        String path = "src/main/resources/com/naheulback/nhlbck/dungeonImages/d";
-        InputStream stream = new FileInputStream(path + Game.getDungeon() + "_hall_background.png");
-        Image image = new Image(stream);
-        mainIV.setImage(image);
-
+        Functions.setImage(mainIV, "dungeonImages", "d" + getDungeon() + "_hall_background");
     }
 
     public void onDungeonButtonClick() throws IOException {
 
         if(Game.getDungeon() == 10){
-            LoadScene.changeScene("dungeon-boss-floor");
+            changeScene("dungeon-boss-floor");
         } else {
-            LoadScene.changeScene("dungeon-simple-floor");
+            changeScene("dungeon-simple-floor");
         }
     }
 
     public void onTavernButtonClicked() throws IOException {
-        LoadScene.changeScene("dungeon-tavern");
+        changeScene("dungeon-tavern");
     }
 
     public void onArmouryButtonClicked() throws IOException {
-        LoadScene.changeScene("dungeon-armoury");
+        changeScene("dungeon-armoury");
+    }
+
+    public void onBackButtonClicked() throws IOException {
+        changeScene("dungeon-outside");
     }
 }

@@ -55,6 +55,7 @@ public class ArmouryController {
     private Hero currentHero;
     private ArrayList<String> livingHeroSlugs;
     private ArrayList<String> itemList;
+    private ArrayList<Hero> livingHeroes;
 
     public void initialize() throws FileNotFoundException {
 
@@ -78,8 +79,10 @@ public class ArmouryController {
         armourymanIV.setVisible(false);
         setImage(mainIV, "armouryImages", "d" + Game.getDungeon() + "_armouryman" );
 
+        livingHeroes = Game.getLivingHeroes();
+        Functions.setBarImages(livingHeroes, heroImages);
+
         livingHeroSlugs = Game.getLivingHeroSlugs();
-        Functions.setBarImages(livingHeroSlugs, heroImages);
 
     }
 

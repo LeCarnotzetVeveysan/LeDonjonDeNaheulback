@@ -1,5 +1,7 @@
 package com.naheulback.nhlbck;
 
+import com.naheulback.nhlbck.classes.Hero;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -36,7 +38,7 @@ public class Functions {
         String[] d1t2 = {"tavern1table2","hero1:logre&hero2:empty&hero3:lamagicienne&hero4:empty&hero5:lelfe&hero6:empty"};
         String[] d1t3 = {"tavern1table3","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
         String[] d2t1 = {"tavern2table1","hero1:levoleur&hero2:empty&hero3:gontran&hero4:empty&hero5:empty&hero6:empty"};
-        ArrayList<String[]> partList = new ArrayList<String[]>(Arrays.asList(d1t1, d1t2, d1t3, d2t1));
+        ArrayList<String[]> partList = new ArrayList<>(Arrays.asList(d1t1, d1t2, d1t3, d2t1));
 
         for(String[] strar : partList){
 
@@ -140,15 +142,28 @@ public class Functions {
         return slugList.get(Game.getSpeakingHero());
     }
 
-    public static void setBarImages(ArrayList<String> lhs, ArrayList<ImageView> al) throws FileNotFoundException {
-        for(int i=0;i<=5;i++){
-            String path = resPath + "/tavernImages/" + lhs.get(i) + "_bar.png";
-            InputStream stream = new FileInputStream(path);
-            Image image = new Image(stream);
-            al.get(i).setImage(image);
+    public static void setBarImages(ArrayList<Hero> lhs, ArrayList<ImageView> al) throws FileNotFoundException {
+
+        for( ImageView iv : al){
+            setImage(iv, "tavernImages", "empty_bar");
         }
+        for (int i = 0; i < lhs.size(); i++) {
+            setImage(al.get(i), "tavernImages", lhs.get(i).getSlug() + "_bar");
+        }
+
     }
 
+    public static void setBarHPBars(ArrayList<Hero> lhs, ArrayList<ImageView> al, ArrayList<Label> lb) throws FileNotFoundException {
 
+        for( ImageView iv : al){ iv.setVisible(false); }
+        for(Label lbl : lb){ lbl.setText("");}
+        for(int i=0;i < lhs.size();i++){
+            if(!lhs.get(i).getSlug().equals("empty")) {
+                setImage(al.get(i), "otherImages", "testHPBar");
+                lb.get(i).setText(lhs.get(i).getHealth() + "/" + lhs.get(i).getMaxHealth());
+                al.get(i).setVisible(true);
+            }
+        }
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.naheulback.nhlbck.controllers;
 
+import com.naheulback.nhlbck.Functions;
 import com.naheulback.nhlbck.LoadScene;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -17,13 +18,7 @@ public class MainMenuController {
     private ImageView newGameBtnIV;
 
     public void initialize() {
-
         System.out.println("Main menu entered");
-        //System.out.println(PlayerData.getLivingHeroes());
-        //PlayerData.recruitHero(Warrior.buildHeroFromDict(Functions.getHeroDictFromFile("warrior")));
-        //System.out.println(PlayerData.getLivingHeroes());
-
-
     }
     @FXML
     protected void onQuitButtonClick() {
@@ -39,31 +34,16 @@ public class MainMenuController {
     }
 
     public void onSavedGameButtonClick() {
-
         //System.out.println(Game.getLevel());
-
     }
 
     @FXML
     public void startedHovering() throws FileNotFoundException {
-        //System.out.println("Hovering");
-
-        String path = "src/main/resources/com/naheulback/nhlbck";
-        InputStream stream = new FileInputStream(path + "/menuImages/newgameinv.png");
-        Image image = new Image(stream);
-        newGameBtnIV.setImage(image);
+        Functions.setImage(newGameBtnIV, "menuImages", "newgameinv");
     }
-
 
     @FXML
     public void stoppedHovering() throws FileNotFoundException {
-        //System.out.println("Stopped hovering");
-
-        String path = "src/main/resources/com/naheulback/nhlbck";
-        InputStream stream = new FileInputStream(path + "/menuImages/newgame.png");
-        Image image = new Image(stream);
-
-        newGameBtnIV.setImage(image);
-
+        Functions.setImage(newGameBtnIV, "menuImages", "newgame");
     }
 }

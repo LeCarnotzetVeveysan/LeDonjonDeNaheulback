@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.nhlbck.controllers.DungeonBarController">
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.nhlbck.controllers.DungeonBarController">
    <children>
       <ImageView fx:id="mainIV" fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="barmanIV" fitHeight="175.0" fitWidth="133.0" layoutX="25.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true" />
@@ -29,12 +34,72 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="37.0" layoutY="440.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
          <children>
-            <ImageView fx:id="hero6IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero6Hover" onMouseExited="#onHero6StoppedHover" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="hero3IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero3Hover" onMouseExited="#onHero3StoppedHover" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="hero1IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero1Hover" onMouseExited="#onHero1StoppedHover" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="hero2IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero2Hover" onMouseExited="#onHero2StoppedHover" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="hero4IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero4Hover" onMouseExited="#onHero4StoppedHover" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="hero5IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero5Hover" onMouseExited="#onHero5StoppedHover" pickOnBounds="true" preserveRatio="true" />
+            <StackPane alignment="BOTTOM_CENTER">
+               <children>
+                  <ImageView fx:id="hero6IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero6Hover" onMouseExited="#onHero6StoppedHover" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="hero6HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="hero6HPBarLB" alignment="TOP_LEFT" text="Label" textAlignment="CENTER">
+                     <StackPane.margin>
+                        <Insets bottom="5.0" />
+                     </StackPane.margin>
+                  </Label>
+               </children>
+            </StackPane>
+            <StackPane alignment="BOTTOM_CENTER">
+               <children>
+                  <ImageView fx:id="hero3IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero3Hover" onMouseExited="#onHero3StoppedHover" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="hero3HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="hero3HPBarLB" alignment="CENTER" text="Label" textAlignment="CENTER">
+                     <StackPane.margin>
+                        <Insets bottom="5.0" />
+                     </StackPane.margin>
+                  </Label>
+               </children>
+            </StackPane>
+            <StackPane alignment="BOTTOM_CENTER">
+               <children>
+                  <ImageView fx:id="hero1IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero1Hover" onMouseExited="#onHero1StoppedHover" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="hero1HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="hero1HPBarLB" alignment="CENTER" text="Label" textAlignment="CENTER">
+                     <StackPane.margin>
+                        <Insets bottom="5.0" />
+                     </StackPane.margin>
+                  </Label>
+               </children>
+            </StackPane>
+            <StackPane alignment="BOTTOM_CENTER">
+               <children>
+                  <ImageView fx:id="hero2IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero2Hover" onMouseExited="#onHero2StoppedHover" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="hero2HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="hero2HPBarLB" alignment="CENTER" text="Label" textAlignment="CENTER">
+                     <StackPane.margin>
+                        <Insets bottom="5.0" />
+                     </StackPane.margin>
+                  </Label>
+               </children>
+            </StackPane>
+            <StackPane alignment="BOTTOM_CENTER">
+               <children>
+                  <ImageView fx:id="hero4IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero4Hover" onMouseExited="#onHero4StoppedHover" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="hero4HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="hero4HPBarLB" alignment="CENTER" text="Label" textAlignment="CENTER">
+                     <StackPane.margin>
+                        <Insets bottom="5.0" />
+                     </StackPane.margin>
+                  </Label>
+               </children>
+            </StackPane>
+            <StackPane alignment="BOTTOM_CENTER">
+               <children>
+                  <ImageView fx:id="hero5IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero5Hover" onMouseExited="#onHero5StoppedHover" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="hero5HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="hero5HPBarLB" alignment="CENTER" text="Label" textAlignment="CENTER">
+                     <StackPane.margin>
+                        <Insets bottom="5.0" />
+                     </StackPane.margin>
+                  </Label>
+               </children>
+            </StackPane>
          </children>
       </HBox>
       <Button layoutX="14.0" layoutY="624.0" mnemonicParsing="false" onMouseClicked="#onBackButtonClicked" prefHeight="61.0" prefWidth="92.0" text="Back" />
