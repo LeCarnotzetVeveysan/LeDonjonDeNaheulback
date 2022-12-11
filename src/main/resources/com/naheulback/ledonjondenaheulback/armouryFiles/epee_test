@@ -1,5 +1,6 @@
-nom:Test_epee
-level:1
+type:weapon
+name:Test_epee
 cost:100
-effet:+10 atk
+power:10
+effet:+ X atk
 desc:Epee_test

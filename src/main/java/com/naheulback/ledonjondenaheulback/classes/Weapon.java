@@ -5,13 +5,15 @@ public class Weapon {
     private String slug;
     private String name;
     private int level;
+    private int power;
     private double quality;
 
-    public Weapon(String inputSlug, int inputLevel){
+    public Weapon(String inputSlug, int inputLevel, int inputPower){
         slug = inputSlug;
-        level = inputLevel;
         //get true name from slug in dictionary
         name = inputSlug;
+        level = inputLevel;
+        power = inputPower;
         quality = 100;
     }
 

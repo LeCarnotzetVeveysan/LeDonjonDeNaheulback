@@ -70,8 +70,8 @@ public abstract class Hero {
         return type;
     }
 
-    public void setMainWeapon(String weaponName, int weaponLevel){
-        Weapon wpn = new Weapon(weaponName, weaponLevel);
+    public void setMainWeapon(String weaponName, int weaponLevel, int weaponPower){
+        Weapon wpn = new Weapon(weaponName, weaponLevel, weaponPower);
         mainWeapon = wpn;
     }
 
@@ -79,17 +79,17 @@ public abstract class Hero {
         return mainWeapon;
     }
 
-    public void setHeadItem(String itemName, int itemLevel){
-        BodyItem bi = new BodyItem(itemName, itemLevel);
-        bodyItem = bi;
+    public void setHeadItem(String itemName, int itemLevel, int inputQuality){
+        HeadItem hi = new HeadItem(itemName, itemLevel, inputQuality);
+        headItem = hi;
     }
 
     public HeadItem getHeadItem() {
         return headItem;
     }
 
-    public void setBodyItem(String itemName, int itemLevel){
-        BodyItem bi = new BodyItem(itemName, itemLevel);
+    public void setBodyItem(String itemName, int itemLevel, int inputQuality){
+        BodyItem bi = new BodyItem(itemName, itemLevel, inputQuality);
         bodyItem = bi;
     }
 

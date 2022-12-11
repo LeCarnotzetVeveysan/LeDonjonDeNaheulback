@@ -2,6 +2,7 @@ package com.naheulback.ledonjondenaheulback;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 
 import java.io.*;
 import java.util.*;
@@ -50,6 +51,28 @@ public class Functions {
         }
 
     }
+
+    public static void setImage(ImageView iv, String folder, String imageName) throws FileNotFoundException {
+        InputStream stream = new FileInputStream(resPath + folder + "/" + imageName + ".png");
+        Image image = new Image(stream);
+        iv.setImage(image);
+    }
+
+    public static void setItemButtonHBSize(HBox hb) {
+        hb.setVisible(true);
+        hb.setDisable(false);
+
+        int width = switch (hb.getChildren().size()) {
+            case 1 -> 166;
+            case 2 -> 352;
+            case 3 -> 538;
+            case 4 -> 744;
+            case 5 -> 930;
+            default -> 0;
+        };
+        hb.setLayoutX(500.0 - (width/2.0));
+    }
+
     public static void updateTableFile(ArrayList<String> slugList) throws IOException {
 
         String path = resPath + "gameFiles/tavern" + Game.getDungeon() + "table" + Game.getTable();

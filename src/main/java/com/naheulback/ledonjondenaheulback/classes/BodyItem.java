@@ -4,14 +4,16 @@ public class BodyItem {
     private String slug;
     private String name;
     private int level;
-    private double quality;
+    private int armor;
+    private int quality;
 
-    public BodyItem(String inputSlug, int inputLevel){
+    public BodyItem(String inputSlug, int inputLevel, int inputArmor){
         slug = inputSlug;
         level = inputLevel;
         //get true name from slug in dictionary
         name = inputSlug;
-        quality = 1;
+        armor = inputArmor;
+        quality = 100;
     }
 
     public String getName(){

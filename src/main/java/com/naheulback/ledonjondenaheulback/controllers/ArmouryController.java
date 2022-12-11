@@ -19,6 +19,8 @@ import java.util.HashMap;
 import java.util.Random;
 
 import static com.naheulback.ledonjondenaheulback.Functions.getDictFromFile;
+import static com.naheulback.ledonjondenaheulback.Functions.setImage;
+import static java.lang.Math.floor;
 
 public class ArmouryController {
 
@@ -30,7 +32,7 @@ public class ArmouryController {
     @FXML
     private ImageView armouryItem1ButtonIV, armouryItem2ButtonIV, armouryItem3ButtonIV, armouryItem4ButtonIV, armouryItem5ButtonIV;
     @FXML
-    private ImageView barmanIV;
+    private ImageView armourymanIV;
     @FXML
     private Label armouryItem1Label, armouryItem2Label, armouryItem3Label, armouryItem4Label, armouryItem5Label;
     @FXML
@@ -50,7 +52,6 @@ public class ArmouryController {
     private ArrayList<ImageView> heroImages;
 
     private String currentHeroName;
-    private String currentHeroClass;
     private int currentItem;
 
     private int currentHeroIndex;
@@ -75,19 +76,13 @@ public class ArmouryController {
             sp.setVisible(false);
         }
 
-        String path = resPath + "armouryImages/d";
-        InputStream stream = new FileInputStream(path + Game.getDungeon() + "_armoury_background.png");
-        Image image = new Image(stream);
-        mainIV.setImage(image);
+        setImage(mainIV, "armouryImages", Game.getDungeon() + "_armoury_background" );
+
+        armourymanIV.setVisible(false);
+        setImage(mainIV, "armouryImages", Game.getDungeon() + "_armouryman" );
 
         livingHeroSlugs = Game.getLivingHeroSlugs();
         Functions.setBarImages(livingHeroSlugs, heroImages);
-
-        //path = resPath + "armouryImages/d";
-        //barmanIV.setVisible(false);
-        //stream = new FileInputStream(path + Game.getDungeon() + "_barman.png");
-        //image = new Image(stream);
-        //barmanIV.setImage(image);
 
     }
 
@@ -101,84 +96,68 @@ public class ArmouryController {
         }
 
         itemList = Functions.getArmouryItems(type);
+
         for (int i = 4; i >= 0; i--){
-            if(itemList.get(i).equals("empty")){
+            String[] item = itemList.get(i).split("\\|");
+            if(item[0].equals("empty")){
                 armouryItemsHB.getChildren().remove(i);
+
             } else {
-                String path = resPath + "armouryImages/";
-                InputStream stream = new FileInputStream(path + itemList.get(i) + ".png");
-                Image image = new Image(stream);
-                itemImages.get(i).setImage(image);
+
+                setImage(itemImages.get(i), "armouryImages", item[0]);
+
+                HashMap<String, String> dict = getDictFromFile("armoury", item[0]);
+
+                String name = dict.get("name");
+                String[] effet = dict.get("effet").split(" ");
+                String cout = dict.get("cost");
+                String desc = dict.get("desc");
+                String tempStat = switch (dict.get("type")){
+                    case "weapon" -> dict.get("power");
+                    case "armor" -> dict.get("armor");
+                    default -> "rien";
+                };
+                effet[1] = tempStat;
+
+                String toDisplay = "";
+                toDisplay += name + " (Niveau " + item[1] + ")" + "\n";
+                toDisplay += "Effet: " + effet[0] + " " + effet[1] + " " + effet[2] + "\n";
+                toDisplay += "Coût: " + cout + " PO" + "\n";
+                toDisplay += desc;
+
+                itemLabels.get(i).setText(toDisplay);
             }
         }
 
-        for(int i = 0; i < 5; i++){
-            if(!itemList.get(i).equals("empty")) {
-                String path = resPath + "armouryFiles/" + itemList.get(i);
-                BufferedReader br = new BufferedReader(new FileReader(path));
-                StringBuilder toDisplay = new StringBuilder();
-                for (String line = br.readLine(); line != null; line = br.readLine()) {
-                    String[] parts = line.split(":");
-                    toDisplay.append(parts[1]);
-                    if (!line.equals("")) {
-                        toDisplay.append("\n");
-                    }
-                }
-                itemLabels.get(i).setText(toDisplay.toString());
-            }
-        }
-
-        armouryItemsHB.setVisible(true);
-        armouryItemsHB.setDisable(false);
-        //armouryItemsHB.setBackground(new Background(new BackgroundFill(Color.BLACK,null,null)));
-
-        int width = switch (armouryItemsHB.getChildren().size()) {
-            case 1 -> 166;
-            case 2 -> 352;
-            case 3 -> 538;
-            case 4 -> 744;
-            case 5 -> 930;
-            default -> 0;
-        };
-        armouryItemsHB.setLayoutX(500.0 - (width/2.0));
+        Functions.setItemButtonHBSize(armouryItemsHB);
     }
 
-    @FXML
-    void onDrinkMenuHovering() {
 
-    }
-    @FXML
-    void onDrinkMenuStoppedHovering() {
-
-    }
-    @FXML
-    void onFoodMenuHovering() {
-
-    }
-    @FXML
-    void onFoodMenuStoppedHovering() {
-
-    }
 
     @FXML
     void onHeroClicked() throws IOException {
         if (!currentHeroName.equals("empty")) {
             currentHero = Game.getLivingHeroes().get(currentHeroIndex);
-            System.out.println(currentHero.getName());
-            //set image with barman
-            barmanIV.setVisible(true);
-            barmanIV.setLayoutX(25 + currentHeroIndex*153);
+            armourymanIV.setVisible(true);
+            int armourymanX = switch (currentHeroIndex){
+                case 0 -> 2*153;
+                case 1 -> 3*153;
+                case 2 -> 1*153;
+                case 3 -> 4*153;
+                case 4 -> 5*153;
+                case 5 -> 0;
+                default -> throw new IllegalStateException("Unexpected value: " + currentHeroIndex);
+            };
+            armourymanIV.setLayoutX(25 + armourymanX);
             loadArmouryItems(currentHero.getType());
         }
-
-        //rien je crois
-
     }
 
     @FXML
     void onItemButtonClicked() throws IOException, InterruptedException {
 
-        String itemName = itemList.get(currentItem);
+        String[] item = itemList.get(currentItem).split("\\|");
+        String itemName = item[0];
         HashMap<String, String> dict = getDictFromFile("armoury", itemName);
         double cost = Integer.parseInt(dict.get("cost"));
         if (!(currentHero == null)) {
@@ -186,8 +165,10 @@ public class ArmouryController {
 
                 Game.takeGoldPieces(cost);
 
-                currentHero.setMainWeapon(itemName, Integer.parseInt(dict.get("level")));
-                System.out.println(currentHero.getMainWeapon().getName());
+                int level = Integer.parseInt(item[1]);
+                int power = (int) floor((0.75 + (0.25 * level)) * Integer.parseInt(dict.get("power")));
+
+                currentHero.setMainWeapon(itemName, level , power );
 
                 switch (new Random().nextInt(5)){
                     case 1 -> {
@@ -206,19 +187,13 @@ public class ArmouryController {
 
             } else {
                 barmanSpeakLbl.setText("Tu n'as pas assez de pièces d'or pour ça");
-                String path = "src/main/resources/com/naheulback/ledonjondenaheulback/tavernImages/";
-                InputStream stream = new FileInputStream(path + "barman_pos" + currentHeroIndex + "_bubble.png");
-                Image image = new Image(stream);
-                barmanSpeakIV.setImage(image);
+                setImage(barmanSpeakIV, "tavernImages","barman_pos" + currentHeroIndex + "_bubble" );
             }
         } else {
             barmanSpeakLbl.setText("Tu n'as pas choisi de héros");
-            barmanIV.setVisible(true);
-            barmanIV.setLayoutX(25);
-            String path = "src/main/resources/com/naheulback/ledonjondenaheulback/tavernImages/";
-            InputStream stream = new FileInputStream(path + "barman_pos0_bubble.png");
-            Image image = new Image(stream);
-            barmanSpeakIV.setImage(image);
+            armourymanIV.setVisible(true);
+            armourymanIV.setLayoutX(25);
+            setImage(barmanSpeakIV, "tavernImages","barman_pos0_bubble.png" );
         }
     }
 

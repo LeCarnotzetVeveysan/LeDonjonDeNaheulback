@@ -51,7 +51,6 @@ public class MainMenuController {
         String path = "src/main/resources/com/naheulback/ledonjondenaheulback";
         InputStream stream = new FileInputStream(path + "/menuImages/newgameinv.png");
         Image image = new Image(stream);
-
         newGameBtnIV.setImage(image);
     }
 

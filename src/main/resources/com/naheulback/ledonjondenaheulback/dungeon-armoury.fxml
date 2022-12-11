@@ -14,7 +14,7 @@
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.ledonjondenaheulback.controllers.ArmouryController">
     <children>
         <ImageView fx:id="mainIV" fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fx:id="barmanIV" fitHeight="175.0" fitWidth="133.0" layoutX="25.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="armourymanIV" fitHeight="175.0" fitWidth="133.0" layoutX="25.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true" />
         <HBox alignment="CENTER" layoutX="37.0" layoutY="440.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
             <children>
                 <ImageView fx:id="hero6IV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero6Hover" onMouseExited="#onHero6StoppedHover" pickOnBounds="true" preserveRatio="true" />

@@ -20,8 +20,7 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import static com.naheulback.ledonjondenaheulback.Functions.getDictFromFile;
-import static com.naheulback.ledonjondenaheulback.Functions.getSpeakingHeroSlug;
+import static com.naheulback.ledonjondenaheulback.Functions.*;
 
 public class DungeonBarController {
 
@@ -172,20 +171,7 @@ public class DungeonBarController {
                 itemLabels.get(i).setText(toDisplay.toString());
             }
         }
-
-        barItemsHB.setVisible(true);
-        barItemsHB.setDisable(false);
-        //barItemsHB.setBackground(new Background(new BackgroundFill(Color.BLACK,null,null)));
-
-        int width = switch (barItemsHB.getChildren().size()) {
-            case 1 -> 166;
-            case 2 -> 352;
-            case 3 -> 538;
-            case 4 -> 744;
-            case 5 -> 930;
-            default -> 0;
-        };
-        barItemsHB.setLayoutX(500.0 - (width/2.0));
+        setItemButtonHBSize(barItemsHB);
     }
 
     @FXML
