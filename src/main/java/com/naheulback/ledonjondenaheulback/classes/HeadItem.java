@@ -1,18 +1,19 @@
 package com.naheulback.ledonjondenaheulback.classes;
 
-public class Weapon {
+public class HeadItem {
 
     private String slug;
     private String name;
     private int level;
-    private double quality;
+    private int quality;
 
-    public Weapon(String inputSlug, int inputLevel){
+    public HeadItem(String inputSlug, int inputLevel, int inputQuality){
         slug = inputSlug;
         level = inputLevel;
         //get true name from slug in dictionary
         name = inputSlug;
-        quality = 100;
+        quality = inputQuality;
+
     }
 
     public String getName(){
@@ -22,11 +23,4 @@ public class Weapon {
     public String getStats(){
         return name + " (Niveau " + level + "), Qualité: " + quality;
     }
-
-    public double getQuality(){ return quality; }
-
-    public void decreaseQuality(int factor){
-        quality -= factor;
-    }
-
 }

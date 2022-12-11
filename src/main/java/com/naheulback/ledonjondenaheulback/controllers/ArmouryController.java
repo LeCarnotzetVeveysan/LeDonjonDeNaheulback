@@ -187,7 +187,7 @@ public class ArmouryController {
                 Game.takeGoldPieces(cost);
 
                 currentHero.setMainWeapon(itemName, Integer.parseInt(dict.get("level")));
-                System.out.println(currentHero.getWeapon().getName());
+                System.out.println(currentHero.getMainWeapon().getName());
 
                 switch (new Random().nextInt(5)){
                     case 1 -> {

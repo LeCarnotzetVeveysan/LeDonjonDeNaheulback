@@ -1,10 +1,5 @@
 package com.naheulback.ledonjondenaheulback.classes;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Dictionary;
-import java.util.HashMap;
-
 public abstract class Hero {
 
     private String slug;
@@ -22,6 +17,8 @@ public abstract class Hero {
     private int mana;
     private int speed;
     private Weapon mainWeapon;
+    private HeadItem headItem;
+    private BodyItem bodyItem;
 
     public Hero(String inputSlug, String inputName, String inputType){
 
@@ -78,8 +75,28 @@ public abstract class Hero {
         mainWeapon = wpn;
     }
 
-
-    public Weapon getWeapon() {
+    public Weapon getMainWeapon() {
         return mainWeapon;
     }
+
+    public void setHeadItem(String itemName, int itemLevel){
+        BodyItem bi = new BodyItem(itemName, itemLevel);
+        bodyItem = bi;
+    }
+
+    public HeadItem getHeadItem() {
+        return headItem;
+    }
+
+    public void setBodyItem(String itemName, int itemLevel){
+        BodyItem bi = new BodyItem(itemName, itemLevel);
+        bodyItem = bi;
+    }
+
+    public BodyItem getBodyItem() {
+        return bodyItem;
+    }
+
+
+
 }
