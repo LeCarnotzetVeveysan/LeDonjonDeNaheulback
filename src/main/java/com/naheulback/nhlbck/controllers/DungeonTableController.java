@@ -34,6 +34,8 @@ public class DungeonTableController {
     private ArrayList<Button> sitButtons;
     private ArrayList<ImageView> sitButtonImages;
     @FXML
+    private Label heroSpeakLB;
+    @FXML
     private ImageView hero1IV;
     @FXML
     private ImageView hero2IV;
@@ -75,14 +77,13 @@ public class DungeonTableController {
     private ImageView sitButton6IV;
     @FXML
     private Label coinCountLB;
+    @FXML
+    private HashMap<String,String> heroDict;
 
 
     public void initialize() throws IOException {
 
-        String path = resPath + "dungeonImages/d";
-        InputStream stream = new FileInputStream(path + getDungeon() + "_tavern_table" + Game.getTable() + ".png");
-        Image image = new Image(stream);
-        mainIV.setImage(image);
+        setImage(mainIV, "dungeonImages","d" + getDungeon() + "_tavern_table" + Game.getTable() );
 
         heroImages = new ArrayList<>(Arrays.asList(hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV));
         Functions.setTableImages(heroImages);
@@ -97,12 +98,11 @@ public class DungeonTableController {
         sitButtonsHB.setDisable(true);
 
         coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
+        heroSpeakLB.setText("");
 
     }
     public void onBackButtonClicked() throws IOException {
-
         LoadScene.changeScene("dungeon-tavern");
-
     }
 
     public void startedHovering() {
@@ -112,31 +112,26 @@ public class DungeonTableController {
     }
 
     public void onYouButtonClicked() {
+        heroSpeakLB.setText(heroDict.get("desc") + " " + heroDict.get("level"));
     }
 
     public void onQuoteButtonClicked() {
+        heroSpeakLB.setText(heroDict.get("quote"));
     }
 
     public void onJokeButtonClicked() {
+        heroSpeakLB.setText(heroDict.get("joke"));
     }
 
-    public void onRecruitPriceButtonClicked() throws IOException {
-        slug = getSpeakingHeroSlug();
-        if(!slug.equals("empty")){
-            HashMap<String,String> dict = getDictFromFile("hero", slug);
-            System.out.println("Je coûte " + dict.get("cost") + " pièces d'or.");
-        }
-
+    public void onRecruitPriceButtonClicked() {
+        heroSpeakLB.setText("Je coûte " + heroDict.get("cost") + " pièces d'or à recruter.");
     }
 
     public void onRecruitButtonClicked() throws IOException {
 
         if(Game.getNumberOfLivingHeroes() < Game.getMaxHeroes()) {
 
-            slug = getSpeakingHeroSlug();
-            HashMap<String, String> dict = getDictFromFile("hero", slug);
-            System.out.println(dict.get("name"));
-            int cost = Integer.parseInt(dict.get("cost"));
+            int cost = Integer.parseInt(heroDict.get("cost"));
             ArrayList<String> slugList = getTableSlugList();
 
             if (Game.hasEnoughGoldPieces(cost)) {
@@ -144,34 +139,34 @@ public class DungeonTableController {
                 Hero toAdd = null;
                 slugList.set(Game.getSpeakingHero(), "empty");
 
-                switch (dict.get("class")) {
+                switch (heroDict.get("class")) {
                     case "warrior" -> {
-                        toAdd = new Warrior(dict.get("slug"), dict.get("name"));
+                        toAdd = new Warrior(heroDict.get("slug"), heroDict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                     }
                     case "nain" -> {
-                        toAdd = new Nain(dict.get("slug"), dict.get("name"));
+                        toAdd = new Nain(heroDict.get("slug"), heroDict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                     }
                     case "mage" -> {
-                        toAdd = new Mage(dict.get("slug"), dict.get("name"));
+                        toAdd = new Mage(heroDict.get("slug"), heroDict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                     }
                     case "elfe" -> {
-                        toAdd = new Elfe(dict.get("slug"), dict.get("name"));
+                        toAdd = new Elfe(heroDict.get("slug"), heroDict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                     }
                     case "ogre" -> {
-                        toAdd = new Ogre(dict.get("slug"), dict.get("name"));
+                        toAdd = new Ogre(heroDict.get("slug"), heroDict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                     }
                     case "ranger" -> {
-                        toAdd = new Ranger(dict.get("slug"), dict.get("name"));
+                        toAdd = new Ranger(heroDict.get("slug"), heroDict.get("name"));
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                     }
@@ -182,12 +177,10 @@ public class DungeonTableController {
                 interactionButtonsHB.setDisable(true);
                 interactionButtonsHB.setVisible(false);
             } else {
-
-                System.out.println("Tu n'as pas assez de pièces d'or pour me recruter");
+                heroSpeakLB.setText("Tu n'as pas assez de pièces d'or pour me recruter");
             }
         } else {
-            //Faire en sorte que héros dise que la team est pleine
-            System.out.println("Too many heroes in your team");
+            heroSpeakLB.setText("Ta compagnie est déjà pleine");
         }
     }
 
@@ -276,6 +269,7 @@ public class DungeonTableController {
         }
         sitButtonsHB.setVisible(false);
         sitButtonsHB.setDisable(true);
+        heroDict = getDictFromFile("hero", getSpeakingHeroSlug());
     }
 
     public void onHero1Clicked() throws IOException {

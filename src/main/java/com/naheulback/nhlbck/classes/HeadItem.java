@@ -21,6 +21,16 @@ public class HeadItem {
         return name + " (Niveau " + level + ")";
     }
 
+    public String getSlug(){
+        return slug;
+    }
+
+    public int getArmor(){ return armor; }
+
+    public int getLevel() { return level;}
+
+    public double getQuality(){ return quality; }
+
     public String getStats(){
         return name + " (Niveau " + level + "), Qualité: " + quality;
     }

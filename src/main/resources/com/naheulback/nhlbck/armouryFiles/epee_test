@@ -1,6 +1,6 @@
 type:weapon
 name:Test_epee
 cost:100
-power:10
+stat:10
 effet:+ X atk
 desc:Epee_test

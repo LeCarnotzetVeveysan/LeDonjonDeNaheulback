@@ -4,13 +4,13 @@ import com.naheulback.nhlbck.Functions;
 import com.naheulback.nhlbck.LoadScene;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
+
+import static com.naheulback.nhlbck.Functions.initHeroFiles;
+import static com.naheulback.nhlbck.Functions.initTableFiles;
 
 public class MainMenuController {
 
@@ -18,7 +18,7 @@ public class MainMenuController {
     private ImageView newGameBtnIV;
 
     public void initialize() {
-        System.out.println("Main menu entered");
+        //System.out.println("Main menu entered");
     }
     @FXML
     protected void onQuitButtonClick() {
@@ -30,6 +30,8 @@ public class MainMenuController {
     }
 
     public void onNewGameButtonClick() throws IOException {
+        initTableFiles();
+        initHeroFiles();
         LoadScene.changeScene("menu-level-select");
     }
 

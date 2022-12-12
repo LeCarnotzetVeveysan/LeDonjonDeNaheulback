@@ -17,6 +17,8 @@ public abstract class Hero {
     private int mana;
     private int speed;
     private Weapon mainWeapon;
+    private Weapon throwableWeapon;
+    private boolean weaponThrowed;
     private HeadItem headItem;
     private BodyItem bodyItem;
 
@@ -36,6 +38,8 @@ public abstract class Hero {
         mana = 100;
         speed = 100;
         mainWeapon = null;
+        throwableWeapon = null;
+        weaponThrowed= false;
     }
 
     public String toString(){
@@ -59,6 +63,8 @@ public abstract class Hero {
 
     public String getSlug() { return slug; }
 
+    public int getLevel() { return level; }
+
     public void addHP(int inputHealth) {
         health += inputHealth;
         if(health > maxHealth){
@@ -77,6 +83,15 @@ public abstract class Hero {
 
     public Weapon getMainWeapon() {
         return mainWeapon;
+    }
+
+    public void setThrowableWeapon(String weaponName, int weaponLevel, int weaponPower){
+        Weapon wpn = new Weapon(weaponName, weaponLevel, weaponPower);
+        throwableWeapon = wpn;
+    }
+
+    public Weapon getThrowableWeapon() {
+        return throwableWeapon;
     }
 
     public void setHeadItem(String itemName, int itemLevel, int inputQuality){

@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.StackPane?>
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.nhlbck.controllers.DungeonTableController">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.nhlbck.controllers.DungeonTableController">
    <children>
       <ImageView fx:id="mainIV" fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Button layoutX="23.0" layoutY="579.0" mnemonicParsing="false" onMouseClicked="#onBackButtonClicked" onMouseEntered="#startedHovering" onMouseExited="#stoppedHovering" prefHeight="100.0" prefWidth="122.0">
@@ -61,9 +57,9 @@
       <ImageView fx:id="smallTextLeftIV" fitHeight="120.0" fitWidth="422.0" layoutX="35.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="smallTextRightIV" fitHeight="120.0" fitWidth="422.0" layoutX="503.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="bigTextIV" fitHeight="120.0" fitWidth="931.0" layoutX="33.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="sitButton" layoutX="449.0" layoutY="563.0" mnemonicParsing="false" onMouseEntered="#onSitButtonHovering" onMouseExited="#onSitButtonStoppedHovering" onMouseClicked="#onSitButtonClicked" prefHeight="75.0" prefWidth="108.0">
+      <Button fx:id="sitButton" layoutX="449.0" layoutY="563.0" mnemonicParsing="false" onMouseClicked="#onSitButtonClicked" onMouseEntered="#onSitButtonHovering" onMouseExited="#onSitButtonStoppedHovering" prefHeight="75.0" prefWidth="108.0">
          <graphic>
-            <ImageView fx:id="sitButtonIV" fitHeight="69.0" fitWidth="86.0"  pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="sitButtonIV" fitHeight="69.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@tavernImages/d1_tabouret.png" />
                </image></ImageView>
@@ -121,5 +117,6 @@
             </HBox>
          </children>
       </StackPane>
+      <Label fx:id="heroSpeakLB" layoutX="92.0" layoutY="65.0" text="Label" />
    </children>
 </AnchorPane>

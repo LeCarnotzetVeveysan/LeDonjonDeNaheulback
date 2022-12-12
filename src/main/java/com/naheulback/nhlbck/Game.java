@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static com.naheulback.nhlbck.Functions.initHeroFiles;
 import static com.naheulback.nhlbck.Functions.initTableFiles;
 
 public class Game {
@@ -26,7 +27,6 @@ public class Game {
 
     public void main() throws IOException {
 
-        initTableFiles();
         LoadScene ls = new LoadScene(mainStage);
         ls.changeScene("menu-main-menu");
 

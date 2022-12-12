@@ -20,10 +20,10 @@ import java.util.Random;
 import static com.naheulback.nhlbck.Functions.getDictFromFile;
 import static com.naheulback.nhlbck.Functions.setImage;
 import static java.lang.Math.floor;
+import static java.lang.Math.round;
 
 public class ArmouryController {
 
-    private static String resPath = "src/main/resources/com/naheulback/nhlbck/";
     @FXML
     private VBox armouryItem1VB, armouryItem2VB, armouryItem3VB, armouryItem4VB, armouryItem5VB;
     @FXML
@@ -52,16 +52,27 @@ public class ArmouryController {
 
     private String currentHeroName;
     private int currentItem, currentHeroIndex;
-    private Hero currentHero;
+    private Hero curHero;
     private ArrayList<String> livingHeroSlugs;
     private ArrayList<String> itemList;
     private ArrayList<Hero> livingHeroes;
+    private ArrayList<Label> heroRecapLabels;
+    private ArrayList<ImageView> heroRecapIVs;
     @FXML
-    private Label coinCountLB;
+    private Label coinCountLB, heroRecapTitleLB;
+    @FXML
+    private StackPane heroRecapSP;
+
+    @FXML
+    private ImageView heroRecapBodyItemIV, heroRecapHeadItemIV, heroRecapMainWeaponIV, heroRecapThrowableWeaponIV;
+
+    @FXML
+    private Label heroRecapBodyItemLB1, heroRecapBodyItemLB2, heroRecapHeadItemLB1, heroRecapHeadItemLB2,
+            heroRecapMainWeaponLB1, heroRecapMainWeaponLB2, heroRecapThrowableWeaponLB1, heroRecapThrowableWeaponLB2;
 
     public void initialize() throws FileNotFoundException {
 
-        currentHero = null;
+        curHero = null;
         currentHeroIndex = 0;
         armourymanSpeakLbl.setText("");
 
@@ -87,6 +98,14 @@ public class ArmouryController {
         livingHeroSlugs = Game.getLivingHeroSlugs();
 
         coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
+
+        heroRecapSP.setVisible(false);
+        heroRecapSP.setDisable(true);
+
+        heroRecapLabels = new ArrayList<>(Arrays.asList(heroRecapTitleLB, heroRecapHeadItemLB1, heroRecapHeadItemLB2,
+                heroRecapBodyItemLB1, heroRecapBodyItemLB2, heroRecapMainWeaponLB1, heroRecapMainWeaponLB2,
+                heroRecapThrowableWeaponLB1, heroRecapThrowableWeaponLB2));
+        heroRecapIVs = new ArrayList<>(Arrays.asList(heroRecapHeadItemIV, heroRecapBodyItemIV, heroRecapMainWeaponIV, heroRecapThrowableWeaponIV));
 
     }
 
@@ -143,7 +162,7 @@ public class ArmouryController {
         if (!currentHeroName.equals("empty")) {
             armourymanSpeakIV.setVisible(false);
             armourymanSpeakLbl.setText("");
-            currentHero = Game.getLivingHeroes().get(currentHeroIndex);
+            curHero = Game.getLivingHeroes().get(currentHeroIndex);
             armourymanIV.setVisible(true);
             int armourymanX = switch (currentHeroIndex){
                 case 0 -> 2*153;
@@ -155,7 +174,15 @@ public class ArmouryController {
                 default -> throw new IllegalStateException("Unexpected value: " + currentHeroIndex);
             };
             armourymanIV.setLayoutX(25 + armourymanX);
-            loadArmouryItems(currentHero.getType());
+            loadArmouryItems(curHero.getType());
+
+            Functions.setHeroRecap(curHero, heroRecapLabels, heroRecapIVs);
+
+            heroRecapSP.setVisible(true);
+            heroRecapSP.setDisable(false);
+        } else {
+            heroRecapSP.setVisible(false);
+            heroRecapSP.setDisable(true);
         }
     }
 
@@ -166,16 +193,29 @@ public class ArmouryController {
         String itemName = item[0];
         HashMap<String, String> dict = getDictFromFile("armoury", itemName);
         double cost = Integer.parseInt(dict.get("cost"));
-        if (!(currentHero == null)) {
+        if (!(curHero == null)) {
             if (Game.hasEnoughGoldPieces(cost)) {
 
                 Game.takeGoldPieces(cost);
                 coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
 
                 int level = Integer.parseInt(item[1]);
-                int power = (int) floor((0.75 + (0.25 * level)) * Integer.parseInt(dict.get("power")));
+                int stat = (int) round((0.75 + (0.25 * level)) * Integer.parseInt(dict.get("stat")));
 
-                currentHero.setMainWeapon(itemName, level , power );
+                switch(item[2]){
+                    case "mainWeapon":
+                        curHero.setMainWeapon(itemName, level , stat );
+                        break;
+                    case "throwableWeapon":
+                        curHero.setThrowableWeapon(itemName, level , stat );
+                        break;
+                    case "headItem":
+                        curHero.setHeadItem(itemName, level , stat );
+                        break;
+                    case "bodyItem":
+                        curHero.setBodyItem(itemName, level , stat );
+                        break;
+                }
 
                 switch (new Random().nextInt(5)){
                     case 1 -> {
@@ -191,6 +231,8 @@ public class ArmouryController {
                         armourymanSpeakLbl.setText("Vos ennemis vont déguster");
                     }
                 }
+
+                Functions.setHeroRecap(curHero, heroRecapLabels, heroRecapIVs);
 
             } else {
                 armourymanSpeakLbl.setText("Tu n'as pas assez de pièces d'or pour ça");

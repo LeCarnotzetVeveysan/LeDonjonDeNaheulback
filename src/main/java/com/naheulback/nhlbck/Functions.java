@@ -1,6 +1,7 @@
 package com.naheulback.nhlbck;
 
 import com.naheulback.nhlbck.classes.Hero;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,7 +11,6 @@ import java.io.*;
 import java.util.*;
 
 import static java.lang.Math.ceil;
-import static java.lang.Math.round;
 
 public class Functions {
 
@@ -19,7 +19,7 @@ public class Functions {
     public static HashMap<String, String> getDictFromFile(String folder, String fileName) throws IOException {
 
         if(Objects.equals(fileName, "empty")){
-            return new HashMap<String,String>();
+            return new HashMap<>();
         }
 
         String path = resPath + folder + "Files/" + fileName;
@@ -171,4 +171,73 @@ public class Functions {
         }
     }
 
+    public static void initHeroFiles() {
+        //reset hero files
+    }
+
+    public static void setHeroRecap(Hero hero, ArrayList<Label> lbls, ArrayList<ImageView> ivs ) throws IOException {
+        String toDisplay = hero.getName() + " - " + hero.getType().substring(0, 1).toUpperCase() +
+                hero.getType().substring(1) + " de niveau " + hero.getLevel();
+        lbls.get(0).setText(toDisplay);
+
+        setHeroRecapItemLabelsAndIVs(hero, 1, lbls.get(1), lbls.get(2), ivs.get(0));
+        setHeroRecapItemLabelsAndIVs(hero, 2, lbls.get(3), lbls.get(4), ivs.get(1));
+        setHeroRecapItemLabelsAndIVs(hero, 3, lbls.get(5), lbls.get(6), ivs.get(2));
+        setHeroRecapItemLabelsAndIVs(hero, 4, lbls.get(7), lbls.get(8), ivs.get(3));
+    }
+
+    private static void setHeroRecapItemLabelsAndIVs(Hero hero, int item, Label lbl1, Label lbl2, ImageView iv) throws IOException {
+        String itemName = "";
+        String level = "";
+        String quality = "";
+        String stat = "";
+
+        switch (item){
+            case 1:
+                itemName = hero.getHeadItem() == null ? "null" : hero.getHeadItem().getSlug();
+                level = hero.getHeadItem() == null ? "null" : String.valueOf(hero.getHeadItem().getLevel());
+                quality = hero.getHeadItem() == null ? "null" : String.valueOf(hero.getHeadItem().getQuality());
+                stat = hero.getHeadItem() == null ? "null" : String.valueOf(hero.getHeadItem().getArmor());
+                break;
+            case 2:
+                itemName = hero.getBodyItem() == null ? "null" : hero.getBodyItem().getSlug();
+                level = hero.getBodyItem() == null ? "null" : String.valueOf(hero.getBodyItem().getLevel());
+                quality = hero.getBodyItem() == null ? "null" : String.valueOf(hero.getBodyItem().getQuality());
+                stat = hero.getBodyItem() == null ? "null" : String.valueOf(hero.getBodyItem().getArmor());
+                break;
+            case 3:
+                itemName = hero.getMainWeapon() == null ? "null" : hero.getMainWeapon().getSlug();
+                level = hero.getMainWeapon() == null ? "null" : String.valueOf(hero.getMainWeapon().getLevel());
+                quality = hero.getMainWeapon() == null ? "null" : String.valueOf(hero.getMainWeapon().getQuality());
+                stat = hero.getMainWeapon() == null ? "null" : String.valueOf(hero.getMainWeapon().getPower());
+                break;
+            case 4:
+                itemName = hero.getThrowableWeapon() == null ? "null" : hero.getThrowableWeapon().getSlug();
+                level = hero.getThrowableWeapon() == null ? "null" : String.valueOf(hero.getThrowableWeapon().getLevel());
+                quality = hero.getThrowableWeapon() == null ? "null" : String.valueOf(hero.getThrowableWeapon().getQuality());
+                stat = hero.getThrowableWeapon() == null ? "null" : String.valueOf(hero.getThrowableWeapon().getPower());
+                break;
+        }
+
+        if(itemName.equals("null")){
+            lbl1.setText("Il n'y a rien d'équipé");
+            lbl2.setText("");
+            setImage(iv, "armouryImages", "null_icon");
+
+        } else {
+            String toDisplay;
+            HashMap<String, String> dict = getDictFromFile("armoury", itemName);
+
+            String name = dict.get("name");
+            String[] effet = dict.get("effet").split(" ");
+
+            toDisplay = name + " (Niveau " + level + ")";
+            lbl1.setText(toDisplay);
+            toDisplay = "Effet: " + effet[0] + " " + stat + " " + effet[2] + ", Qualité " + quality;
+            lbl2.setText(toDisplay);
+
+            setImage(iv, "armouryImages", itemName + "_icon");
+
+        }
+    }
 }

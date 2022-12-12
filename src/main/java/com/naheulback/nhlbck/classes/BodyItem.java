@@ -20,6 +20,16 @@ public class BodyItem {
         return name + " (Niveau " + level + ")";
     }
 
+    public String getSlug(){
+        return slug;
+    }
+
+    public int getLevel() { return level;}
+
+    public double getQuality(){ return quality; }
+
+    public int getArmor(){ return armor; }
+
     public String getStats(){
         return name + " (Niveau " + level + "), Qualité: " + quality;
     }
