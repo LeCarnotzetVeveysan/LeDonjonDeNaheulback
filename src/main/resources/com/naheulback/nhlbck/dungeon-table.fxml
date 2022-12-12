@@ -6,6 +6,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.nhlbck.controllers.DungeonTableController">
    <children>
       <ImageView fx:id="mainIV" fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -100,5 +102,24 @@
             </Button>
          </children>
       </HBox>
+      <StackPane layoutX="852.0" layoutY="630.0">
+         <children>
+            <ImageView fitHeight="55.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@otherImages/coinbagbackground.png" />
+               </image>
+            </ImageView>
+            <HBox alignment="CENTER" prefHeight="55.0" prefWidth="134.0" StackPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@otherImages/coinbag.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="coinCountLB" alignment="CENTER" prefHeight="50.0" prefWidth="73.0" text="Label" textAlignment="CENTER" />
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

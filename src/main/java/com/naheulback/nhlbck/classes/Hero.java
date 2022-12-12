@@ -28,7 +28,7 @@ public abstract class Hero {
         level = 1;
         experience = 0;
         recruitementCost = 100;
-        health = 100;
+        health = 60;
         maxHealth = 100;
         armor = 100;
         attack = 100;

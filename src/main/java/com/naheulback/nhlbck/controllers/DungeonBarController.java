@@ -92,6 +92,8 @@ public class DungeonBarController {
     private int currentHeroIndex;
     private Hero currentHero;
     private ArrayList<String> livingHeroSlugs, itemList;
+    @FXML
+    private Label coinCountLB;
 
     public void initialize() throws FileNotFoundException {
 
@@ -120,6 +122,7 @@ public class DungeonBarController {
         Functions.setBarHPBars(livingHeroes, heroHPIVs, heroHPLabels);
 
         livingHeroSlugs = Game.getLivingHeroSlugs();
+        coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
     }
 
     public void onBackButtonClicked() throws IOException { LoadScene.changeScene("dungeon-tavern"); }
@@ -192,11 +195,20 @@ public class DungeonBarController {
     @FXML
     void onHeroClicked() {
         if (!currentHeroName.equals("empty")) {
+            barmanSpeakIV.setVisible(false);
+            barmanSpeakLbl.setText("");
             currentHero = Game.getLivingHeroes().get(currentHeroIndex);
-            System.out.println(currentHero.getName());
-            //set image with barman
             barmanIV.setVisible(true);
-            barmanIV.setLayoutX(25 + currentHeroIndex*153);
+            int armourymanX = switch (currentHeroIndex){
+                case 0 -> 2*153;
+                case 1 -> 3*153;
+                case 2 -> 1*153;
+                case 3 -> 4*153;
+                case 4 -> 5*153;
+                case 5 -> 0;
+                default -> throw new IllegalStateException("Unexpected value: " + currentHeroIndex);
+            };
+            barmanIV.setLayoutX(25 + armourymanX);
         }
     }
 
@@ -236,6 +248,9 @@ public class DungeonBarController {
                         barmanSpeakLbl.setText("Vos papilles vont se régaler");
                     }
                 }
+
+                setBarHPBars(livingHeroes, heroHPIVs, heroHPLabels);
+                coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
 
             } else {
                 barmanSpeakLbl.setText("Tu n'as pas assez de pièces d'or pour ça");

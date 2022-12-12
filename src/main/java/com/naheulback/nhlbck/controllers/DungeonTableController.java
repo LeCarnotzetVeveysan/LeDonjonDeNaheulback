@@ -6,6 +6,7 @@ import com.naheulback.nhlbck.LoadScene;
 import com.naheulback.nhlbck.classes.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -19,6 +20,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import static com.naheulback.nhlbck.Functions.*;
+import static com.naheulback.nhlbck.Game.getDungeon;
 
 public class DungeonTableController {
 
@@ -71,12 +73,14 @@ public class DungeonTableController {
     private Button sitButton6;
     @FXML
     private ImageView sitButton6IV;
+    @FXML
+    private Label coinCountLB;
 
 
     public void initialize() throws IOException {
 
         String path = resPath + "dungeonImages/d";
-        InputStream stream = new FileInputStream(path + Game.getDungeon() + "_tavern_table" + Game.getTable() + ".png");
+        InputStream stream = new FileInputStream(path + getDungeon() + "_tavern_table" + Game.getTable() + ".png");
         Image image = new Image(stream);
         mainIV.setImage(image);
 
@@ -91,6 +95,8 @@ public class DungeonTableController {
 
         sitButtonsHB.setVisible(false);
         sitButtonsHB.setDisable(true);
+
+        coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
 
     }
     public void onBackButtonClicked() throws IOException {
@@ -172,9 +178,12 @@ public class DungeonTableController {
                 }
                 Game.recruitHero(toAdd);
                 Game.takeGoldPieces(cost);
+                coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
+                interactionButtonsHB.setDisable(true);
+                interactionButtonsHB.setVisible(false);
             } else {
 
-                System.out.println("Tu n'as pass assez de pièces d'or");
+                System.out.println("Tu n'as pas assez de pièces d'or pour me recruter");
             }
         } else {
             //Faire en sorte que héros dise que la team est pleine
@@ -201,12 +210,9 @@ public class DungeonTableController {
             if(sl.get(i).equals("empty")){
                 sitButtonsHB.getChildren().remove(i);
             } else {
-                String path = resPath + "tavernImages/";
-                InputStream stream = new FileInputStream(path + sl.get(i) + "_head.png");
-                Image image = new Image(stream);
+                setImage(sitButtonImages.get(i), "tavernImages", sl.get(i) + "_head");
                 sitButtons.get(i).setDisable(false);
                 sitButtons.get(i).setVisible(true);
-                sitButtonImages.get(i).setImage(image);
             }
         }
     }
@@ -304,20 +310,10 @@ public class DungeonTableController {
 
 
     public void onSitButtonHovering() throws FileNotFoundException {
-
-        String path = resPath + "tavernImages/d";
-        InputStream stream = new FileInputStream(path + Game.getDungeon() + "_tabouret_fleche.png");
-        Image image = new Image(stream);
-        sitButtonIV.setImage(image);
-
+        setImage(sitButtonIV, "tavernImages","d" + getDungeon() + "_tabouret_fleche");
     }
 
     public void onSitButtonStoppedHovering() throws FileNotFoundException {
-
-        String path = resPath + "tavernImages/d";
-        InputStream stream = new FileInputStream(path + Game.getDungeon() + "_tabouret.png");
-        Image image = new Image(stream);
-        sitButtonIV.setImage(image);
-
+        setImage(sitButtonIV, "tavernImages","d" +  getDungeon() + "_tabouret");
     }
 }

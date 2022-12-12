@@ -9,13 +9,16 @@ import javafx.scene.layout.HBox;
 import java.io.*;
 import java.util.*;
 
+import static java.lang.Math.ceil;
+import static java.lang.Math.round;
+
 public class Functions {
 
     private static String resPath = "src/main/resources/com/naheulback/nhlbck/";
 
     public static HashMap<String, String> getDictFromFile(String folder, String fileName) throws IOException {
 
-        if(fileName == "empty"){
+        if(Objects.equals(fileName, "empty")){
             return new HashMap<String,String>();
         }
 
@@ -159,7 +162,9 @@ public class Functions {
         for(Label lbl : lb){ lbl.setText("");}
         for(int i=0;i < lhs.size();i++){
             if(!lhs.get(i).getSlug().equals("empty")) {
-                setImage(al.get(i), "otherImages", "testHPBar");
+                double percentage = 100*(ceil(10.0*lhs.get(i).getHealth()/lhs.get(i).getMaxHealth())/10);
+                int rounded = (int) percentage;
+                setImage(al.get(i), "otherImages",rounded + "HPbar");
                 lb.get(i).setText(lhs.get(i).getHealth() + "/" + lhs.get(i).getMaxHealth());
                 al.get(i).setVisible(true);
             }

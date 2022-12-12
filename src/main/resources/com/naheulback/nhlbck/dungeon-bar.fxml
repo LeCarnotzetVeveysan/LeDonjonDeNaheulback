@@ -228,5 +228,24 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <StackPane layoutX="852.0" layoutY="630.0">
+         <children>
+            <ImageView fitHeight="55.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@otherImages/coinbagbackground.png" />
+               </image>
+            </ImageView>
+            <HBox alignment="CENTER" prefHeight="55.0" prefWidth="134.0" StackPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@otherImages/coinbag.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="coinCountLB" alignment="CENTER" prefHeight="50.0" prefWidth="73.0" text="Label" textAlignment="CENTER" />
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

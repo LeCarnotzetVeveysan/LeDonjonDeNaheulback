@@ -56,6 +56,8 @@ public class ArmouryController {
     private ArrayList<String> livingHeroSlugs;
     private ArrayList<String> itemList;
     private ArrayList<Hero> livingHeroes;
+    @FXML
+    private Label coinCountLB;
 
     public void initialize() throws FileNotFoundException {
 
@@ -77,12 +79,14 @@ public class ArmouryController {
         setImage(mainIV, "armouryImages", "d" + Game.getDungeon() + "_armoury_background" );
 
         armourymanIV.setVisible(false);
-        setImage(mainIV, "armouryImages", "d" + Game.getDungeon() + "_armouryman" );
+        setImage(armourymanIV, "armouryImages", "d" + Game.getDungeon() + "_armouryman" );
 
         livingHeroes = Game.getLivingHeroes();
         Functions.setBarImages(livingHeroes, heroImages);
 
         livingHeroSlugs = Game.getLivingHeroSlugs();
+
+        coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
 
     }
 
@@ -137,6 +141,8 @@ public class ArmouryController {
     @FXML
     void onHeroClicked() throws IOException {
         if (!currentHeroName.equals("empty")) {
+            armourymanSpeakIV.setVisible(false);
+            armourymanSpeakLbl.setText("");
             currentHero = Game.getLivingHeroes().get(currentHeroIndex);
             armourymanIV.setVisible(true);
             int armourymanX = switch (currentHeroIndex){
@@ -164,6 +170,7 @@ public class ArmouryController {
             if (Game.hasEnoughGoldPieces(cost)) {
 
                 Game.takeGoldPieces(cost);
+                coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
 
                 int level = Integer.parseInt(item[1]);
                 int power = (int) floor((0.75 + (0.25 * level)) * Integer.parseInt(dict.get("power")));
