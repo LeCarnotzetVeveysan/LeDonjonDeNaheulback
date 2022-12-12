@@ -14,6 +14,7 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.nhlbck.controllers.SimpleFloorController">
    <children>
+      <Button layoutX="14.0" layoutY="624.0" mnemonicParsing="false" onMouseClicked="#onBackButtonClicked" prefHeight="61.0" prefWidth="92.0" text="Back" />
       <VBox fx:id="heroVB1" layoutX="148.0" layoutY="85.0" prefHeight="200.0" prefWidth="100.0" spacing="25.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="153.0" AnchorPane.topAnchor="85.0">
          <children>
             <StackPane fx:id="hero1SP" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero1Hover" onMouseExited="#onHero1StoppedHover" alignment="BOTTOM_CENTER">
@@ -101,7 +102,7 @@
       </StackPane>
       <StackPane fx:id="activeEnemySP" alignment="BOTTOM_CENTER" layoutX="545.0" layoutY="269.0" style="-fx-background-color: grey;" AnchorPane.topAnchor="200.0">
          <children>
-            <ImageView fx:id="activeEnemyIV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="activeEnemyIV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onActiveEnemyClicked" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="activeEnemyHPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="activeEnemyHPBarLB" alignment="TOP_LEFT" text="Label" textAlignment="CENTER">
                <StackPane.margin>
@@ -116,7 +117,7 @@
                <children>
                   <ImageView fx:id="enemy1IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="enemy1HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="enemy1HBBarLB" alignment="TOP_LEFT" text="Label" textAlignment="CENTER">
+                  <Label fx:id="enemy1HPBarLB" alignment="TOP_LEFT" text="Label" textAlignment="CENTER">
                      <StackPane.margin>
                         <Insets bottom="5.0" />
                      </StackPane.margin>
@@ -153,7 +154,7 @@
                <children>
                   <ImageView fx:id="enemy4IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="enemy4HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="enemy4HBBarLB" alignment="TOP_LEFT" text="Label" textAlignment="CENTER">
+                  <Label fx:id="enemy4HPBarLB" alignment="TOP_LEFT" text="Label" textAlignment="CENTER">
                      <StackPane.margin>
                         <Insets bottom="5.0" />
                      </StackPane.margin>
@@ -184,7 +185,7 @@
             </StackPane>
          </children>
       </VBox>
-      <GridPane layoutX="367.0" layoutY="491.0" prefHeight="91.0" prefWidth="278.0">
+      <GridPane fx:id="actionButtonGridPane" layoutX="367.0" layoutY="491.0" prefHeight="91.0" prefWidth="278.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

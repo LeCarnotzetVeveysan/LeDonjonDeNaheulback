@@ -22,8 +22,10 @@ public class DungeonHallController {
     public void onDungeonButtonClick() throws IOException {
 
         if(Game.getDungeon() == 10){
+            Game.setRoom(1);
             changeScene("dungeon-boss-floor");
         } else {
+            Game.setRoom(1);
             changeScene("dungeon-simple-floor");
         }
     }

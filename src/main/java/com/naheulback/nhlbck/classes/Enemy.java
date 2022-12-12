@@ -19,4 +19,27 @@ public class Enemy {
     }
 
 
+    public String getSlug() {
+        return slug;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getMaxHealth(){
+        return maxHealth;
+    }
+
+    public boolean isDead(){
+        if(health <= 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void receiveDamage(int damage){
+        health -= damage;
+    }
 }

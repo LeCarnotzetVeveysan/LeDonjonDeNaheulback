@@ -1,5 +1,6 @@
 package com.naheulback.nhlbck;
 
+import com.naheulback.nhlbck.classes.Enemy;
 import com.naheulback.nhlbck.classes.Hero;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -14,6 +15,16 @@ import static java.lang.Math.ceil;
 public class Functions {
 
     private static String resPath = "src/main/resources/com/naheulback/nhlbck/";
+
+    public static void setImage(ImageView iv, String folder, String imageName) throws FileNotFoundException {
+        InputStream stream = new FileInputStream(resPath + folder + "/" + imageName + ".png");
+        Image image = new Image(stream);
+        iv.setImage(image);
+    }
+
+    public static void dealDamageToEnemy(Hero hero,Enemy enemy,int attackType ){
+
+    }
 
     public static HashMap<String, String> getDictFromFile(String folder, String fileName) throws IOException {
 
@@ -56,11 +67,7 @@ public class Functions {
 
     }
 
-    public static void setImage(ImageView iv, String folder, String imageName) throws FileNotFoundException {
-        InputStream stream = new FileInputStream(resPath + folder + "/" + imageName + ".png");
-        Image image = new Image(stream);
-        iv.setImage(image);
-    }
+
 
     public static void setItemButtonHBSize(HBox hb) {
         hb.setVisible(true);
@@ -259,6 +266,57 @@ public class Functions {
 
             setImage(iv, "armouryImages", itemName + "_icon");
 
+        }
+    }
+
+    public static ArrayList<Enemy> getEnemyList(int floor) throws IOException {
+        ArrayList<Enemy> toReturn = new ArrayList<>();
+        HashMap<String, String> dict = getDictFromFile("game", "dungeon" + Game.getDungeon() + "floors");
+        String[] enemies = dict.get("floor" + floor).split(",") ;
+        for(String s : enemies){
+            if(s.equals("null")){
+                toReturn.add(null);
+            } else {
+                toReturn.add(new Enemy(s, s.toUpperCase()));
+            }
+
+        }
+        return toReturn;
+    }
+
+    public static void setCombatEnemyImages(ArrayList<Enemy> enemies, ArrayList<ImageView> enemyIVs, Enemy ae, ImageView aeiv) throws FileNotFoundException {
+        for( ImageView iv : enemyIVs){
+            setImage(iv, "combatImages", "empty_combat");
+        }
+        for (int i = 0; i < enemies.size(); i++) {
+            if(enemies.get(i) == null){
+                setImage(enemyIVs.get(i), "combatImages", "empty_combat");
+            } else {
+                setImage(enemyIVs.get(i), "combatImages", enemies.get(i).getSlug() + "_combat");
+            }
+
+        }
+        if(ae == null){
+            setImage(aeiv, "combatImages", "empty_combat");
+        } else {
+            setImage(aeiv, "combatImages", ae.getSlug() + "_combat");
+        }
+    }
+
+    public static void setEnemyHPBars(ArrayList<Enemy> lhs, ArrayList<ImageView> al, ArrayList<Label> lb) throws FileNotFoundException {
+
+        for( ImageView iv : al){ iv.setVisible(false); }
+        for(Label lbl : lb){ lbl.setText("");}
+        for(int i=0;i < lhs.size();i++){
+            if(!(lhs.get(i) == null)) {
+                if (!lhs.get(i).getSlug().equals("empty")) {
+                    double percentage = 100 * (ceil(10.0 * lhs.get(i).getHealth() / lhs.get(i).getMaxHealth()) / 10);
+                    int rounded = (int) percentage;
+                    setImage(al.get(i), "otherImages", rounded + "HPbar");
+                    lb.get(i).setText(lhs.get(i).getHealth() + "/" + lhs.get(i).getMaxHealth());
+                    al.get(i).setVisible(true);
+                }
+            }
         }
     }
 }
