@@ -1,5 +1,6 @@
 package com.naheulback.nhlbck;
 
+import com.naheulback.nhlbck.classes.Enemy;
 import com.naheulback.nhlbck.classes.GameData;
 import com.naheulback.nhlbck.classes.Hero;
 import com.naheulback.nhlbck.classes.PlayerData;
@@ -7,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static com.naheulback.nhlbck.Functions.initHeroFiles;
 import static com.naheulback.nhlbck.Functions.initTableFiles;
@@ -24,6 +26,8 @@ public class Game {
         playerData = new PlayerData();
 
     }
+
+
 
     public void main() throws IOException {
 
@@ -77,6 +81,8 @@ public class Game {
     public static void sitHero(int index){ playerData.sitHero(index); }
 
     public static ArrayList<String> getLivingHeroSlugs(){ return PlayerData.getLivingHeroSlugs();}
+
+    public static ArrayList<Enemy> getLivingEnemies() {return new ArrayList<>(Arrays.asList(new Enemy("test", "test2"))) ;}
 
 
 }

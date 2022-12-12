@@ -1,0 +1,6 @@
+type:bodyItem
+name:test_plastron
+cost:100
+stat:10
+effet:+ X def
+desc:plastron de test

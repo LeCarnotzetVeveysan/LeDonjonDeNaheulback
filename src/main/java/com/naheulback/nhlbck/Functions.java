@@ -1,7 +1,6 @@
 package com.naheulback.nhlbck;
 
 import com.naheulback.nhlbck.classes.Hero;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -145,6 +144,26 @@ public class Functions {
         return slugList.get(Game.getSpeakingHero());
     }
 
+    public static void setCombatHeroImages(ArrayList<Hero> lhs, ArrayList<ImageView> al, Hero ah, ImageView ahiv) throws FileNotFoundException {
+
+        for( ImageView iv : al){
+            setImage(iv, "combatImages", "empty_combat");
+        }
+        for (int i = 0; i < lhs.size(); i++) {
+            if(lhs.get(i) == null){
+                setImage(al.get(i), "combatImages", "empty_combat");
+            } else {
+                setImage(al.get(i), "combatImages", lhs.get(i).getSlug() + "_combat");
+            }
+
+        }
+        if(ah == null){
+            setImage(ahiv, "combatImages", "empty_combat");
+        } else {
+            setImage(ahiv, "combatImages", ah.getSlug() + "_combat");
+        }
+    }
+
     public static void setBarImages(ArrayList<Hero> lhs, ArrayList<ImageView> al) throws FileNotFoundException {
 
         for( ImageView iv : al){
@@ -156,17 +175,19 @@ public class Functions {
 
     }
 
-    public static void setBarHPBars(ArrayList<Hero> lhs, ArrayList<ImageView> al, ArrayList<Label> lb) throws FileNotFoundException {
+    public static void setHeroHPBars(ArrayList<Hero> lhs, ArrayList<ImageView> al, ArrayList<Label> lb) throws FileNotFoundException {
 
         for( ImageView iv : al){ iv.setVisible(false); }
         for(Label lbl : lb){ lbl.setText("");}
         for(int i=0;i < lhs.size();i++){
-            if(!lhs.get(i).getSlug().equals("empty")) {
-                double percentage = 100*(ceil(10.0*lhs.get(i).getHealth()/lhs.get(i).getMaxHealth())/10);
-                int rounded = (int) percentage;
-                setImage(al.get(i), "otherImages",rounded + "HPbar");
-                lb.get(i).setText(lhs.get(i).getHealth() + "/" + lhs.get(i).getMaxHealth());
-                al.get(i).setVisible(true);
+            if(!(lhs.get(i) == null)) {
+                if (!lhs.get(i).getSlug().equals("empty")) {
+                    double percentage = 100 * (ceil(10.0 * lhs.get(i).getHealth() / lhs.get(i).getMaxHealth()) / 10);
+                    int rounded = (int) percentage;
+                    setImage(al.get(i), "otherImages", rounded + "HPbar");
+                    lb.get(i).setText(lhs.get(i).getHealth() + "/" + lhs.get(i).getMaxHealth());
+                    al.get(i).setVisible(true);
+                }
             }
         }
     }

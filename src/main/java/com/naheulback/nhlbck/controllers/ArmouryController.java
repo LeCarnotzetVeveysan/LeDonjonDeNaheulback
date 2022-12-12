@@ -82,6 +82,11 @@ public class ArmouryController {
         itemLabels = new ArrayList<>(Arrays.asList(armouryItem1Label, armouryItem2Label, armouryItem3Label, armouryItem4Label, armouryItem5Label));
         itemStackPanes = new ArrayList<>(Arrays.asList(armouryItem1SP, armouryItem2SP, armouryItem3SP, armouryItem4SP, armouryItem5SP));
         heroImages = new ArrayList(Arrays.asList(hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV));
+        heroRecapLabels = new ArrayList<>(Arrays.asList(heroRecapTitleLB, heroRecapHeadItemLB1, heroRecapHeadItemLB2,
+                heroRecapBodyItemLB1, heroRecapBodyItemLB2, heroRecapMainWeaponLB1, heroRecapMainWeaponLB2,
+                heroRecapThrowableWeaponLB1, heroRecapThrowableWeaponLB2));
+        heroRecapIVs = new ArrayList<>(Arrays.asList(heroRecapHeadItemIV, heroRecapBodyItemIV, heroRecapMainWeaponIV, heroRecapThrowableWeaponIV));
+
 
         for(StackPane sp : itemStackPanes){
             sp.setVisible(false);
@@ -102,10 +107,6 @@ public class ArmouryController {
         heroRecapSP.setVisible(false);
         heroRecapSP.setDisable(true);
 
-        heroRecapLabels = new ArrayList<>(Arrays.asList(heroRecapTitleLB, heroRecapHeadItemLB1, heroRecapHeadItemLB2,
-                heroRecapBodyItemLB1, heroRecapBodyItemLB2, heroRecapMainWeaponLB1, heroRecapMainWeaponLB2,
-                heroRecapThrowableWeaponLB1, heroRecapThrowableWeaponLB2));
-        heroRecapIVs = new ArrayList<>(Arrays.asList(heroRecapHeadItemIV, heroRecapBodyItemIV, heroRecapMainWeaponIV, heroRecapThrowableWeaponIV));
 
     }
 
@@ -135,16 +136,11 @@ public class ArmouryController {
                 String[] effet = dict.get("effet").split(" ");
                 String cout = dict.get("cost");
                 String desc = dict.get("desc");
-                String tempStat = switch (dict.get("type")){
-                    case "weapon" -> dict.get("power");
-                    case "armor" -> dict.get("armor");
-                    default -> "rien";
-                };
-                effet[1] = tempStat;
+                int stat = (int) round((0.75 + (0.25 * Integer.valueOf(item[1]))) * Integer.parseInt(dict.get("stat")));
 
                 String toDisplay = "";
                 toDisplay += name + " (Niveau " + item[1] + ")" + "\n";
-                toDisplay += "Effet: " + effet[0] + " " + effet[1] + " " + effet[2] + "\n";
+                toDisplay += "Effet: " + effet[0] + " " + stat + " " + effet[2] + "\n";
                 toDisplay += "Coût: " + cout + " PO" + "\n";
                 toDisplay += desc;
 
@@ -181,13 +177,14 @@ public class ArmouryController {
             heroRecapSP.setVisible(true);
             heroRecapSP.setDisable(false);
         } else {
+            armourymanIV.setLayoutX(25);
             heroRecapSP.setVisible(false);
             heroRecapSP.setDisable(true);
         }
     }
 
     @FXML
-    void onItemButtonClicked() throws IOException, InterruptedException {
+    void onItemButtonClicked() throws IOException {
 
         String[] item = itemList.get(currentItem).split("\\|");
         String itemName = item[0];

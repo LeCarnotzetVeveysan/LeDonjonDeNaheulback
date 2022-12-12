@@ -3,6 +3,7 @@ package com.naheulback.nhlbck.classes;
 public class Mage extends Hero {
 
     private String saySomething;
+    private Grimoire grimoire1, grimoire2;
 
     public Mage(String slug, String name){
 

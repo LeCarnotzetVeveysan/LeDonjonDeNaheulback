@@ -119,7 +119,7 @@ public class DungeonBarController {
 
         livingHeroes = Game.getLivingHeroes();
         Functions.setBarImages(livingHeroes, heroImages);
-        Functions.setBarHPBars(livingHeroes, heroHPIVs, heroHPLabels);
+        Functions.setHeroHPBars(livingHeroes, heroHPIVs, heroHPLabels);
 
         livingHeroSlugs = Game.getLivingHeroSlugs();
         coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
@@ -249,7 +249,7 @@ public class DungeonBarController {
                     }
                 }
 
-                setBarHPBars(livingHeroes, heroHPIVs, heroHPLabels);
+                setHeroHPBars(livingHeroes, heroHPIVs, heroHPLabels);
                 coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
 
             } else {
