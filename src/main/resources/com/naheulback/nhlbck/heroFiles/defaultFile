@@ -1,1 +1,6 @@
-name:default
+slug:defaultSlug
+class:defaultClass
+name:defaultName
+health:50
+maxHealth:100
+cost:100

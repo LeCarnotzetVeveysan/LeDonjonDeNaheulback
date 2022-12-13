@@ -226,7 +226,7 @@ public class DungeonBarController {
                 switch (itemName) {
                     case "saucisse_puree" -> {
                         System.out.println("saucisse-puree");
-                        currentHero.addHP(5);
+                        currentHero.addHealth(5);
 
                     }
                     case "demi_blonde" -> {

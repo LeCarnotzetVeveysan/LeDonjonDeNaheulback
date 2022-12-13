@@ -1,15 +1,12 @@
 package com.naheulback.nhlbck.classes;
 
-public abstract class Hero {
+public abstract class Hero extends EtreVivant {
 
-    private String slug;
-    private String name;
+
     private String type;
     private int level;
     private int experience;
     private int recruitementCost;
-    private int health;
-    private int maxHealth;
     private int armor;
     private int maxArmor;
     private int attack;
@@ -22,16 +19,14 @@ public abstract class Hero {
     private HeadItem headItem;
     private BodyItem bodyItem;
 
-    public Hero(String inputSlug, String inputName, String inputType){
+    public Hero(String inputSlug, String inputName, int inputHealth, int inputMaxHealth, Boolean inputIsAlive, String inputType){
 
-        slug = inputSlug;
+        super(inputSlug, inputName, inputHealth, inputMaxHealth, inputIsAlive);
+
         type = inputType;
-        name = inputName;
         level = 1;
         experience = 0;
         recruitementCost = 100;
-        health = 60;
-        maxHealth = 100;
         armor = 100;
         attack = 100;
         magic = 100;
@@ -43,34 +38,16 @@ public abstract class Hero {
     }
 
     public String toString(){
-        return "name : " + name + ", level : " + level;
+        return "name : " + super.getName() + ", level : " + level;
     }
 
-
-    public abstract void speak();
-
-    public String getName(){ return name; }
-
     public int getCost(){ return recruitementCost; }
-
-    public int getHealth(){ return health; }
-
-    public int getMaxHealth(){ return maxHealth; }
 
     public int getArmor(){ return armor; }
 
     public int getMaxArmor(){ return maxArmor; }
 
-    public String getSlug() { return slug; }
-
     public int getLevel() { return level; }
-
-    public void addHP(int inputHealth) {
-        health += inputHealth;
-        if(health > maxHealth){
-            health = maxHealth;
-        }
-    }
 
     public String getType() {
         return type;

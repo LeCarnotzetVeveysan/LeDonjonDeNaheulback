@@ -3,18 +3,10 @@ package com.naheulback.nhlbck.classes;
 public class Nain extends Hero {
 
     private String saySomething;
+    public Nain(String slug, String name, int inputHealth, int inputMaxHealth, Boolean inputIsAlive){
 
-    public Nain(String slug, String name){
-
-        super(slug, name, "nain");
+        super(slug, name, inputHealth, inputMaxHealth, inputIsAlive, "nain");
         saySomething = "J'aime pas les elfes";
-
-    }
-
-    @Override
-    public void speak() {
-
-        System.out.println(saySomething);
 
     }
 }

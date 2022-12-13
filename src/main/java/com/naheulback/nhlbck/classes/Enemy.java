@@ -1,45 +1,13 @@
 package com.naheulback.nhlbck.classes;
 
-public class Enemy {
+public abstract class Enemy extends EtreVivant {
 
-    private String slug;
-    public boolean alive;
-    private String name;
-    private int health;
-    private int maxHealth;
     private int armor;
     private int resistance;
 
-    public Enemy(String inputSlug, String inputName, Boolean setAlive){
-        slug = inputSlug;
-        alive = setAlive;
-        name = inputName;
-        health = 50;
-        maxHealth = 100;
+    public Enemy(String inputSlug, String inputName, int inputHealth, int inputMaxHealth, Boolean inputIsAlive){
+        super(inputSlug, inputName, inputHealth, inputMaxHealth, inputIsAlive);
         armor = 20;
         resistance = 20;
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public int getMaxHealth(){
-        return maxHealth;
-    }
-
-    public boolean isAlive(){
-        return alive;
-    }
-
-    public void setDead(){
-        alive = false;
-    }
-    public void receiveDamage(int damage){
-        health -= damage;
     }
 }

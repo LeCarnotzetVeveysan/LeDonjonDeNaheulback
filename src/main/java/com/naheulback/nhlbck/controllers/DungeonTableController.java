@@ -7,14 +7,11 @@ import com.naheulback.nhlbck.classes.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -77,8 +74,9 @@ public class DungeonTableController {
     private ImageView sitButton6IV;
     @FXML
     private Label coinCountLB;
-    @FXML
-    private HashMap<String,String> heroDict;
+    private HashMap<String,String> hD;
+    private ArrayList<Hero> livingHeroes;
+
 
 
     public void initialize() throws IOException {
@@ -100,6 +98,8 @@ public class DungeonTableController {
         coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
         heroSpeakLB.setText("");
 
+        livingHeroes = Game.getLivingHeroes();
+
     }
     public void onBackButtonClicked() throws IOException {
         LoadScene.changeScene("dungeon-tavern");
@@ -112,26 +112,26 @@ public class DungeonTableController {
     }
 
     public void onYouButtonClicked() {
-        heroSpeakLB.setText(heroDict.get("desc") + " " + heroDict.get("level"));
+        heroSpeakLB.setText(hD.get("desc") + " " + hD.get("level"));
     }
 
     public void onQuoteButtonClicked() {
-        heroSpeakLB.setText(heroDict.get("quote"));
+        heroSpeakLB.setText(hD.get("quote"));
     }
 
     public void onJokeButtonClicked() {
-        heroSpeakLB.setText(heroDict.get("joke"));
+        heroSpeakLB.setText(hD.get("joke"));
     }
 
     public void onRecruitPriceButtonClicked() {
-        heroSpeakLB.setText("Je coûte " + heroDict.get("cost") + " pièces d'or à recruter.");
+        heroSpeakLB.setText("Je coûte " + hD.get("cost") + " pièces d'or à recruter.");
     }
 
     public void onRecruitButtonClicked() throws IOException {
 
         if(Game.getNumberOfLivingHeroes() < Game.getMaxHeroes()) {
 
-            int cost = Integer.parseInt(heroDict.get("cost"));
+            int cost = Integer.parseInt(hD.get("cost"));
             ArrayList<String> slugList = getTableSlugList();
 
             if (Game.hasEnoughGoldPieces(cost)) {
@@ -139,34 +139,39 @@ public class DungeonTableController {
                 Hero toAdd = null;
                 slugList.set(Game.getSpeakingHero(), "empty");
 
-                switch (heroDict.get("class")) {
+                switch (hD.get("class")) {
                     case "warrior" -> {
-                        toAdd = new Warrior(heroDict.get("slug"), heroDict.get("name"));
+                        toAdd = new Warrior(hD.get("slug"), hD.get("name"), Integer.parseInt(hD.get("health")), Integer.parseInt(hD.get("maxHealth")),true);
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                     }
                     case "nain" -> {
-                        toAdd = new Nain(heroDict.get("slug"), heroDict.get("name"));
+                        toAdd = new Nain(hD.get("slug"), hD.get("name"), Integer.parseInt(hD.get("health")), Integer.parseInt(hD.get("maxHealth")),true);
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                     }
                     case "mage" -> {
-                        toAdd = new Mage(heroDict.get("slug"), heroDict.get("name"));
+                        toAdd = new Mage(hD.get("slug"), hD.get("name"), Integer.parseInt(hD.get("health")), Integer.parseInt(hD.get("maxHealth")),true);
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                     }
                     case "elfe" -> {
-                        toAdd = new Elfe(heroDict.get("slug"), heroDict.get("name"));
+                        toAdd = new Elfe(hD.get("slug"), hD.get("name"), Integer.parseInt(hD.get("health")), Integer.parseInt(hD.get("maxHealth")),true);
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                     }
                     case "ogre" -> {
-                        toAdd = new Ogre(heroDict.get("slug"), heroDict.get("name"));
+                        toAdd = new Ogre(hD.get("slug"), hD.get("name"), Integer.parseInt(hD.get("health")), Integer.parseInt(hD.get("maxHealth")),true);
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                     }
                     case "ranger" -> {
-                        toAdd = new Ranger(heroDict.get("slug"), heroDict.get("name"));
+                        toAdd = new Ranger(hD.get("slug"), hD.get("name"), Integer.parseInt(hD.get("health")), Integer.parseInt(hD.get("maxHealth")),true);
+                        updateTableFile(slugList);
+                        setTableImages(heroImages);
+                    }
+                    case "priestess" -> {
+                        toAdd = new Pretresse(hD.get("slug"), hD.get("name"), Integer.parseInt(hD.get("health")), Integer.parseInt(hD.get("maxHealth")),true);
                         updateTableFile(slugList);
                         setTableImages(heroImages);
                     }
@@ -260,7 +265,7 @@ public class DungeonTableController {
     }
 
     private void onHeroIVClicked() throws IOException {
-        if(!Functions.getTableSlugList().get(Game.getSpeakingHero()).equals("empty")){
+        if(!getTableSlugList().get(Game.getSpeakingHero()).equals("empty")){
             interactionButtonsHB.setVisible(true);
             interactionButtonsHB.setDisable(false);
         } else {
@@ -269,7 +274,8 @@ public class DungeonTableController {
         }
         sitButtonsHB.setVisible(false);
         sitButtonsHB.setDisable(true);
-        heroDict = getDictFromFile("hero", getSpeakingHeroSlug());
+        copyFile(getTableSlugList().get(Game.getSpeakingHero()), "heroToLoad");
+        hD = getDictFromFile("hero", "heroToLoad");
     }
 
     public void onHero1Clicked() throws IOException {

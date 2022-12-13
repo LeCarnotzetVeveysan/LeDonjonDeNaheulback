@@ -4,17 +4,10 @@ public class Ogre extends Hero {
 
     private String saySomething;
 
-    public Ogre(String slug, String name){
+    public Ogre(String slug, String name, int inputHealth, int inputMaxHealth, Boolean inputIsAlive){
 
-        super(slug, name, "ogre");
-        saySomething = "TAGAZOG !";
-
-    }
-
-    @Override
-    public void speak() {
-
-        System.out.println(saySomething);
+        super(slug, name, inputHealth, inputMaxHealth, inputIsAlive, "ogre");
+        saySomething = "TAGAZOG!!";
 
     }
 }

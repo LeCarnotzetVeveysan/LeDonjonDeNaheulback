@@ -2,6 +2,7 @@ package com.naheulback.nhlbck;
 
 import com.naheulback.nhlbck.classes.Enemy;
 import com.naheulback.nhlbck.classes.Hero;
+import com.naheulback.nhlbck.classes.SimpleEnemy;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,6 +21,29 @@ public class Functions {
         InputStream stream = new FileInputStream(resPath + folder + "/" + imageName + ".png");
         Image image = new Image(stream);
         iv.setImage(image);
+    }
+
+    private static void copyFileUsingStream(File source, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream(source);
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } finally {
+            assert is != null;
+            is.close();
+            os.close();
+        }
+    }
+    public static void copyFile(String inputSource, String inputDest) throws IOException {
+        File source = new File(resPath + "heroFiles/" + inputSource);
+        File dest = new File(resPath + "heroFiles/" + inputDest);
+        copyFileUsingStream(source, dest);
     }
 
     public static void dealDamageToEnemy(Hero hero,Enemy enemy,int attackType ){
@@ -280,7 +304,7 @@ public class Functions {
             if(s.equals("null")){
                 toReturn.add(null);
             } else {
-                toReturn.add(new Enemy(s, s.toUpperCase(), boolList.get(Arrays.asList(enemies).indexOf(s))));
+                toReturn.add(new SimpleEnemy(s, s.toUpperCase(), 60, 100, boolList.get(Arrays.asList(enemies).indexOf(s))));
             }
         }
         return toReturn;
@@ -309,7 +333,7 @@ public class Functions {
 
             if(enemies.get(i) == null){
                 setImage(enemyIVs.get(i), "combatImages", "empty_combat");
-            } else if(!enemies.get(i).isAlive()) {
+            } else if(!enemies.get(i).getIsAlive()) {
                 setImage(enemyIVs.get(i), "combatImages", enemies.get(i).getSlug() + "_dead");
             } else {
                 setImage(enemyIVs.get(i), "combatImages", enemies.get(i).getSlug() + "_combat");
@@ -329,7 +353,7 @@ public class Functions {
         for(Label lbl : lb){ lbl.setText("");}
         for(int i=0;i < lhs.size();i++){
             if(!(lhs.get(i) == null)) {
-                if (lhs.get(i).isAlive()) {
+                if (lhs.get(i).getIsAlive()) {
                     double percentage = 100 * (ceil(10.0 * lhs.get(i).getHealth() / lhs.get(i).getMaxHealth()) / 10);
                     int rounded = (int) percentage;
                     setImage(al.get(i), "otherImages", rounded + "HPbar");
