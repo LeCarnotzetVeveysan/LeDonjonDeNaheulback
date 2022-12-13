@@ -10,9 +10,9 @@ public class Enemy {
     private int armor;
     private int resistance;
 
-    public Enemy(String inputSlug, String inputName){
+    public Enemy(String inputSlug, String inputName, Boolean setAlive){
         slug = inputSlug;
-        alive = true;
+        alive = setAlive;
         name = inputName;
         health = 50;
         maxHealth = 100;

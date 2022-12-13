@@ -118,7 +118,7 @@ public class SimpleFloorController {
     }
     public void onEnemyClicked() throws FileNotFoundException {
 
-        if ((livingEnemies.get(currentEnemyIndex) == null)) {
+        if ((livingEnemies.get(currentEnemyIndex) == null) || !livingEnemies.get(currentEnemyIndex).isAlive()) {
             System.out.println("no selectable enemy");
         } else {
             if (activeEnemy != null) {
@@ -131,16 +131,22 @@ public class SimpleFloorController {
         refreshImagesAndHPBars();
     }
 
-    public void onMainWeaponButtonClicked() throws FileNotFoundException {
+    public void onMainWeaponButtonClicked() throws IOException {
         if(!(activeEnemy == null)) {
             activeEnemy.receiveDamage(25);
             if(activeEnemy.getHealth() <= 0){
                 activeEnemy.setDead();
             }
             if(!activeEnemy.isAlive()){
+
                 livingEnemies.set(activeEnemyIndex, activeEnemy);
                 Functions.setImage(enemyIVs.get(activeEnemyIndex),"combatImages",activeEnemy.getSlug() + "_dead" );
                 activeEnemy = null;
+
+                if(Game.getLevel() == 1 || Game.getLevel() == 2){
+                    Functions.setEnemyStateInFile(1,activeEnemyIndex,"false");
+                }
+
             }
             refreshImagesAndHPBars();
         } else {

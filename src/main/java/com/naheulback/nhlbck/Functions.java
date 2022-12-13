@@ -270,6 +270,9 @@ public class Functions {
     }
 
     public static ArrayList<Enemy> getEnemyList(int floor) throws IOException {
+
+        ArrayList<Boolean> boolList = getEnemyStateList(floor);
+
         ArrayList<Enemy> toReturn = new ArrayList<>();
         HashMap<String, String> dict = getDictFromFile("game", "dungeon" + Game.getDungeon() + "floors");
         String[] enemies = dict.get("floor" + floor).split(",") ;
@@ -277,13 +280,27 @@ public class Functions {
             if(s.equals("null")){
                 toReturn.add(null);
             } else {
-                toReturn.add(new Enemy(s, s.toUpperCase()));
+                toReturn.add(new Enemy(s, s.toUpperCase(), boolList.get(Arrays.asList(enemies).indexOf(s))));
+            }
+        }
+        return toReturn;
+    }
+
+
+    public static ArrayList<Boolean> getEnemyStateList(int floor) throws IOException {
+        ArrayList<Boolean> toReturn = new ArrayList<>();
+        HashMap<String, String> dict = getDictFromFile("game", "dungeon" + Game.getDungeon() + "floors");
+        String[] states = dict.get("floor" + floor + "state").split(",") ;
+        for(String s : states){
+            if(s.equals("null")){
+                toReturn.add(null);
+            } else {
+                toReturn.add(Boolean.valueOf(s));
             }
 
         }
         return toReturn;
     }
-
     public static void setCombatEnemyImages(ArrayList<Enemy> enemies, ArrayList<ImageView> enemyIVs, Enemy ae, ImageView aeiv) throws FileNotFoundException {
         for( ImageView iv : enemyIVs){
             setImage(iv, "combatImages", "empty_combat");
@@ -326,4 +343,21 @@ public class Functions {
             }
         }
     }
+
+    public static void setEnemyStateInFile(int floor, int index, String toSet) throws IOException {
+
+        HashMap<String, String> dict = getDictFromFile("game", "dungeon" + Game.getDungeon() + "floors");
+        String[] enemies = dict.get("floor" + floor + "state").split(",") ;
+        enemies[index] = toSet;
+        dict.put("floor" + floor + "state", enemies[0] + "," + enemies[1] + "," + enemies[2] + "," + enemies[3] + "," + enemies[4] + "," + enemies[5]);
+
+        String fileName = resPath + "gameFiles/dungeon" + Game.getDungeon() + "floors";
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+        for(String k : dict.keySet()){
+            writer.write(k + ":" + dict.get(k));
+            writer.newLine();
+        }
+        writer.close();
+    }
+
 }
