@@ -289,8 +289,11 @@ public class Functions {
             setImage(iv, "combatImages", "empty_combat");
         }
         for (int i = 0; i < enemies.size(); i++) {
+
             if(enemies.get(i) == null){
                 setImage(enemyIVs.get(i), "combatImages", "empty_combat");
+            } else if(!enemies.get(i).isAlive()) {
+                setImage(enemyIVs.get(i), "combatImages", enemies.get(i).getSlug() + "_dead");
             } else {
                 setImage(enemyIVs.get(i), "combatImages", enemies.get(i).getSlug() + "_combat");
             }
@@ -309,12 +312,16 @@ public class Functions {
         for(Label lbl : lb){ lbl.setText("");}
         for(int i=0;i < lhs.size();i++){
             if(!(lhs.get(i) == null)) {
-                if (!lhs.get(i).getSlug().equals("empty")) {
+                if (lhs.get(i).isAlive()) {
                     double percentage = 100 * (ceil(10.0 * lhs.get(i).getHealth() / lhs.get(i).getMaxHealth()) / 10);
                     int rounded = (int) percentage;
                     setImage(al.get(i), "otherImages", rounded + "HPbar");
                     lb.get(i).setText(lhs.get(i).getHealth() + "/" + lhs.get(i).getMaxHealth());
                     al.get(i).setVisible(true);
+                } else {
+                    setImage(al.get(i), "otherImages",  "0HPbar");
+                    lb.get(i).setText("");
+                    al.get(i).setVisible(false);
                 }
             }
         }

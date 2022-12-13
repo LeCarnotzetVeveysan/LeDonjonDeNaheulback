@@ -134,10 +134,12 @@ public class SimpleFloorController {
     public void onMainWeaponButtonClicked() throws FileNotFoundException {
         if(!(activeEnemy == null)) {
             activeEnemy.receiveDamage(25);
-            if(activeEnemy.isDead()){
-                livingEnemies.set(activeEnemyIndex, null);
+            if(activeEnemy.getHealth() <= 0){
+                activeEnemy.setDead();
+            }
+            if(!activeEnemy.isAlive()){
+                livingEnemies.set(activeEnemyIndex, activeEnemy);
                 Functions.setImage(enemyIVs.get(activeEnemyIndex),"combatImages",activeEnemy.getSlug() + "_dead" );
-                //trouver pourquoi image s'affiche pas
                 activeEnemy = null;
             }
             refreshImagesAndHPBars();
@@ -148,9 +150,7 @@ public class SimpleFloorController {
 
     public void onThrowableWeaponButtonClicked() {
         activeEnemy.receiveDamage(25);
-        if(activeEnemy.isDead()){
-            livingEnemies.set(activeEnemyIndex, activeEnemy);
-        }
+
     }
 
 
