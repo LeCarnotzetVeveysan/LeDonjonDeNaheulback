@@ -9,8 +9,7 @@ import javafx.scene.image.ImageView;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import static com.naheulback.nhlbck.Functions.initHeroFiles;
-import static com.naheulback.nhlbck.Functions.initTableFiles;
+import static com.naheulback.nhlbck.Functions.*;
 
 public class MainMenuController {
 
@@ -32,6 +31,7 @@ public class MainMenuController {
     public void onNewGameButtonClick() throws IOException {
         initTableFiles();
         initHeroFiles();
+        initDungeonFiles();
         LoadScene.changeScene("menu-level-select");
     }
 

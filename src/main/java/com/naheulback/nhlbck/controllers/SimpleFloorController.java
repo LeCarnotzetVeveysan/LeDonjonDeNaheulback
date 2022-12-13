@@ -5,7 +5,9 @@ import com.naheulback.nhlbck.Game;
 import com.naheulback.nhlbck.LoadScene;
 import com.naheulback.nhlbck.classes.Enemy;
 import com.naheulback.nhlbck.classes.Hero;
+import com.naheulback.nhlbck.classes.Weapon;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -15,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 
 public class SimpleFloorController {
 
@@ -48,12 +51,20 @@ public class SimpleFloorController {
     private ArrayList<ImageView> enemyHPBarivs;
     private ArrayList<Label> enemyHPBarlbls;
 
+    @FXML
+    private ImageView throwableWeapon1IV, throwableWeapon2IV, throwableWeapon3IV, throwableWeapon4IV, throwableWeapon5IV, throwableWeapon6IV;
+    private ArrayList<ImageView> throwableWeaponIVs;
+    private ArrayList<Weapon> throwableWeapons;
 
     @FXML
     private GridPane actionButtonGridPane;
 
+    @FXML
+    private Button nextFloorButton;
+
     public void initialize() throws IOException {
 
+        nextFloorButton.setDisable(true);
         activeHero = null;
         activeHeroIndex = -1;
         activeEnemyIndex = -1;
@@ -63,6 +74,8 @@ public class SimpleFloorController {
         heroHPBarivs = new ArrayList<>(Arrays.asList(hero1HPBarIV, hero2HPBarIV, hero3HPBarIV, hero4HPBarIV, hero5HPBarIV,hero6HPBarIV));
         heroHPBarlbls = new ArrayList<>(Arrays.asList(hero1HPBarLB, hero2HPBarLB, hero3HPBarLB, hero4HPBarLB, hero5HPBarLB, hero6HPBarLB));
 
+        throwableWeapons = new ArrayList<>();
+        throwableWeaponIVs = new ArrayList<>(Arrays.asList(throwableWeapon1IV, throwableWeapon2IV, throwableWeapon3IV, throwableWeapon4IV, throwableWeapon5IV, throwableWeapon6IV));
 
         livingEnemies = Functions.getEnemyList(Game.getRoom());
 
@@ -82,6 +95,53 @@ public class SimpleFloorController {
         Functions.setCombatHeroImages(livingHeroes, heroIVs, activeHero, activeHeroIV);
         Functions.setHeroHPBars(livingHeroes, heroHPBarivs, heroHPBarlbls);
         Functions.setHeroHPBars(new ArrayList<>(Arrays.asList(activeHero)),new ArrayList<>(Arrays.asList(activeHeroHPBarIV)), new ArrayList<>(Arrays.asList(activeHeroHPBarLB)));
+        Functions.setThrowableWeaponImages(throwableWeapons, throwableWeaponIVs);
+    }
+
+    private void postCombatCheck() throws IOException {
+        if(allDeadEnemies()){
+            System.out.println("Bravo ! Etage complété");
+            nextFloorButton.setDisable(false);
+            for(int i = 0; i <= 5; i++){
+                Functions.setEnemyStateInFile(Game.getRoom(), i ,"false");
+            }
+            //Get back active hero in heroList
+            if(activeHeroIndex != -1) {
+                livingHeroes.set(activeHeroIndex, activeHero);
+                livingHeroSlugs.set(activeHeroIndex, activeHero.getSlug());
+                activeHero = null;
+            }
+            for(Hero h : livingHeroes){
+                if(!(h == null)) {
+                    h.setWeaponThrowed(false);
+                }
+            }
+            throwableWeapons.clear();
+
+
+        } else {
+            System.out.println("Il y a encore des ennemis vivants");
+        }
+
+    }
+
+    private boolean allDeadEnemies(){
+        boolean tempBool = true;
+
+        for(Enemy e : livingEnemies){
+            if(!(e == null)){
+                if(e.getIsAlive()){
+                    tempBool = false;
+                }
+            }
+        }
+        if(!(activeEnemy == null)){
+            if(activeEnemy.getIsAlive()){
+                tempBool = false;
+            }
+        }
+
+        return tempBool;
     }
 
     public void onActiveHeroClicked() {
@@ -143,18 +203,34 @@ public class SimpleFloorController {
                 Functions.setImage(enemyIVs.get(activeEnemyIndex),"combatImages",activeEnemy.getSlug() + "_dead" );
                 activeEnemy = null;
 
-                if(Game.getLevel() == 1 || Game.getLevel() == 2){
+                if(Game.getLevel() == 1){
                     Functions.setEnemyStateInFile(1,activeEnemyIndex,"false");
                 }
 
             }
-            refreshImagesAndHPBars();
+
         } else {
             System.out.println("Il n'y a pas d'ennemi actif");
         }
+        postCombatCheck();
+        refreshImagesAndHPBars();
     }
 
-    public void onThrowableWeaponButtonClicked() {
+    public void onThrowableWeaponButtonClicked() throws IOException {
+        if(activeHero.getThrowableWeapon() == null){
+            System.out.println("no throwable weaon equipped");
+        } else {
+            if (activeHero.getWeaponThrowed()) {
+                System.out.println("weapon is already throwed");
+            } else {
+                activeHero.setWeaponThrowed(true);
+                //deal damage
+                throwableWeapons.add(activeHero.getThrowableWeapon());
+            }
+        }
+
+        postCombatCheck();
+        refreshImagesAndHPBars();
 
     }
 
@@ -232,7 +308,8 @@ public class SimpleFloorController {
     }
 
 
-
+    public void onNextButtonClicked() {
+    }
 }
 
 

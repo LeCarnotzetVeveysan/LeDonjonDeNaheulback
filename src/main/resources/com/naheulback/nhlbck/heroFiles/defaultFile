@@ -1,6 +1,11 @@
 slug:defaultSlug
 class:defaultClass
 name:defaultName
-health:50
-maxHealth:100
-cost:100
+health:1
+maxHealth:1
+cost:1
+level:1
+xp:1
+desc:defaultDesc
+quote:defaultQuote
+joke:defaultJoke

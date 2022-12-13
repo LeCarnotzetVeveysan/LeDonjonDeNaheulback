@@ -274,7 +274,7 @@ public class DungeonTableController {
         }
         sitButtonsHB.setVisible(false);
         sitButtonsHB.setDisable(true);
-        copyFile(getTableSlugList().get(Game.getSpeakingHero()), "heroToLoad");
+        copyFile("heroFiles", getTableSlugList().get(Game.getSpeakingHero()), "heroToLoad");
         hD = getDictFromFile("hero", "heroToLoad");
     }
 

@@ -1,8 +1,11 @@
 slug:lenain
 class:nain
 name:Le Nain
+health:50
+maxHealth:100
 cost:1
 level:1
+xp:0
 desc:Je suis Le nain, nain de niveau
 quote:Ma maison c'est XXX. Et j'aime pas les elfes.
 joke:Moi je suis un nain-dispensable. Toi tu es juste dispendable.

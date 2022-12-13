@@ -2,3 +2,10 @@ slug:leranger
 class:ranger
 name:Le Ranger
 cost:100
+health:50
+maxHealth:100
+level:1
+xp:0
+desc:Je suis Le ranger, ranger de niveau
+quote:Je suis niveau 5 en rempaillage de chaises
+joke:À trouver

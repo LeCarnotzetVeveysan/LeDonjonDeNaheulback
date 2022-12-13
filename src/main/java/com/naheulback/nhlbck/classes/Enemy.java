@@ -1,7 +1,6 @@
 package com.naheulback.nhlbck.classes;
 
 public abstract class Enemy extends EtreVivant {
-
     private int armor;
     private int resistance;
 

@@ -4,3 +4,8 @@ name:Le Barbare
 health:50
 maxHealth:100
 cost:100
+level:1
+xp:0
+desc:Je suis Le barbare, barbare de niveau
+quote:Taper !!!
+joke:Les blagues c'est pour les faibles.

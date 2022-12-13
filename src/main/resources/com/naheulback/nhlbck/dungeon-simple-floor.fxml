@@ -7,19 +7,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.nhlbck.controllers.SimpleFloorController">
    <children>
       <Button layoutX="14.0" layoutY="624.0" mnemonicParsing="false" onMouseClicked="#onBackButtonClicked" prefHeight="61.0" prefWidth="92.0" text="Back" />
+      <Button fx:id="nextFloorButton" disable="true" layoutX="421.0" layoutY="14.0" onMouseClicked="#onNextButtonClicked" mnemonicParsing="false" prefHeight="98.0" prefWidth="158.0" text="Next floor" />
       <VBox fx:id="heroVB1" layoutX="148.0" layoutY="85.0" prefHeight="200.0" prefWidth="100.0" spacing="25.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="153.0" AnchorPane.topAnchor="85.0">
          <children>
-            <StackPane fx:id="hero1SP" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero1Hover" onMouseExited="#onHero1StoppedHover" alignment="BOTTOM_CENTER">
+            <StackPane fx:id="hero1SP" alignment="BOTTOM_CENTER" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero1Hover" onMouseExited="#onHero1StoppedHover">
                <children>
-                  <ImageView fx:id="hero1IV" fitHeight="175.0" fitWidth="133.0"  pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="hero1IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="hero1HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="hero1HPBarLB" alignment="TOP_LEFT" text="Label" textAlignment="CENTER">
                      <StackPane.margin>
@@ -28,9 +29,9 @@
                   </Label>
                </children>
             </StackPane>
-            <StackPane fx:id="hero2SP" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero2Hover" onMouseExited="#onHero2StoppedHover" alignment="BOTTOM_CENTER">
+            <StackPane fx:id="hero2SP" alignment="BOTTOM_CENTER" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero2Hover" onMouseExited="#onHero2StoppedHover">
                <children>
-                  <ImageView fx:id="hero2IV" fitHeight="175.0" fitWidth="133.0"  pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="hero2IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="hero2HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="hero2HPBarLB" alignment="TOP_LEFT" text="Label" textAlignment="CENTER">
                      <StackPane.margin>
@@ -39,7 +40,7 @@
                   </Label>
                </children>
             </StackPane>
-            <StackPane fx:id="hero3SP" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero3Hover" onMouseExited="#onHero3StoppedHover" alignment="BOTTOM_CENTER">
+            <StackPane fx:id="hero3SP" alignment="BOTTOM_CENTER" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero3Hover" onMouseExited="#onHero3StoppedHover">
                <children>
                   <ImageView fx:id="hero3IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="hero3HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
@@ -54,9 +55,9 @@
       </VBox>
       <VBox fx:id="heroVB2" layoutX="8.0" layoutY="7.0" prefHeight="200.0" prefWidth="100.0" spacing="25.0" style="-fx-background-color: grey;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <StackPane fx:id="hero4SP" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero4Hover" onMouseExited="#onHero4StoppedHover" alignment="BOTTOM_CENTER">
+            <StackPane fx:id="hero4SP" alignment="BOTTOM_CENTER" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero4Hover" onMouseExited="#onHero4StoppedHover">
                <children>
-                  <ImageView fx:id="hero4IV" fitHeight="175.0" fitWidth="133.0"  pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="hero4IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="hero4HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="hero4HPBarLB" alignment="TOP_LEFT" text="Label" textAlignment="CENTER">
                      <StackPane.margin>
@@ -65,7 +66,7 @@
                   </Label>
                </children>
             </StackPane>
-            <StackPane fx:id="hero5SP" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero5Hover" onMouseExited="#onHero5StoppedHover" alignment="BOTTOM_CENTER">
+            <StackPane fx:id="hero5SP" alignment="BOTTOM_CENTER" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero5Hover" onMouseExited="#onHero5StoppedHover">
                <children>
                   <ImageView fx:id="hero5IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="hero5HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
@@ -76,9 +77,9 @@
                   </Label>
                </children>
             </StackPane>
-            <StackPane fx:id="hero6SP" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero6Hover" onMouseExited="#onHero6StoppedHover" alignment="BOTTOM_CENTER">
+            <StackPane fx:id="hero6SP" alignment="BOTTOM_CENTER" onMouseClicked="#onHeroClicked" onMouseEntered="#onHero6Hover" onMouseExited="#onHero6StoppedHover">
                <children>
-                  <ImageView fx:id="hero6IV" fitHeight="175.0" fitWidth="133.0"  pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="hero6IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="hero6HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="hero6HPBarLB" alignment="TOP_LEFT" text="Label" textAlignment="CENTER">
                      <StackPane.margin>
@@ -113,7 +114,7 @@
       </StackPane>
       <VBox fx:id="enemyVB1" layoutX="730.0" layoutY="80.0" prefHeight="200.0" prefWidth="100.0" spacing="25.0" style="-fx-background-color: grey;" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="50.0">
          <children>
-            <StackPane fx:id="enemy1SP" onMouseClicked="#onEnemyClicked" onMouseEntered="#onEnemy1Hover" onMouseExited="#onEnemy1StoppedHover" alignment="BOTTOM_CENTER">
+            <StackPane fx:id="enemy1SP" alignment="BOTTOM_CENTER" onMouseClicked="#onEnemyClicked" onMouseEntered="#onEnemy1Hover" onMouseExited="#onEnemy1StoppedHover">
                <children>
                   <ImageView fx:id="enemy1IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="enemy1HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
@@ -124,7 +125,7 @@
                   </Label>
                </children>
             </StackPane>
-            <StackPane fx:id="enemy2SP" onMouseClicked="#onEnemyClicked" onMouseEntered="#onEnemy2Hover" onMouseExited="#onEnemy2StoppedHover" alignment="BOTTOM_CENTER">
+            <StackPane fx:id="enemy2SP" alignment="BOTTOM_CENTER" onMouseClicked="#onEnemyClicked" onMouseEntered="#onEnemy2Hover" onMouseExited="#onEnemy2StoppedHover">
                <children>
                   <ImageView fx:id="enemy2IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="enemy2HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
@@ -135,7 +136,7 @@
                   </Label>
                </children>
             </StackPane>
-            <StackPane fx:id="enemy3SP" onMouseClicked="#onEnemyClicked" onMouseEntered="#onEnemy3Hover" onMouseExited="#onEnemy3StoppedHover" alignment="BOTTOM_CENTER">
+            <StackPane fx:id="enemy3SP" alignment="BOTTOM_CENTER" onMouseClicked="#onEnemyClicked" onMouseEntered="#onEnemy3Hover" onMouseExited="#onEnemy3StoppedHover">
                <children>
                   <ImageView fx:id="enemy3IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="enemy3HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
@@ -150,7 +151,7 @@
       </VBox>
       <VBox fx:id="enemyVB2" layoutX="856.0" layoutY="4.0" prefHeight="200.0" prefWidth="100.0" spacing="25.0" style="-fx-background-color: grey;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
-            <StackPane fx:id="enemy4SP" onMouseClicked="#onEnemyClicked" onMouseEntered="#onEnemy4Hover" onMouseExited="#onEnemy4StoppedHover" alignment="BOTTOM_CENTER">
+            <StackPane fx:id="enemy4SP" alignment="BOTTOM_CENTER" onMouseClicked="#onEnemyClicked" onMouseEntered="#onEnemy4Hover" onMouseExited="#onEnemy4StoppedHover">
                <children>
                   <ImageView fx:id="enemy4IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="enemy4HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
@@ -161,7 +162,7 @@
                   </Label>
                </children>
             </StackPane>
-            <StackPane fx:id="enemy5SP" onMouseClicked="#onEnemyClicked" onMouseEntered="#onEnemy5Hover" onMouseExited="#onEnemy5StoppedHover" alignment="BOTTOM_CENTER">
+            <StackPane fx:id="enemy5SP" alignment="BOTTOM_CENTER" onMouseClicked="#onEnemyClicked" onMouseEntered="#onEnemy5Hover" onMouseExited="#onEnemy5StoppedHover">
                <children>
                   <ImageView fx:id="enemy5IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="enemy5HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
@@ -172,7 +173,7 @@
                   </Label>
                </children>
             </StackPane>
-            <StackPane fx:id="enemy6SP" onMouseClicked="#onEnemyClicked" onMouseEntered="#onEnemy6Hover" onMouseExited="#onEnemy6StoppedHover" alignment="BOTTOM_CENTER">
+            <StackPane fx:id="enemy6SP" alignment="BOTTOM_CENTER" onMouseClicked="#onEnemyClicked" onMouseEntered="#onEnemy6Hover" onMouseExited="#onEnemy6StoppedHover">
                <children>
                   <ImageView fx:id="enemy6IV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="enemy6HPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
@@ -196,9 +197,35 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" text="MainWeaponAttack" onMouseClicked="#onMainWeaponButtonClicked" />
-            <Button mnemonicParsing="false" text="ThrowableWeaponAtk" onMouseClicked="#onThrowableWeaponButtonClicked" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" onMouseClicked="#onMainWeaponButtonClicked" text="MainWeaponAttack" />
+            <Button mnemonicParsing="false" onMouseClicked="#onThrowableWeaponButtonClicked" text="ThrowableWeaponAtk" GridPane.columnIndex="1" />
          </children>
       </GridPane>
+      <VBox layoutX="544.0" layoutY="375.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="38.0" prefWidth="134.0" spacing="9.0">
+               <children>
+                  <ImageView fx:id="throwableWeapon1IV" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="throwableWeapon2IV" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="throwableWeapon3IV" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="38.0" prefWidth="134.0" spacing="9.0">
+               <children>
+                  <ImageView fx:id="throwableWeapon5IV" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="throwableWeapon4IV" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="throwableWeapon6IV" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

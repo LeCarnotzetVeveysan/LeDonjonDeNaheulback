@@ -71,6 +71,10 @@ public abstract class Hero extends EtreVivant {
         return throwableWeapon;
     }
 
+    public boolean getWeaponThrowed() { return weaponThrowed; }
+
+    public void setWeaponThrowed(boolean input) { weaponThrowed = input; }
+
     public void setHeadItem(String itemName, int itemLevel, int inputQuality){
         HeadItem hi = new HeadItem(itemName, itemLevel, inputQuality);
         headItem = hi;

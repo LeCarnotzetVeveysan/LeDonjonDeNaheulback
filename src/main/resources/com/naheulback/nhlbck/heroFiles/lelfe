@@ -2,3 +2,10 @@ slug:lelfe
 class:elfe
 name:L'Elfe
 cost:100
+health:50
+maxHealth:100
+level:1
+xp:0
+desc:Je suis L'Elfe, elfe de niveau !
+quote:J'espère que vous n'avez pas de nain dans votre équipe.
+joke:À trouver !

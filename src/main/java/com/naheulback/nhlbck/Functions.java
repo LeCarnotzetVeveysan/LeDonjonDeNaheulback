@@ -3,6 +3,7 @@ package com.naheulback.nhlbck;
 import com.naheulback.nhlbck.classes.Enemy;
 import com.naheulback.nhlbck.classes.Hero;
 import com.naheulback.nhlbck.classes.SimpleEnemy;
+import com.naheulback.nhlbck.classes.Weapon;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -35,14 +36,18 @@ public class Functions {
                 os.write(buffer, 0, length);
             }
         } finally {
-            assert is != null;
-            is.close();
-            os.close();
+            if(!(is == null)){
+                is.close();
+            }
+            if(!(os == null)){
+                os.close();
+            }
+
         }
     }
-    public static void copyFile(String inputSource, String inputDest) throws IOException {
-        File source = new File(resPath + "heroFiles/" + inputSource);
-        File dest = new File(resPath + "heroFiles/" + inputDest);
+    public static void copyFile(String folder, String inputSource, String inputDest) throws IOException {
+        File source = new File(resPath + folder + "/" + inputSource);
+        File dest = new File(resPath + folder + "/" + inputDest);
         copyFileUsingStream(source, dest);
     }
 
@@ -63,7 +68,7 @@ public class Functions {
 
         for (String line = br.readLine(); line != null; line = br.readLine()) {
             String[] parts = line.split(":");
-            toReturn.put(parts[0],parts[1]);
+            toReturn.put(parts[0], parts[1]);
         }
 
         return toReturn;
@@ -88,10 +93,13 @@ public class Functions {
             }
             writer.close();
         }
-
     }
 
-
+    public static void initDungeonFiles() throws IOException {
+        for(int i = 1; i<= 10; i++) {
+            copyFile("gameFiles","dungeon" + i + "floors_default", "dungeon" + i + "floors");
+        }
+    }
 
     public static void setItemButtonHBSize(HBox hb) {
         hb.setVisible(true);
@@ -293,6 +301,15 @@ public class Functions {
         }
     }
 
+    public static void setThrowableWeaponImages(ArrayList<Weapon> weaps, ArrayList<ImageView> ivs) throws FileNotFoundException {
+        for( ImageView iv : ivs){
+            setImage(iv, "armouryImages", "empty_icon");
+        }
+        for (int i = 0; i < weaps.size(); i++) {
+            setImage(ivs.get(i), "armouryImages", weaps.get(i).getSlug() + "_icon");
+        }
+    }
+
     public static ArrayList<Enemy> getEnemyList(int floor) throws IOException {
 
         ArrayList<Boolean> boolList = getEnemyStateList(floor);
@@ -383,5 +400,4 @@ public class Functions {
         }
         writer.close();
     }
-
 }

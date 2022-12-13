@@ -2,3 +2,10 @@ slug:lamagicienne
 class:mage
 name:La Magicienne
 cost:100
+health:50
+maxHealth:100
+level:1
+xp:0
+desc:Je suis La Magicienne, Mage de niveau !
+quote:Vous saviez que ...!
+joke:À trouver !
