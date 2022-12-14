@@ -248,32 +248,27 @@ public class Functions {
 
     private static void setHeroRecapItemLabelsAndIVs(Hero hero, int item, Label lbl1, Label lbl2, ImageView iv) throws IOException {
         String itemName = "";
-        String level = "";
         String quality = "";
         String stat = "";
 
         switch (item){
             case 1:
                 itemName = hero.getHeadItem() == null ? "null" : hero.getHeadItem().getSlug();
-                level = hero.getHeadItem() == null ? "null" : String.valueOf(hero.getHeadItem().getLevel());
                 quality = hero.getHeadItem() == null ? "null" : String.valueOf(hero.getHeadItem().getQuality());
                 stat = hero.getHeadItem() == null ? "null" : String.valueOf(hero.getHeadItem().getArmor());
                 break;
             case 2:
                 itemName = hero.getBodyItem() == null ? "null" : hero.getBodyItem().getSlug();
-                level = hero.getBodyItem() == null ? "null" : String.valueOf(hero.getBodyItem().getLevel());
                 quality = hero.getBodyItem() == null ? "null" : String.valueOf(hero.getBodyItem().getQuality());
                 stat = hero.getBodyItem() == null ? "null" : String.valueOf(hero.getBodyItem().getArmor());
                 break;
             case 3:
                 itemName = hero.getMainWeapon() == null ? "null" : hero.getMainWeapon().getSlug();
-                level = hero.getMainWeapon() == null ? "null" : String.valueOf(hero.getMainWeapon().getLevel());
                 quality = hero.getMainWeapon() == null ? "null" : String.valueOf(hero.getMainWeapon().getQuality());
                 stat = hero.getMainWeapon() == null ? "null" : String.valueOf(hero.getMainWeapon().getPower());
                 break;
             case 4:
                 itemName = hero.getThrowableWeapon() == null ? "null" : hero.getThrowableWeapon().getSlug();
-                level = hero.getThrowableWeapon() == null ? "null" : String.valueOf(hero.getThrowableWeapon().getLevel());
                 quality = hero.getThrowableWeapon() == null ? "null" : String.valueOf(hero.getThrowableWeapon().getQuality());
                 stat = hero.getThrowableWeapon() == null ? "null" : String.valueOf(hero.getThrowableWeapon().getPower());
                 break;
@@ -291,7 +286,7 @@ public class Functions {
             String name = dict.get("name");
             String[] effet = dict.get("effet").split(" ");
 
-            toDisplay = name + " (Niveau " + level + ")";
+            toDisplay = name;
             lbl1.setText(toDisplay);
             toDisplay = "Effet: " + effet[0] + " " + stat + " " + effet[2] + ", Qualité " + quality;
             lbl2.setText(toDisplay);

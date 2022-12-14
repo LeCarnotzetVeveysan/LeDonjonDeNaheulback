@@ -1,8 +1,6 @@
 package com.naheulback.nhlbck.classes;
 
 public abstract class Hero extends EtreVivant {
-
-
     private String type;
     private int level;
     private int experience;
@@ -53,8 +51,8 @@ public abstract class Hero extends EtreVivant {
         return type;
     }
 
-    public void setMainWeapon(String weaponName, int weaponLevel, int weaponPower){
-        Weapon wpn = new Weapon(weaponName, weaponLevel, weaponPower);
+    public void setMainWeapon(String weaponSlug, String weaponName, int weaponLevel, int weaponQuality, int weaponPower){
+        Weapon wpn = new Weapon(weaponSlug, weaponName, weaponLevel, weaponQuality, weaponPower);
         mainWeapon = wpn;
     }
 
@@ -62,8 +60,8 @@ public abstract class Hero extends EtreVivant {
         return mainWeapon;
     }
 
-    public void setThrowableWeapon(String weaponName, int weaponLevel, int weaponPower){
-        Weapon wpn = new Weapon(weaponName, weaponLevel, weaponPower);
+    public void setThrowableWeapon(String weaponSlug, String weaponName, int weaponLevel, int weaponQuality, int weaponPower){
+        Weapon wpn = new Weapon(weaponSlug, weaponName, weaponLevel, weaponQuality, weaponPower);
         throwableWeapon = wpn;
     }
 
@@ -75,8 +73,8 @@ public abstract class Hero extends EtreVivant {
 
     public void setWeaponThrowed(boolean input) { weaponThrowed = input; }
 
-    public void setHeadItem(String itemName, int itemLevel, int inputQuality){
-        HeadItem hi = new HeadItem(itemName, itemLevel, inputQuality);
+    public void setHeadItem(String itemSlug, String itemName, int itemLevel, int inputQuality, int inputArmor){
+        HeadItem hi = new HeadItem(itemSlug, itemName, itemLevel, inputQuality, inputArmor );
         headItem = hi;
     }
 
@@ -84,8 +82,8 @@ public abstract class Hero extends EtreVivant {
         return headItem;
     }
 
-    public void setBodyItem(String itemName, int itemLevel, int inputQuality){
-        BodyItem bi = new BodyItem(itemName, itemLevel, inputQuality);
+    public void setBodyItem(String itemSlug, String itemName, int itemLevel, int inputQuality, int inputArmor){
+        BodyItem bi = new BodyItem(itemSlug, itemName, itemLevel, inputQuality, inputArmor );
         bodyItem = bi;
     }
 

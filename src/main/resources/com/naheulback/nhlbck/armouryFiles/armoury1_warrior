@@ -1,5 +1,5 @@
-item1:epee_test|2|mainWeapon
-item2:dague_test|1|throwableWeapon
-item3:casque_test|1|headItem
-item4:plastron_test|2|bodyItem
+item1:epee_test|, Bon état|2|99|mainWeapon
+item2:dague_test|, Bon état|1|99|throwableWeapon
+item3:casque_test|, Bon état|1|99|headItem
+item4:plastron_test|, Mauvais état|2|25|bodyItem
 item5:empty

@@ -18,7 +18,7 @@ public abstract class EtreVivant {
 
     public String getSlug() { return slug; }
 
-    public String getName() { return slug; }
+    public String getName() { return name; }
 
     public int getHealth() { return health; }
 

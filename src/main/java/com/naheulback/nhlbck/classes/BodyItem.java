@@ -1,36 +1,17 @@
 package com.naheulback.nhlbck.classes;
 
-public class BodyItem {
-    private String slug;
-    private String name;
-    private int level;
+public class BodyItem extends Item {
     private int armor;
     private int quality;
 
-    public BodyItem(String inputSlug, int inputLevel, int inputArmor){
-        slug = inputSlug;
-        level = inputLevel;
-        //get true name from slug in dictionary
-        name = inputSlug;
+    public BodyItem(String inputSlug, String inputName, int inputLevel, int inputQuality, int inputArmor){
+        super(inputSlug, inputName, inputLevel);
         armor = inputArmor;
-        quality = 100;
+        quality = inputQuality;
     }
-
-    public String getName(){
-        return name + " (Niveau " + level + ")";
-    }
-
-    public String getSlug(){
-        return slug;
-    }
-
-    public int getLevel() { return level;}
 
     public double getQuality(){ return quality; }
 
     public int getArmor(){ return armor; }
 
-    public String getStats(){
-        return name + " (Niveau " + level + "), Qualité: " + quality;
-    }
 }

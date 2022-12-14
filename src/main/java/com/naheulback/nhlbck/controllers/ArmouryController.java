@@ -136,10 +136,11 @@ public class ArmouryController {
                 String[] effet = dict.get("effet").split(" ");
                 String cout = dict.get("cost");
                 String desc = dict.get("desc");
-                int stat = (int) round((0.75 + (0.25 * Integer.valueOf(item[1]))) * Integer.parseInt(dict.get("stat")));
+                int stat = (int) round((0.75 + (0.25 * Integer.valueOf(item[2]))) * Integer.parseInt(dict.get("stat")));
 
                 String toDisplay = "";
-                toDisplay += name + " (Niveau " + item[1] + ")" + "\n";
+                toDisplay += name + "\n";
+                toDisplay += "Qualité: " + item[3] + item[1] +"\n";
                 toDisplay += "Effet: " + effet[0] + " " + stat + " " + effet[2] + "\n";
                 toDisplay += "Coût: " + cout + " PO" + "\n";
                 toDisplay += desc;
@@ -187,8 +188,9 @@ public class ArmouryController {
     void onItemButtonClicked() throws IOException {
 
         String[] item = itemList.get(currentItem).split("\\|");
-        String itemName = item[0];
-        HashMap<String, String> dict = getDictFromFile("armoury", itemName);
+        String itemSlug = item[0];
+
+        HashMap<String, String> dict = getDictFromFile("armoury", itemSlug);
         double cost = Integer.parseInt(dict.get("cost"));
         if (!(curHero == null)) {
             if (Game.hasEnoughGoldPieces(cost)) {
@@ -196,21 +198,23 @@ public class ArmouryController {
                 Game.takeGoldPieces(cost);
                 coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
 
-                int level = Integer.parseInt(item[1]);
+                String itemName = dict.get("name") + item[1];
+                int level = Integer.parseInt(item[2]);
+                int quality = Integer.parseInt(item[3]);
                 int stat = (int) round((0.75 + (0.25 * level)) * Integer.parseInt(dict.get("stat")));
 
-                switch(item[2]){
+                switch(item[4]){
                     case "mainWeapon":
-                        curHero.setMainWeapon(itemName, level , stat );
+                        curHero.setMainWeapon(itemSlug, itemName, level , quality, stat );
                         break;
                     case "throwableWeapon":
-                        curHero.setThrowableWeapon(itemName, level , stat );
+                        curHero.setThrowableWeapon(itemSlug, itemName, level , quality, stat );
                         break;
                     case "headItem":
-                        curHero.setHeadItem(itemName, level , stat );
+                        curHero.setHeadItem(itemSlug, itemName, level , quality, stat );
                         break;
                     case "bodyItem":
-                        curHero.setBodyItem(itemName, level , stat );
+                        curHero.setBodyItem(itemSlug, itemName, level , quality, stat );
                         break;
                 }
 

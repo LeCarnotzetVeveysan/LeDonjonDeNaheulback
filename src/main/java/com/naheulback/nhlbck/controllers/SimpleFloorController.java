@@ -64,7 +64,6 @@ public class SimpleFloorController {
 
     public void initialize() throws IOException {
 
-        nextFloorButton.setDisable(true);
         activeHero = null;
         activeHeroIndex = -1;
         activeEnemyIndex = -1;
@@ -86,6 +85,10 @@ public class SimpleFloorController {
 
         actionButtonGridPane.setDisable(true);
         actionButtonGridPane.setVisible(false);
+
+        if(!(allDeadEnemies())) {
+            nextFloorButton.setDisable(true);
+        }
     }
 
     private void refreshImagesAndHPBars() throws FileNotFoundException {
@@ -100,13 +103,12 @@ public class SimpleFloorController {
 
     private void postCombatCheck() throws IOException {
         if(allDeadEnemies()){
-            System.out.println("Bravo ! Etage complété");
             nextFloorButton.setDisable(false);
             for(int i = 0; i <= 5; i++){
                 Functions.setEnemyStateInFile(Game.getRoom(), i ,"false");
             }
             //Get back active hero in heroList
-            if(activeHeroIndex != -1) {
+            if(!(activeHeroIndex == -1) && !(activeHero == null)) {
                 livingHeroes.set(activeHeroIndex, activeHero);
                 livingHeroSlugs.set(activeHeroIndex, activeHero.getSlug());
                 activeHero = null;
@@ -117,7 +119,6 @@ public class SimpleFloorController {
                 }
             }
             throwableWeapons.clear();
-
 
         } else {
             System.out.println("Il y a encore des ennemis vivants");
@@ -155,8 +156,11 @@ public class SimpleFloorController {
 
         if(!livingHeroSlugs.get(currentHeroIndex).equals("empty")) {
             if(!(activeHeroIndex == -1)) {
-                livingHeroes.set(activeHeroIndex, activeHero);
-                livingHeroSlugs.set(activeHeroIndex, activeHero.getSlug());
+                if(!(activeHero == null)){
+                    livingHeroes.set(activeHeroIndex, activeHero);
+                    livingHeroSlugs.set(activeHeroIndex, activeHero.getSlug());
+                }
+
             }
             activeHeroIndex = currentHeroIndex;
             activeHero = livingHeroes.get(currentHeroIndex);
@@ -235,13 +239,18 @@ public class SimpleFloorController {
     }
 
 
+    public void onNextButtonClicked() throws IOException {
+        Game.setRoom(Game.getRoom() + 1);
+        LoadScene.changeScene("dungeon-simple-floor");
+    }
+
     public void onBackButtonClicked() throws IOException {
-        //Get back active hero in heroList
-        if(activeHeroIndex != -1) {
-            livingHeroes.set(activeHeroIndex, activeHero);
-            livingHeroSlugs.set(activeHeroIndex, activeHero.getSlug());
+        Game.setRoom(Game.getRoom() -1);
+        if(Game.getRoom() == 0){
+            LoadScene.changeScene("dungeon-entry-hall");
+        } else {
+            LoadScene.changeScene("dungeon-simple-floor");
         }
-        LoadScene.changeScene("dungeon-entry-hall");
     }
 
 
@@ -308,8 +317,7 @@ public class SimpleFloorController {
     }
 
 
-    public void onNextButtonClicked() {
-    }
+
 }
 
 

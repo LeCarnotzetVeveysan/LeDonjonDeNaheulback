@@ -1,34 +1,14 @@
 package com.naheulback.nhlbck.classes;
 
-public class Weapon {
+public class Weapon extends Item {
 
-    private String slug;
-    private String name;
-    private int level;
     private int power;
     private double quality;
 
-    public Weapon(String inputSlug, int inputLevel, int inputPower){
-        slug = inputSlug;
-        //get true name from slug in dictionary
-        name = inputSlug;
-        level = inputLevel;
+    public Weapon(String inputSlug, String inputName, int inputLevel, int inputQuality, int inputPower){
+        super(inputSlug, inputName, inputLevel);
         power = inputPower;
-        quality = 100;
-    }
-
-    public String getName(){
-        return name + " (Niveau " + level + ")";
-    }
-
-    public String getSlug(){
-        return slug;
-    }
-
-    public int getLevel() { return level;}
-
-    public String getStats(){
-        return name + " (Niveau " + level + "), Qualité: " + quality;
+        quality = inputQuality;
     }
 
     public double getQuality(){ return quality; }
