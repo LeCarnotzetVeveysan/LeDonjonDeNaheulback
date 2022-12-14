@@ -13,7 +13,7 @@ public abstract class Item {
     }
 
     public String getName(){
-        return name + " (Niveau " + level + ")";
+        return name;
     }
 
     public String getSlug(){

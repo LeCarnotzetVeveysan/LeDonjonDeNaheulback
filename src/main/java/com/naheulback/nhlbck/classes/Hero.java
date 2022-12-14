@@ -1,5 +1,7 @@
 package com.naheulback.nhlbck.classes;
 
+import java.util.ArrayList;
+
 public abstract class Hero extends EtreVivant {
     private String type;
     private int level;
@@ -16,6 +18,7 @@ public abstract class Hero extends EtreVivant {
     private boolean weaponThrowed;
     private HeadItem headItem;
     private BodyItem bodyItem;
+    private ArrayList<Item> inventory;
 
     public Hero(String inputSlug, String inputName, int inputHealth, int inputMaxHealth, Boolean inputIsAlive, String inputType){
 
@@ -33,6 +36,7 @@ public abstract class Hero extends EtreVivant {
         mainWeapon = null;
         throwableWeapon = null;
         weaponThrowed= false;
+        inventory = new ArrayList<>();
     }
 
     public String toString(){
@@ -91,6 +95,13 @@ public abstract class Hero extends EtreVivant {
         return bodyItem;
     }
 
+    public void prendreGrimoire(String slug, String name, int level){
+        Grimoire grim = new Grimoire(slug, name, level);
+        inventory.add(grim);
+    }
 
 
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
 }

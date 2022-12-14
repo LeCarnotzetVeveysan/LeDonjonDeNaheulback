@@ -1,0 +1,6 @@
+type:grimoire
+name:grimoire feu débutant
+cost:100
+stat:X
+effet:BdFmin, BdFmoy
+desc:premier grimoire

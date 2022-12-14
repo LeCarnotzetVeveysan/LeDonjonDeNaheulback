@@ -136,12 +136,23 @@ public class ArmouryController {
                 String[] effet = dict.get("effet").split(" ");
                 String cout = dict.get("cost");
                 String desc = dict.get("desc");
-                int stat = (int) round((0.75 + (0.25 * Integer.valueOf(item[2]))) * Integer.parseInt(dict.get("stat")));
+                int stat = 0;
+                if(!(item[4].equals("grimoire") || item[4].equals("consumable"))) {
+                    stat = (int) round((0.75 + (0.25 * Integer.valueOf(item[2]))) * Integer.parseInt(dict.get("stat")));
+                }
 
                 String toDisplay = "";
                 toDisplay += name + "\n";
-                toDisplay += "Qualité: " + item[3] + item[1] +"\n";
-                toDisplay += "Effet: " + effet[0] + " " + stat + " " + effet[2] + "\n";
+
+                if((item[4].equals("grimoire") || item[4].equals("consumable"))){
+                    toDisplay += "Sorts inclus: " + dict.get("effet");
+                } else {
+                    toDisplay += "Qualité: " + item[3] + item[1] +"\n";
+                    toDisplay += "Effet: " + effet[0] + " " + stat + " " + effet[2] + "\n";
+                }
+
+
+
                 toDisplay += "Coût: " + cout + " PO" + "\n";
                 toDisplay += desc;
 
@@ -201,8 +212,10 @@ public class ArmouryController {
                 String itemName = dict.get("name") + item[1];
                 int level = Integer.parseInt(item[2]);
                 int quality = Integer.parseInt(item[3]);
-                int stat = (int) round((0.75 + (0.25 * level)) * Integer.parseInt(dict.get("stat")));
-
+                int stat = 0;
+                if(!(item[4].equals("grimoire") || item[4].equals("consumable"))) {
+                    stat = (int) round((0.75 + (0.25 * level)) * Integer.parseInt(dict.get("stat")));
+                }
                 switch(item[4]){
                     case "mainWeapon":
                         curHero.setMainWeapon(itemSlug, itemName, level , quality, stat );
@@ -215,6 +228,9 @@ public class ArmouryController {
                         break;
                     case "bodyItem":
                         curHero.setBodyItem(itemSlug, itemName, level , quality, stat );
+                        break;
+                    case "grimoire":
+                        curHero.prendreGrimoire(itemSlug, itemName, level);
                         break;
                 }
 

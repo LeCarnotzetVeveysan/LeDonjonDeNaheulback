@@ -1,9 +1,6 @@
 package com.naheulback.nhlbck;
 
-import com.naheulback.nhlbck.classes.Enemy;
-import com.naheulback.nhlbck.classes.Hero;
-import com.naheulback.nhlbck.classes.SimpleEnemy;
-import com.naheulback.nhlbck.classes.Weapon;
+import com.naheulback.nhlbck.classes.*;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -229,6 +226,17 @@ public class Functions {
                 }
             }
         }
+    }
+
+    public static void setInventoryImages(ArrayList<Item> inventory, ArrayList<ImageView> ivs) throws FileNotFoundException {
+
+        for(ImageView iv : ivs){
+            setImage(iv, "armouryImages", "empty_icon");
+        }
+        for(int i = 0; i < inventory.size(); i++){
+            setImage(ivs.get(i), "armouryImages", inventory.get(i).getSlug() + "_icon");
+        }
+
     }
 
     public static void initHeroFiles() {

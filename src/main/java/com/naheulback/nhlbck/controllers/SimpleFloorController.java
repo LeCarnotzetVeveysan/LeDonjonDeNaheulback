@@ -10,14 +10,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 
 public class SimpleFloorController {
 
@@ -57,8 +57,13 @@ public class SimpleFloorController {
     private ArrayList<Weapon> throwableWeapons;
 
     @FXML
-    private GridPane actionButtonGridPane;
+    private StackPane inventorySP;
+    @FXML
+    private ImageView invSlot1IV, invSlot2IV, invSlot3IV, invSlot4IV, invSlot5IV, invSlot6IV, invSlot7IV, invSlot8IV, invSlot9IV, invSlot10IV;
+    private ArrayList<ImageView> inventoryIVs;
 
+    @FXML
+    private HBox actionButtonHB;
     @FXML
     private Button nextFloorButton;
 
@@ -83,12 +88,14 @@ public class SimpleFloorController {
         enemyHPBarlbls = new ArrayList<>(Arrays.asList(enemy1HPBarLB, enemy2HPBarLB, enemy3HPBarLB, enemy4HPBarLB, enemy5HPBarLB, enemy6HPBarLB));
         refreshImagesAndHPBars();
 
-        actionButtonGridPane.setDisable(true);
-        actionButtonGridPane.setVisible(false);
+        inventorySP.setDisable(true);
+        inventorySP.setVisible(false);
+        inventoryIVs = new ArrayList<>(Arrays.asList(invSlot1IV, invSlot2IV, invSlot3IV, invSlot4IV, invSlot5IV, invSlot6IV, invSlot7IV, invSlot8IV, invSlot9IV, invSlot10IV));
 
-        if(!(allDeadEnemies())) {
-            nextFloorButton.setDisable(true);
-        }
+        actionButtonHB.setDisable(true);
+        actionButtonHB.setVisible(false);
+
+        postCombatCheck();
     }
 
     private void refreshImagesAndHPBars() throws FileNotFoundException {
@@ -147,8 +154,8 @@ public class SimpleFloorController {
 
     public void onActiveHeroClicked() {
         if(!(activeHero == null)){
-            actionButtonGridPane.setDisable(false);
-            actionButtonGridPane.setVisible(true);
+            actionButtonHB.setDisable(false);
+            actionButtonHB.setVisible(true);
         }
     }
 
@@ -166,13 +173,13 @@ public class SimpleFloorController {
             activeHero = livingHeroes.get(currentHeroIndex);
             livingHeroes.set(currentHeroIndex, null);
             livingHeroSlugs.set(currentHeroIndex, "empty");
-            actionButtonGridPane.setDisable(false);
-            actionButtonGridPane.setVisible(true);
+            actionButtonHB.setDisable(false);
+            actionButtonHB.setVisible(true);
 
         } else {
             System.out.println("no selectable hero");
-            actionButtonGridPane.setDisable(true);
-            actionButtonGridPane.setVisible(false);
+            actionButtonHB.setDisable(true);
+            actionButtonHB.setVisible(false);
         }
         refreshImagesAndHPBars();
     }
@@ -236,6 +243,12 @@ public class SimpleFloorController {
         postCombatCheck();
         refreshImagesAndHPBars();
 
+    }
+
+    public void onInventoryButtonClicked() throws FileNotFoundException {
+        inventorySP.setDisable(false);
+        inventorySP.setVisible(true);
+        Functions.setInventoryImages(activeHero.getInventory(), inventoryIVs);
     }
 
 
