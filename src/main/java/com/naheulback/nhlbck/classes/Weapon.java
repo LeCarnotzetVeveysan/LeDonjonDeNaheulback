@@ -13,7 +13,7 @@ public class Weapon extends Item {
 
     public double getQuality(){ return quality; }
 
-    public void decreaseQuality(int factor){
+    public void decreaseQuality(double factor){
         quality -= factor;
     }
 

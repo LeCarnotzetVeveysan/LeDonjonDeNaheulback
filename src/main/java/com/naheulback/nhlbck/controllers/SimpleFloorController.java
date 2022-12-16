@@ -36,8 +36,8 @@ public class SimpleFloorController {
     private ImageView activeHeroHPBarIV, activeHeroManaBarIV, hero1HPBarIV, hero2HPBarIV, hero3HPBarIV, hero4HPBarIV, hero5HPBarIV,hero6HPBarIV;
     @FXML
     private Label activeHeroHPBarLB, activeHeroManaBarLB, hero1HPBarLB, hero2HPBarLB, hero3HPBarLB, hero4HPBarLB, hero5HPBarLB, hero6HPBarLB;
-    private ArrayList<ImageView> heroHPBarivs, heroManaIVs;
-    private ArrayList<Label> heroHPBarlbls, heroManaLabels;
+    private ArrayList<ImageView> heroHPBarIVs, heroManaIVs;
+    private ArrayList<Label> heroHPBarLBs, heroManaLabels;
 
     @FXML
     private Label flechesCountLB;
@@ -83,8 +83,8 @@ public class SimpleFloorController {
         livingHeroSlugs = Game.getLivingHeroSlugs();
         livingHeroes = Game.getLivingHeroes();
         heroIVs = new ArrayList<>(Arrays.asList(hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV));
-        heroHPBarivs = new ArrayList<>(Arrays.asList(hero1HPBarIV, hero2HPBarIV, hero3HPBarIV, hero4HPBarIV, hero5HPBarIV,hero6HPBarIV));
-        heroHPBarlbls = new ArrayList<>(Arrays.asList(hero1HPBarLB, hero2HPBarLB, hero3HPBarLB, hero4HPBarLB, hero5HPBarLB, hero6HPBarLB));
+        heroHPBarIVs = new ArrayList<>(Arrays.asList(hero1HPBarIV, hero2HPBarIV, hero3HPBarIV, hero4HPBarIV, hero5HPBarIV,hero6HPBarIV));
+        heroHPBarLBs = new ArrayList<>(Arrays.asList(hero1HPBarLB, hero2HPBarLB, hero3HPBarLB, hero4HPBarLB, hero5HPBarLB, hero6HPBarLB));
         heroManaIVs = new ArrayList<>(Arrays.asList(hero1ManaBarIV, hero2ManaBarIV, hero3ManaBarIV, hero4ManaBarIV, hero5ManaBarIV, hero6ManaBarIV));
         heroManaLabels = new ArrayList<>(Arrays.asList(hero1ManaBarLB, hero2ManaBarLB, hero3ManaBarLB, hero4ManaBarLB, hero5ManaBarLB, hero6ManaBarLB));
 
@@ -114,19 +114,30 @@ public class SimpleFloorController {
         Functions.setEnemyHPBars(livingEnemies, enemyHPBarivs, enemyHPBarlbls);
         Functions.setEnemyHPBars(new ArrayList<>(Arrays.asList(activeEnemy)),new ArrayList<>(Arrays.asList(activeEnemyHPBarIV)), new ArrayList<>(Arrays.asList(activeEnemyHPBarLB)));
         Functions.setCombatHeroImages(livingHeroes, heroIVs, activeHero, activeHeroIV);
-        Functions.setHeroHPBars(livingHeroes, heroHPBarivs, heroHPBarlbls, heroManaIVs,heroManaLabels );
+        Functions.setHeroHPBars(livingHeroes, heroHPBarIVs, heroHPBarLBs, heroManaIVs,heroManaLabels );
         Functions.setHeroHPBars(new ArrayList<>(Arrays.asList(activeHero)),new ArrayList<>(Arrays.asList(activeHeroHPBarIV)), new ArrayList<>(Arrays.asList(activeHeroHPBarLB)),new ArrayList<>(Arrays.asList(activeHeroManaBarIV)), new ArrayList<>(Arrays.asList(activeHeroManaBarLB)));
         Functions.setThrowableWeaponImages(throwableWeapons, throwableWeaponIVs);
         updateActionButtons();
     }
 
     private void postCombatCheck() throws IOException {
+
+        if(activeEnemy.getHealth() <= 0){
+            activeEnemy.setIsAlive(false);
+
+            livingEnemies.set(activeEnemyIndex, activeEnemy);
+            Functions.setImage(enemyIVs.get(activeEnemyIndex),"combatImages",activeEnemy.getSlug() + "_dead" );
+            activeEnemy = null;
+            if(Game.getLevel() == 1){
+                Functions.setEnemyStateInFile(1,activeEnemyIndex,"false");
+            }
+        }
+
         if(allDeadEnemies()){
             nextFloorButton.setDisable(false);
             for(int i = 0; i <= 5; i++){
                 Functions.setEnemyStateInFile(Game.getRoom(), i ,"false");
             }
-            //Get back active hero in heroList
             retrieveActiveHero();
             for(Hero h : livingHeroes){
                 if(!(h == null)) {
@@ -189,23 +200,21 @@ public class SimpleFloorController {
 
             if ((activeHero.getType().equals("elfe"))) {
 
-                switch (activeHero.getActiveCarquois()){
-                    case "":
-                        flechesCountLB.setText("");
-                        break;
-                    case "carquois_base":
+                switch (activeHero.getActiveCarquois()) {
+                    case "" -> flechesCountLB.setText("");
+                    case "carquois_base" -> {
                         Functions.setImage(secondaryActionButtonIV, "armouryImages", "fleche_base");
                         flechesCountLB.setText(String.valueOf(((Elfe) activeHero).getFleches(1)));
-                        break;
-                    case "carquois_qualité":
+                    }
+                    case "carquois_qualité" -> {
                         Functions.setImage(secondaryActionButtonIV, "armouryImages", "fleche_qualité");
                         flechesCountLB.setText(String.valueOf(((Elfe) activeHero).getFleches(2)));
-                        break;
-                    case "carquois_sylvain":
+                    }
+                    case "carquois_sylvain" -> {
                         Functions.setImage(secondaryActionButtonIV, "armouryImages", "fleche_sylvaine");
                         flechesCountLB.setText(String.valueOf(((Elfe) activeHero).getFleches(3)));
-                        break;
                     }
+                }
             }
 
             if ((activeHero.getType().equals("mage")) || (activeHero.getType().equals("priestess"))) {
@@ -289,31 +298,30 @@ public class SimpleFloorController {
     }
 
     public void onMainWeaponButtonClicked() throws IOException {
+
         if(!(activeEnemy == null)) {
-            int damage = 0;
 
-            int weaponDamage = activeHero.getMainWeapon().getPower();
-
-            activeEnemy.removeHealth(damage);
-            if(activeEnemy.getHealth() <= 0){
-                activeEnemy.setIsAlive(false);
-            }
-            if(!activeEnemy.getIsAlive()){
-                livingEnemies.set(activeEnemyIndex, activeEnemy);
-                Functions.setImage(enemyIVs.get(activeEnemyIndex),"combatImages",activeEnemy.getSlug() + "_dead" );
-                activeEnemy = null;
-                if(Game.getLevel() == 1){
-                    Functions.setEnemyStateInFile(1,activeEnemyIndex,"false");
-                }
-            }
+            Weapon weapon = activeHero.getMainWeapon();
+            weaponAttack(weapon);
 
         } else {
             System.out.println("Il n'y a pas d'ennemi actif");
         }
-
         postCombatCheck();
         refreshImagesAndHPBars();
-        updateActionButtons();
+    }
+
+    private void weaponAttack(Weapon weapon) {
+        double damage;
+        damage = activeHero.getFlatAttack(weapon);
+        damage *= activeEnemy.getResistanceMultiplier();
+        damage = Math.round(damage);
+        activeEnemy.removeHealth((int) damage);
+
+        double qualityLoss = Math.pow(1.25, Game.getLevel());
+        qualityLoss = Math.round(100*qualityLoss)/100;
+        weapon.decreaseQuality(qualityLoss);
+
     }
 
     public void onThrowableWeaponButtonClicked() throws IOException {

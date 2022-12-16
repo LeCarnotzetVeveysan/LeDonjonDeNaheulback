@@ -6,14 +6,19 @@ public abstract class EtreVivant {
     private String name;
     private int health;
     private int maxHealth;
+    private int attack;
+    private int resistance;
     private boolean isAlive;
+    
 
-    protected EtreVivant(String inputSlug, String inputName, int inputHealth, int inputMaxHealth, Boolean inputIsAlive) {
-        slug = inputSlug;
-        name = inputName;
-        health = inputHealth;
-        maxHealth = inputMaxHealth;
-        isAlive = inputIsAlive;
+    protected EtreVivant(String inSlug, String inName, int inHealth, int inMaxHealth, int inAttack, int inResistance, Boolean inIsAlive) {
+        slug = inSlug;
+        name = inName;
+        health = inHealth;
+        maxHealth = inMaxHealth;
+        attack = inAttack;
+        resistance = inResistance;
+        isAlive = inIsAlive;
     }
 
     public String getSlug() { return slug; }
@@ -23,6 +28,10 @@ public abstract class EtreVivant {
     public int getHealth() { return health; }
 
     public int getMaxHealth(){ return maxHealth; }
+
+    public int getBaseAttack() { return attack; }
+    
+    public int getBaseResistance() { return resistance; }
 
     public boolean getIsAlive(){
         return isAlive;

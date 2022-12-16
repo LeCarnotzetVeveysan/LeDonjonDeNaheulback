@@ -1,12 +1,14 @@
 package com.naheulback.nhlbck.classes;
 
 public abstract class Enemy extends EtreVivant {
-    private int armor;
-    private int resistance;
-
-    public Enemy(String inputSlug, String inputName, int inputHealth, int inputMaxHealth, Boolean inputIsAlive){
-        super(inputSlug, inputName, inputHealth, inputMaxHealth, inputIsAlive);
-        armor = 20;
-        resistance = 20;
+    
+    public Enemy(String inSlug, String inName, int inHealth, int inMaxHealth, int inAttack, int inResistance, Boolean inIsAlive){
+        super(inSlug, inName, inHealth, inMaxHealth,inAttack,inResistance, inIsAlive);
     }
+
+    public double getResistanceMultiplier(){
+        double factor = 1.00 - getBaseResistance()/100.0;
+        return factor;
+    }
+
 }

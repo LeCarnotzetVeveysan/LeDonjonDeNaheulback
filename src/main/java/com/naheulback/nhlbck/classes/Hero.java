@@ -1,6 +1,7 @@
 package com.naheulback.nhlbck.classes;
 
-import java.io.IOException;
+import com.naheulback.nhlbck.Game;
+
 import java.util.ArrayList;
 
 public abstract class Hero extends EtreVivant {
@@ -8,8 +9,7 @@ public abstract class Hero extends EtreVivant {
     private int level;
     private int experience;
     private int recruitementCost;
-    private int armor;
-    private int attack;
+
     private int magic;
     private int mana;
     private int maxMana;
@@ -23,16 +23,14 @@ public abstract class Hero extends EtreVivant {
     private BodyItem bodyItem;
     private ArrayList<Item> inventory;
 
-    public Hero(String inputSlug, String inputName, int inputHealth, int inputMaxHealth, Boolean inputIsAlive, String inputType){
+    public Hero(String inputSlug, String inputName, int inputHealth, int inputMaxHealth, int inAttack, int inResistance, Boolean inputIsAlive, String inputType){
 
-        super(inputSlug, inputName, inputHealth, inputMaxHealth, inputIsAlive);
+        super(inputSlug, inputName, inputHealth, inputMaxHealth,inAttack, inResistance, inputIsAlive);
 
         type = inputType;
         level = 1;
         experience = 0;
         recruitementCost = 100;
-        armor = 100;
-        attack = 1;
         magic = 100;
         mana = 100;
         maxMana = 200;
@@ -65,7 +63,34 @@ public abstract class Hero extends EtreVivant {
         mana -= amount;
     }
 
-    public int getArmor(){ return armor; }
+    public double getFlatAttack(Weapon weapon){
+        double attack = getBaseAttack();
+        attack *= (1 + (level/10.0));
+        if(!(weapon == null)){
+            attack += weapon.getPower();
+        }
+        return attack;
+    }
+
+    public double getFlatResistance(){
+        double resistance = getBaseResistance();
+        resistance *= (1 + (level/10.0));
+
+        if(!(headItem == null)){
+            resistance += headItem.getArmor();
+        }
+        if(!(bodyItem == null)){
+            resistance += bodyItem.getArmor();
+        }
+        return resistance;
+    }
+
+    public double getResistanceMultiplier(){
+        double baseFactor = 1.00;
+        baseFactor -= getFlatResistance()/100.0;
+        double levelDivider = Math.pow(1.25, Game.getLevel());
+        return baseFactor/levelDivider;
+    }
 
     public int getLevel() { return level; }
 
