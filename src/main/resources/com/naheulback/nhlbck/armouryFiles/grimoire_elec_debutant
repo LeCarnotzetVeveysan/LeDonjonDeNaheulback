@@ -1,0 +1,6 @@
+type:grimoire
+name:grimoire elec pour débutant
+cost:100
+stat:X
+effet:BdFmin, BdFmoy
+desc:autre premier grimoire

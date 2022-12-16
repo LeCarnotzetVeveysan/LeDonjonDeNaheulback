@@ -211,10 +211,12 @@ public class Functions {
 
     }
 
-    public static void setHeroHPBars(ArrayList<Hero> lhs, ArrayList<ImageView> al, ArrayList<Label> lb) throws FileNotFoundException {
+    public static void setHeroHPBars(ArrayList<Hero> lhs, ArrayList<ImageView> al, ArrayList<Label> lb, ArrayList<ImageView> manaIVs, ArrayList<Label> manaLBs) throws FileNotFoundException {
 
         for( ImageView iv : al){ iv.setVisible(false); }
         for(Label lbl : lb){ lbl.setText("");}
+        for (ImageView iv : manaIVs) { iv.setVisible(false);}
+        for(Label lbl : manaLBs){ lbl.setText("");}
         for(int i=0;i < lhs.size();i++){
             if(!(lhs.get(i) == null)) {
                 if (!lhs.get(i).getSlug().equals("empty")) {
@@ -223,6 +225,14 @@ public class Functions {
                     setImage(al.get(i), "otherImages", rounded + "HPbar");
                     lb.get(i).setText(lhs.get(i).getHealth() + "/" + lhs.get(i).getMaxHealth());
                     al.get(i).setVisible(true);
+                }
+                if(lhs.get(i).getType() == "mage" || lhs.get(i).getType() == "priestess" ){
+                    double percentage = 100 * (ceil(10.0 * lhs.get(i).getMana() / lhs.get(i).getMaxMana()) / 10);
+                    int rounded = (int) percentage;
+                    //Make mana images
+                    setImage(manaIVs.get(i), "otherImages", rounded + "HPbar");
+                    manaLBs.get(i).setText(lhs.get(i).getMana() + "/" + lhs.get(i).getMaxMana());
+                    manaIVs.get(i).setVisible(true);
                 }
             }
         }

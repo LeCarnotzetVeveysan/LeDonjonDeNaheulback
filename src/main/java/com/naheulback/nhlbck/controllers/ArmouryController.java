@@ -3,6 +3,8 @@ package com.naheulback.nhlbck.controllers;
 import com.naheulback.nhlbck.Functions;
 import com.naheulback.nhlbck.Game;
 import com.naheulback.nhlbck.LoadScene;
+import com.naheulback.nhlbck.classes.Elfe;
+import com.naheulback.nhlbck.classes.Grimoire;
 import com.naheulback.nhlbck.classes.Hero;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -163,8 +165,6 @@ public class ArmouryController {
         Functions.setItemButtonHBSize(armouryItemsHB);
     }
 
-
-
     @FXML
     void onHeroClicked() throws IOException {
         if (!currentHeroName.equals("empty")) {
@@ -202,7 +202,7 @@ public class ArmouryController {
         String itemSlug = item[0];
 
         HashMap<String, String> dict = getDictFromFile("armoury", itemSlug);
-        double cost = Integer.parseInt(dict.get("cost"));
+        double cost = Double.parseDouble(dict.get("cost"));
         if (!(curHero == null)) {
             if (Game.hasEnoughGoldPieces(cost)) {
 
@@ -230,23 +230,19 @@ public class ArmouryController {
                         curHero.setBodyItem(itemSlug, itemName, level , quality, stat );
                         break;
                     case "grimoire":
-                        curHero.prendreGrimoire(itemSlug, itemName, level);
+                        Grimoire grim = new Grimoire(itemSlug, itemName, level);
+                        curHero.addItem(grim);
+                        break;
+                    case "fleche":
+                        ((Elfe) curHero).addFleches(level);
                         break;
                 }
 
                 switch (new Random().nextInt(5)){
-                    case 1 -> {
-                        armourymanSpeakLbl.setText("Bon choix");
-                    }
-                    case 2 -> {
-                        armourymanSpeakLbl.setText("Belle arme");
-                    }
-                    case 3 -> {
-                        armourymanSpeakLbl.setText("Vous avez fait un bon choix");
-                    }
-                    case 4 -> {
-                        armourymanSpeakLbl.setText("Vos ennemis vont déguster");
-                    }
+                    case 1 -> armourymanSpeakLbl.setText("Bon choix");
+                    case 2 -> armourymanSpeakLbl.setText("Belle arme");
+                    case 3 -> armourymanSpeakLbl.setText("Vous avez fait un bon choix");
+                    case 4 -> armourymanSpeakLbl.setText("Vos ennemis vont déguster");
                 }
 
                 Functions.setHeroRecap(curHero, heroRecapLabels, heroRecapIVs);

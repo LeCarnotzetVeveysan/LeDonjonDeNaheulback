@@ -14,4 +14,8 @@ public class Spell {
         magicDamage =inputMagicDamage;
     }
 
+    public String getSlug(){
+        return slug;
+    }
+
 }

@@ -268,14 +268,14 @@ public class DungeonTableController {
         if(!getTableSlugList().get(Game.getSpeakingHero()).equals("empty")){
             interactionButtonsHB.setVisible(true);
             interactionButtonsHB.setDisable(false);
+            sitButtonsHB.setVisible(false);
+            sitButtonsHB.setDisable(true);
+            copyFile("heroFiles", getTableSlugList().get(Game.getSpeakingHero()), "heroToLoad");
+            hD = getDictFromFile("hero", "heroToLoad");
         } else {
             interactionButtonsHB.setVisible(false);
             interactionButtonsHB.setDisable(true);
         }
-        sitButtonsHB.setVisible(false);
-        sitButtonsHB.setDisable(true);
-        copyFile("heroFiles", getTableSlugList().get(Game.getSpeakingHero()), "heroToLoad");
-        hD = getDictFromFile("hero", "heroToLoad");
     }
 
     public void onHero1Clicked() throws IOException {

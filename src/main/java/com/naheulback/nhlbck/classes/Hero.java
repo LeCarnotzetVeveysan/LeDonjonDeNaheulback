@@ -1,5 +1,6 @@
 package com.naheulback.nhlbck.classes;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class Hero extends EtreVivant {
@@ -8,16 +9,16 @@ public abstract class Hero extends EtreVivant {
     private int experience;
     private int recruitementCost;
     private int armor;
-    private int maxArmor;
     private int attack;
     private int magic;
     private int mana;
+    private int maxMana;
     private Weapon mainWeapon;
     private Weapon throwableWeapon;
     private boolean weaponThrowed;
     private Spell mainSpell;
     private Spell secondarySpell;
-    private String active_carquois;
+    private String activeCarquois;
     private HeadItem headItem;
     private BodyItem bodyItem;
     private ArrayList<Item> inventory;
@@ -31,12 +32,14 @@ public abstract class Hero extends EtreVivant {
         experience = 0;
         recruitementCost = 100;
         armor = 100;
-        attack = 100;
+        attack = 1;
         magic = 100;
         mana = 100;
+        maxMana = 200;
         mainWeapon = null;
         throwableWeapon = null;
         weaponThrowed= false;
+        activeCarquois = "";
         mainSpell = null;
         secondarySpell = null;
         inventory = new ArrayList<>();
@@ -48,9 +51,21 @@ public abstract class Hero extends EtreVivant {
 
     public int getCost(){ return recruitementCost; }
 
-    public int getArmor(){ return armor; }
+    public int getMana() { return mana; }
 
-    public int getMaxArmor(){ return maxArmor; }
+    public int getMaxMana(){ return maxMana; }
+
+    public void addMana(int amount){
+        mana += amount;
+        if (mana > maxMana){
+            mana = maxMana;
+        }
+    }
+    public void removeMana(int amount){
+        mana -= amount;
+    }
+
+    public int getArmor(){ return armor; }
 
     public int getLevel() { return level; }
 
@@ -98,10 +113,7 @@ public abstract class Hero extends EtreVivant {
         return bodyItem;
     }
 
-    public void prendreGrimoire(String slug, String name, int level){
-        Grimoire grim = new Grimoire(slug, name, level);
-        inventory.add(grim);
-    }
+
     public ArrayList<Item> getInventory() {
         return inventory;
     }
@@ -126,8 +138,8 @@ public abstract class Hero extends EtreVivant {
         return secondarySpell;
     }
 
-    public void setActiveCarquois(String carquois){ active_carquois = carquois; }
+    public void setActiveCarquois(String carquois){ activeCarquois = carquois; }
 
-    public String getActiveCarquois(){ return active_carquois; }
+    public String getActiveCarquois(){ return activeCarquois; }
 
 }

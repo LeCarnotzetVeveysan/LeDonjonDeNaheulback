@@ -3,10 +3,7 @@ package com.naheulback.nhlbck.controllers;
 import com.naheulback.nhlbck.Functions;
 import com.naheulback.nhlbck.Game;
 import com.naheulback.nhlbck.LoadScene;
-import com.naheulback.nhlbck.classes.Enemy;
-import com.naheulback.nhlbck.classes.Grimoire;
-import com.naheulback.nhlbck.classes.Hero;
-import com.naheulback.nhlbck.classes.Weapon;
+import com.naheulback.nhlbck.classes.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -36,11 +33,14 @@ public class SimpleFloorController {
     @FXML
     private ImageView activeHeroIV, hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV;
     @FXML
-    private ImageView activeHeroHPBarIV, hero1HPBarIV, hero2HPBarIV, hero3HPBarIV, hero4HPBarIV, hero5HPBarIV,hero6HPBarIV;
+    private ImageView activeHeroHPBarIV, activeHeroManaBarIV, hero1HPBarIV, hero2HPBarIV, hero3HPBarIV, hero4HPBarIV, hero5HPBarIV,hero6HPBarIV;
     @FXML
-    private Label activeHeroHPBarLB, hero1HPBarLB, hero2HPBarLB, hero3HPBarLB, hero4HPBarLB, hero5HPBarLB, hero6HPBarLB;
-    private ArrayList<ImageView> heroHPBarivs;
-    private ArrayList<Label> heroHPBarlbls;
+    private Label activeHeroHPBarLB, activeHeroManaBarLB, hero1HPBarLB, hero2HPBarLB, hero3HPBarLB, hero4HPBarLB, hero5HPBarLB, hero6HPBarLB;
+    private ArrayList<ImageView> heroHPBarivs, heroManaIVs;
+    private ArrayList<Label> heroHPBarlbls, heroManaLabels;
+
+    @FXML
+    private Label flechesCountLB;
 
     @FXML
     private ImageView activeEnemyIV, enemy1IV, enemy2IV, enemy3IV, enemy4IV, enemy5IV, enemy6IV;
@@ -64,9 +64,14 @@ public class SimpleFloorController {
     private int currentInventoryItem;
 
     @FXML
+    private ImageView hero1ManaBarIV, hero2ManaBarIV, hero3ManaBarIV, hero4ManaBarIV, hero5ManaBarIV, hero6ManaBarIV;
+    @FXML
+    private Label hero1ManaBarLB, hero2ManaBarLB, hero3ManaBarLB, hero4ManaBarLB, hero5ManaBarLB, hero6ManaBarLB;
+
+    @FXML
     private HBox actionButtonHB;
     @FXML
-    private ImageView mainActionButtonIV, secondaryActionButtonIV;
+    private ImageView mainActionButtonIV, secondaryActionButtonIV, thirdActionButtonIV;
     @FXML
     private Button nextFloorButton;
 
@@ -80,6 +85,9 @@ public class SimpleFloorController {
         heroIVs = new ArrayList<>(Arrays.asList(hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV));
         heroHPBarivs = new ArrayList<>(Arrays.asList(hero1HPBarIV, hero2HPBarIV, hero3HPBarIV, hero4HPBarIV, hero5HPBarIV,hero6HPBarIV));
         heroHPBarlbls = new ArrayList<>(Arrays.asList(hero1HPBarLB, hero2HPBarLB, hero3HPBarLB, hero4HPBarLB, hero5HPBarLB, hero6HPBarLB));
+        heroManaIVs = new ArrayList<>(Arrays.asList(hero1ManaBarIV, hero2ManaBarIV, hero3ManaBarIV, hero4ManaBarIV, hero5ManaBarIV, hero6ManaBarIV));
+        heroManaLabels = new ArrayList<>(Arrays.asList(hero1ManaBarLB, hero2ManaBarLB, hero3ManaBarLB, hero4ManaBarLB, hero5ManaBarLB, hero6ManaBarLB));
+
 
         throwableWeapons = new ArrayList<>();
         throwableWeaponIVs = new ArrayList<>(Arrays.asList(throwableWeapon1IV, throwableWeapon2IV, throwableWeapon3IV, throwableWeapon4IV, throwableWeapon5IV, throwableWeapon6IV));
@@ -106,9 +114,10 @@ public class SimpleFloorController {
         Functions.setEnemyHPBars(livingEnemies, enemyHPBarivs, enemyHPBarlbls);
         Functions.setEnemyHPBars(new ArrayList<>(Arrays.asList(activeEnemy)),new ArrayList<>(Arrays.asList(activeEnemyHPBarIV)), new ArrayList<>(Arrays.asList(activeEnemyHPBarLB)));
         Functions.setCombatHeroImages(livingHeroes, heroIVs, activeHero, activeHeroIV);
-        Functions.setHeroHPBars(livingHeroes, heroHPBarivs, heroHPBarlbls);
-        Functions.setHeroHPBars(new ArrayList<>(Arrays.asList(activeHero)),new ArrayList<>(Arrays.asList(activeHeroHPBarIV)), new ArrayList<>(Arrays.asList(activeHeroHPBarLB)));
+        Functions.setHeroHPBars(livingHeroes, heroHPBarivs, heroHPBarlbls, heroManaIVs,heroManaLabels );
+        Functions.setHeroHPBars(new ArrayList<>(Arrays.asList(activeHero)),new ArrayList<>(Arrays.asList(activeHeroHPBarIV)), new ArrayList<>(Arrays.asList(activeHeroHPBarLB)),new ArrayList<>(Arrays.asList(activeHeroManaBarIV)), new ArrayList<>(Arrays.asList(activeHeroManaBarLB)));
         Functions.setThrowableWeaponImages(throwableWeapons, throwableWeaponIVs);
+        updateActionButtons();
     }
 
     private void postCombatCheck() throws IOException {
@@ -162,6 +171,10 @@ public class SimpleFloorController {
     public void updateActionButtons() throws FileNotFoundException {
 
         if(!(activeHero == null)) {
+
+            flechesCountLB.setText("");
+            Functions.setImage(thirdActionButtonIV, "otherImages", "speech_bubble");
+
             if (!(activeHero.getMainWeapon() == null)) {
                 Functions.setImage(mainActionButtonIV, "armouryImages", activeHero.getMainWeapon().getSlug());
             } else {
@@ -174,8 +187,35 @@ public class SimpleFloorController {
                 Functions.setImage(secondaryActionButtonIV, "combatImages", "fists");
             }
 
+            if ((activeHero.getType().equals("elfe"))) {
+
+                switch (activeHero.getActiveCarquois()){
+                    case "":
+                        flechesCountLB.setText("");
+                        break;
+                    case "carquois_base":
+                        Functions.setImage(secondaryActionButtonIV, "armouryImages", "fleche_base");
+                        flechesCountLB.setText(String.valueOf(((Elfe) activeHero).getFleches(1)));
+                        break;
+                    case "carquois_qualité":
+                        Functions.setImage(secondaryActionButtonIV, "armouryImages", "fleche_qualité");
+                        flechesCountLB.setText(String.valueOf(((Elfe) activeHero).getFleches(2)));
+                        break;
+                    case "carquois_sylvain":
+                        Functions.setImage(secondaryActionButtonIV, "armouryImages", "fleche_sylvaine");
+                        flechesCountLB.setText(String.valueOf(((Elfe) activeHero).getFleches(3)));
+                        break;
+                    }
+            }
 
             if ((activeHero.getType().equals("mage")) || (activeHero.getType().equals("priestess"))) {
+
+                if(!(activeHero.getFirstSpell() == null)){
+                    Functions.setImage(secondaryActionButtonIV, "combatImages", activeHero.getFirstSpell().getSlug());
+                }
+                if(!(activeHero.getSecondarySpell() == null)){
+                    Functions.setImage(thirdActionButtonIV, "combatImages", activeHero.getSecondarySpell().getSlug());
+                }
 
             }
         }
@@ -183,6 +223,7 @@ public class SimpleFloorController {
 
     public void onActiveHeroClicked() throws FileNotFoundException {
         if(!(activeHero == null)){
+            System.out.println("active");
             actionButtonHB.setDisable(false);
             actionButtonHB.setVisible(true);
             updateActionButtons();
@@ -191,25 +232,33 @@ public class SimpleFloorController {
 
     public void onHeroClicked() throws FileNotFoundException {
 
-        if(!livingHeroSlugs.get(currentHeroIndex).equals("empty")) {
-            if(!(activeHeroIndex == -1)) {
-                if(!(activeHero == null)){
-                    livingHeroes.set(activeHeroIndex, activeHero);
-                    livingHeroSlugs.set(activeHeroIndex, activeHero.getSlug());
+        if(currentHeroIndex <= livingHeroes.size() - 1) {
+            if (!(livingHeroes.get(currentHeroIndex) == null)) {
+                if (!(activeHeroIndex == -1)) {
+                    if (!(activeHero == null)) {
+                        livingHeroes.set(activeHeroIndex, activeHero);
+                        livingHeroSlugs.set(activeHeroIndex, activeHero.getSlug());
+                    }
+
                 }
+                activeHeroIndex = currentHeroIndex;
+                activeHero = livingHeroes.get(currentHeroIndex);
+                livingHeroes.set(currentHeroIndex, null);
+                livingHeroSlugs.set(currentHeroIndex, "empty");
+                actionButtonHB.setDisable(false);
+                actionButtonHB.setVisible(true);
+                inventorySP.setDisable(false);
+                inventorySP.setVisible(true);
+                Functions.setInventoryImages(activeHero.getInventory(), inventoryIVs);
+                updateActionButtons();
 
+            } else {
+                System.out.println("no selectable hero");
+                actionButtonHB.setDisable(true);
+                actionButtonHB.setVisible(false);
+                inventorySP.setDisable(true);
+                inventorySP.setVisible(false);
             }
-            activeHeroIndex = currentHeroIndex;
-            activeHero = livingHeroes.get(currentHeroIndex);
-            livingHeroes.set(currentHeroIndex, null);
-            livingHeroSlugs.set(currentHeroIndex, "empty");
-            actionButtonHB.setDisable(false);
-            actionButtonHB.setVisible(true);
-            inventorySP.setDisable(false);
-            inventorySP.setVisible(true);
-            Functions.setInventoryImages(activeHero.getInventory(), inventoryIVs);
-            updateActionButtons();
-
         } else {
             System.out.println("no selectable hero");
             actionButtonHB.setDisable(true);
@@ -241,20 +290,21 @@ public class SimpleFloorController {
 
     public void onMainWeaponButtonClicked() throws IOException {
         if(!(activeEnemy == null)) {
-            activeEnemy.removeHealth(25);
+            int damage = 0;
+
+            int weaponDamage = activeHero.getMainWeapon().getPower();
+
+            activeEnemy.removeHealth(damage);
             if(activeEnemy.getHealth() <= 0){
                 activeEnemy.setIsAlive(false);
             }
             if(!activeEnemy.getIsAlive()){
-
                 livingEnemies.set(activeEnemyIndex, activeEnemy);
                 Functions.setImage(enemyIVs.get(activeEnemyIndex),"combatImages",activeEnemy.getSlug() + "_dead" );
                 activeEnemy = null;
-
                 if(Game.getLevel() == 1){
                     Functions.setEnemyStateInFile(1,activeEnemyIndex,"false");
                 }
-
             }
 
         } else {
@@ -308,7 +358,7 @@ public class SimpleFloorController {
         }
     }
 
-    public void onSlotClicked() {
+    public void onSlotClicked() throws FileNotFoundException {
         if(!(activeHero == null)){
             if (activeHero.getInventory().get(currentInventoryItem).getSlug().contains("grimoire")) {
                 System.out.println("C'est un grimoire");
@@ -319,8 +369,10 @@ public class SimpleFloorController {
             if(activeHero.getInventory().get(currentInventoryItem).getSlug().contains("carquois")){
                 System.out.println("C'est un carquois");
                 activeHero.setActiveCarquois(activeHero.getInventory().get(currentInventoryItem).getSlug());
+
             }
         }
+        updateActionButtons();
 
     }
 

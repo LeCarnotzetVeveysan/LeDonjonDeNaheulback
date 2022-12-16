@@ -1,0 +1,6 @@
+type:fleche
+name:Flèche sylvaine
+cost:10
+stat:12
+effet:+ X atk
+desc:Une flèche de qualité

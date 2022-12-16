@@ -21,4 +21,8 @@ public class Elfe extends Hero {
         return fleches[ type - 1 ];
     }
 
+    public void addFleches(int level){
+        fleches[level - 1] += 1;
+    }
+
 }

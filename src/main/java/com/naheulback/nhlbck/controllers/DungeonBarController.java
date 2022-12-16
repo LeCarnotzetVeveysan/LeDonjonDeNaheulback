@@ -79,11 +79,15 @@ public class DungeonBarController {
     private ImageView hero1HPBarIV, hero2HPBarIV, hero3HPBarIV, hero4HPBarIV, hero5HPBarIV, hero6HPBarIV;
     @FXML
     private Label hero1HPBarLB, hero2HPBarLB, hero3HPBarLB, hero4HPBarLB, hero5HPBarLB, hero6HPBarLB;
+    @FXML
+    private ImageView hero1ManaBarIV, hero2ManaBarIV, hero3ManaBarIV, hero4ManaBarIV, hero5ManaBarIV, hero6ManaBarIV;
+    @FXML
+    private Label hero1ManaBarLB, hero2ManaBarLB, hero3ManaBarLB, hero4ManaBarLB, hero5ManaBarLB, hero6ManaBarLB;
     private ArrayList<ImageView> itemImages;
-    private ArrayList<Label> itemLabels, heroHPLabels;
+    private ArrayList<Label> itemLabels, heroHPLabels, heroManaLabels;
     private ArrayList<VBox> barItems;
     private ArrayList<StackPane> itemStackPanes;
-    private ArrayList<ImageView> heroImages,  heroHPIVs;
+    private ArrayList<ImageView> heroImages,  heroHPIVs, heroManaIVs;
     ArrayList<Hero> livingHeroes;
 
     private String currentHeroName;
@@ -109,6 +113,8 @@ public class DungeonBarController {
         heroImages = new ArrayList(Arrays.asList(hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV));
         heroHPIVs = new ArrayList(Arrays.asList(hero1HPBarIV, hero2HPBarIV, hero3HPBarIV, hero4HPBarIV, hero5HPBarIV, hero6HPBarIV));
         heroHPLabels = new ArrayList(Arrays.asList(hero1HPBarLB, hero2HPBarLB, hero3HPBarLB, hero4HPBarLB, hero5HPBarLB, hero6HPBarLB));
+        heroManaIVs = new ArrayList<>(Arrays.asList(hero1ManaBarIV, hero2ManaBarIV, hero3ManaBarIV, hero4ManaBarIV, hero5ManaBarIV, hero6ManaBarIV));
+        heroManaLabels = new ArrayList<>(Arrays.asList(hero1ManaBarLB, hero2ManaBarLB, hero3ManaBarLB, hero4ManaBarLB, hero5ManaBarLB, hero6ManaBarLB));
 
         for(StackPane sp : itemStackPanes){
             sp.setVisible(false);
@@ -119,7 +125,7 @@ public class DungeonBarController {
 
         livingHeroes = Game.getLivingHeroes();
         Functions.setBarImages(livingHeroes, heroImages);
-        Functions.setHeroHPBars(livingHeroes, heroHPIVs, heroHPLabels);
+        Functions.setHeroHPBars(livingHeroes, heroHPIVs, heroHPLabels, heroManaIVs, heroManaLabels);
 
         livingHeroSlugs = Game.getLivingHeroSlugs();
         coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
@@ -249,7 +255,7 @@ public class DungeonBarController {
                     }
                 }
 
-                setHeroHPBars(livingHeroes, heroHPIVs, heroHPLabels);
+                setHeroHPBars(livingHeroes, heroHPIVs, heroHPLabels, heroManaIVs, heroManaLabels);
                 coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
 
             } else {

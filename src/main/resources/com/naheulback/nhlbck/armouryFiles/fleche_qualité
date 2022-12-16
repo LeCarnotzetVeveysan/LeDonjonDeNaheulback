@@ -1,0 +1,6 @@
+type:fleche
+name:Flèche de qualité
+cost:2
+stat:5
+effet:+ X atk
+desc:Une flèche de qualité

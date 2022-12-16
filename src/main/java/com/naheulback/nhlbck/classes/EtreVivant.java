@@ -31,13 +31,13 @@ public abstract class EtreVivant {
         isAlive = toSet;
     }
 
-    public void addHealth(int inputHealth){
-        health += inputHealth;
+    public void addHealth(int amount){
+        health += amount;
         if (health > maxHealth){
             health = maxHealth;
         }
     }
-    public void removeHealth(int damage){
-        health -= damage;
+    public void removeHealth(int amount){
+        health -= amount;
     }
 }
