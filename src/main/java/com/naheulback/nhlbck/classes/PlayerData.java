@@ -6,12 +6,10 @@ import java.util.Arrays;
 public class PlayerData {
 
     private String teamName;
-
     private static ArrayList<Hero> livingHeroes;
     private static ArrayList<Hero> deadHeroes;
     private int[] currentLocation;
     private static double goldPieces;
-
 
     public PlayerData(){
 

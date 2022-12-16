@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import java.io.*;
 import java.util.*;
 
+import static com.naheulback.nhlbck.classes.GameData.getPictureType;
 import static java.lang.Math.ceil;
 
 public class Functions {
@@ -16,7 +17,7 @@ public class Functions {
     private static String resPath = "src/main/resources/com/naheulback/nhlbck/";
 
     public static void setImage(ImageView iv, String folder, String imageName) throws FileNotFoundException {
-        InputStream stream = new FileInputStream(resPath + folder + "/" + imageName + ".png");
+        InputStream stream = new FileInputStream(resPath + folder + getPictureType() + "/" + imageName + ".png");
         Image image = new Image(stream);
         iv.setImage(image);
     }

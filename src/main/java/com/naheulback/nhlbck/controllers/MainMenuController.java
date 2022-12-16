@@ -2,9 +2,13 @@ package com.naheulback.nhlbck.controllers;
 
 import com.naheulback.nhlbck.Functions;
 import com.naheulback.nhlbck.LoadScene;
+import com.naheulback.nhlbck.classes.GameData;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.RadioButton;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,11 +17,17 @@ import static com.naheulback.nhlbck.Functions.*;
 
 public class MainMenuController {
 
+    boolean menuVisible = false;
+    @FXML
+    private StackPane typeSoundSP, saveSP;
+    @FXML
+    private RadioButton alphaBtn, betaBtn, finalBtn;
     @FXML
     private ImageView newGameBtnIV;
 
+
     public void initialize() {
-        //System.out.println("Main menu entered");
+        updateMenuVisibility();
     }
     @FXML
     protected void onQuitButtonClick() {
@@ -47,5 +57,37 @@ public class MainMenuController {
     @FXML
     public void stoppedHovering() throws FileNotFoundException {
         Functions.setImage(newGameBtnIV, "menuImages", "newgame");
+    }
+
+    public void onAlphaBtnClk() {
+        GameData.setPictureType("alpha");
+        betaBtn.setSelected(false);
+        finalBtn.setSelected(false);
+    }
+
+    public void onBetaBtnClk() {
+        GameData.setPictureType("beta");
+        alphaBtn.setSelected(false);
+        finalBtn.setSelected(false);
+    }
+
+    public void onFinalBtnClick() {
+        GameData.setPictureType("final");
+        alphaBtn.setSelected(false);
+        betaBtn.setSelected(false);
+
+    }
+
+    public void onSettingsBtnClk() {
+        menuVisible = !menuVisible;
+        updateMenuVisibility();
+    }
+
+    private void updateMenuVisibility(){
+        typeSoundSP.setVisible(menuVisible);
+        typeSoundSP.setDisable(!menuVisible);
+        saveSP.setVisible(menuVisible);
+        saveSP.setDisable(!menuVisible);
+
     }
 }

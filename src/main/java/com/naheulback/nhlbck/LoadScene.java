@@ -1,5 +1,6 @@
 package com.naheulback.nhlbck;
 
+import com.naheulback.nhlbck.AppLaunch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -18,9 +19,9 @@ public class LoadScene {
 
     public static void changeScene(String fxmlToShow) throws IOException {
 
-        fxmlToShow += ".fxml";
+        String file = fxmlToShow + ".fxml";
 
-        FXMLLoader fxmlLoader = new FXMLLoader(AppLaunch.class.getResource(fxmlToShow));
+        FXMLLoader fxmlLoader = new FXMLLoader(AppLaunch.class.getResource(file));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
 
         principalStage.setTitle("Le Donjon de Naheulback v1.0");

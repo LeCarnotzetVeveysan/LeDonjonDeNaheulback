@@ -1,5 +1,6 @@
 package com.naheulback.nhlbck;
 
+import com.naheulback.nhlbck.Game;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,7 +19,6 @@ public class Main {
 
         Game mainGame = new Game(mainStage);
         mainGame.main();
-        //implémenter jeu avec images alpha et bonnes images
 
     }
 

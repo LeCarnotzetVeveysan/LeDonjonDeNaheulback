@@ -1,6 +1,5 @@
 package com.naheulback.nhlbck;
 
-import com.naheulback.nhlbck.classes.Enemy;
 import com.naheulback.nhlbck.classes.GameData;
 import com.naheulback.nhlbck.classes.Hero;
 import com.naheulback.nhlbck.classes.PlayerData;
@@ -8,10 +7,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Game {
-
     private Stage mainStage;
     private static GameData gameData;
     private static PlayerData playerData;
