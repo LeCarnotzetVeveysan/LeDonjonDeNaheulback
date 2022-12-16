@@ -12,10 +12,12 @@ public abstract class Hero extends EtreVivant {
     private int attack;
     private int magic;
     private int mana;
-    private int speed;
     private Weapon mainWeapon;
     private Weapon throwableWeapon;
     private boolean weaponThrowed;
+    private Spell mainSpell;
+    private Spell secondarySpell;
+    private String active_carquois;
     private HeadItem headItem;
     private BodyItem bodyItem;
     private ArrayList<Item> inventory;
@@ -32,10 +34,11 @@ public abstract class Hero extends EtreVivant {
         attack = 100;
         magic = 100;
         mana = 100;
-        speed = 100;
         mainWeapon = null;
         throwableWeapon = null;
         weaponThrowed= false;
+        mainSpell = null;
+        secondarySpell = null;
         inventory = new ArrayList<>();
     }
 
@@ -99,9 +102,32 @@ public abstract class Hero extends EtreVivant {
         Grimoire grim = new Grimoire(slug, name, level);
         inventory.add(grim);
     }
-
-
     public ArrayList<Item> getInventory() {
         return inventory;
     }
+
+    public void addItem(Item i){
+        inventory.add(i);
+    }
+
+    public Spell getFirstSpell(){
+        return mainSpell;
+    }
+
+    public void setMainSpell(Spell inputSpell){
+        mainSpell = inputSpell;
+    }
+
+    public void setSecondarySpell(Spell inputSpell){
+        secondarySpell = inputSpell;
+    }
+
+    public Spell getSecondarySpell(){
+        return secondarySpell;
+    }
+
+    public void setActiveCarquois(String carquois){ active_carquois = carquois; }
+
+    public String getActiveCarquois(){ return active_carquois; }
+
 }

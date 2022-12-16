@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.nhlbck.controllers.SimpleFloorController">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.nhlbck.controllers.SimpleFloorController">
    <children>
       <Button layoutX="14.0" layoutY="624.0" mnemonicParsing="false" onMouseClicked="#onBackButtonClicked" prefHeight="61.0" prefWidth="92.0" text="Back" />
       <Button fx:id="nextFloorButton" disable="true" layoutX="421.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onNextButtonClicked" prefHeight="98.0" prefWidth="158.0" text="Next floor" />
@@ -219,15 +211,15 @@
                <children>
                   <Button mnemonicParsing="false" onMouseClicked="#onMainWeaponButtonClicked" prefHeight="58.0" prefWidth="121.0">
                      <graphic>
-                        <ImageView fitHeight="69.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="mainActionButtonIV" fitHeight="69.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </Button>
                   <Button mnemonicParsing="false" onMouseClicked="#onThrowableWeaponButtonClicked">
                      <graphic>
-                        <ImageView fitHeight="69.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="secondaryActionButtonIV" fitHeight="69.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#onInventoryButtonClicked">
+                  <Button mnemonicParsing="false" onMouseClicked="#onThirdActionButtonClicked">
                      <graphic>
                         <ImageView fitHeight="69.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
@@ -254,16 +246,16 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fx:id="invSlot1IV" fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="invSlot2IV" fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="invSlot3IV" fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="invSlot4IV" fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="invSlot5IV" fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="invSlot6IV" fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="invSlot7IV" fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="invSlot8IV" fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="invSlot9IV" fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="invSlot10IV" fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="invSlot1IV" fitHeight="45.0" fitWidth="60.0" onMouseClicked="#onSlotClicked" onMouseEntered="#onSlot1Hover" onMouseExited="#onSlot1EndHover" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="invSlot2IV" fitHeight="45.0" fitWidth="60.0" onMouseClicked="#onSlotClicked" onMouseEntered="#onSlot2Hover" onMouseExited="#onSlot2EndHover" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="invSlot3IV" fitHeight="45.0" fitWidth="60.0" onMouseClicked="#onSlotClicked" onMouseEntered="#onSlot3Hover" onMouseExited="#onSlot3EndHover" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="invSlot4IV" fitHeight="45.0" fitWidth="60.0" onMouseClicked="#onSlotClicked" onMouseEntered="#onSlot4Hover" onMouseExited="#onSlot4EndHover" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="invSlot5IV" fitHeight="45.0" fitWidth="60.0" onMouseClicked="#onSlotClicked" onMouseEntered="#onSlot5Hover" onMouseExited="#onSlot5EndHover" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="invSlot6IV" fitHeight="45.0" fitWidth="60.0" onMouseClicked="#onSlotClicked" onMouseEntered="#onSlot6Hover" onMouseExited="#onSlot6EndHover" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="invSlot7IV" fitHeight="45.0" fitWidth="60.0" onMouseClicked="#onSlotClicked" onMouseEntered="#onSlot7Hover" onMouseExited="#onSlot7EndHover" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="invSlot8IV" fitHeight="45.0" fitWidth="60.0" onMouseClicked="#onSlotClicked" onMouseEntered="#onSlot8Hover" onMouseExited="#onSlot8EndHover" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="invSlot9IV" fitHeight="45.0" fitWidth="60.0" onMouseClicked="#onSlotClicked" onMouseEntered="#onSlot9Hover" onMouseExited="#onSlot9EndHover" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="invSlot10IV" fitHeight="45.0" fitWidth="60.0" onMouseClicked="#onSlotClicked" onMouseEntered="#onSlot10Hover" onMouseExited="#onSlot10EndHover" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                </children>
