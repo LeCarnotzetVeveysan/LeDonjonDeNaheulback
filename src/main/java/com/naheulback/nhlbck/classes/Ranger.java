@@ -1,8 +1,14 @@
 package com.naheulback.nhlbck.classes;
 
+import java.util.HashMap;
+
 public class Ranger extends Hero {
-    
-    public Ranger(String slug, String name, int inHealth, int inMaxHealth, int inAttack, int inResistance, Boolean inIsAlive){
-        super(slug, name, inHealth, inMaxHealth, inAttack, inResistance, inIsAlive, "ranger");
+
+    public Ranger(HashMap<String, String> inDict) {
+        super(inDict.get("slug"), inDict.get("name"), Integer.parseInt(inDict.get("health")),
+                Integer.parseInt(inDict.get("maxHealth")), Integer.parseInt(inDict.get("attack")),
+                Integer.parseInt(inDict.get("magic")), Integer.parseInt(inDict.get("resistance")),
+                true, "ranger");
+
     }
 }

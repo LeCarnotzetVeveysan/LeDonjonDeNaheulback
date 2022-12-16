@@ -1,22 +1,24 @@
 package com.naheulback.nhlbck.classes;
 
-public abstract class EtreVivant {
+public abstract class LivingThing {
 
     private String slug;
     private String name;
     private int health;
     private int maxHealth;
     private int attack;
+    private int magic;
     private int resistance;
     private boolean isAlive;
     
 
-    protected EtreVivant(String inSlug, String inName, int inHealth, int inMaxHealth, int inAttack, int inResistance, Boolean inIsAlive) {
+    protected LivingThing(String inSlug, String inName, int inHealth, int inMaxHealth, int inAttack, int inMagic, int inResistance, Boolean inIsAlive) {
         slug = inSlug;
         name = inName;
         health = inHealth;
         maxHealth = inMaxHealth;
         attack = inAttack;
+        magic = inMagic;
         resistance = inResistance;
         isAlive = inIsAlive;
     }
@@ -30,6 +32,8 @@ public abstract class EtreVivant {
     public int getMaxHealth(){ return maxHealth; }
 
     public int getBaseAttack() { return attack; }
+
+    public int getBaseMagic() { return magic; }
     
     public int getBaseResistance() { return resistance; }
 

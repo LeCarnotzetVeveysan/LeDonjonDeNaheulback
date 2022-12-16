@@ -1,9 +1,9 @@
 package com.naheulback.nhlbck.classes;
 
-public abstract class Enemy extends EtreVivant {
+public abstract class Enemy extends LivingThing {
     
-    public Enemy(String inSlug, String inName, int inHealth, int inMaxHealth, int inAttack, int inResistance, Boolean inIsAlive){
-        super(inSlug, inName, inHealth, inMaxHealth,inAttack,inResistance, inIsAlive);
+    public Enemy(String inSlug, String inName, int inHealth, int inMaxHealth, int inAttack, int inMagic, int inResistance, Boolean inIsAlive){
+        super(inSlug, inName, inHealth, inMaxHealth,inAttack, inMagic, inResistance, inIsAlive);
     }
 
     public double getResistanceMultiplier(){

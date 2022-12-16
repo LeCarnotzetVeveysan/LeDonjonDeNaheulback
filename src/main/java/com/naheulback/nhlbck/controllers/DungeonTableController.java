@@ -74,7 +74,7 @@ public class DungeonTableController {
     private ImageView sitButton6IV;
     @FXML
     private Label coinCountLB;
-    private HashMap<String,String> hD;
+    private HashMap<String,String> heroDict;
     private ArrayList<Hero> livingHeroes;
 
 
@@ -112,26 +112,26 @@ public class DungeonTableController {
     }
 
     public void onYouButtonClicked() {
-        heroSpeakLB.setText(hD.get("desc") + " " + hD.get("level"));
+        heroSpeakLB.setText(heroDict.get("desc") + " " + heroDict.get("level"));
     }
 
     public void onQuoteButtonClicked() {
-        heroSpeakLB.setText(hD.get("quote"));
+        heroSpeakLB.setText(heroDict.get("quote"));
     }
 
     public void onJokeButtonClicked() {
-        heroSpeakLB.setText(hD.get("joke"));
+        heroSpeakLB.setText(heroDict.get("joke"));
     }
 
     public void onRecruitPriceButtonClicked() {
-        heroSpeakLB.setText("Je coûte " + hD.get("cost") + " pièces d'or à recruter.");
+        heroSpeakLB.setText("Je coûte " + heroDict.get("cost") + " pièces d'or à recruter.");
     }
 
     public void onRecruitButtonClicked() throws IOException {
 
         if(Game.getNumberOfLivingHeroes() < Game.getMaxHeroes()) {
 
-            int cost = Integer.parseInt(hD.get("cost"));
+            int cost = Integer.parseInt(heroDict.get("cost"));
             ArrayList<String> slugList = getTableSlugList();
 
             if (Game.hasEnoughGoldPieces(cost)) {
@@ -139,43 +139,16 @@ public class DungeonTableController {
                 Hero toAdd = null;
                 slugList.set(Game.getSpeakingHero(), "empty");
 
-                switch (hD.get("class")) {
-                    case "warrior" -> {
-                        toAdd = new Warrior(hD.get("slug"), hD.get("name"), Integer.parseInt(hD.get("health")), Integer.parseInt(hD.get("maxHealth")),true);
-                        updateTableFile(slugList);
-                        setTableImages(heroImages);
-                    }
-                    case "nain" -> {
-                        toAdd = new Nain(hD.get("slug"), hD.get("name"), Integer.parseInt(hD.get("health")), Integer.parseInt(hD.get("maxHealth")),true);
-                        updateTableFile(slugList);
-                        setTableImages(heroImages);
-                    }
-                    case "mage" -> {
-                        toAdd = new Mage(hD.get("slug"), hD.get("name"), Integer.parseInt(hD.get("health")), Integer.parseInt(hD.get("maxHealth")),true);
-                        updateTableFile(slugList);
-                        setTableImages(heroImages);
-                    }
-                    case "elfe" -> {
-                        toAdd = new Elfe(hD.get("slug"), hD.get("name"), Integer.parseInt(hD.get("health")), Integer.parseInt(hD.get("maxHealth")),true);
-                        updateTableFile(slugList);
-                        setTableImages(heroImages);
-                    }
-                    case "ogre" -> {
-                        toAdd = new Ogre(hD.get("slug"), hD.get("name"), Integer.parseInt(hD.get("health")), Integer.parseInt(hD.get("maxHealth")),true);
-                        updateTableFile(slugList);
-                        setTableImages(heroImages);
-                    }
-                    case "ranger" -> {
-                        toAdd = new Ranger(hD.get("slug"), hD.get("name"), Integer.parseInt(hD.get("health")), Integer.parseInt(hD.get("maxHealth")),true);
-                        updateTableFile(slugList);
-                        setTableImages(heroImages);
-                    }
-                    case "priestess" -> {
-                        toAdd = new Pretresse(hD.get("slug"), hD.get("name"), Integer.parseInt(hD.get("health")), Integer.parseInt(hD.get("maxHealth")),true);
-                        updateTableFile(slugList);
-                        setTableImages(heroImages);
-                    }
+                switch (heroDict.get("class")) {
+                    case "warrior" -> toAdd = new Warrior(heroDict);
+                    case "nain" -> toAdd = new Nain(heroDict);
+                    case "mage" -> toAdd = new Mage(heroDict);
+                    case "elfe" -> toAdd = new Elfe(heroDict);
+                    case "ogre" -> toAdd = new Ogre(heroDict);
+                    case "ranger" -> toAdd = new Ranger(heroDict);
                 }
+                updateTableFile(slugList);
+                setTableImages(heroImages);
                 Game.recruitHero(toAdd);
                 Game.takeGoldPieces(cost);
                 coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
@@ -271,7 +244,7 @@ public class DungeonTableController {
             sitButtonsHB.setVisible(false);
             sitButtonsHB.setDisable(true);
             copyFile("heroFiles", getTableSlugList().get(Game.getSpeakingHero()), "heroToLoad");
-            hD = getDictFromFile("hero", "heroToLoad");
+            heroDict = getDictFromFile("hero", "heroToLoad");
         } else {
             interactionButtonsHB.setVisible(false);
             interactionButtonsHB.setDisable(true);

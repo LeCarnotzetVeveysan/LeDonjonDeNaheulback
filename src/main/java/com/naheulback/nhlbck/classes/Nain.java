@@ -1,12 +1,12 @@
 package com.naheulback.nhlbck.classes;
 
+import java.util.HashMap;
+
 public class Nain extends Hero {
-
-    private String saySomething;
-    public Nain(String slug, String name, int inputHealth, int inputMaxHealth, Boolean inputIsAlive){
-
-        super(slug, name, inputHealth, inputMaxHealth, inputIsAlive, "nain");
-        saySomething = "J'aime pas les elfes";
-
+    public Nain(HashMap<String, String> inDict) {
+        super(inDict.get("slug"), inDict.get("name"), Integer.parseInt(inDict.get("health")),
+                Integer.parseInt(inDict.get("maxHealth")), Integer.parseInt(inDict.get("attack")),
+                Integer.parseInt(inDict.get("magic")), Integer.parseInt(inDict.get("resistance")),
+                true, "nain");
     }
 }

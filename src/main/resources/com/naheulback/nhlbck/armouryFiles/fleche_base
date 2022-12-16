@@ -1,6 +1,6 @@
 type:fleche
 name:Flèche de base
 cost:0.5
-stat:2
+stat:5
 effet:+ X atk
 desc:Une flèche de base

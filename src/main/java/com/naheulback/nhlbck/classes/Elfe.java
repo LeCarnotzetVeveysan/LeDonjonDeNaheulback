@@ -1,28 +1,54 @@
 package com.naheulback.nhlbck.classes;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+
 public class Elfe extends Hero {
 
-    private String saySomething;
-    private int[] fleches;
+    private Carquois carquois;
 
-    public Elfe(String slug, String name, int inputHealth, int inputMaxHealth, Boolean inputIsAlive){
-        super(slug, name, inputHealth, inputMaxHealth, inputIsAlive, "elfe");
-        saySomething = "J'aime pas les nains !";
-        Carquois carquoisBase = new Carquois("carquois_base", "Carquois de flêches de base", 1);
-        Carquois carquoisQualité = new Carquois("carquois_qualité", "Carquois de flêches de qualité", 1);
-        Carquois carquoisSylvain = new Carquois("carquois_sylvain", "Carquois de flêches d'elfes sylvains", 1);
+    public Elfe(HashMap<String, String> inDict){
+        super(inDict.get("slug"), inDict.get("name"), Integer.parseInt(inDict.get("health")),
+                Integer.parseInt(inDict.get("maxHealth")), Integer.parseInt(inDict.get("attack")),
+                Integer.parseInt(inDict.get("magic")), Integer.parseInt(inDict.get("resistance")),
+                true, "elfe");
+
+        Carquois carquoisBase = new Carquois("carquois_base", "Carquois de flèches de base", 1);
         super.addItem(carquoisBase);
-        super.addItem(carquoisQualité);
-        super.addItem(carquoisSylvain);
-        fleches = new int[]{0, 0, 0};
     }
 
-    public int getFleches(int type){
-        return fleches[ type - 1 ];
+    public void setCarquois(int level){
+        ArrayList<String> inventorySlugs = getInventorySlugs();
+        String type = "";
+        switch (level){
+            case 1 -> type = "carquois_base";
+            case 2 -> type = "carquois_qualité";
+            case 3 -> type = "carquois_sylvain";
+        }
+        int index = inventorySlugs.indexOf(type);
+        carquois = (Carquois) super.getInventory().get(index);
     }
 
-    public void addFleches(int level){
-        fleches[level - 1] += 1;
+    public Carquois getCarquois(){ return carquois; }
+
+    public void setFleches(int level, int amount){
+        ArrayList<String> inventorySlugs = getInventorySlugs();
+        String type = "";
+        switch (level){
+            case 1 -> type = "carquois_base";
+            case 2 -> type = "carquois_qualité";
+            case 3 -> type = "carquois_sylvain";
+        }
+        if(!type.equals("")) {
+            int index = inventorySlugs.indexOf(type);
+            ((Carquois) super.getInventory().get(index)).setFleches(amount);
+        } else {
+            System.out.println("Tu n'as pas le carquois pour acheter une telle flèche");
+        }
     }
+
+
+
 
 }

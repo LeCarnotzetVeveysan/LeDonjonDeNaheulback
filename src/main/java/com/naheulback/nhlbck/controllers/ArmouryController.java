@@ -21,7 +21,6 @@ import java.util.Random;
 
 import static com.naheulback.nhlbck.Functions.getDictFromFile;
 import static com.naheulback.nhlbck.Functions.setImage;
-import static java.lang.Math.floor;
 import static java.lang.Math.round;
 
 public class ArmouryController {
@@ -31,7 +30,7 @@ public class ArmouryController {
     @FXML
     private StackPane armouryItem1SP, armouryItem2SP, armouryItem3SP, armouryItem4SP, armouryItem5SP;
     @FXML
-    private ImageView armouryItem1ButtonIV, armouryItem2ButtonIV, armouryItem3ButtonIV, armouryItem4ButtonIV, armouryItem5ButtonIV;
+    private ImageView armouryItem1BtnIV, armouryItem2BtnIV, armouryItem3BtnIV, armouryItem4BtnIV, armouryItem5BtnIV;
     @FXML
     private ImageView armourymanIV;
     @FXML
@@ -80,7 +79,7 @@ public class ArmouryController {
 
         armouryItemsHB.setDisable(true);
         armouryItemsHB.setVisible(false);
-        itemImages = new ArrayList<>(Arrays.asList(armouryItem1ButtonIV, armouryItem2ButtonIV, armouryItem3ButtonIV, armouryItem4ButtonIV, armouryItem5ButtonIV));
+        itemImages = new ArrayList<>(Arrays.asList(armouryItem1BtnIV, armouryItem2BtnIV, armouryItem3BtnIV, armouryItem4BtnIV, armouryItem5BtnIV));
         itemLabels = new ArrayList<>(Arrays.asList(armouryItem1Label, armouryItem2Label, armouryItem3Label, armouryItem4Label, armouryItem5Label));
         itemStackPanes = new ArrayList<>(Arrays.asList(armouryItem1SP, armouryItem2SP, armouryItem3SP, armouryItem4SP, armouryItem5SP));
         heroImages = new ArrayList(Arrays.asList(hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV));
@@ -112,7 +111,7 @@ public class ArmouryController {
 
     }
 
-    public void onBackButtonClicked() throws IOException { LoadScene.changeScene("dungeon-entry-hall"); }
+    public void onBackBtnClk() throws IOException { LoadScene.changeScene("dungeon-entry-hall"); }
 
     private void loadArmouryItems(String type) throws IOException {
         armouryItemsHB.getChildren().clear();
@@ -153,8 +152,6 @@ public class ArmouryController {
                     toDisplay += "Effet: " + effet[0] + " " + stat + " " + effet[2] + "\n";
                 }
 
-
-
                 toDisplay += "Coût: " + cout + " PO" + "\n";
                 toDisplay += desc;
 
@@ -167,7 +164,7 @@ public class ArmouryController {
 
     @FXML
     void onHeroClicked() throws IOException {
-        if (!currentHeroName.equals("empty")) {
+        if(currentHeroIndex <= livingHeroes.size() - 1){
             armourymanSpeakIV.setVisible(false);
             armourymanSpeakLbl.setText("");
             curHero = Game.getLivingHeroes().get(currentHeroIndex);
@@ -183,20 +180,20 @@ public class ArmouryController {
             };
             armourymanIV.setLayoutX(25 + armourymanX);
             loadArmouryItems(curHero.getType());
-
             Functions.setHeroRecap(curHero, heroRecapLabels, heroRecapIVs);
-
             heroRecapSP.setVisible(true);
             heroRecapSP.setDisable(false);
         } else {
+            System.out.println("test");
             armourymanIV.setLayoutX(25);
             heroRecapSP.setVisible(false);
             heroRecapSP.setDisable(true);
         }
     }
 
+
     @FXML
-    void onItemButtonClicked() throws IOException {
+    void onItemBtnClk() throws IOException {
 
         String[] item = itemList.get(currentItem).split("\\|");
         String itemSlug = item[0];
@@ -234,7 +231,7 @@ public class ArmouryController {
                         curHero.addItem(grim);
                         break;
                     case "fleche":
-                        ((Elfe) curHero).addFleches(level);
+                        ((Elfe) curHero).setFleches(level, 1);
                         break;
                 }
 
@@ -260,57 +257,57 @@ public class ArmouryController {
     }
 
     @FXML
-    void onItem1ButtonHovering() {
+    void onItem1BtnHov() {
         currentItem = 0;
         itemStackPanes.get(0).setVisible(true);
     }
 
     @FXML
-    void onItem1StoppedButtonHovering() {
+    void onItem1BtnHovEnd() {
         itemStackPanes.get(0).setVisible(false);
     }
 
     @FXML
-    void onItem2ButtonHovering() {
+    void onItem2BtnHov() {
         currentItem = 1;
         itemStackPanes.get(1).setVisible(true);
     }
 
     @FXML
-    void onItem2StoppedButtonHovering() {
+    void onItem2BtnHovEnd() {
         itemStackPanes.get(1).setVisible(false);
     }
 
     @FXML
-    void onItem3ButtonHovering() {
+    void onItem3BtnHov() {
         currentItem = 2;
         itemStackPanes.get(2).setVisible(true);
     }
 
     @FXML
-    void onItem3StoppedButtonHovering() {
+    void onItem3BtnHovEnd() {
         itemStackPanes.get(2).setVisible(false);
     }
 
     @FXML
-    void onItem4ButtonHovering() {
+    void onItem4BtnHov() {
         currentItem = 3;
         itemStackPanes.get(3).setVisible(true);
     }
 
     @FXML
-    void onItem4StoppedButtonHovering() {
+    void onItem4BtnHovEnd() {
         itemStackPanes.get(3).setVisible(false);
     }
 
     @FXML
-    void onItem5ButtonHovering() {
+    void onItem5BtnHov() {
         currentItem = 4;
         itemStackPanes.get(4).setVisible(true);
     }
 
     @FXML
-    void onItem5StoppedButtonHovering() {
+    void onItem5BtnHovEnd() {
         itemStackPanes.get(4).setVisible(false);
     }
 
@@ -318,7 +315,6 @@ public class ArmouryController {
     void onHero1Hover() {
         currentHeroName = livingHeroSlugs.get(0);
         currentHeroIndex = 0;
-        //setImage
     }
 
     @FXML

@@ -1,13 +1,36 @@
 package com.naheulback.nhlbck.classes;
 
+import java.util.HashMap;
+
 public class Mage extends Hero {
 
-    private String saySomething;
-    private Grimoire grimoire1, grimoire2;
+    private Spell mainSpell;
+    private Spell secondarySpell;
 
-    public Mage(String slug, String name, int inputHealth, int inputMaxHealth, Boolean inputIsAlive){
-        super(slug, name, inputHealth, inputMaxHealth, inputIsAlive, "mage");
-        saySomething = "J'aime les ogres ;)";
+    public Mage(HashMap<String, String> inDict) {
+        super(inDict.get("slug"), inDict.get("name"), Integer.parseInt(inDict.get("health")),
+                Integer.parseInt(inDict.get("maxHealth")), Integer.parseInt(inDict.get("attack")),
+                Integer.parseInt(inDict.get("magic")), Integer.parseInt(inDict.get("resistance")),
+                true, "mage");
+
+        mainSpell = null;
+        secondarySpell = null;
+    }
+
+    public Spell getFirstSpell(){
+        return mainSpell;
+    }
+
+    public void setMainSpell(Spell inputSpell){
+        mainSpell = inputSpell;
+    }
+
+    public void setSecondarySpell(Spell inputSpell){
+        secondarySpell = inputSpell;
+    }
+
+    public Spell getSecondarySpell(){
+        return secondarySpell;
     }
 
 }

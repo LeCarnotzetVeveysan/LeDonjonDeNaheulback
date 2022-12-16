@@ -175,11 +175,6 @@ public class Functions {
 
     }
 
-    public static String getSpeakingHeroSlug() throws IOException {
-        ArrayList<String> slugList = getTableSlugList();
-        return slugList.get(Game.getSpeakingHero());
-    }
-
     public static void setCombatHeroImages(ArrayList<Hero> lhs, ArrayList<ImageView> al, Hero ah, ImageView ahiv) throws FileNotFoundException {
 
         for( ImageView iv : al){
@@ -219,17 +214,15 @@ public class Functions {
         for(Label lbl : manaLBs){ lbl.setText("");}
         for(int i=0;i < lhs.size();i++){
             if(!(lhs.get(i) == null)) {
-                if (!lhs.get(i).getSlug().equals("empty")) {
-                    double percentage = 100 * (ceil(10.0 * lhs.get(i).getHealth() / lhs.get(i).getMaxHealth()) / 10);
-                    int rounded = (int) percentage;
-                    setImage(al.get(i), "otherImages", rounded + "HPbar");
-                    lb.get(i).setText(lhs.get(i).getHealth() + "/" + lhs.get(i).getMaxHealth());
-                    al.get(i).setVisible(true);
-                }
-                if(lhs.get(i).getType() == "mage" || lhs.get(i).getType() == "priestess" ){
-                    double percentage = 100 * (ceil(10.0 * lhs.get(i).getMana() / lhs.get(i).getMaxMana()) / 10);
-                    int rounded = (int) percentage;
-                    //Make mana images
+                double percentage = 100 * (ceil(10.0 * lhs.get(i).getHealth() / lhs.get(i).getMaxHealth()) / 10);
+                int rounded = (int) percentage;
+                setImage(al.get(i), "otherImages", rounded + "HPbar");
+                lb.get(i).setText(lhs.get(i).getHealth() + "/" + lhs.get(i).getMaxHealth());
+                al.get(i).setVisible(true);
+
+                if(lhs.get(i).getType() == "mage"){
+                    percentage = 100 * (ceil(10.0 * lhs.get(i).getMana() / lhs.get(i).getMaxMana()) / 10);
+                    rounded = (int) percentage;
                     setImage(manaIVs.get(i), "otherImages", rounded + "HPbar");
                     manaLBs.get(i).setText(lhs.get(i).getMana() + "/" + lhs.get(i).getMaxMana());
                     manaIVs.get(i).setVisible(true);
@@ -237,6 +230,29 @@ public class Functions {
             }
         }
     }
+
+    public static void setActiveHeroHPBars(Hero hero, ImageView hpiv, Label hplbl, ImageView manaiv, Label manalbl) throws FileNotFoundException {
+
+        manaiv.setVisible(false);
+        manalbl.setText("");
+
+        if(!(hero == null)) {
+            double percentage = 100 * (ceil(10.0 * hero.getHealth() / hero.getMaxHealth()) / 10);
+            int rounded = (int) percentage;
+            setImage(hpiv, "otherImages", rounded + "HPbar");
+            hplbl.setText(hero.getHealth() + "/" + hero.getMaxHealth());
+
+            if (hero.getType().equals("mage")) {
+                percentage = 100 * (ceil(10.0 * hero.getMana() / hero.getMaxMana()) / 10);
+                rounded = (int) percentage;
+                setImage(manaiv, "otherImages", rounded + "HPbar");
+                manalbl.setText(hero.getMana() + "/" + hero.getMaxMana());
+                manaiv.setVisible(true);
+            }
+        }
+    }
+
+
 
     public static void setInventoryImages(ArrayList<Item> inventory, ArrayList<ImageView> ivs) throws FileNotFoundException {
 
@@ -324,17 +340,19 @@ public class Functions {
     }
 
     public static ArrayList<Enemy> getEnemyList(int floor) throws IOException {
-
+        ArrayList<Enemy> toReturn = new ArrayList<>();
         ArrayList<Boolean> boolList = getEnemyStateList(floor);
 
-        ArrayList<Enemy> toReturn = new ArrayList<>();
+        HashMap<String, String> bestiary = getDictFromFile("game", "bestiary");
         HashMap<String, String> dict = getDictFromFile("game", "dungeon" + Game.getDungeon() + "floors");
         String[] enemies = dict.get("floor" + floor).split(",") ;
-        for(String s : enemies){
-            if(s.equals("null")){
+        for(String slug : enemies){
+            if(slug.equals("null")){
                 toReturn.add(null);
             } else {
-                toReturn.add(new SimpleEnemy(s, s.toUpperCase(), 60, 100, boolList.get(Arrays.asList(enemies).indexOf(s))));
+                String[] inDict = bestiary.get(slug).split(",");
+                Boolean inAlive = boolList.get(Arrays.asList(enemies).indexOf(slug));
+                toReturn.add(new SimpleEnemy(slug, inDict, inAlive));
             }
         }
         return toReturn;

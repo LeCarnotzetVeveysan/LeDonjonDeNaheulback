@@ -24,11 +24,17 @@ public class SimpleFloorController {
     private int currentEnemyIndex;
     private int activeEnemyIndex;
     private Enemy activeEnemy;
-    private ArrayList<String> livingHeroSlugs;
     private ArrayList<Hero> livingHeroes;
     private ArrayList<ImageView> heroIVs;
     private ArrayList<Enemy> livingEnemies;
     private ArrayList<ImageView> enemyIVs;
+
+    @FXML
+    private ImageView combatSpeechIV;
+    @FXML
+    private StackPane combatSpeechSP;
+    @FXML
+    private Label combatSpeechLbl;
 
     @FXML
     private ImageView activeHeroIV, hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV;
@@ -80,24 +86,20 @@ public class SimpleFloorController {
         activeHero = null;
         activeHeroIndex = -1;
         activeEnemyIndex = -1;
-        livingHeroSlugs = Game.getLivingHeroSlugs();
         livingHeroes = Game.getLivingHeroes();
         heroIVs = new ArrayList<>(Arrays.asList(hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV));
         heroHPBarIVs = new ArrayList<>(Arrays.asList(hero1HPBarIV, hero2HPBarIV, hero3HPBarIV, hero4HPBarIV, hero5HPBarIV,hero6HPBarIV));
         heroHPBarLBs = new ArrayList<>(Arrays.asList(hero1HPBarLB, hero2HPBarLB, hero3HPBarLB, hero4HPBarLB, hero5HPBarLB, hero6HPBarLB));
         heroManaIVs = new ArrayList<>(Arrays.asList(hero1ManaBarIV, hero2ManaBarIV, hero3ManaBarIV, hero4ManaBarIV, hero5ManaBarIV, hero6ManaBarIV));
         heroManaLabels = new ArrayList<>(Arrays.asList(hero1ManaBarLB, hero2ManaBarLB, hero3ManaBarLB, hero4ManaBarLB, hero5ManaBarLB, hero6ManaBarLB));
-
-
         throwableWeapons = new ArrayList<>();
         throwableWeaponIVs = new ArrayList<>(Arrays.asList(throwableWeapon1IV, throwableWeapon2IV, throwableWeapon3IV, throwableWeapon4IV, throwableWeapon5IV, throwableWeapon6IV));
 
         livingEnemies = Functions.getEnemyList(Game.getRoom());
-
         enemyIVs = new ArrayList<>(Arrays.asList(enemy1IV, enemy2IV, enemy3IV, enemy4IV, enemy5IV, enemy6IV));
         enemyHPBarivs = new ArrayList<>(Arrays.asList(enemy1HPBarIV, enemy2HPBarIV, enemy3HPBarIV, enemy4HPBarIV, enemy5HPBarIV,enemy6HPBarIV));
         enemyHPBarlbls = new ArrayList<>(Arrays.asList(enemy1HPBarLB, enemy2HPBarLB, enemy3HPBarLB, enemy4HPBarLB, enemy5HPBarLB, enemy6HPBarLB));
-        refreshImagesAndHPBars();
+        sceneRefresh();
 
         inventoryIVs = new ArrayList<>(Arrays.asList(invSlot1IV, invSlot2IV, invSlot3IV, invSlot4IV, invSlot5IV, invSlot6IV, invSlot7IV, invSlot8IV, invSlot9IV, invSlot10IV));
         inventorySP.setVisible(false);
@@ -109,27 +111,28 @@ public class SimpleFloorController {
         postCombatCheck();
     }
 
-    private void refreshImagesAndHPBars() throws FileNotFoundException {
+    private void sceneRefresh() throws FileNotFoundException {
         Functions.setCombatEnemyImages(livingEnemies, enemyIVs, activeEnemy, activeEnemyIV);
         Functions.setEnemyHPBars(livingEnemies, enemyHPBarivs, enemyHPBarlbls);
         Functions.setEnemyHPBars(new ArrayList<>(Arrays.asList(activeEnemy)),new ArrayList<>(Arrays.asList(activeEnemyHPBarIV)), new ArrayList<>(Arrays.asList(activeEnemyHPBarLB)));
         Functions.setCombatHeroImages(livingHeroes, heroIVs, activeHero, activeHeroIV);
         Functions.setHeroHPBars(livingHeroes, heroHPBarIVs, heroHPBarLBs, heroManaIVs,heroManaLabels );
-        Functions.setHeroHPBars(new ArrayList<>(Arrays.asList(activeHero)),new ArrayList<>(Arrays.asList(activeHeroHPBarIV)), new ArrayList<>(Arrays.asList(activeHeroHPBarLB)),new ArrayList<>(Arrays.asList(activeHeroManaBarIV)), new ArrayList<>(Arrays.asList(activeHeroManaBarLB)));
+        Functions.setActiveHeroHPBars(activeHero,activeHeroHPBarIV,activeHeroHPBarLB,activeHeroManaBarIV,activeHeroManaBarLB);
         Functions.setThrowableWeaponImages(throwableWeapons, throwableWeaponIVs);
         updateActionButtons();
     }
 
     private void postCombatCheck() throws IOException {
 
-        if(activeEnemy.getHealth() <= 0){
-            activeEnemy.setIsAlive(false);
-
-            livingEnemies.set(activeEnemyIndex, activeEnemy);
-            Functions.setImage(enemyIVs.get(activeEnemyIndex),"combatImages",activeEnemy.getSlug() + "_dead" );
-            activeEnemy = null;
-            if(Game.getLevel() == 1){
-                Functions.setEnemyStateInFile(1,activeEnemyIndex,"false");
+        if(!(activeEnemy == null)) {
+            if (activeEnemy.getHealth() <= 0) {
+                activeEnemy.setIsAlive(false);
+                livingEnemies.set(activeEnemyIndex, activeEnemy);
+                Functions.setImage(enemyIVs.get(activeEnemyIndex), "combatImages", activeEnemy.getSlug() + "_dead");
+                activeEnemy = null;
+                if (Game.getLevel() == 1) {
+                    Functions.setEnemyStateInFile(1, activeEnemyIndex, "false");
+                }
             }
         }
 
@@ -155,7 +158,6 @@ public class SimpleFloorController {
     private void retrieveActiveHero() {
         if(!(activeHero == null)) {
             livingHeroes.set(activeHeroIndex, activeHero);
-            livingHeroSlugs.set(activeHeroIndex, activeHero.getSlug());
             activeHero = null;
         }
     }
@@ -199,33 +201,27 @@ public class SimpleFloorController {
             }
 
             if ((activeHero.getType().equals("elfe"))) {
-
-                switch (activeHero.getActiveCarquois()) {
-                    case "" -> flechesCountLB.setText("");
-                    case "carquois_base" -> {
-                        Functions.setImage(secondaryActionButtonIV, "armouryImages", "fleche_base");
-                        flechesCountLB.setText(String.valueOf(((Elfe) activeHero).getFleches(1)));
+                if(!(((Elfe) activeHero).getCarquois() == null)) {
+                    switch (((Elfe) activeHero).getCarquois().getSlug()) {
+                        case "carquois_base" -> Functions.setImage(secondaryActionButtonIV, "armouryImages", "fleche_base");
+                        case "carquois_qualité" -> Functions.setImage(secondaryActionButtonIV, "armouryImages", "fleche_qualité");
+                        case "carquois_sylvain" -> Functions.setImage(secondaryActionButtonIV, "armouryImages", "fleche_sylvaine");
                     }
-                    case "carquois_qualité" -> {
-                        Functions.setImage(secondaryActionButtonIV, "armouryImages", "fleche_qualité");
-                        flechesCountLB.setText(String.valueOf(((Elfe) activeHero).getFleches(2)));
-                    }
-                    case "carquois_sylvain" -> {
-                        Functions.setImage(secondaryActionButtonIV, "armouryImages", "fleche_sylvaine");
-                        flechesCountLB.setText(String.valueOf(((Elfe) activeHero).getFleches(3)));
-                    }
+                    flechesCountLB.setText(String.valueOf(((Elfe) activeHero).getCarquois().getFleches()));
                 }
             }
 
-            if ((activeHero.getType().equals("mage")) || (activeHero.getType().equals("priestess"))) {
+            if ((activeHero.getType().equals("mage"))) {
 
-                if(!(activeHero.getFirstSpell() == null)){
-                    Functions.setImage(secondaryActionButtonIV, "combatImages", activeHero.getFirstSpell().getSlug());
-                }
-                if(!(activeHero.getSecondarySpell() == null)){
-                    Functions.setImage(thirdActionButtonIV, "combatImages", activeHero.getSecondarySpell().getSlug());
-                }
+                Spell firstSpell = ((Mage) activeHero).getFirstSpell();
+                Spell secondSpell = ((Mage) activeHero).getFirstSpell();
 
+                if(!(firstSpell == null)){
+                    Functions.setImage(secondaryActionButtonIV, "combatImages", firstSpell.getSlug());
+                }
+                if(!(secondSpell == null)){
+                    Functions.setImage(thirdActionButtonIV, "combatImages", secondSpell.getSlug());
+                }
             }
         }
     }
@@ -246,14 +242,12 @@ public class SimpleFloorController {
                 if (!(activeHeroIndex == -1)) {
                     if (!(activeHero == null)) {
                         livingHeroes.set(activeHeroIndex, activeHero);
-                        livingHeroSlugs.set(activeHeroIndex, activeHero.getSlug());
                     }
 
                 }
                 activeHeroIndex = currentHeroIndex;
                 activeHero = livingHeroes.get(currentHeroIndex);
                 livingHeroes.set(currentHeroIndex, null);
-                livingHeroSlugs.set(currentHeroIndex, "empty");
                 actionButtonHB.setDisable(false);
                 actionButtonHB.setVisible(true);
                 inventorySP.setDisable(false);
@@ -275,7 +269,7 @@ public class SimpleFloorController {
             inventorySP.setDisable(true);
             inventorySP.setVisible(false);
         }
-        refreshImagesAndHPBars();
+        sceneRefresh();
     }
 
     public void onActiveEnemyClicked() {
@@ -294,21 +288,18 @@ public class SimpleFloorController {
             livingEnemies.set(currentEnemyIndex, null);
             activeEnemyIndex = currentEnemyIndex;
         }
-        refreshImagesAndHPBars();
+        sceneRefresh();
     }
 
     public void onMainWeaponButtonClicked() throws IOException {
-
         if(!(activeEnemy == null)) {
-
             Weapon weapon = activeHero.getMainWeapon();
             weaponAttack(weapon);
-
         } else {
             System.out.println("Il n'y a pas d'ennemi actif");
         }
         postCombatCheck();
-        refreshImagesAndHPBars();
+        sceneRefresh();
     }
 
     private void weaponAttack(Weapon weapon) {
@@ -319,21 +310,51 @@ public class SimpleFloorController {
         activeEnemy.removeHealth((int) damage);
 
         double qualityLoss = Math.pow(1.25, Game.getLevel());
-        qualityLoss = Math.round(100*qualityLoss)/100;
-        weapon.decreaseQuality(qualityLoss);
+        qualityLoss = Math.round(100*qualityLoss)/100.0;
+        if(!(weapon == null)) {
+            weapon.decreaseQuality(qualityLoss);
+        }
+    }
 
+    private void spellAttack(Weapon weapon, Spell spell){
+        double damage;
+        damage = activeHero.getFlatMagic(weapon, spell);
+        damage *= activeEnemy.getResistanceMultiplier();
+        damage = Math.round(damage);
+        activeEnemy.removeHealth((int) damage);
+        activeHero.removeMana(spell.getManaCost());
+    }
+
+    private void arrowAttack(Carquois carquois){
+        double damage;
+        damage = activeHero.getFlatAttack(carquois.getArrow());
+        if(!(activeHero.getMainWeapon() == null)) {
+            damage += activeHero.getMainWeapon().getPower();
+        } else {
+            damage = 0;
+        }
+        damage *= activeEnemy.getResistanceMultiplier();
+        damage = Math.round(damage);
+        activeEnemy.removeHealth((int) damage);
+        carquois.setFleches(-1);
     }
 
     public void onThrowableWeaponButtonClicked() throws IOException {
         if(!(activeEnemy == null)) {
-            if (activeHero.getThrowableWeapon() == null) {
-                System.out.println("no throwable weaon equipped");
+            if(activeHero.getWeaponThrowed()){
+              weaponAttack(null);
             } else {
-                if (activeHero.getWeaponThrowed()) {
-                    System.out.println("weapon is already throwed");
+                if(activeHero.getType().equals("mage") && !(((Mage) activeHero).getFirstSpell() == null)){
+                    spellAttack(activeHero.getMainWeapon(),((Mage) activeHero).getFirstSpell());
+                } else if (activeHero.getType().equals("elfe") && !(((Elfe) activeHero).getCarquois() == null)){
+                    Carquois carquois = ((Elfe) activeHero).getCarquois();
+                    if(carquois.getFleches() > 0){
+                        arrowAttack(carquois);
+                    }
+
                 } else {
+                    weaponAttack(activeHero.getThrowableWeapon());
                     activeHero.setWeaponThrowed(true);
-                    //deal damage
                     throwableWeapons.add(activeHero.getThrowableWeapon());
                 }
             }
@@ -341,11 +362,10 @@ public class SimpleFloorController {
             System.out.println("Il n'y a pas d'ennemi actif");
         }
         postCombatCheck();
-        refreshImagesAndHPBars();
-        updateActionButtons();
+        sceneRefresh();
     }
 
-    public void onThirdActionButtonClicked() throws FileNotFoundException {
+    public void onThirdActionButtonClicked() {
 
     }
 
@@ -368,20 +388,23 @@ public class SimpleFloorController {
 
     public void onSlotClicked() throws FileNotFoundException {
         if(!(activeHero == null)){
-            if (activeHero.getInventory().get(currentInventoryItem).getSlug().contains("grimoire")) {
+            String slug = activeHero.getInventory().get(currentInventoryItem).getSlug();
+            if (slug.contains("grimoire")) {
                 System.out.println("C'est un grimoire");
                 Grimoire grim = (Grimoire) activeHero.getInventory().get(currentInventoryItem);
-                activeHero.setMainSpell(grim.getSpell1());
-                activeHero.setSecondarySpell(grim.getSpell2());
+                ((Mage) activeHero).setMainSpell(grim.getSpell1());
+                ((Mage) activeHero).setSecondarySpell(grim.getSpell2());
             }
-            if(activeHero.getInventory().get(currentInventoryItem).getSlug().contains("carquois")){
-                System.out.println("C'est un carquois");
-                activeHero.setActiveCarquois(activeHero.getInventory().get(currentInventoryItem).getSlug());
-
+            if(slug.contains("carquois")){
+                System.out.println("C'ets un carquois");
+                switch (slug){
+                    case "carquois_base" -> ((Elfe) activeHero).setCarquois(1);
+                    case "carquois_qualité" -> ((Elfe) activeHero).setCarquois(2);
+                    case "carquois_sylvain" -> ((Elfe) activeHero).setCarquois(3);
+                }
             }
         }
         updateActionButtons();
-
     }
 
     public void onEnemy1Hover() {

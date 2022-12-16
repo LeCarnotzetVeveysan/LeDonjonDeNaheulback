@@ -18,4 +18,8 @@ public class Spell {
         return slug;
     }
 
+    public int getManaCost(){ return manaCost; }
+
+    public int getMagicDamage(){ return magicDamage; }
+
 }

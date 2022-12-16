@@ -337,5 +337,11 @@
             </StackPane>
          </children>
       </VBox>
+      <StackPane fx:id="combatSpeechSP" layoutX="330.0" layoutY="128.0">
+         <children>
+            <Label fx:id="combatSpeechLbl" text="Label" />
+            <ImageView fx:id="combatSpeechIV" fitHeight="52.0" fitWidth="340.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

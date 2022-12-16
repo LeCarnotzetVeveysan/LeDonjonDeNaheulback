@@ -4,6 +4,9 @@ name:La Magicienne
 cost:100
 health:50
 maxHealth:100
+attack:10
+magic:30
+resistance:20
 level:1
 xp:0
 desc:Je suis La Magicienne, Mage de niveau !

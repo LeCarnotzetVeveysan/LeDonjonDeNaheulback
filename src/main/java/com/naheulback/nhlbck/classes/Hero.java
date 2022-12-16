@@ -4,51 +4,40 @@ import com.naheulback.nhlbck.Game;
 
 import java.util.ArrayList;
 
-public abstract class Hero extends EtreVivant {
+public abstract class Hero extends LivingThing {
     private String type;
     private int level;
     private int experience;
-    private int recruitementCost;
-
     private int magic;
     private int mana;
     private int maxMana;
     private Weapon mainWeapon;
     private Weapon throwableWeapon;
     private boolean weaponThrowed;
-    private Spell mainSpell;
-    private Spell secondarySpell;
-    private String activeCarquois;
+
     private HeadItem headItem;
     private BodyItem bodyItem;
     private ArrayList<Item> inventory;
 
-    public Hero(String inputSlug, String inputName, int inputHealth, int inputMaxHealth, int inAttack, int inResistance, Boolean inputIsAlive, String inputType){
+    public Hero(String inputSlug, String inputName, int inputHealth, int inputMaxHealth, int inAttack, int inMagic, int inResistance, Boolean inputIsAlive, String inputType){
 
-        super(inputSlug, inputName, inputHealth, inputMaxHealth,inAttack, inResistance, inputIsAlive);
+        super(inputSlug, inputName, inputHealth, inputMaxHealth,inAttack, inMagic, inResistance, inputIsAlive);
 
         type = inputType;
         level = 1;
         experience = 0;
-        recruitementCost = 100;
         magic = 100;
         mana = 100;
         maxMana = 200;
         mainWeapon = null;
         throwableWeapon = null;
         weaponThrowed= false;
-        activeCarquois = "";
-        mainSpell = null;
-        secondarySpell = null;
         inventory = new ArrayList<>();
     }
 
     public String toString(){
         return "name : " + super.getName() + ", level : " + level;
     }
-
-    public int getCost(){ return recruitementCost; }
-
     public int getMana() { return mana; }
 
     public int getMaxMana(){ return maxMana; }
@@ -70,6 +59,16 @@ public abstract class Hero extends EtreVivant {
             attack += weapon.getPower();
         }
         return attack;
+    }
+
+    public double getFlatMagic(Weapon weapon, Spell spell){
+        double magic = getBaseMagic();
+        magic *= (1 + (level/10.0));
+        magic += spell.getMagicDamage();
+        if(!(weapon == null)){
+            magic += weapon.getPower();
+        }
+        return magic;
     }
 
     public double getFlatResistance(){
@@ -143,28 +142,17 @@ public abstract class Hero extends EtreVivant {
         return inventory;
     }
 
+    public ArrayList<String> getInventorySlugs() {
+        ArrayList<String> toReturn = new ArrayList<>();
+        for(Item e : getInventory()){
+            toReturn.add(e.getSlug());
+        }
+        return toReturn;
+    }
     public void addItem(Item i){
         inventory.add(i);
     }
 
-    public Spell getFirstSpell(){
-        return mainSpell;
-    }
 
-    public void setMainSpell(Spell inputSpell){
-        mainSpell = inputSpell;
-    }
-
-    public void setSecondarySpell(Spell inputSpell){
-        secondarySpell = inputSpell;
-    }
-
-    public Spell getSecondarySpell(){
-        return secondarySpell;
-    }
-
-    public void setActiveCarquois(String carquois){ activeCarquois = carquois; }
-
-    public String getActiveCarquois(){ return activeCarquois; }
 
 }

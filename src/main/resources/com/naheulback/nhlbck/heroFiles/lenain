@@ -3,6 +3,9 @@ class:nain
 name:Le Nain
 health:50
 maxHealth:100
+attack:10
+magic:0
+resistance:20
 cost:1
 level:1
 xp:0

@@ -1,0 +1,2 @@
+Carquois carquoisQualité = new Carquois("carquois_qualité", "Carquois de flêches de qualité", 1);
+Carquois carquoisSylvain = new Carquois("carquois_sylvain", "Carquois de flêches d'elfes sylvains", 1);
