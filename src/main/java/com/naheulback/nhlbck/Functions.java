@@ -9,7 +9,6 @@ import javafx.scene.layout.HBox;
 import java.io.*;
 import java.util.*;
 
-import static com.naheulback.nhlbck.classes.GameData.getPictureType;
 import static java.lang.Math.ceil;
 
 public class Functions {
@@ -17,7 +16,7 @@ public class Functions {
     private static final String resPath = "src/main/resources/com/naheulback/nhlbck/";
 
     public static void setImage(ImageView iv, String folder, String imageName) throws FileNotFoundException {
-        InputStream stream = new FileInputStream(resPath + folder + getPictureType() + "/" + imageName + ".png");
+        InputStream stream = new FileInputStream(resPath + folder + "/" + imageName + ".png");
         Image image = new Image(stream);
         iv.setImage(image);
     }
@@ -72,9 +71,26 @@ public class Functions {
 
         String[] d1t1 = {"tavern1table1","hero1:lenain&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:lebarbare"};
         String[] d1t2 = {"tavern1table2","hero1:logre&hero2:empty&hero3:lamagicienne&hero4:empty&hero5:lelfe&hero6:empty"};
-        String[] d1t3 = {"tavern1table3","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
-        String[] d2t1 = {"tavern2table1","hero1:levoleur&hero2:empty&hero3:gontran&hero4:empty&hero5:empty&hero6:empty"};
-        ArrayList<String[]> partList = new ArrayList<>(Arrays.asList(d1t1, d1t2, d1t3, d2t1));
+        String[] d2t1 = {"tavern2table1","hero1:lepaladin&hero2:empty&hero3:empty&hero4:caspied&hero5:empty&hero6:empty"};
+        String[] d2t2 = {"tavern2table2","hero1:empty&hero2:empty&hero3:amanita&hero4:empty&hero5:tarken&hero6:empty"};
+        String[] d3t1 = {"tavern3table1","hero1:empty&hero2:empty&hero3:gragan&hero4:empty&hero5:empty&hero6:empty"};
+        String[] d3t2 = {"tavern3table2","hero1:empty&hero2:rizmo&hero3:empty&hero4:empty&hero5:empty&hero6:borduz"};
+        String[] d4t1 = {"tavern4table1","hero1:empty&hero2:empty&hero3:empty&hero4:feigaff&hero5:empty&hero6:lucrece"};
+        String[] d4t2 = {"tavern4table2","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
+        String[] d5t1 = {"tavern5table1","hero1:rutagaba&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
+        String[] d5t2 = {"tavern5table2","hero1:empty&hero2:empty&hero3:bratux&hero4:empty&hero5:gerard&hero6:empty"};
+        String[] d6t1 = {"tavern6table1","hero1:songfu&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
+        String[] d6t2 = {"tavern6table2","hero1:empty&hero2:empty&hero3:norelenilia&hero4:empty&hero5:empty&hero6:empty"};
+        String[] d7t1 = {"tavern7table1","hero1:empty&hero2:mimolett&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
+        String[] d7t2 = {"tavern7table2","hero1:yolina&hero2:empty&hero3:empty&hero4:helrugar&hero5:empty&hero6:empty"};
+        String[] d8t1 = {"tavern8table1","hero1:empty&hero2:empty&hero3:kzaranagax&hero4:empty&hero5:bifftanaen&hero6:empty"};
+        String[] d8t2 = {"tavern8table2","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
+        String[] d9t1 = {"tavern9table1","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
+        String[] d9t2 = {"tavern9table2","hero1:goltor&hero2:empty&hero3:empty&hero4:danjeliss&hero5:empty&hero6:empty"};
+        String[] d10t1 = {"tavern10table1","hero1:empty&hero2:empty&hero3:wuxxus&hero4:empty&hero5:empty&hero6:empty"};
+        String[] d10t2 = {"tavern10table2","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:goltor"};
+        ArrayList<String[]> partList = new ArrayList<>(Arrays.asList(d1t1,d1t2,d2t1,d2t2,d3t1,d3t2,d4t1,d4t2,d5t1,d5t2,
+                d6t1,d6t2,d7t1,d7t2,d8t1,d8t2,d9t1,d9t2,d10t1,d10t2));
 
         for(String[] strar : partList){
 
@@ -347,7 +363,9 @@ public class Functions {
             } else {
                 String[] inDict = bestiary.get(slug).split(",");
                 Boolean inAlive = boolList.get(Arrays.asList(enemies).indexOf(slug));
-                toReturn.add(new SimpleEnemy(slug, inDict, inAlive));
+                if(inDict[0].equals("simple")){toReturn.add(new SimpleEnemy(slug, inDict, inAlive));}
+                else {toReturn.add(new Boss(slug, inDict, inAlive));}
+
             }
         }
         return toReturn;

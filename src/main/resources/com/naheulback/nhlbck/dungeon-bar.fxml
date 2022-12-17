@@ -22,11 +22,11 @@
                   <Insets />
                </HBox.margin>
                <image>
-                  <Image url="@otherImagesAlpha/150100black.png" />
+                  <Image url="@otherImages/150100black.png" />
                </image>
             </ImageView>
             <ImageView fx:id="drinkMenuIV" fitHeight="100.0" fitWidth="150.0" onMouseClicked="#onDrinkMenuClicked" onMouseEntered="#onDrinkMenuHovering" onMouseExited="#onDrinkMenuStoppedHovering" pickOnBounds="true" preserveRatio="true">
-               <Image url="@otherImagesAlpha/150100black.png" />
+               <Image url="@otherImages/150100black.png" />
             </ImageView>
          </children>
       </HBox>
@@ -172,7 +172,7 @@
                      <children>
                         <ImageView fitHeight="98.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@tavernImagesAlpha/barItem_info_background.png" />
+                              <Image url="@tavernImages/barItem_info_background.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="barFoodLabel1" text="Ligne1&#10;Ligne2&#10;Ligne3&#10;Ligne4&#10;" wrapText="true">
@@ -194,7 +194,7 @@
                   <StackPane fx:id="barItem2SP" alignment="TOP_LEFT" maxWidth="-Infinity" prefHeight="101.0" prefWidth="126.0">
                      <ImageView fitHeight="98.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@tavernImagesAlpha/barItem_info_background.png" />
+                           <Image url="@tavernImages/barItem_info_background.png" />
                         </image>
                      </ImageView>
                      <Label fx:id="barFoodLabel2" text="Ligne1&#10;Ligne2&#10;Ligne3&#10;Ligne4&#10;" wrapText="true">
@@ -216,7 +216,7 @@
                      <children>
                         <ImageView fitHeight="98.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@tavernImagesAlpha/barItem_info_background.png" />
+                              <Image url="@tavernImages/barItem_info_background.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="barFoodLabel3" text="Ligne1&#10;Ligne2&#10;Ligne3&#10;Ligne4&#10;" wrapText="true">
@@ -239,7 +239,7 @@
                      <children>
                         <ImageView fitHeight="98.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@tavernImagesAlpha/barItem_info_background.png" />
+                              <Image url="@tavernImages/barItem_info_background.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="barFoodLabel4" text="Ligne1&#10;Ligne2&#10;Ligne3&#10;Ligne4&#10;" wrapText="true">
@@ -262,7 +262,7 @@
                      <children>
                         <ImageView fitHeight="98.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@tavernImagesAlpha/barItem_info_background.png" />
+                              <Image url="@tavernImages/barItem_info_background.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="barFoodLabel5" text="Ligne1&#10;Ligne2&#10;Ligne3&#10;Ligne4&#10;" wrapText="true">
@@ -286,14 +286,14 @@
          <children>
             <ImageView fitHeight="55.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@otherImagesAlpha/coinbagbackground.png" />
+                  <Image url="@otherImages/coinbagbackground.png" />
                </image>
             </ImageView>
             <HBox alignment="CENTER" prefHeight="55.0" prefWidth="134.0" StackPane.alignment="CENTER">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@otherImagesAlpha/coinbag.png" />
+                        <Image url="@otherImages/coinbag.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="coinCountLB" alignment="CENTER" prefHeight="50.0" prefWidth="73.0" text="Label" textAlignment="CENTER" />

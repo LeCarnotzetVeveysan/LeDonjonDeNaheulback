@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@mapImagesAlpha/cartenaheulbeuk.png" />
+            <Image url="@mapImages/cartenaheulbeuk.png" />
          </image>
       </ImageView>
       <VBox alignment="CENTER" layoutX="547.0" layoutY="206.0">
@@ -24,7 +24,7 @@
                <graphic>
                   <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/donj1.png" />
+                        <Image url="@mapImages/donj1.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -33,7 +33,7 @@
                <children>
                   <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/dungeon_info_background.png" />
+                        <Image url="@mapImages/dungeon_info_background.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="d1sLB" text="Label">
@@ -54,7 +54,7 @@
                <graphic>
                   <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/donj2.png" />
+                        <Image url="@mapImages/donj2.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -63,7 +63,7 @@
                <children>
                   <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/dungeon_info_background.png" />
+                        <Image url="@mapImages/dungeon_info_background.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="d2sLB" text="Label">
@@ -84,7 +84,7 @@
                <graphic>
                   <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/donj3.png" />
+                        <Image url="@mapImages/donj3.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -93,7 +93,7 @@
                <children>
                   <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/dungeon_info_background.png" />
+                        <Image url="@mapImages/dungeon_info_background.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="d3sLB" text="Label">
@@ -114,7 +114,7 @@
                <graphic>
                   <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/donj4.png" />
+                        <Image url="@mapImages/donj4.png" />
                      </image></ImageView>
                </graphic>
             </Button>
@@ -122,7 +122,7 @@
                <children>
                   <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/dungeon_info_background.png" />
+                        <Image url="@mapImages/dungeon_info_background.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="d4sLB" text="Label">
@@ -143,7 +143,7 @@
                <graphic>
                   <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/donj5.png" />
+                        <Image url="@mapImages/donj5.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -152,7 +152,7 @@
                <children>
                   <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/dungeon_info_background.png" />
+                        <Image url="@mapImages/dungeon_info_background.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="d5sLB" text="Label">
@@ -173,7 +173,7 @@
                <graphic>
                   <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/donj6.png" />
+                        <Image url="@mapImages/donj6.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -182,7 +182,7 @@
                <children>
                   <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/dungeon_info_background.png" />
+                        <Image url="@mapImages/dungeon_info_background.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="d6LB" text="Label">
@@ -203,7 +203,7 @@
                <graphic>
                   <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/donj7.png" />
+                        <Image url="@mapImages/donj7.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -212,7 +212,7 @@
                <children>
                   <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/dungeon_info_background.png" />
+                        <Image url="@mapImages/dungeon_info_background.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="d7sLB" text="Label">
@@ -233,7 +233,7 @@
                <graphic>
                   <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/donj8.png" />
+                        <Image url="@mapImages/donj8.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -242,7 +242,7 @@
                <children>
                   <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/dungeon_info_background.png" />
+                        <Image url="@mapImages/dungeon_info_background.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="d8sLB" text="Label">
@@ -263,7 +263,7 @@
                <graphic>
                   <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/donj9.png" />
+                        <Image url="@mapImages/donj9.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -272,7 +272,7 @@
                <children>
                   <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/dungeon_info_background.png" />
+                        <Image url="@mapImages/dungeon_info_background.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="d9sLB" text="Label">
@@ -293,7 +293,7 @@
                <graphic>
                   <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/donj10.png" />
+                        <Image url="@mapImages/donj10.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -302,7 +302,7 @@
                <children>
                   <ImageView fitHeight="99.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@mapImagesAlpha/dungeon_info_background.png" />
+                        <Image url="@mapImages/dungeon_info_background.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="d10sLB" text="Label">

@@ -159,6 +159,11 @@ public class SimpleFloorController {
 
         double expToAdd = activeEnemy.getExpGain();
         activeHero.addExperience((int) Math.round(expToAdd));
+        for(Hero h : livingHeroes){
+            if(!(h == null)){
+                h.addExperience((int) Math.round(expToAdd));
+            }
+        }
     }
 
     private void retrieveActiveHero() {

@@ -1,3 +1,33 @@
-ghoule:Ghoule,60,100,20,0,20,10,10
-blob:Blob,40,50,20,0,20,10,10
-gobelin:Gobelin,25,50,10,0,10,10,10
+zangdar:boss,Zangdar,100,100,50,50,25,1000,1000
+dragon_dore:boss,Dragon Doré,200,200,50,50,25,1000,1000
+golbargh:boss,Golbargh,300,300,100,100,50,2000,2000
+ghukkutuh:boss,400,400,100,100,50,2000,2000
+hydre:boss,Hydre,500,500,150,150,75,3000,3000
+ouklaf_geant:boss,Ouklaf Géant,600,600,150,150,75,3000,3000
+gloubzoule_argente:boss,Globzoule Argenté,700,700,200,200,100,4000,4000
+kraken:boss,Kraken,800,800,250,250,125,5000,5000
+salamandre:boss,Salamandre,900,900,300,300,150,5000,5000
+gozzer:boss,Le Desctructeur des Mondes,1000,1000,400,400,200,10000,10000
+ghoule:simple,Ghoule,100,100,20,0,20,10,10
+blob:simple,Blob,50,50,20,0,20,10,10
+gobelin:simple,Gobelin,25,50,10,0,10,10,10
+blatte_geante:simple,50,50,10,0,30,50,50
+castor_ninja:simple,100,100,20,0,20,100,100
+chapon_fanghien:simple,25,25,10,0,10,25,25
+crabe_geant:simple,100,100,50,0,75,100,100
+dragon_cimes:simple,75,75,50,0,40,75,75
+dragon_noir:simple,50,50,30,0,40,50,50
+fourmi_devorag:simple,100,100,50,0,20,100,100
+globzoule:simple,200,200,100,0,30,200,200
+golem_fer:simple,300,300,25,0,75,300,300
+golem_pierre:simple,300,300,25,0,75,300,300
+harpie:simple,200,200,75,0,45,200,200
+kobold:simple,75,75,30,0,25,75,75
+liche:simple,150,150,75,0,50,150,150
+limon_maléfique:simple,65,65,25,0,20,65,65
+merguez_combat:simple,75,75,25,0,25,75,75
+orchidee_pieuvre:simple,69,69,69,0,69,69,69
+rat_simple:simple,25,25,10,0,20,25,25
+rat_mutant:simple,50,50,25,0,30,50,50
+tarentule_caverne:simple,50,50,25,0,25,50,50
+zombie:simple,30,30,15,0,15,30,30

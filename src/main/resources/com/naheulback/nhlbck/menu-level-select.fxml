@@ -17,19 +17,19 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@menuImagesAlpha/niveau1.png" />
+                        <Image url="@menuImages/niveau1.png" />
                      </image></ImageView>
                   <ImageView fitHeight="150.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@menuImagesAlpha/niveau2.png" />
+                        <Image url="@menuImages/niveau2.png" />
                      </image></ImageView>
                   <ImageView fitHeight="150.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@menuImagesAlpha/niveau3.png" />
+                        <Image url="@menuImages/niveau3.png" />
                      </image></ImageView>
                   <ImageView fitHeight="150.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@menuImagesAlpha/niveau4.png" />
+                        <Image url="@menuImages/niveau4.png" />
                      </image></ImageView>
                </children>
             </HBox>

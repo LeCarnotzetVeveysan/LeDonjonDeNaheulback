@@ -305,7 +305,7 @@
                <children>
                   <ImageView fitHeight="122.0" fitWidth="370.0" pickOnBounds="true">
                      <image>
-                        <Image url="@otherImagesAlpha/coinbagbackground.png" />
+                        <Image url="@otherImages/coinbagbackground.png" />
                      </image>
                   </ImageView>
                   <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="120.0" prefWidth="340.0">

@@ -21,13 +21,10 @@ public class MainMenuController {
     @FXML
     private StackPane typeSoundSP, saveSP;
     @FXML
-    private RadioButton alphaBtn, betaBtn, finalBtn;
-    @FXML
     private ImageView newGameBtnIV;
 
 
     public void initialize() {
-        updateMenuVisibility();
     }
     @FXML
     protected void onQuitButtonClick() {
@@ -59,35 +56,7 @@ public class MainMenuController {
         Functions.setImage(newGameBtnIV, "menuImages", "newgame");
     }
 
-    public void onAlphaBtnClk() {
-        GameData.setPictureType("Alpha");
-        betaBtn.setSelected(false);
-        finalBtn.setSelected(false);
+    public void onSaveSPClk() {
     }
 
-    public void onBetaBtnClk() {
-        GameData.setPictureType("Beta");
-        alphaBtn.setSelected(false);
-        finalBtn.setSelected(false);
-    }
-
-    public void onFinalBtnClick() {
-        GameData.setPictureType("Final");
-        alphaBtn.setSelected(false);
-        betaBtn.setSelected(false);
-
-    }
-
-    public void onSettingsBtnClk() {
-        menuVisible = !menuVisible;
-        updateMenuVisibility();
-    }
-
-    private void updateMenuVisibility(){
-        typeSoundSP.setVisible(menuVisible);
-        typeSoundSP.setDisable(!menuVisible);
-        saveSP.setVisible(menuVisible);
-        saveSP.setDisable(!menuVisible);
-
-    }
 }

@@ -38,7 +38,7 @@
                <graphic>
                   <ImageView fitHeight="67.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@tavernImagesAlpha/bouton_recrut.png" />
+                        <Image url="@tavernImages/bouton_recrut.png" />
                      </image></ImageView>
                </graphic>
             </Button>
@@ -61,7 +61,7 @@
          <graphic>
             <ImageView fx:id="sitButtonIV" fitHeight="69.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@tavernImagesAlpha/d1_tabouret.png" />
+                  <Image url="@tavernImages/d1_tabouret.png" />
                </image></ImageView>
          </graphic></Button>
       <HBox fx:id="sitButtonsHB" alignment="CENTER" layoutX="129.0" layoutY="438.0" prefHeight="100.0" prefWidth="659.0" spacing="20.0">
@@ -102,14 +102,14 @@
          <children>
             <ImageView fitHeight="55.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@otherImagesAlpha/coinbagbackground.png" />
+                  <Image url="@otherImages/coinbagbackground.png" />
                </image>
             </ImageView>
             <HBox alignment="CENTER" prefHeight="55.0" prefWidth="134.0" StackPane.alignment="CENTER">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@otherImagesAlpha/coinbag.png" />
+                        <Image url="@otherImages/coinbag.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="coinCountLB" alignment="CENTER" prefHeight="50.0" prefWidth="73.0" text="Label" textAlignment="CENTER" />

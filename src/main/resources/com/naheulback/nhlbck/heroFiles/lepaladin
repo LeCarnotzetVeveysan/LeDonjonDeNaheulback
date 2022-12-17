@@ -1,0 +1,14 @@
+slug:defaultSlug
+class:defaultClass
+name:defaultName
+health:1
+maxHealth:1
+attack:1
+magic:1
+resistance:1
+cost:1
+level:1
+xp:1
+desc:defaultDesc
+quote:defaultQuote
+joke:defaultJoke

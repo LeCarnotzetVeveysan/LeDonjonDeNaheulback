@@ -145,7 +145,7 @@ public class DungeonTableController {
                     case "mage" -> toAdd = new Mage(heroDict);
                     case "elfe" -> toAdd = new Elfe(heroDict);
                     case "ogre" -> toAdd = new Ogre(heroDict);
-                    case "ranger" -> toAdd = new Ranger(heroDict);
+                    case "human" -> toAdd = new Human(heroDict);
                 }
                 updateTableFile(slugList);
                 setTableImages(heroImages);
