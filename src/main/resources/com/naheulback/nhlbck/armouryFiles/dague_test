@@ -1,6 +1,0 @@
-type:weapon
-name:test_dague
-cost:50
-stat:5
-effet:+ X atk
-desc:dague de test

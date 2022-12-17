@@ -1,6 +1,0 @@
-type:consumable
-name:Small mana potion
-cost:10
-stat:10
-effet:+ X mana
-desc:Petite potion de vie
