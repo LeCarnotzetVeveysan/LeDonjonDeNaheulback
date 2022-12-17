@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Random;
 
 import static com.naheulback.nhlbck.Game.addGoldPieces;
 
@@ -132,7 +133,7 @@ public class SimpleFloorController {
 
         if(allDeadHeroes()){
             PlayerData.setIsDefeated(true);
-            LoadScene.changeScene("results-screen");
+            LoadScene.changeScene("menu-main-menu");
         }
 
         if(!(activeEnemy == null)) {
@@ -242,19 +243,20 @@ public class SimpleFloorController {
 
     public void updateActionButtons() throws FileNotFoundException {
 
+        Random rand = new Random();
         if(!(activeHero == null)) {
 
             flechesCountLB.setText("");
             Functions.setImage(thirdActionButtonIV, "otherImages", "speech_bubble");
 
             if (!(activeHero.getMainWeapon() == null)) {
-                Functions.setImage(mainActionButtonIV, "armouryImages", activeHero.getMainWeapon().getSlug());
+                Functions.setImage(mainActionButtonIV, "armouryImages", "weaponItems_" + rand.nextInt(1, 8));
             } else {
                 Functions.setImage(mainActionButtonIV, "combatImages", "fists");
             }
 
             if (!(activeHero.getThrowableWeapon() == null) && !activeHero.getWeaponThrowed()) {
-                Functions.setImage(secondaryActionButtonIV, "armouryImages", activeHero.getThrowableWeapon().getSlug());
+                Functions.setImage(secondaryActionButtonIV, "armouryImages", "weaponItems_" + rand.nextInt(1, 8));
             } else {
                 Functions.setImage(secondaryActionButtonIV, "combatImages", "fists");
             }

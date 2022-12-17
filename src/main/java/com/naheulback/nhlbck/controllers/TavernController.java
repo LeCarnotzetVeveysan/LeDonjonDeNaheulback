@@ -20,7 +20,7 @@ public class TavernController {
 
 
     public void initialize() throws IOException {
-        setImage(mainIV,"dungeonImages","d"+Game.getDungeon() + "_tavern_background");
+        setImage(mainIV,"dungeonImages","tavern_background");
     }
 
     public void onTable1ButtonClicked() throws IOException {

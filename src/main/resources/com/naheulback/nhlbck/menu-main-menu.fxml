@@ -1,110 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.nhlbck.controllers.MainMenuController">
-   <children>
-      <ImageView fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@menuImages/placeholder.png" />
-         </image>
-      </ImageView>
-      <HBox alignment="CENTER" layoutY="500.0" prefHeight="200.0" prefWidth="1000.0" spacing="69.0">
-         <children>
-            <Button fx:id="newGameButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onNewGameButtonClick" onMouseEntered="#startedHovering" onMouseExited="#stoppedHovering" prefHeight="110.0" prefWidth="160.0" style="-fx-background-color: transparent;">
-               <graphic>
-                  <ImageView fx:id="newGameBtnIV" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@menuImages/newgame.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSavedGameButtonClick" prefHeight="110.0" prefWidth="160.0" style="-fx-background-color: transparent;">
-               <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@menuImages/savedgame.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onInstructionsButtonClick" prefHeight="110.0" prefWidth="160.0" style="-fx-background-color: transparent;">
-               <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@menuImages/instructions.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onQuitButtonClick" prefHeight="110.0" prefWidth="160.0" style="-fx-background-color: transparent;">
-               <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@menuImages/quit.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutX="717.0" layoutY="14.0" spacing="10.0">
-         <children>
-            <StackPane fx:id="typeSoundSP">
-               <children>
-                  <ImageView fitHeight="60.0" fitWidth="193.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@otherImages/heroEquipmentRecapBackground.png" />
-                     </image>
-                  </ImageView>
-                  <HBox fx:id="settingsHB" alignment="CENTER" prefHeight="60.0" prefWidth="163.0" spacing="10.0">
-                     <children>
-                        <VBox alignment="CENTER">
-                           <children>
-                              <Label text="Sound level" />
-                              <HBox alignment="CENTER" spacing="5.0">
-                                 <children>
-                                    <ImageView fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@otherImages/sound_low.png" />
-                                       </image></ImageView>
-                                    <Slider blockIncrement="1.0" max="10.0" value="5.0" />
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-               </children>
-            </StackPane>
-            <StackPane fx:id="saveSP" onMouseClicked="#onSaveSPClk">
-               <children>
-                  <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@otherImages/heroEquipmentRecapBackground.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@otherImages/save.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </StackPane>
-         </children>
-         <padding>
-            <Insets right="5.0" />
-         </padding>
-      </HBox>
-   </children>
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.naheulback.nhlbck.controllers.MainMenuController">
+   <Label layoutX="486.0" layoutY="190.0" text="Label" />
+   <HBox alignment="CENTER" layoutY="500.0" prefHeight="200.0" prefWidth="1000.0" spacing="69.0">
+      <Button fx:id="newGameButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onNewGameBtnClk" onMouseEntered="#onNewGameBtnHov" onMouseExited="#onNewGameBtnHovEnd" prefHeight="110.0" prefWidth="160.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fx:id="newGameBtnIV" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@menuImages/newgame.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onInstructionsBtnClk" onMouseEntered="#onInstructionsBtnHov" onMouseExited="#onInstructionsBtnHovEnd" prefHeight="110.0" prefWidth="160.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fx:id="instructionsBtnIV" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@menuImages/instructions.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onQuitBtnClk" onMouseEntered="#onQuitBtnHov" onMouseExited="#onQuitBtnHovEnd" prefHeight="110.0" prefWidth="160.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fx:id="quitBtnIV" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@menuImages/quit.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+   </HBox>
 </AnchorPane>

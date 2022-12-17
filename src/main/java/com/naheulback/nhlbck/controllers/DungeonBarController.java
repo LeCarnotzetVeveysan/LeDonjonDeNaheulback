@@ -3,10 +3,10 @@ package com.naheulback.nhlbck.controllers;
 import com.naheulback.nhlbck.Functions;
 import com.naheulback.nhlbck.Game;
 import com.naheulback.nhlbck.LoadScene;
+import com.naheulback.nhlbck.classes.Consumable;
 import com.naheulback.nhlbck.classes.Hero;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -120,7 +120,7 @@ public class DungeonBarController {
             sp.setVisible(false);
         }
 
-        setImage(mainIV, "dungeonImages", "d" + Game.getDungeon() + "_bar_background");
+        setImage(mainIV, "dungeonImages", "bar_background");
         setImage(barmanIV, "tavernImages", "d" + Game.getDungeon() + "_barman");
 
         livingHeroes = Game.getLivingHeroes();
@@ -148,30 +148,22 @@ public class DungeonBarController {
         for(VBox validVBox : barItems){
             barItemsHB.getChildren().add(validVBox);
         }
-
         itemList = Functions.getBarItems(type);
-        for (int i = 4; i >= 0; i--){
-            if(itemList.get(i).equals("empty")){
-                barItemsHB.getChildren().remove(i);
-            } else {
-                setImage(itemImages.get(i), "tavernImages", itemList.get(i));
-            }
+        Random rand = new Random();
+
+        String cupOrPlate = type.equals("food") ? "plate" : "cup";
+        for (int i = 1; i <= 5; i++){
+            int index = rand.nextInt(7) + 1;
+            setImage(itemImages.get(i - 1), "tavernImages", cupOrPlate + "_" + index);
         }
 
         for(int i = 0; i < 5; i++){
-            if(!itemList.get(i).equals("empty")) {
-                String path = resPath + "tavernFiles/" + itemList.get(i);
-                BufferedReader br = new BufferedReader(new FileReader(path));
-                StringBuilder toDisplay = new StringBuilder();
-                for (String line = br.readLine(); line != null; line = br.readLine()) {
-                    String[] parts = line.split(":");
-                    toDisplay.append(parts[1]);
-                    if (!line.equals("")) {
-                        toDisplay.append("\n");
-                    }
-                }
-                itemLabels.get(i).setText(toDisplay.toString());
-            }
+            HashMap<String, String> dict = getDictFromFile("game", type);
+            String[] item = dict.get(itemList.get(i)).split(",");
+            HashMap<String, String> healDict = getDictFromFile("armoury", "consumables");
+            String[] item2 = healDict.get(itemList.get(i)).split(",");
+            String toShow = item[0] + "\nEffet : + " + item2[0] + " PV, + " + item2[1] + "Mana \n" + item[2];
+            itemLabels.get(i).setText(toShow);
         }
         setItemButtonHBSize(barItemsHB);
     }
@@ -215,39 +207,21 @@ public class DungeonBarController {
 
     @FXML
     void onItemButtonClicked() throws IOException {
-
+        
         String itemName = itemList.get(currentItem);
-        HashMap<String, String> dict = getDictFromFile("tavern", itemName);
-        double cost = Integer.parseInt(dict.get("cost"));
+        String type = (itemName.contains("vin")||itemName.contains("biere")||itemName.contains("jus")||itemName.contains("liqueur")) ? "drinks" : "food";
+        HashMap<String, String> dict = getDictFromFile("game", type);
+        String[] item = dict.get("itemName").split(",");
+        double cost = Double.parseDouble(item[1]);
         if (!(currentHero == null)) {
             if (Game.hasEnoughGoldPieces(cost)) {
-
                 Game.takeGoldPieces(cost);
+                
+                Consumable cons = new Consumable(itemName, itemName.toLowerCase(),1);
+                currentHero.addHealth(cons.getHealth());
+                currentHero.addMana(cons.getMana());
 
-                switch (itemName) {
-                    case "saucisse_puree" -> {
-                        currentHero.addHealth(5);
-                        currentHero.addMana(5);
-                    }
-                    case "demi_blonde" -> {
-
-                    }
-                }
-
-                switch (new Random().nextInt(5)){
-                    case 1 -> {
-                        barmanSpeakLbl.setText("Bon choix");
-                    }
-                    case 2 -> {
-                        barmanSpeakLbl.setText("Bon appétit");
-                    }
-                    case 3 -> {
-                        barmanSpeakLbl.setText("Vous avez fait un bon choix");
-                    }
-                    case 4 -> {
-                        barmanSpeakLbl.setText("Vos papilles vont se régaler");
-                    }
-                }
+                barmanSpeech();
 
                 setHeroHPBars(livingHeroes, heroHPIVs, heroHPLabels, heroManaIVs, heroManaLabels);
                 coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
@@ -261,6 +235,23 @@ public class DungeonBarController {
             barmanIV.setVisible(true);
             barmanIV.setLayoutX(25);
             setImage(barmanSpeakIV, "tavernImages","barman_pos0_bubble" );
+        }
+    }
+
+    private void barmanSpeech() {
+        switch (new Random().nextInt(5)){
+            case 1 -> {
+                barmanSpeakLbl.setText("Bon choix");
+            }
+            case 2 -> {
+                barmanSpeakLbl.setText("Bon appétit");
+            }
+            case 3 -> {
+                barmanSpeakLbl.setText("Vous avez fait un bon choix");
+            }
+            case 4 -> {
+                barmanSpeakLbl.setText("Vos papilles vont se régaler");
+            }
         }
     }
 

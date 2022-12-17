@@ -11,7 +11,6 @@ small_health_potion:name|Small health potion,cost|30,stat|20,effet|+ X PV,desc|P
 small_mana_potion:name|Small mana potion,cost|30,stat|20,effet|+ X Mana,desc|Petite potion de mana
 big_health_potion:name|Big health potion,cost|100,stat|75,effet|+ X PV,desc|Grande potion de vie
 big_mana_potion:name|Big mana potion,cost|100,stat|75,effet|+ X Mana,desc|Grande potion de mana
-veste_toile:name|Veste de toile,cost|30,stat|12,effet|+ X res,desc|Une simple veste de toile
 plastron_cuir_base:name|Plastron de cuir de base,cost|30,stat|15,effet|+ X res,desc|Un plastron de cuir de base
 plastron_cuir_correct:name|Plastron de cuir correct,cost|50,stat|25,effet|+ X res,desc|Un plastron de cuir bouilli
 plastron_cuir_surmesure:name|Plastron de cuir moulé sur mesure,cost|100,stat|50,effet|+ X res,Un plastron de cuir moulé sur mesure

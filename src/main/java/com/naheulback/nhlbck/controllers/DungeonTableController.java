@@ -81,7 +81,7 @@ public class DungeonTableController {
 
     public void initialize() throws IOException {
 
-        setImage(mainIV, "dungeonImages","d" + getDungeon() + "_tavern_table" + Game.getTable() );
+        setImage(mainIV, "dungeonImages","tavern_table" + Game.getTable() );
 
         heroImages = new ArrayList<>(Arrays.asList(hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV));
         Functions.setTableImages(heroImages);
@@ -180,7 +180,7 @@ public class DungeonTableController {
             if(sl.get(i).equals("empty")){
                 sitButtonsHB.getChildren().remove(i);
             } else {
-                setImage(sitButtonImages.get(i), "tavernImages", sl.get(i) + "_head");
+                setImage(sitButtonImages.get(i), "heroImages", sl.get(i) + "_head");
                 sitButtons.get(i).setDisable(false);
                 sitButtons.get(i).setVisible(true);
             }

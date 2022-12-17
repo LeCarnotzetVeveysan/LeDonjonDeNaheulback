@@ -94,10 +94,10 @@ public class ArmouryController {
             sp.setVisible(false);
         }
 
-        setImage(mainIV, "armouryImages", "d" + Game.getDungeon() + "_armoury_background" );
+        setImage(mainIV, "dungeonImages", "armoury_background" );
 
         armourymanIV.setVisible(false);
-        setImage(armourymanIV, "armouryImages", "d" + Game.getDungeon() + "_armouryman" );
+        setImage(armourymanIV, "dungeonImages", "d" + Game.getDungeon() + "_armouryman" );
 
         livingHeroes = Game.getLivingHeroes();
         Functions.setBarImages(livingHeroes, heroImages);
@@ -108,8 +108,6 @@ public class ArmouryController {
 
         heroRecapSP.setVisible(false);
         heroRecapSP.setDisable(true);
-
-
     }
 
     public void onBackBtnClk() throws IOException { LoadScene.changeScene("dungeon-entry-hall"); }
@@ -120,7 +118,6 @@ public class ArmouryController {
         for(VBox validVBox : armouryItems){
             armouryItemsHB.getChildren().add(validVBox);
         }
-
         itemList = Functions.getArmouryItems(type);
 
         for (int i = 4; i >= 0; i--){
@@ -128,7 +125,7 @@ public class ArmouryController {
             if(item[0].equals("empty")){
                 armouryItemsHB.getChildren().remove(i);
             } else {
-                setImage(itemImages.get(i), "armouryImages", item[0]);
+                setArmouryItemImage(itemImages.get(i),item[0]);
                 HashMap<String, String> dict = getDictFromFile("armoury", "armouryItems");
                 String[] item2 = dict.get(item[0]).split(",");
                 String name = item2[0].split("\\|")[1];
@@ -153,8 +150,26 @@ public class ArmouryController {
                 itemLabels.get(i).setText(toDisplay);
             }
         }
-
         Functions.setItemButtonHBSize(armouryItemsHB);
+    }
+
+    private void setArmouryItemImage(ImageView iv, String itemName) throws FileNotFoundException {
+        Random rand = new Random();
+        String imageName;
+        if(itemName.contains("grimoire") || itemName.contains("potion")|| itemName.contains("fleche")){
+            imageName = itemName;
+        } else {
+            if (itemName.contains("plastron") || itemName.contains("cotte") || itemName.contains("robe") || itemName.contains("casque")){
+                imageName = "bodyItems_" + rand.nextInt(1, 8);
+            } else {
+                if (itemName.contains("dague") || itemName.contains("epee") || itemName.contains("hache") || itemName.contains("arc")) {
+                    imageName = "weaponItems_" + rand.nextInt(1, 8);
+                } else {
+                    imageName = "unknownItem";
+                }
+            }
+        }
+        setImage(iv, "armouryImages", imageName);
     }
 
     @FXML

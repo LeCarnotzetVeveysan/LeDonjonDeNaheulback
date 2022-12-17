@@ -78,7 +78,7 @@ public class Functions {
         String[] d4t1 = {"tavern4table1","hero1:empty&hero2:empty&hero3:empty&hero4:feigaff&hero5:empty&hero6:lucrece"};
         String[] d4t2 = {"tavern4table2","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
         String[] d5t1 = {"tavern5table1","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
-        String[] d5t2 = {"tavern5table2","hero1:empty&hero2:empty&hero3:bratux&hero4:empty&hero5:gerard&hero6:empty"};
+        String[] d5t2 = {"tavern5table2","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:gerard&hero6:empty"};
         String[] d6t1 = {"tavern6table1","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
         String[] d6t2 = {"tavern6table2","hero1:empty&hero2:empty&hero3:norelenilia&hero4:empty&hero5:empty&hero6:empty"};
         String[] d7t1 = {"tavern7table1","hero1:empty&hero2:mimolett&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
@@ -157,20 +157,23 @@ public class Functions {
         ArrayList<String> slugList = getTableSlugList();
 
         for(int i=0;i<=5;i++){
-            setImage(al.get(i), "tavernImages",slugList.get(i) + "_table");
+            setImage(al.get(i), "heroImages",slugList.get(i) + "_table");
         }
     }
 
     public static ArrayList<String> getBarItems(String type) throws IOException {
-        String path = resPath + "tavernFiles/bar" + Game.getDungeon() + "_" + type;
-        BufferedReader br = new BufferedReader(new FileReader(path));
+        ArrayList<String> al = new ArrayList<>();
         ArrayList<String> itemList = new ArrayList<>();
-        for (String line = br.readLine(); line != null; line = br.readLine()) {
-            String[] parts = line.split(":");
-            itemList.add(parts[1]);
+        HashMap<String,String> dict = getDictFromFile("game",type);
+        for(String s : dict.keySet()){
+            al.add(s);
+        }
+        Random rand = new Random();
+        for(int i = 1; i <= 5; i++){
+            int index = rand.nextInt(al.size() -1);
+            itemList.add(al.get(index));
         }
         return itemList;
-
     }
 
     public static ArrayList<String> getArmouryItems(String type) throws IOException {
@@ -188,30 +191,30 @@ public class Functions {
     public static void setCombatHeroImages(ArrayList<Hero> lhs, ArrayList<ImageView> al, Hero ah, ImageView ahiv) throws FileNotFoundException {
 
         for( ImageView iv : al){
-            setImage(iv, "combatImages", "empty_combat");
+            setImage(iv, "heroImages", "empty_combat");
         }
         for (int i = 0; i < lhs.size(); i++) {
             if(lhs.get(i) == null){
-                setImage(al.get(i), "combatImages", "empty_combat");
+                setImage(al.get(i), "heroImages", "empty_combat");
             } else {
-                setImage(al.get(i), "combatImages", lhs.get(i).getSlug() + "_combat");
+                setImage(al.get(i), "heroImages", lhs.get(i).getSlug() + "_combat");
             }
 
         }
         if(ah == null){
-            setImage(ahiv, "combatImages", "empty_combat");
+            setImage(ahiv, "heroImages", "empty_combat");
         } else {
-            setImage(ahiv, "combatImages", ah.getSlug() + "_combat");
+            setImage(ahiv, "heroImages", ah.getSlug() + "_combat");
         }
     }
 
     public static void setBarImages(ArrayList<Hero> lhs, ArrayList<ImageView> al) throws FileNotFoundException {
 
         for( ImageView iv : al){
-            setImage(iv, "tavernImages", "empty_bar");
+            setImage(iv, "heroImages", "empty_bar");
         }
         for (int i = 0; i < lhs.size(); i++) {
-            setImage(al.get(i), "tavernImages", lhs.get(i).getSlug() + "_bar");
+            setImage(al.get(i), "heroImages", lhs.get(i).getSlug() + "_bar");
         }
 
     }
@@ -262,15 +265,13 @@ public class Functions {
         }
     }
 
-
-
     public static void setInventoryImages(ArrayList<Item> inventory, ArrayList<ImageView> ivs) throws FileNotFoundException {
 
         for(ImageView iv : ivs){
             setImage(iv, "armouryImages", "empty_icon");
         }
         for(int i = 0; i < inventory.size(); i++){
-            setImage(ivs.get(i), "armouryImages", inventory.get(i).getSlug() + "_icon");
+            setImage(ivs.get(i), "armouryImages", inventory.get(i) + "_icon");
         }
 
     }
@@ -322,7 +323,6 @@ public class Functions {
             lbl1.setText("Il n'y a rien d'équipé");
             lbl2.setText("");
             setImage(iv, "armouryImages", "null_icon");
-
         } else {
             String toDisplay;
             HashMap<String, String> dict = getDictFromFile("armoury", "armouryItems");
@@ -336,7 +336,12 @@ public class Functions {
             toDisplay = "Effet: " + effet[0] + " " + stat + " " + effet[2] + ", Qualité " + quality;
             lbl2.setText(toDisplay);
 
-            setImage(iv, "armouryImages", itemName + "_icon");
+            switch (item){
+                case 1 -> setImage(iv, "armouryImages", "helmet_icon");
+                case 2 -> setImage(iv, "armouryImages", "armor_icon");
+                case 3 -> setImage(iv, "armouryImages", "sword_icon");
+                case 4 -> setImage(iv, "armouryImages", "dagger_icon");
+            }
 
         }
     }
