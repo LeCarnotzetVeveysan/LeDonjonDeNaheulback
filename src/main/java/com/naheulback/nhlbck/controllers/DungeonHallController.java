@@ -16,7 +16,7 @@ public class DungeonHallController {
     @FXML
     private ImageView mainIV;
     @FXML
-    private Button tavernButton,armouryButton;
+    private Button armouryButton;
 
     public void initialize() throws FileNotFoundException {
         Functions.setImage(mainIV, "dungeonImages", "d" + getDungeon() + "_hall_background");
@@ -27,14 +27,8 @@ public class DungeonHallController {
     }
 
     public void onDungeonButtonClick() throws IOException {
-
-        if(Game.getDungeon() == 10){
-            Game.setRoom(1);
-            changeScene("dungeon-boss-floor");
-        } else {
-            Game.setRoom(1);
-            changeScene("dungeon-simple-floor");
-        }
+        Game.setRoom(1);
+        changeScene("dungeon-simple-floor");
     }
 
     public void onTavernButtonClicked() throws IOException {

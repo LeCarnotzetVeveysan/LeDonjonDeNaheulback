@@ -14,12 +14,12 @@ import java.io.IOException;
 
 public class LevelSelectController {
 
-    private final String resPath = "src/main/resources/com/naheulback/nhlbck";
     @FXML
     private Label titleLabel, level1Lbl, level2Lbl, level3Lbl, level4Lbl;
 
     public void initialize() throws IOException {
 
+        String resPath = "src/main/resources/com/naheulback/nhlbck";
         Font folkard = Font.loadFont(new FileInputStream(resPath + "/fonts/folkard.ttf"), 90);
         Font candlebright = Font.loadFont(new FileInputStream(resPath + "/fonts/candlebright.ttf"), 20);
 

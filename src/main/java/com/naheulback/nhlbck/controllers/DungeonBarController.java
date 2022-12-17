@@ -284,10 +284,7 @@ public class DungeonBarController {
     }
 
     @FXML
-    void onHero1Hover() {
-        currentHeroIndex = 0;
-        //setImage
-    }
+    void onHero1Hover() { currentHeroIndex = 0;}
     @FXML
     void onHero2Hover() {
         currentHeroIndex = 1;

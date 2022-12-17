@@ -1,0 +1,14 @@
+slug:lachaud
+class:human
+name:Lachaud
+health:100000000
+maxHealth:100000000
+attack:100000
+magic:100000
+resistance:100000
+cost:1
+level:21
+xp:25001
+desc:Test
+quote:Comment ça ?
+joke:<Insérer référence>

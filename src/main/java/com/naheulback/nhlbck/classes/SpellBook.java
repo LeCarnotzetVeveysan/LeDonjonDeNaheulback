@@ -16,7 +16,7 @@ public class SpellBook extends Item {
         HashMap<String, String> spellbookDict = Functions.getDictFromFile("armoury","spellbooks");
         String[] sorts = spellbookDict.get(inputSlug).split(",");
 
-        HashMap<String,String> spellDict = Functions.getDictFromFile("armoury", "sorts");
+        HashMap<String,String> spellDict = Functions.getDictFromFile("armoury", "spells");
         String[] infos = spellDict.get(sorts[0]).split(",");
         spell1 = new Spell(sorts[0], infos[0], Integer.parseInt(infos[1]), Integer.parseInt(infos[2]));
         infos = spellDict.get(sorts[1]).split(",");

@@ -13,21 +13,15 @@ import javafx.scene.layout.StackPane;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Random;
+import java.util.*;
 
 import static com.naheulback.nhlbck.Game.addGoldPieces;
 import static com.naheulback.nhlbck.Game.getRoom;
 
 public class SimpleFloorController {
 
-    private int currentHeroIndex;
-    private int activeHeroIndex;
+    private int currentHeroIndex, activeHeroIndex, currentEnemyIndex, activeEnemyIndex;
     private Hero activeHero;
-    private int currentEnemyIndex;
-    private int activeEnemyIndex;
     private Enemy activeEnemy;
     private ArrayList<Hero> livingHeroes;
     private ArrayList<ImageView> heroIVs;
@@ -78,7 +72,6 @@ public class SimpleFloorController {
     private ImageView hero1ManaBarIV, hero2ManaBarIV, hero3ManaBarIV, hero4ManaBarIV, hero5ManaBarIV, hero6ManaBarIV;
     @FXML
     private Label hero1ManaBarLB, hero2ManaBarLB, hero3ManaBarLB, hero4ManaBarLB, hero5ManaBarLB, hero6ManaBarLB;
-
     @FXML
     private HBox actionButtonHB;
     @FXML
@@ -92,6 +85,9 @@ public class SimpleFloorController {
         activeHeroIndex = -1;
         activeEnemyIndex = -1;
         livingHeroes = Game.getLivingHeroes();
+        //Pour les tests de donjons
+        HashMap<String,String> heroDict = Functions.getDictFromFile("hero","lachaud");
+        if(livingHeroes.size() == 0){livingHeroes.add(new Warrior(heroDict));}
         heroIVs = new ArrayList<>(Arrays.asList(hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV));
         heroHPBarIVs = new ArrayList<>(Arrays.asList(hero1HPBarIV, hero2HPBarIV, hero3HPBarIV, hero4HPBarIV, hero5HPBarIV,hero6HPBarIV));
         heroHPBarLBs = new ArrayList<>(Arrays.asList(hero1HPBarLB, hero2HPBarLB, hero3HPBarLB, hero4HPBarLB, hero5HPBarLB, hero6HPBarLB));
@@ -192,7 +188,6 @@ public class SimpleFloorController {
     private void getEnemyReward() {
         double goldToAdd = activeEnemy.getGoldGain();
         addGoldPieces(Math.round(goldToAdd));
-
         double expToAdd = activeEnemy.getExpGain();
 
         if(!(activeHero == null)) {

@@ -21,8 +21,6 @@ import static com.naheulback.nhlbck.Game.getDungeon;
 
 public class DungeonTableController {
 
-    private static final String resPath = "src/main/resources/com/naheulback/nhlbck/";
-    private static final String slug = "empty";
     @FXML
     private ImageView mainIV;
     @FXML
@@ -75,8 +73,6 @@ public class DungeonTableController {
     @FXML
     private Label coinCountLB;
     private HashMap<String,String> heroDict;
-    private ArrayList<Hero> livingHeroes;
-
 
 
     public void initialize() throws IOException {
@@ -97,8 +93,6 @@ public class DungeonTableController {
 
         coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
         heroSpeakLB.setText("");
-
-        livingHeroes = Game.getLivingHeroes();
 
     }
     public void onBackButtonClicked() throws IOException {

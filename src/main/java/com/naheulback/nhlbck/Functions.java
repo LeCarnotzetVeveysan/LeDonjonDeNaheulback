@@ -162,12 +162,9 @@ public class Functions {
     }
 
     public static ArrayList<String> getBarItems(String type) throws IOException {
-        ArrayList<String> al = new ArrayList<>();
         ArrayList<String> itemList = new ArrayList<>();
         HashMap<String,String> dict = getDictFromFile("game",type);
-        for(String s : dict.keySet()){
-            al.add(s);
-        }
+        ArrayList<String> al = new ArrayList<>(dict.keySet());
         Random rand = new Random();
         for(int i = 1; i <= 5; i++){
             int index = rand.nextInt(al.size() -1);
@@ -230,6 +227,7 @@ public class Functions {
                 double percentage = 100 * (ceil(10.0 * lhs.get(i).getHealth() / lhs.get(i).getMaxHealth()) / 10);
                 int rounded = (int) percentage;
                 if(rounded < 0){ rounded = 0; }
+                if(rounded > 100){ rounded = 100; }
                 setImage(al.get(i), "otherImages", rounded + "HPbar");
                 lb.get(i).setText(lhs.get(i).getHealth() + "/" + lhs.get(i).getMaxHealth());
                 al.get(i).setVisible(true);
@@ -256,6 +254,7 @@ public class Functions {
             double percentage = 100 * (ceil(10.0 * hero.getHealth() / hero.getMaxHealth()) / 10);
             int rounded = (int) percentage;
             if(rounded < 0){ rounded = 0; }
+            if(rounded >= 100){ rounded = 100; }
             setImage(hpiv, "otherImages", rounded + "HPbar");
             hpiv.setVisible(true);
             hplbl.setText(hero.getHealth() + "/" + hero.getMaxHealth());
@@ -301,27 +300,27 @@ public class Functions {
         String quality = "";
         String stat = "";
 
-        switch (item){
-            case 1:
+        switch (item) {
+            case 1 -> {
                 itemName = hero.getHeadItem() == null ? "null" : hero.getHeadItem().getSlug();
                 quality = hero.getHeadItem() == null ? "null" : String.valueOf(hero.getHeadItem().getQuality());
                 stat = hero.getHeadItem() == null ? "null" : String.valueOf(hero.getHeadItem().getArmor());
-                break;
-            case 2:
+            }
+            case 2 -> {
                 itemName = hero.getBodyItem() == null ? "null" : hero.getBodyItem().getSlug();
                 quality = hero.getBodyItem() == null ? "null" : String.valueOf(hero.getBodyItem().getQuality());
                 stat = hero.getBodyItem() == null ? "null" : String.valueOf(hero.getBodyItem().getArmor());
-                break;
-            case 3:
+            }
+            case 3 -> {
                 itemName = hero.getMainWeapon() == null ? "null" : hero.getMainWeapon().getSlug();
                 quality = hero.getMainWeapon() == null ? "null" : String.valueOf(hero.getMainWeapon().getQuality());
                 stat = hero.getMainWeapon() == null ? "null" : String.valueOf(hero.getMainWeapon().getPower());
-                break;
-            case 4:
+            }
+            case 4 -> {
                 itemName = hero.getThrowableWeapon() == null ? "null" : hero.getThrowableWeapon().getSlug();
                 quality = hero.getThrowableWeapon() == null ? "null" : String.valueOf(hero.getThrowableWeapon().getQuality());
                 stat = hero.getThrowableWeapon() == null ? "null" : String.valueOf(hero.getThrowableWeapon().getPower());
-                break;
+            }
         }
 
         if(itemName.equals("null")){
@@ -427,6 +426,8 @@ public class Functions {
                 if (lhs.get(i).getIsAlive()) {
                     double percentage = 100 * (ceil(10.0 * lhs.get(i).getHealth() / lhs.get(i).getMaxHealth()) / 10);
                     int rounded = (int) percentage;
+                    if(rounded < 0){ rounded = 0; }
+                    if(rounded > 100){ rounded = 100; }
                     setImage(al.get(i), "otherImages", rounded + "HPbar");
                     lb.get(i).setText(lhs.get(i).getHealth() + "/" + lhs.get(i).getMaxHealth());
                     al.get(i).setVisible(true);
@@ -460,7 +461,7 @@ public class Functions {
         for(int i = 1; i <= 10; i++){
             HashMap<String, String> dict = getDictFromFile("game", "dungeon" + i + "floors");
             String bossState = dict.get("floor" + 10 + "state").split(",")[0];
-            Boolean isBossAlive = Boolean.parseBoolean(bossState);
+            boolean isBossAlive = Boolean.parseBoolean(bossState);
             if(isBossAlive){
                 return false;
             }

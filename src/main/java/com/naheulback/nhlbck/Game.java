@@ -24,13 +24,11 @@ public class Game {
     public void main() throws IOException {
 
         LoadScene ls = new LoadScene(mainStage);
-        LoadScene.changeScene("menu-main-menu");
+        ls.changeScene("menu-main-menu");
 
     }
 
     public static ArrayList<Hero> getLivingHeroes(){ return PlayerData.getLivingHeroes(); }
-
-    public static void setLivingHeroes(ArrayList<Hero> al){ PlayerData.setLivingHeroes(al);}
 
     public static int getNumberOfLivingHeroes(){ return PlayerData.getNumberOfLivingHeroes(); }
 

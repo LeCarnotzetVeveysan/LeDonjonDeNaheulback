@@ -2,12 +2,12 @@ floor1:orchidee_pieuvre,orchidee_pieuvre,orchidee_pieuvre,orchidee_pieuvre,orchi
 floor2:golem,golem,golem,null,null,null
 floor3:castor_ninja,castor_ninja,null,null,null,null
 floor4:crabe_geant,crabe_geant,crabe_geant,null,null,null
-floor5:lihe,liche,liche,null,null,null
+floor5:liche,liche,liche,null,null,null
 floor6:ghoule,ghoule,ghoule,null,null,null
 floor7:globzoule,globzoule,null,null,null,null
 floor8:castor_ninja,castor_ninja,castor_ninja,null,null,null
-floor9:dragon_cimes,dragon_cimes,dragon_cimes,drgaon_cimes,dragon_cimes,null
-floor10:gozzer,dragon_cimes,drgaon_cimes,null,null,null
+floor9:dragon_cimes,dragon_cimes,dragon_cimes,dragon_cimes,dragon_cimes,null
+floor10:gozzer,dragon_cimes,dragon_cimes,null,null,null
 floor1state:true,true,true,true,true,true
 floor2state:true,true,true,true,true,true
 floor3state:true,true,true,true,true,true

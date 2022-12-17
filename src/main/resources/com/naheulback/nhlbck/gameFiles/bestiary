@@ -1,7 +1,7 @@
 zangdar:boss,Zangdar,100,100,50,50,25,1000,1000
 dragon_dore:boss,Dragon Doré,200,200,50,50,25,1000,1000
 golbargh:boss,Golbargh,300,300,100,100,50,2000,2000
-ghukkutuh:boss,400,400,100,100,50,2000,2000
+ghukkutuh:boss,Ghukkutuh,400,400,100,100,50,2000,2000
 hydre:boss,Hydre,500,500,150,150,75,3000,3000
 ouklaf_geant:boss,Ouklaf Géant,600,600,150,150,75,3000,3000
 gloubzoule_argente:boss,Globzoule Argenté,700,700,200,200,100,4000,4000
@@ -11,20 +11,20 @@ gozzer:boss,Le Desctructeur des Mondes,1000,1000,400,400,200,10000,10000
 ghoule:simple,Ghoule,100,100,20,0,20,50,50
 blob:simple,Blob,50,50,20,0,20,25,25
 gobelin:simple,Gobelin,25,25,10,0,10,10,10
-blatte_geante:simple,50,50,10,0,30,25,25
-castor_ninja:simple,100,100,20,0,20,50,50
-chapon_fanghien:simple,25,25,10,0,10,10,10
-crabe_geant:simple,100,100,50,0,75,50,50
-dragon_cimes:simple,75,75,50,0,40,30,30
-dragon_noir:simple,50,50,30,0,40,25,25
-fourmi_devorag:simple,100,100,50,0,20,50,50
-globzoule:simple,200,200,100,0,30,100,100
-golem:simple,300,300,25,0,75,150,150
-harpie:simple,200,200,75,0,45,100,100
-liche:simple,150,150,75,0,50,75,75
-limon_malefique:simple,65,65,25,0,20,30,30
-merguez_combat:simple,75,75,25,0,25,30,30
-orchidee_pieuvre:simple,69,69,69,0,69,69,69
-rat_simple:simple,25,25,10,0,20,10,10
-rat_mutant:simple,50,50,25,0,30,25,25
-zombie:simple,30,30,15,0,15,15,15
+blatte_geante:simple,Blatte géante,50,50,10,0,30,25,25
+castor_ninja:simple,Castor Ninja,100,100,20,0,20,50,50
+chapon_fanghien:simple,Chapon fanghien,25,25,10,0,10,10,10
+crabe_geant:simple,Crabe Géant,100,100,50,0,75,50,50
+dragon_cimes:simple,Dragon des cimes,75,75,50,0,40,30,30
+dragon_noir:simple,Dragon noir,50,50,30,0,40,25,25
+fourmi_devorag:simple,Fourmi Dévorag,100,100,50,0,20,50,50
+globzoule:simple,Globzoule,200,200,100,0,30,100,100
+golem:simple,Golem de pierre,300,300,25,0,75,150,150
+harpie:simple,Harpie,200,200,75,0,45,100,100
+liche:simple,Liche,150,150,75,0,50,75,75
+limon_malefique:simple,Limon maléfique,65,65,25,0,20,30,30
+merguez_combat:simple,Merguez de combat,75,75,25,0,25,30,30
+orchidee_pieuvre:simple,Orchidée pieuvre,69,69,69,0,69,69,69
+rat_simple:simple,Rat simple,25,25,10,0,20,10,10
+rat_mutant:simple,Rat mutant,50,50,25,0,30,25,25
+zombie:simple,Zombie,30,30,15,0,15,15,15

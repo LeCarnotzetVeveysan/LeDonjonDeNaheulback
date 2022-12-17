@@ -2,11 +2,9 @@ package com.naheulback.nhlbck.controllers;
 
 import com.naheulback.nhlbck.Functions;
 import com.naheulback.nhlbck.LoadScene;
-import com.naheulback.nhlbck.classes.GameData;
 import com.naheulback.nhlbck.classes.PlayerData;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -20,7 +18,6 @@ import static com.naheulback.nhlbck.Functions.*;
 
 public class MainMenuController {
 
-    private final String resPath = "src/main/resources/com/naheulback/nhlbck";
     @FXML
     private ImageView newGameBtnIV, instructionsBtnIV, quitBtnIV;
     @FXML
@@ -28,6 +25,7 @@ public class MainMenuController {
 
     public void initialize() throws FileNotFoundException {
 
+        String resPath = "src/main/resources/com/naheulback/nhlbck";
         Font folkard90 = Font.loadFont(new FileInputStream(resPath + "/fonts/folkard.ttf"), 90);
         Font folkard45 = Font.loadFont(new FileInputStream(resPath + "/fonts/folkard.ttf"), 45);
         if(PlayerData.getIsDefeated()){

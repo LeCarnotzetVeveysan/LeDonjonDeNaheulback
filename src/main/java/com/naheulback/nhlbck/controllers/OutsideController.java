@@ -3,13 +3,10 @@ package com.naheulback.nhlbck.controllers;
 import com.naheulback.nhlbck.Game;
 import com.naheulback.nhlbck.LoadScene;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 
 import static com.naheulback.nhlbck.Functions.setImage;
 
@@ -28,12 +25,10 @@ public class OutsideController {
     }
 
     public void onBackButtonClicked() throws IOException {
-
         Game.setDungeon(0);
         Game.setRoom(0);
         Game.setTable(0);
         LoadScene.changeScene("menu-travel-map");
-
     }
 
     public void onEnterButtonClicked() throws IOException {
