@@ -10,6 +10,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import static com.naheulback.nhlbck.Functions.setImage;
+
 public class TavernController {
 
     @FXML
@@ -18,12 +20,7 @@ public class TavernController {
 
 
     public void initialize() throws IOException {
-
-        String path = "src/main/resources/com/naheulback/nhlbck/dungeonImages/d";
-        InputStream stream = new FileInputStream(path + Game.getDungeon() + "_tavern_background.png");
-        Image image = new Image(stream);
-        mainIV.setImage(image);
-
+        setImage(mainIV,"dungeonImages","d"+Game.getDungeon() + "_tavern_background");
     }
 
     public void onTable1ButtonClicked() throws IOException {

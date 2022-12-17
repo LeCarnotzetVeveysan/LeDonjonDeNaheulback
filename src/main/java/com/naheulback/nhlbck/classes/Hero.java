@@ -61,12 +61,18 @@ public abstract class Hero extends LivingThing {
         return attack;
     }
 
-    public double getFlatMagic(Weapon weapon, Spell spell){
+    public double getFlatMagic(Hero hero, Spell spell){
         double magic = getBaseMagic();
         magic *= (1 + (level/10.0));
         magic += spell.getMagicDamage();
-        if(!(weapon == null)){
-            magic += weapon.getPower();
+        if(!(hero.getMainWeapon() == null)){
+            magic += hero.getMainWeapon().getPower();
+        }
+        if(!(hero.getHeadItem() == null)){
+            magic += hero.getHeadItem().getArmor();
+        }
+        if(!(hero.getMainWeapon() == null)){
+            magic += hero.getBodyItem().getArmor();
         }
         return magic;
     }

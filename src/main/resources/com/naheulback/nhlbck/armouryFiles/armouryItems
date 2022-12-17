@@ -1,0 +1,3 @@
+plastron_test:name|test_plastron,cost|100,stat|10,effet|+ X res,desc|plastron de test
+casque_test:name|test_casque,cost|50,stat|5,effet|+ X def,desc|casque de test
+epee_test:name|Test_epee,cost|100,stat|10,effet|+ X atk,desc|Epee_test

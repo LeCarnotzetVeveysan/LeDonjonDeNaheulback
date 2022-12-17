@@ -49,10 +49,6 @@ public class Functions {
         copyFileUsingStream(source, dest);
     }
 
-    public static void dealDamageToEnemy(Hero hero,Enemy enemy,int attackType ){
-
-    }
-
     public static HashMap<String, String> getDictFromFile(String folder, String fileName) throws IOException {
 
         if(Objects.equals(fileName, "empty")){
@@ -145,10 +141,7 @@ public class Functions {
         ArrayList<String> slugList = getTableSlugList();
 
         for(int i=0;i<=5;i++){
-            String path = resPath + "/tavernImages/" + slugList.get(i) + "_table.png";
-            InputStream stream = new FileInputStream(path);
-            Image image = new Image(stream);
-            al.get(i).setImage(image);
+            setImage(al.get(i), "tavernImages",slugList.get(i) + "_table");
         }
     }
 
@@ -316,10 +309,11 @@ public class Functions {
 
         } else {
             String toDisplay;
-            HashMap<String, String> dict = getDictFromFile("armoury", itemName);
+            HashMap<String, String> dict = getDictFromFile("armoury", "armouryItems");
+            String[] itemArr = dict.get(itemName).split(",");
 
-            String name = dict.get("name");
-            String[] effet = dict.get("effet").split(" ");
+            String name = itemArr[0].split("\\|")[1];
+            String[] effet = itemArr[3].split("\\|")[1].split(" ");
 
             toDisplay = name;
             lbl1.setText(toDisplay);

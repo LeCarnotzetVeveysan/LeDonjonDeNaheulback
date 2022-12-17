@@ -43,8 +43,6 @@ public class Elfe extends Hero {
         if(!type.equals("")) {
             int index = inventorySlugs.indexOf(type);
             ((Carquois) super.getInventory().get(index)).setFleches(amount);
-        } else {
-            System.out.println("Tu n'as pas le carquois pour acheter une telle flèche");
         }
     }
 

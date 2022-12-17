@@ -1,5 +1,6 @@
 package com.naheulback.nhlbck.controllers;
 
+import com.naheulback.nhlbck.Functions;
 import com.naheulback.nhlbck.Game;
 import com.naheulback.nhlbck.LoadScene;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class TravelMapController {
 
@@ -32,17 +34,13 @@ public class TravelMapController {
 
         for (StackPane sp : stackPanes){ sp.setVisible(false); }
 
+        HashMap<String,String> nameDict = Functions.getDictFromFile("game","dungeonNames");
+        int i = 1;
         for(Label lbl : statLabels){
-            String path = resPath + "mapFiles/donj" + (statLabels.indexOf(lbl) + 1) + "_stats";
-            BufferedReader br = new BufferedReader(new FileReader(path));
-            String toDisplay = "";
-            for (String line = br.readLine(); line != null; line = br.readLine()) {
-                toDisplay += line;
-                if(!line.equals("")){
-                    toDisplay += "\n";
-                }
-            }
+            String[] arr = nameDict.get(String.valueOf(i)).split(",");
+            String toDisplay = arr[0] + "\n" + arr[1];
             lbl.setText(toDisplay);
+            i+=1;
         }
     }
 

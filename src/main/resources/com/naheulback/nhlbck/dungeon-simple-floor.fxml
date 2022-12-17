@@ -166,7 +166,7 @@
       </StackPane>
       <StackPane fx:id="activeEnemySP" alignment="BOTTOM_CENTER" layoutX="545.0" layoutY="269.0" style="-fx-background-color: grey;" AnchorPane.topAnchor="200.0">
          <children>
-            <ImageView fx:id="activeEnemyIV" fitHeight="175.0" fitWidth="133.0" onMouseClicked="#onActiveEnemyClicked" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="activeEnemyIV" fitHeight="175.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="activeEnemyHPBarIV" fitHeight="30.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="activeEnemyHPBarLB" alignment="TOP_LEFT" text="Label" textAlignment="CENTER">
                <StackPane.margin>

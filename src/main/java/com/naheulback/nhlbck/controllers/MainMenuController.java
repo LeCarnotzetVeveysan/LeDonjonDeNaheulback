@@ -46,7 +46,7 @@ public class MainMenuController {
     }
 
     public void onSavedGameButtonClick() {
-        //System.out.println(Game.getLevel());
+
     }
 
     @FXML

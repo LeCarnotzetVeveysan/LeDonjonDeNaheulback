@@ -1,14 +1,14 @@
-slug:lelfe
-class:elfe
-name:L'Elfe
-cost:100
+slug:lebarbare
+class:warrior
+name:Le Barbare
 health:50
 maxHealth:100
 attack:10
 magic:0
 resistance:20
+cost:100
 level:1
 xp:0
-desc:Je suis L'Elfe, elfe de niveau !
-quote:J'espère que vous n'avez pas de nain dans votre équipe.
-joke:À trouver !
+desc:Je suis Le barbare, barbare de niveau
+quote:Taper !!!
+joke:Les blagues c'est pour les faibles.

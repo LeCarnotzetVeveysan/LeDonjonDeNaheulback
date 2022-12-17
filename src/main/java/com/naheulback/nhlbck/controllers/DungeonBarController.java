@@ -154,12 +154,7 @@ public class DungeonBarController {
             if(itemList.get(i).equals("empty")){
                 barItemsHB.getChildren().remove(i);
             } else {
-                String path = resPath + "tavernImages/";
-                InputStream stream = new FileInputStream(path + itemList.get(i) + ".png");
-                Image image = new Image(stream);
-                itemImages.get(i).setImage(image);
-
-
+                setImage(itemImages.get(i), "tavernImages", itemList.get(i));
             }
         }
 
@@ -231,12 +226,11 @@ public class DungeonBarController {
 
                 switch (itemName) {
                     case "saucisse_puree" -> {
-                        System.out.println("saucisse-puree");
                         currentHero.addHealth(5);
-
+                        currentHero.addMana(5);
                     }
                     case "demi_blonde" -> {
-                        System.out.println("demi de blonde");
+
                     }
                 }
 
@@ -260,19 +254,13 @@ public class DungeonBarController {
 
             } else {
                 barmanSpeakLbl.setText("Tu n'as pas assez de pièces d'or pour ça");
-                String path = "src/main/resources/com/naheulback/nhlbck/tavernImages/";
-                InputStream stream = new FileInputStream(path + "barman_pos" + currentHeroIndex + "_bubble.png");
-                Image image = new Image(stream);
-                barmanSpeakIV.setImage(image);
+                setImage(barmanSpeakIV, "tavernImages","barman_pos0_bubble" );
             }
         } else {
             barmanSpeakLbl.setText("Tu n'as pas choisi de héros");
             barmanIV.setVisible(true);
             barmanIV.setLayoutX(25);
-            String path = "src/main/resources/com/naheulback/nhlbck/tavernImages/";
-            InputStream stream = new FileInputStream(path + "barman_pos0_bubble.png");
-            Image image = new Image(stream);
-            barmanSpeakIV.setImage(image);
+            setImage(barmanSpeakIV, "tavernImages","barman_pos0_bubble" );
         }
     }
 

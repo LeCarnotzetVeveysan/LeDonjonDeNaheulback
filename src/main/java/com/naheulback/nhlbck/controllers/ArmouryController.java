@@ -3,6 +3,7 @@ package com.naheulback.nhlbck.controllers;
 import com.naheulback.nhlbck.Functions;
 import com.naheulback.nhlbck.Game;
 import com.naheulback.nhlbck.LoadScene;
+import com.naheulback.nhlbck.classes.Consumable;
 import com.naheulback.nhlbck.classes.Elfe;
 import com.naheulback.nhlbck.classes.Grimoire;
 import com.naheulback.nhlbck.classes.Hero;
@@ -126,28 +127,22 @@ public class ArmouryController {
             String[] item = itemList.get(i).split("\\|");
             if(item[0].equals("empty")){
                 armouryItemsHB.getChildren().remove(i);
-
             } else {
-
                 setImage(itemImages.get(i), "armouryImages", item[0]);
-
-                HashMap<String, String> dict = getDictFromFile("armoury", item[0]);
-
-                String name = dict.get("name");
-                String[] effet = dict.get("effet").split(" ");
-                String cout = dict.get("cost");
-                String desc = dict.get("desc");
+                HashMap<String, String> dict = getDictFromFile("armoury", "armouryItems");
+                String[] item2 = dict.get(item[0]).split(",");
+                String name = item2[0].split("\\|")[1];
+                String[] effet = item2[3].split("\\|")[1].split(" ");
+                String cout = item2[1].split("\\|")[1];
+                String desc = item2[4].split("\\|")[1];
                 int stat = 0;
                 if(!(item[4].equals("grimoire") || item[4].equals("consumable"))) {
-                    stat = (int) round((0.75 + (0.25 * Integer.valueOf(item[2]))) * Integer.parseInt(dict.get("stat")));
+                    stat = (int) round((0.9 + (0.1 * Integer.parseInt(item[2]))) * Integer.parseInt(item2[2].split("\\|")[1]));
                 }
-
                 String toDisplay = "";
                 toDisplay += name + "\n";
 
-                if((item[4].equals("grimoire") || item[4].equals("consumable"))){
-                    toDisplay += "Sorts inclus: " + dict.get("effet");
-                } else {
+                if(!(item[4].equals("grimoire") || item[4].equals("consumable"))){
                     toDisplay += "Qualité: " + item[3] + item[1] +"\n";
                     toDisplay += "Effet: " + effet[0] + " " + stat + " " + effet[2] + "\n";
                 }
@@ -184,7 +179,6 @@ public class ArmouryController {
             heroRecapSP.setVisible(true);
             heroRecapSP.setDisable(false);
         } else {
-            System.out.println("test");
             armourymanIV.setLayoutX(25);
             heroRecapSP.setVisible(false);
             heroRecapSP.setDisable(true);
@@ -197,42 +191,31 @@ public class ArmouryController {
 
         String[] item = itemList.get(currentItem).split("\\|");
         String itemSlug = item[0];
+        HashMap<String, String> dict = getDictFromFile("armoury", "armouryItems");
+        String[] item2 = dict.get(item[0]).split(",");
 
-        HashMap<String, String> dict = getDictFromFile("armoury", itemSlug);
-        double cost = Double.parseDouble(dict.get("cost"));
+        double cost = Double.parseDouble(item2[1].split("\\|")[1]);
         if (!(curHero == null)) {
             if (Game.hasEnoughGoldPieces(cost)) {
 
                 Game.takeGoldPieces(cost);
                 coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
 
-                String itemName = dict.get("name") + item[1];
+                String itemName = item2[0].split("\\|")[1] + item[1];
                 int level = Integer.parseInt(item[2]);
                 int quality = Integer.parseInt(item[3]);
                 int stat = 0;
                 if(!(item[4].equals("grimoire") || item[4].equals("consumable"))) {
-                    stat = (int) round((0.75 + (0.25 * level)) * Integer.parseInt(dict.get("stat")));
+                    stat = (int) round((0.9 + (0.1 * level)) * Integer.parseInt(item2[2].split("\\|")[1]));
                 }
-                switch(item[4]){
-                    case "mainWeapon":
-                        curHero.setMainWeapon(itemSlug, itemName, level , quality, stat );
-                        break;
-                    case "throwableWeapon":
-                        curHero.setThrowableWeapon(itemSlug, itemName, level , quality, stat );
-                        break;
-                    case "headItem":
-                        curHero.setHeadItem(itemSlug, itemName, level , quality, stat );
-                        break;
-                    case "bodyItem":
-                        curHero.setBodyItem(itemSlug, itemName, level , quality, stat );
-                        break;
-                    case "grimoire":
-                        Grimoire grim = new Grimoire(itemSlug, itemName, level);
-                        curHero.addItem(grim);
-                        break;
-                    case "fleche":
-                        ((Elfe) curHero).setFleches(level, 1);
-                        break;
+                switch (item[4]) {
+                    case "mainWeapon" -> curHero.setMainWeapon(itemSlug, itemName, level, quality, stat);
+                    case "throwableWeapon" -> curHero.setThrowableWeapon(itemSlug, itemName, level, quality, stat);
+                    case "headItem" -> curHero.setHeadItem(itemSlug, itemName, level, quality, stat);
+                    case "bodyItem" -> curHero.setBodyItem(itemSlug, itemName, level, quality, stat);
+                    case "grimoire" -> { Grimoire grim = new Grimoire(itemSlug, itemName, level); curHero.addItem(grim); }
+                    case "fleche" -> ((Elfe) curHero).setFleches(level, 1);
+                    case "consumable" -> curHero.addItem(new Consumable(itemSlug, itemName, level));
                 }
 
                 switch (new Random().nextInt(5)){

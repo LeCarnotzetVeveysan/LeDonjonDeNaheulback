@@ -1,0 +1,6 @@
+type:consumable
+name:Small health potion
+cost:10
+stat:10
+effet:+ X PV
+desc:Petite potion de vie

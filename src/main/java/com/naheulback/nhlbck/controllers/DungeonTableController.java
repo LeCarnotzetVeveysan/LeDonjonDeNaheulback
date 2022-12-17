@@ -190,7 +190,6 @@ public class DungeonTableController {
 
     public void onHeroSitButtonClicked(int index) throws IOException {
 
-        boolean seated = false;
         String slugToSit = Game.getLivingHeroSlugs().get(index);
         ArrayList<String> tsl = getTableSlugList();
 
@@ -198,15 +197,9 @@ public class DungeonTableController {
             if(tsl.get(i).equals("empty")){
                 Game.sitHero(index);
                 tsl.set(i, slugToSit);
-                seated = true;
                 break;
             }
         }
-
-        if(!seated){
-            System.out.println("all seats are taken");
-        }
-
         Functions.updateTableFile(tsl);
         onSitButtonClicked();
         Functions.setTableImages(heroImages);

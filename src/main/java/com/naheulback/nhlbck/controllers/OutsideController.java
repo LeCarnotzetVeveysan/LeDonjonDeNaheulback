@@ -11,6 +11,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import static com.naheulback.nhlbck.Functions.setImage;
+
 public class OutsideController {
 
     @FXML
@@ -20,16 +22,8 @@ public class OutsideController {
 
     public void initialize() throws FileNotFoundException {
 
-        System.out.println("Entered dungeon " + Game.getDungeon());
-
-        String path = "src/main/resources/com/naheulback/nhlbck/dungeonImages/d";
-        InputStream stream = new FileInputStream(path + Game.getDungeon() + "_outside_background.png");
-        Image image = new Image(stream);
-        mainIV.setImage(image);
-
-        stream = new FileInputStream(path + Game.getDungeon() + "_outside_door.png");
-        image = new Image(stream);
-        enterButtonIV.setImage(image);
+        setImage(mainIV, "dungeonImages", "d" + Game.getDungeon() + "_outside_background" );
+        setImage(enterButtonIV, "dungeonImages", "d" + Game.getDungeon() + "_outside_door");
 
     }
 

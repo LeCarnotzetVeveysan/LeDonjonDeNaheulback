@@ -1,6 +1,0 @@
-type:headItem
-name:test_casque
-cost:50
-stat:5
-effet:+ X def
-desc:casque de test
