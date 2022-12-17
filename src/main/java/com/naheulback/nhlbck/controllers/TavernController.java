@@ -37,13 +37,6 @@ public class TavernController {
 
     }
 
-    public void onTable3ButtonClicked() throws IOException {
-
-        Game.setTable(3);
-        LoadScene.changeScene("dungeon-table");
-
-    }
-
     public void onBarButtonClicked() throws IOException {
         LoadScene.changeScene("dungeon-bar");
     }

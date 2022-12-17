@@ -5,16 +5,16 @@ import com.naheulback.nhlbck.Functions;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class Grimoire extends Item {
+public class SpellBook extends Item {
 
     private final Spell spell1;
     private final Spell spell2;
 
-    public Grimoire(String inputSlug, String inputName, int inputLevel) throws IOException {
+    public SpellBook(String inputSlug, String inputName, int inputLevel) throws IOException {
         super(inputSlug, inputName, inputLevel);
 
-        HashMap<String, String> grimoireDict = Functions.getDictFromFile("armoury","grimoires");
-        String[] sorts = grimoireDict.get(inputSlug).split(",");
+        HashMap<String, String> spellbookDict = Functions.getDictFromFile("armoury","spellbooks");
+        String[] sorts = spellbookDict.get(inputSlug).split(",");
 
         HashMap<String,String> spellDict = Functions.getDictFromFile("armoury", "sorts");
         String[] infos = spellDict.get(sorts[0]).split(",");

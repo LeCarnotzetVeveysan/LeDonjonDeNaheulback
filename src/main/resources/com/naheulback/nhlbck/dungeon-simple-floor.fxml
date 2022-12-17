@@ -289,7 +289,7 @@
                         <StackPane alignment="BOTTOM_RIGHT">
                            <children>
                               <ImageView fx:id="secondaryActionButtonIV" fitHeight="69.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label fx:id="flechesCountLB" text="x" />
+                              <Label fx:id="arrowsCountLB" text="x" />
                            </children>
                         </StackPane>
                      </graphic>

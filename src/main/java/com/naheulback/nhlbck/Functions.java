@@ -229,11 +229,12 @@ public class Functions {
             if(!(lhs.get(i) == null)) {
                 double percentage = 100 * (ceil(10.0 * lhs.get(i).getHealth() / lhs.get(i).getMaxHealth()) / 10);
                 int rounded = (int) percentage;
+                if(rounded < 0){ rounded = 0; }
                 setImage(al.get(i), "otherImages", rounded + "HPbar");
                 lb.get(i).setText(lhs.get(i).getHealth() + "/" + lhs.get(i).getMaxHealth());
                 al.get(i).setVisible(true);
 
-                if(lhs.get(i).getType() == "mage"){
+                if(lhs.get(i).getType().equals("mage")){
                     percentage = 100 * (ceil(10.0 * lhs.get(i).getMana() / lhs.get(i).getMaxMana()) / 10);
                     rounded = (int) percentage;
                     setImage(manaIVs.get(i), "otherImages", rounded + "HPbar");
@@ -246,13 +247,17 @@ public class Functions {
 
     public static void setActiveHeroHPBars(Hero hero, ImageView hpiv, Label hplbl, ImageView manaiv, Label manalbl) throws FileNotFoundException {
 
+        hpiv.setVisible(false);
+        hplbl.setText("");
         manaiv.setVisible(false);
         manalbl.setText("");
 
         if(!(hero == null)) {
             double percentage = 100 * (ceil(10.0 * hero.getHealth() / hero.getMaxHealth()) / 10);
             int rounded = (int) percentage;
+            if(rounded < 0){ rounded = 0; }
             setImage(hpiv, "otherImages", rounded + "HPbar");
+            hpiv.setVisible(true);
             hplbl.setText(hero.getHealth() + "/" + hero.getMaxHealth());
 
             if (hero.getType().equals("mage")) {
@@ -271,7 +276,7 @@ public class Functions {
             setImage(iv, "armouryImages", "empty_icon");
         }
         for(int i = 0; i < inventory.size(); i++){
-            setImage(ivs.get(i), "armouryImages", inventory.get(i) + "_icon");
+            setImage(ivs.get(i), "armouryImages", inventory.get(i).getSlug() + "_icon");
         }
 
     }
@@ -351,7 +356,7 @@ public class Functions {
             setImage(iv, "armouryImages", "empty_icon");
         }
         for (int i = 0; i < weaps.size(); i++) {
-            setImage(ivs.get(i), "armouryImages", weaps.get(i).getSlug() + "_icon");
+            setImage(ivs.get(i), "armouryImages", "dagger_icon");
         }
     }
 
@@ -448,5 +453,18 @@ public class Functions {
             writer.newLine();
         }
         writer.close();
+    }
+
+    public static boolean areAllBossesDefeated() throws IOException {
+
+        for(int i = 1; i <= 10; i++){
+            HashMap<String, String> dict = getDictFromFile("game", "dungeon" + i + "floors");
+            String bossState = dict.get("floor" + 10 + "state").split(",")[0];
+            Boolean isBossAlive = Boolean.parseBoolean(bossState);
+            if(isBossAlive){
+                return false;
+            }
+        }
+        return true;
     }
 }

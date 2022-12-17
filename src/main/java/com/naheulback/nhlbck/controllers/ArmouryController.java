@@ -3,10 +3,7 @@ package com.naheulback.nhlbck.controllers;
 import com.naheulback.nhlbck.Functions;
 import com.naheulback.nhlbck.Game;
 import com.naheulback.nhlbck.LoadScene;
-import com.naheulback.nhlbck.classes.Consumable;
-import com.naheulback.nhlbck.classes.Elfe;
-import com.naheulback.nhlbck.classes.Grimoire;
-import com.naheulback.nhlbck.classes.Hero;
+import com.naheulback.nhlbck.classes.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -48,14 +45,10 @@ public class ArmouryController {
     private ImageView hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV;
     private ArrayList<ImageView> itemImages;
     private ArrayList<Label> itemLabels;
-    private ArrayList<VBox> armouryItems;
     private ArrayList<StackPane> itemStackPanes;
-    private ArrayList<ImageView> heroImages;
 
-    private String currentHeroName;
     private int currentItem, currentHeroIndex;
     private Hero curHero;
-    private ArrayList<String> livingHeroSlugs;
     private ArrayList<String> itemList;
     private ArrayList<Hero> livingHeroes;
     private ArrayList<Label> heroRecapLabels;
@@ -83,7 +76,7 @@ public class ArmouryController {
         itemImages = new ArrayList<>(Arrays.asList(armouryItem1BtnIV, armouryItem2BtnIV, armouryItem3BtnIV, armouryItem4BtnIV, armouryItem5BtnIV));
         itemLabels = new ArrayList<>(Arrays.asList(armouryItem1Label, armouryItem2Label, armouryItem3Label, armouryItem4Label, armouryItem5Label));
         itemStackPanes = new ArrayList<>(Arrays.asList(armouryItem1SP, armouryItem2SP, armouryItem3SP, armouryItem4SP, armouryItem5SP));
-        heroImages = new ArrayList(Arrays.asList(hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV));
+        ArrayList<ImageView> heroImages = new ArrayList<>(Arrays.asList(hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV));
         heroRecapLabels = new ArrayList<>(Arrays.asList(heroRecapTitleLB, heroRecapHeadItemLB1, heroRecapHeadItemLB2,
                 heroRecapBodyItemLB1, heroRecapBodyItemLB2, heroRecapMainWeaponLB1, heroRecapMainWeaponLB2,
                 heroRecapThrowableWeaponLB1, heroRecapThrowableWeaponLB2));
@@ -102,8 +95,6 @@ public class ArmouryController {
         livingHeroes = Game.getLivingHeroes();
         Functions.setBarImages(livingHeroes, heroImages);
 
-        livingHeroSlugs = Game.getLivingHeroSlugs();
-
         coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
 
         heroRecapSP.setVisible(false);
@@ -114,7 +105,7 @@ public class ArmouryController {
 
     private void loadArmouryItems(String type) throws IOException {
         armouryItemsHB.getChildren().clear();
-        armouryItems = new ArrayList<>(Arrays.asList(armouryItem1VB, armouryItem2VB, armouryItem3VB, armouryItem4VB, armouryItem5VB));
+        ArrayList<VBox> armouryItems = new ArrayList<>(Arrays.asList(armouryItem1VB, armouryItem2VB, armouryItem3VB, armouryItem4VB, armouryItem5VB));
         for(VBox validVBox : armouryItems){
             armouryItemsHB.getChildren().add(validVBox);
         }
@@ -127,19 +118,20 @@ public class ArmouryController {
             } else {
                 setArmouryItemImage(itemImages.get(i),item[0]);
                 HashMap<String, String> dict = getDictFromFile("armoury", "armouryItems");
+                System.out.println(item[0]);
                 String[] item2 = dict.get(item[0]).split(",");
                 String name = item2[0].split("\\|")[1];
                 String[] effet = item2[3].split("\\|")[1].split(" ");
                 String cout = item2[1].split("\\|")[1];
                 String desc = item2[4].split("\\|")[1];
                 int stat = 0;
-                if(!(item[4].equals("grimoire") || item[4].equals("consumable"))) {
+                if(!(item[4].equals("spellbook") || item[4].equals("consumable"))) {
                     stat = (int) round((0.9 + (0.1 * Integer.parseInt(item[2]))) * Integer.parseInt(item2[2].split("\\|")[1]));
                 }
                 String toDisplay = "";
                 toDisplay += name + "\n";
 
-                if(!(item[4].equals("grimoire") || item[4].equals("consumable"))){
+                if(!(item[4].equals("spellbook") || item[4].equals("consumable"))){
                     toDisplay += "Qualité: " + item[3] + item[1] +"\n";
                     toDisplay += "Effet: " + effet[0] + " " + stat + " " + effet[2] + "\n";
                 }
@@ -156,7 +148,7 @@ public class ArmouryController {
     private void setArmouryItemImage(ImageView iv, String itemName) throws FileNotFoundException {
         Random rand = new Random();
         String imageName;
-        if(itemName.contains("grimoire") || itemName.contains("potion")|| itemName.contains("fleche")){
+        if(itemName.contains("spellbook") || itemName.contains("potion")|| itemName.contains("arrow")|| itemName.contains("quiver")){
             imageName = itemName;
         } else {
             if (itemName.contains("plastron") || itemName.contains("cotte") || itemName.contains("robe") || itemName.contains("casque")){
@@ -220,7 +212,7 @@ public class ArmouryController {
                 int level = Integer.parseInt(item[2]);
                 int quality = Integer.parseInt(item[3]);
                 int stat = 0;
-                if(!(item[4].equals("grimoire") || item[4].equals("consumable"))) {
+                if(!(item[4].equals("spellbook") || item[4].equals("consumable"))) {
                     stat = (int) round((0.9 + (0.1 * level)) * Integer.parseInt(item2[2].split("\\|")[1]));
                 }
                 switch (item[4]) {
@@ -228,8 +220,9 @@ public class ArmouryController {
                     case "throwableWeapon" -> curHero.setThrowableWeapon(itemSlug, itemName, level, quality, stat);
                     case "headItem" -> curHero.setHeadItem(itemSlug, itemName, level, quality, stat);
                     case "bodyItem" -> curHero.setBodyItem(itemSlug, itemName, level, quality, stat);
-                    case "grimoire" -> { Grimoire grim = new Grimoire(itemSlug, itemName, level); curHero.addItem(grim); }
-                    case "fleche" -> ((Elfe) curHero).setFleches(level, 1);
+                    case "spellbook" -> { SpellBook grim = new SpellBook(itemSlug, itemName, level); curHero.addItem(grim); }
+                    case "arrow" -> ((Elven) curHero).setArrows(level, 1);
+                    case "quiver" -> curHero.addItem(new Quiver(itemSlug,itemName,level));
                     case "consumable" -> curHero.addItem(new Consumable(itemSlug, itemName, level));
                 }
 
@@ -311,7 +304,6 @@ public class ArmouryController {
 
     @FXML
     void onHero1Hover() {
-        currentHeroName = livingHeroSlugs.get(0);
         currentHeroIndex = 0;
     }
 
@@ -322,7 +314,6 @@ public class ArmouryController {
 
     @FXML
     void onHero2Hover() {
-        currentHeroName = livingHeroSlugs.get(1);
         currentHeroIndex = 1;
     }
 
@@ -333,7 +324,6 @@ public class ArmouryController {
 
     @FXML
     void onHero3Hover() {
-        currentHeroName = livingHeroSlugs.get(2);
         currentHeroIndex = 2;
     }
 
@@ -344,7 +334,6 @@ public class ArmouryController {
 
     @FXML
     void onHero4Hover() {
-        currentHeroName = livingHeroSlugs.get(3);
         currentHeroIndex = 3;
     }
 
@@ -355,7 +344,6 @@ public class ArmouryController {
 
     @FXML
     void onHero5Hover() {
-        currentHeroName = livingHeroSlugs.get(4);
         currentHeroIndex = 4;
     }
 
@@ -366,7 +354,6 @@ public class ArmouryController {
 
     @FXML
     void onHero6Hover() {
-        currentHeroName = livingHeroSlugs.get(5);
         currentHeroIndex = 5;
     }
 

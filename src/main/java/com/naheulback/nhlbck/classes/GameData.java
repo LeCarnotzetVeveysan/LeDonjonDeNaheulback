@@ -2,8 +2,6 @@ package com.naheulback.nhlbck.classes;
 
 public class GameData {
 
-    private static String pictureType;
-    private static int volume;
     private static int maxHeroes;
     private static int level;
 
@@ -12,8 +10,6 @@ public class GameData {
 
     public GameData(){
 
-        pictureType = "Alpha";
-        volume = 5;
         level = 0;
         maxHeroes = 0;
         strengthMult = 1;
@@ -61,14 +57,7 @@ public class GameData {
         return level;
     }
 
-    public static String getPictureType(){ return pictureType; }
-    public static void setPictureType(String input){ pictureType = input; }
-
     public static double getStrengthMult(){ return strengthMult; }
     public static double getRewardMult(){ return rewardMult; }
-
-    public static int getVolume(){ return volume; }
-    public static void setVolume(int input){ volume = input; }
-
 
 }

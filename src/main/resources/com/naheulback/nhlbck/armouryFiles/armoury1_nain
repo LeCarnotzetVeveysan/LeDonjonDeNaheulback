@@ -1,5 +1,5 @@
 item1:epee_test|, Bon état|1|100|mainWeapon
-item2:empty
-item3:empty
+item2:plastron_cuir_base|, Bon état|2|99|bodyItem
+item3:casque_cuir_base|, Bon état|1|99|headItem
 item4:empty
 item5:empty

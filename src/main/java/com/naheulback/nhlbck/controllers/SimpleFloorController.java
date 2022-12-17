@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.Random;
 
 import static com.naheulback.nhlbck.Game.addGoldPieces;
+import static com.naheulback.nhlbck.Game.getRoom;
 
 public class SimpleFloorController {
 
@@ -50,7 +51,7 @@ public class SimpleFloorController {
     private ArrayList<Label> heroHPBarLBs, heroManaLabels;
 
     @FXML
-    private Label flechesCountLB;
+    private Label arrowsCountLB;
 
     @FXML
     private ImageView activeEnemyIV, enemy1IV, enemy2IV, enemy3IV, enemy4IV, enemy5IV, enemy6IV;
@@ -103,16 +104,21 @@ public class SimpleFloorController {
         enemyIVs = new ArrayList<>(Arrays.asList(enemy1IV, enemy2IV, enemy3IV, enemy4IV, enemy5IV, enemy6IV));
         enemyHPBarivs = new ArrayList<>(Arrays.asList(enemy1HPBarIV, enemy2HPBarIV, enemy3HPBarIV, enemy4HPBarIV, enemy5HPBarIV,enemy6HPBarIV));
         enemyHPBarlbls = new ArrayList<>(Arrays.asList(enemy1HPBarLB, enemy2HPBarLB, enemy3HPBarLB, enemy4HPBarLB, enemy5HPBarLB, enemy6HPBarLB));
-        sceneRefresh();
-
         inventoryIVs = new ArrayList<>(Arrays.asList(invSlot1IV, invSlot2IV, invSlot3IV, invSlot4IV, invSlot5IV, invSlot6IV, invSlot7IV, invSlot8IV, invSlot9IV, invSlot10IV));
         inventorySP.setVisible(false);
         inventorySP.setDisable(true);
-
         actionButtonHB.setDisable(true);
         actionButtonHB.setVisible(false);
 
+        if(getRoom() == 10){
+            nextFloorButton.setDisable(true);
+            nextFloorButton.setVisible(false);
+        }
+
+        cleanActiveHero();
         postCombatCheck();
+        sceneRefresh();
+
     }
 
     private void sceneRefresh() throws FileNotFoundException {
@@ -138,10 +144,13 @@ public class SimpleFloorController {
 
         if(!(activeEnemy == null)) {
             if (activeEnemy.getHealth() <= 0) { getEnemyReward(); setDeadEnemy(); }
+            cleanActiveEnemy();
         }
 
         if(allDeadEnemies()){
-            nextFloorButton.setDisable(false);
+            if(!(getRoom() == 10)){
+                nextFloorButton.setDisable(false);
+            }
             for(int i = 0; i <= 5; i++){
                 Functions.setEnemyStateInFile(Game.getRoom(), i ,"false");
             }
@@ -151,6 +160,13 @@ public class SimpleFloorController {
             }
             throwableWeapons.clear();
         }
+
+        if(Functions.areAllBossesDefeated()){
+            PlayerData.setIsDefeated(false);
+            PlayerData.setHasSucceeded(true);
+            LoadScene.changeScene("menu-main-menu");
+        }
+
     }
 
     private void checkHeroHealthPoints() throws FileNotFoundException {
@@ -159,16 +175,7 @@ public class SimpleFloorController {
             if (activeHero.getHealth() <= 0) {
                 activeHero.setIsAlive(false);
                 activeHero = null;
-                retrieveActiveHero();
-                updateActionButtons();
-            }
-        }
-        for(Hero h : livingHeroes ){
-            if(!(h == null)) {
-                if (h.getHealth() <= 0) {
-                    h.setIsAlive(false);
-                    h = null;
-                }
+                cleanActiveHero();
             }
         }
         sceneRefresh();
@@ -187,8 +194,11 @@ public class SimpleFloorController {
         addGoldPieces(Math.round(goldToAdd));
 
         double expToAdd = activeEnemy.getExpGain();
-        activeHero.addExperience((int) Math.round(expToAdd));
-        activeHero.setLevel();
+
+        if(!(activeHero == null)) {
+            activeHero.addExperience((int) Math.round(expToAdd));
+            activeHero.setLevel();
+        }
         for(Hero h : livingHeroes){
             if(!(h == null)){
                 h.addExperience((int) Math.round(expToAdd));
@@ -197,11 +207,40 @@ public class SimpleFloorController {
         }
     }
 
-    private void retrieveActiveHero() {
+    private void retrieveActiveHero() throws FileNotFoundException {
         if(!(activeHero == null)) {
             livingHeroes.set(activeHeroIndex, activeHero);
             activeHero = null;
         }
+        cleanActiveHero();
+    }
+
+    private void cleanActiveHero() throws FileNotFoundException {
+        if(activeHero == null){
+            Functions.setImage(activeHeroIV,"heroImages","empty_combat");
+            activeHeroHPBarIV.setVisible(false);
+            activeHeroHPBarLB.setText("");
+            activeHeroManaBarIV.setVisible(false);
+            activeHeroManaBarLB.setText("");
+        }
+    }
+
+    private void cleanActiveEnemy() throws FileNotFoundException {
+        if(activeEnemy == null){
+            Functions.setImage(activeEnemyIV,"heroImages","empty_combat");
+            activeEnemyHPBarIV.setVisible(false);
+            activeEnemyHPBarLB.setText("");
+        }
+    }
+
+    private void removeNullHeroes(){
+        ArrayList<Hero> tempList = new ArrayList<>();
+        for(Hero h : livingHeroes){
+            if(!(h == null)){
+                tempList.add(h);
+            }
+        }
+        livingHeroes = tempList;
     }
 
     private boolean allDeadEnemies(){
@@ -246,7 +285,7 @@ public class SimpleFloorController {
         Random rand = new Random();
         if(!(activeHero == null)) {
 
-            flechesCountLB.setText("");
+            arrowsCountLB.setText("");
             Functions.setImage(thirdActionButtonIV, "otherImages", "speech_bubble");
 
             if (!(activeHero.getMainWeapon() == null)) {
@@ -262,13 +301,13 @@ public class SimpleFloorController {
             }
 
             if ((activeHero.getType().equals("elfe"))) {
-                if(!(((Elfe) activeHero).getCarquois() == null)) {
-                    switch (((Elfe) activeHero).getCarquois().getSlug()) {
-                        case "carquois_base" -> Functions.setImage(secondaryActionButtonIV, "armouryImages", "fleche_base");
-                        case "carquois_qualité" -> Functions.setImage(secondaryActionButtonIV, "armouryImages", "fleche_qualité");
-                        case "carquois_sylvain" -> Functions.setImage(secondaryActionButtonIV, "armouryImages", "fleche_sylvaine");
+                if(!(((Elven) activeHero).getQuiver() == null)) {
+                    switch (((Elven) activeHero).getQuiver().getSlug()) {
+                        case "quiver_base" -> Functions.setImage(secondaryActionButtonIV, "armouryImages", "arrow_base");
+                        case "quiver_quality" -> Functions.setImage(secondaryActionButtonIV, "armouryImages", "arrow_quality");
+                        case "quiver_elven" -> Functions.setImage(secondaryActionButtonIV, "armouryImages", "arrow_elvene");
                     }
-                    flechesCountLB.setText(String.valueOf(((Elfe) activeHero).getCarquois().getFleches()));
+                    arrowsCountLB.setText(String.valueOf(((Elven) activeHero).getQuiver().getArrows()));
                 }
             }
 
@@ -344,6 +383,7 @@ public class SimpleFloorController {
         } else {
             System.out.println("Il n'y a pas d'ennemi actif");
         }
+        postCombatCheck();
         enemyAttack();
         postCombatCheck();
         sceneRefresh();
@@ -361,10 +401,12 @@ public class SimpleFloorController {
                 }
             }
         }
-        double damage = activeEnemy.getBaseAttack();
-        damage *= activeHero.getResistanceMultiplier();
-        damage = Math.round(damage);
-        activeHero.removeHealth((int) damage);
+        if(!(activeEnemy == null)) {
+            double damage = activeEnemy.getBaseAttack();
+            damage *= activeHero.getResistanceMultiplier();
+            damage = Math.round(damage);
+            activeHero.removeHealth((int) damage);
+        }
     }
 
     private void weaponAttack(Weapon weapon) {
@@ -390,9 +432,9 @@ public class SimpleFloorController {
         activeHero.removeMana(spell.getManaCost());
     }
 
-    private void arrowAttack(Carquois carquois){
+    private void arrowAttack(Quiver quiver){
         double damage;
-        damage = activeHero.getFlatAttack(carquois.getArrow());
+        damage = activeHero.getFlatAttack(quiver.getArrow());
         if(!(activeHero.getMainWeapon() == null)) {
             damage += activeHero.getMainWeapon().getPower();
         } else {
@@ -401,28 +443,27 @@ public class SimpleFloorController {
         damage *= activeEnemy.getResistanceMultiplier();
         damage = Math.round(damage);
         activeEnemy.removeHealth((int) damage);
-        carquois.setFleches(-1);
+        quiver.setArrows(-1);
     }
 
     public void onThrowableWeaponButtonClicked() throws IOException {
         if(!(activeEnemy == null)) {
-            if(activeHero.getWeaponThrowed()){
-              weaponAttack(null);
+            if(activeHero.getWeaponThrowed() || (activeHero.getThrowableWeapon() == null)){
+                weaponAttack(null);
             } else {
                 if(activeHero.getType().equals("mage") && !(((Mage) activeHero).getFirstSpell() == null)){
                     spellAttack(((Mage) activeHero).getFirstSpell());
-                } else if (activeHero.getType().equals("elfe") && !(((Elfe) activeHero).getCarquois() == null)){
-                    Carquois carquois = ((Elfe) activeHero).getCarquois();
-                    if(carquois.getFleches() > 0){ arrowAttack(carquois); }
+                } else if (activeHero.getType().equals("elfe") && !(((Elven) activeHero).getQuiver() == null)){
+                    Quiver quiver = ((Elven) activeHero).getQuiver();
+                    if(quiver.getArrows() > 0){ arrowAttack(quiver); }
                 } else {
                     weaponAttack(activeHero.getThrowableWeapon());
                     activeHero.setWeaponThrowed(true);
                     throwableWeapons.add(activeHero.getThrowableWeapon());
                 }
             }
-        } else {
-            System.out.println("Il n'y a pas d'ennemi actif");
         }
+        postCombatCheck();
         enemyAttack();
         postCombatCheck();
         sceneRefresh();
@@ -435,6 +476,7 @@ public class SimpleFloorController {
         } else {
             combatQuote(activeHero);
         }
+        postCombatCheck();
         enemyAttack();
         postCombatCheck();
         sceneRefresh();
@@ -442,17 +484,20 @@ public class SimpleFloorController {
     }
 
     private void combatQuote(Hero hero) {
+
     }
 
 
     public void onNextButtonClicked() throws IOException {
         retrieveActiveHero();
+        removeNullHeroes();
         Game.setRoom(Game.getRoom() + 1);
         LoadScene.changeScene("dungeon-simple-floor");
     }
 
     public void onBackButtonClicked() throws IOException {
         retrieveActiveHero();
+        removeNullHeroes();
         Game.setRoom(Game.getRoom() -1);
         if(Game.getRoom() == 0){
             LoadScene.changeScene("dungeon-entry-hall");
@@ -464,16 +509,16 @@ public class SimpleFloorController {
     public void onSlotClicked() throws FileNotFoundException {
         if(!(activeHero == null) && !(currentInventoryItem > activeHero.getInventory().size() - 1)){
             String slug = activeHero.getInventory().get(currentInventoryItem).getSlug();
-            if (slug.contains("grimoire")) {
-                Grimoire grim = (Grimoire) activeHero.getInventory().get(currentInventoryItem);
+            if (slug.contains("spellbook")) {
+                SpellBook grim = (SpellBook) activeHero.getInventory().get(currentInventoryItem);
                 ((Mage) activeHero).setMainSpell(grim.getSpell1());
                 ((Mage) activeHero).setSecondarySpell(grim.getSpell2());
             }
-            if(slug.contains("carquois")){
+            if(slug.contains("quiver")){
                 switch (slug){
-                    case "carquois_base" -> ((Elfe) activeHero).setCarquois(1);
-                    case "carquois_qualité" -> ((Elfe) activeHero).setCarquois(2);
-                    case "carquois_sylvain" -> ((Elfe) activeHero).setCarquois(3);
+                    case "quiver_base" -> ((Elven) activeHero).setQuiver(1);
+                    case "quiver_quality" -> ((Elven) activeHero).setQuiver(2);
+                    case "quiver_elven" -> ((Elven) activeHero).setQuiver(3);
                 }
             }
             if(slug.contains("potion")){

@@ -7,8 +7,8 @@ import java.util.HashMap;
 
 public class Consumable extends Item {
 
-    private int health;
-    private int mana;
+    private final int health;
+    private final int mana;
     public Consumable(String inSlug, String inName, int inLevel) throws IOException {
         super(inSlug, inName, inLevel);
         HashMap<String,String> dict = Functions.getDictFromFile("armoury","consumables");

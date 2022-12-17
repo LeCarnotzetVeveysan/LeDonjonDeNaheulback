@@ -8,7 +8,6 @@ public abstract class Hero extends LivingThing {
     private final String type;
     private int level;
     private int experience;
-    private final int magic;
     private int mana;
     private final int maxMana;
     private Weapon mainWeapon;
@@ -19,14 +18,13 @@ public abstract class Hero extends LivingThing {
     private BodyItem bodyItem;
     private final ArrayList<Item> inventory;
 
-    public Hero(String inputSlug, String inputName, int inputHealth, int inputMaxHealth, int inAttack, int inMagic, int inResistance, Boolean inputIsAlive, String inputType){
+    public Hero(String inSlug, String inName, int inHealth, int inMaxHealth, int inAttack, int inMagic, int inResistance, Boolean inIsAlive, String inType){
 
-        super(inputSlug, inputName, inputHealth, inputMaxHealth,inAttack, inMagic, inResistance, inputIsAlive);
+        super(inSlug, inName, inHealth, inMaxHealth,inAttack, inMagic, inResistance, inIsAlive);
 
-        type = inputType;
+        type = inType;
         level = 1;
         experience = 0;
-        magic = 100;
         mana = 100;
         maxMana = 200;
         mainWeapon = null;
@@ -115,8 +113,7 @@ public abstract class Hero extends LivingThing {
     }
 
     public void setMainWeapon(String weaponSlug, String weaponName, int weaponLevel, int weaponQuality, int weaponPower){
-        Weapon wpn = new Weapon(weaponSlug, weaponName, weaponLevel, weaponQuality, weaponPower);
-        mainWeapon = wpn;
+        mainWeapon = new Weapon(weaponSlug, weaponName, weaponLevel, weaponQuality, weaponPower);
     }
 
     public Weapon getMainWeapon() {
@@ -124,8 +121,7 @@ public abstract class Hero extends LivingThing {
     }
 
     public void setThrowableWeapon(String weaponSlug, String weaponName, int weaponLevel, int weaponQuality, int weaponPower){
-        Weapon wpn = new Weapon(weaponSlug, weaponName, weaponLevel, weaponQuality, weaponPower);
-        throwableWeapon = wpn;
+        throwableWeapon = new Weapon(weaponSlug, weaponName, weaponLevel, weaponQuality, weaponPower);
     }
 
     public Weapon getThrowableWeapon() {
@@ -134,20 +130,18 @@ public abstract class Hero extends LivingThing {
 
     public boolean getWeaponThrowed() { return weaponThrowed; }
 
-    public void setWeaponThrowed(boolean input) { weaponThrowed = input; }
+    public void setWeaponThrowed(boolean in) { weaponThrowed = in; }
 
-    public void setHeadItem(String itemSlug, String itemName, int itemLevel, int inputQuality, int inputArmor){
-        HeadItem hi = new HeadItem(itemSlug, itemName, itemLevel, inputQuality, inputArmor );
-        headItem = hi;
+    public void setHeadItem(String itemSlug, String itemName, int itemLevel, int inQuality, int inArmor){
+        headItem = new HeadItem(itemSlug, itemName, itemLevel, inQuality, inArmor );
     }
 
     public HeadItem getHeadItem() {
         return headItem;
     }
 
-    public void setBodyItem(String itemSlug, String itemName, int itemLevel, int inputQuality, int inputArmor){
-        BodyItem bi = new BodyItem(itemSlug, itemName, itemLevel, inputQuality, inputArmor );
-        bodyItem = bi;
+    public void setBodyItem(String itemSlug, String itemName, int itemLevel, int inQuality, int inArmor){
+        bodyItem = new BodyItem(itemSlug, itemName, itemLevel, inQuality, inArmor );
     }
 
     public BodyItem getBodyItem() {
@@ -169,8 +163,6 @@ public abstract class Hero extends LivingThing {
     public void addItem(Item i){
         inventory.add(i);
     }
-
-    public int getExperience(){ return experience; }
 
     public void addExperience(int amount){ experience += amount; }
 

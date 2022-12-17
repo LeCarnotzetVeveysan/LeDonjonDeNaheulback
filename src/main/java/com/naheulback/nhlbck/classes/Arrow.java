@@ -1,7 +1,7 @@
 package com.naheulback.nhlbck.classes;
 
 public class Arrow extends Weapon {
-    public Arrow(String inputSlug, String inputName, int inputLevel, int inputQuality, int inputPower) {
-        super(inputSlug, inputName, inputLevel, inputQuality, inputPower);
+    public Arrow(String inSlug, String inName, int inLevel, int inQuality, int inPower) {
+        super(inSlug, inName, inLevel, inQuality, inPower);
     }
 }

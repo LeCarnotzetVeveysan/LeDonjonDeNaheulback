@@ -2,11 +2,20 @@ plastron_test:name|test_plastron,cost|100,stat|10,effet|+ X res,desc|plastron de
 casque_test:name|test_casque,cost|50,stat|5,effet|+ X def,desc|casque de test
 epee_test:name|Test_epee,cost|100,stat|10,effet|+ X atk,desc|Epee_test
 dague_test:name|test_dague,cost|50,stat|5,effet|+ X atk,desc|dague de test
-fleche_base:name|Flèche de base,cost|0.5,stat|5,effet|+ X atk,desc|Une flèche de base
-fleche_qualité:name|Flèche de qualité,cost|2,stat|15,effet|+ X atk,desc|Une flèche de qualité
-fleche_sylvaine:name|Flèche sylvaine,cost|10,stat|30,effet|+ X atk,desc|Une flèche sylvaine
-grimoire_elec_debutant:name|Grimoire électrique de Niveau 1,cost|100,stat|X,effet|X X X,desc|un autre premier grimoire
-grimoire_feu_debutant:name|Grimoire de feu de Niveau 1,cost|100,stat|X,effet|X X X,desc|un premier grimoire
+arrow_base:name|Flèche de base,cost|0.5,stat|5,effet|+ X atk,desc|Une flèche de base
+arrow_quality:name|Flèche de qualité,cost|2,stat|15,effet|+ X atk,desc|Une flèche de qualité
+arrow_elvene:name|Flèche elvene,cost|10,stat|30,effet|+ X atk,desc|Une flèche elvene
+quiver_quality:name|quiver de qualité,cost|200,stat|2,effet|FlèchesDeNiv X .,desc|Porte flèches de niveau 2
+quiver_elven:name|quiver elven,cost|500,stat|3,effet|AutoriseFlèchesDeNiveau X .,desc|Porte flèches de niveau 3
+spellbook_elec_debutant:name|spellbook électrique de Niveau 1,cost|100,stat|X,effet|X X X,desc|un autre premier spellbook
+spellbook_feu_debutant:name|spellbook de feu de Niveau 1,cost|100,stat|X,effet|X X X,desc|un premier spellbook
+spellbook_feu_avance:name|spellbook de feu de Niveau 3,cost|300,stat|X,effet|X X X,desc|un spellbook rare
+spellbook_feu_expert:name|spellbook de feu de Niveau 4,cost|500,stat|X,effet|X X X,desc|Un spellbook unique
+spellbook_elec_novice:name|spellbook électrique de Niveau 2,cost|200,stat|X,effet|X X X,desc|Un autre spellbook de novice
+spellbook_eau_novice:name|spellbook eau de Niveau 2,cost|200,stat|X,effet|X X X,desc|un autre premier spellbook
+spellbook_eau_expert:name|spellbook électrique de Niveau 4,cost|500,stat|X,effet|X X X,desc|un spellbook unique
+spellbook_glace_novice:name|spellbook de glace de Niveau 2,cost|100,stat|X,effet|X X X,desc|un autre spellbook pour novice
+spellbook_glace_expert:name|spellbook électrique de Niveau 4,cost|500,stat|X,effet|X X X,desc|un spellbook unique
 small_health_potion:name|Small health potion,cost|30,stat|20,effet|+ X PV,desc|Petite potion de vie
 small_mana_potion:name|Small mana potion,cost|30,stat|20,effet|+ X Mana,desc|Petite potion de mana
 big_health_potion:name|Big health potion,cost|100,stat|75,effet|+ X PV,desc|Grande potion de vie
@@ -28,23 +37,23 @@ casque_metal_correct:name|Casque de metal correct,cost|100,stat|50,effet|+ X res
 casque_metal_luxe:name|Casque de luxe (artisan nain),cost|1000,stat|200,effet|+ X res,desc|Un excellent casque
 casque_elfique:name|Casque de guerrier elfique,cost|1500,stat|300,effet|+ X res,desc|Un excellent casque elfique
 robe_mage_base:name|Robe de mage de base,cost|15,stat|5,effet|+ X mag,desc|Une robe de base
-robe_mage_qualite:name|Robe de mage de qualité,cost|100,stat|25,effet|+ X mag,desc|Une robe de qualité
-robe_mage_ensorcelée:name|Robe de mage ensorcelée,cost|1000,stat|200,effet|+ X mag,desc|Une robe ensorcelée
+robe_mage_quality:name|Robe de mage de qualité,cost|100,stat|25,effet|+ X mag,desc|Une robe de qualité
+robe_mage_ensorcelee:name|Robe de mage ensorcelée,cost|1000,stat|200,effet|+ X mag,desc|Une robe ensorcelée
 robe_mage_tholsadum:name|Robe de l’archimage Tholsadum,cost|6000,stat|1000,effet|+ X mag,desc|La fameuse robe de Tholsadum
 dague_base:name|Dague de base,cost|15,stat|5,effet|+ X atk,desc|Une dague de base
-dague_qualité:name|Dague de qualité,cost|50,stat|20,effet|+ X atk,desc|Une dague de qualité
+dague_quality:name|Dague de qualité,cost|50,stat|20,effet|+ X atk,desc|Une dague de qualité
 dague_luxe:name|Dague de luxe,cost|200,stat|100,effet|+ X atk,desc|Une dague de luxe
 epee_base:name|Epee de base,cost|50,stat|20,effet|+ X atk,desc|Une épée de base
 epee_correcte:name|Epee correcte,cost|100,stat|50,effet|+ X atk,desc|Une épée de base
-epee_qualite:name|Epée de qualité,cost|200,stat|100,effet|+ X atk,desc|Une épée de qualité
+epee_quality:name|Epée de qualité,cost|200,stat|100,effet|+ X atk,desc|Une épée de qualité
 epee_artisan:name|Epée d'artisan,cost|500,stat|100,effet|+ X atk,desc|Une épée d'artisan
 epee_durandil:name|Epée Durandil(TM),cost|1000,stat|250,effet|+ X atk,desc|Une Durandil !
 hache_base:name|Hache de base,cost|50,stat|20,effet|+ X atk,desc|Une hache de base
 hache_correcte:name|Hache correcte,cost|100,stat|50,effet|+ X atk,desc|Une hache de base
-hache_qualite:name|Hache de qualité,cost|200,stat|100,effet|+ X atk,desc|Une hache de qualité
+hache_quality:name|Hache de qualité,cost|200,stat|100,effet|+ X atk,desc|Une hache de qualité
 hache_artisan:name|Hache d'artisan,cost|500,stat|100,effet|+ X atk,desc|Une hache d'artisan
 hache_durandil:name|Hache Durandil(TM),cost|1000,stat|250,effet|+ X atk,desc|Une Durandil !
 arc_base:name|Arc de basse qualité,cost|30,stat|10,effet|+ X atk,desc|Un arc de basse qualité
 arc_correct:name|Arc de qualité correct,cost|50,stat|20,effet|+ X atk,desc|Un arc de qualité correcte
-arc_sylvain_imitation:name|Arc d’elfe sylvain (imitation),cost|200,stat|50,effet|+ X atk,desc|Encore une imitation
-arc_sylvain_veritable:name|Arc d’elfe sylvain (veritable),cost|1000,stat|250,effet|+ X atk,desc|Le must !
+arc_elven_imitation:name|Arc d’elfe elven (imitation),cost|200,stat|50,effet|+ X atk,desc|Encore une imitation
+arc_elven_veritable:name|Arc d’elfe elven (veritable),cost|1000,stat|250,effet|+ X atk,desc|Le must !

@@ -3,7 +3,7 @@ floor2:blob,blob,null,null,null,null
 floor3:limon_malefique,blob,null,null,null,null
 floor4:limon_malefique,limon_malefique,null,null,null,null
 floor5:chapon_fanghien,chapon_fanghien,null,null,null,null
-floor6:limon_malefique,limon_malefique,limon_malefique,null,null,null
+floor6:limon_malefique,limon_malefique,null,null,null,null
 floor7:ghoule,null,null,null,null,null
 floor8:ghoule,ghoule,null,null,null,null
 floor9:ghoule,ghoule,ghoule,null,null,null

@@ -6,10 +6,10 @@ public abstract class Item {
     private final String name;
     private final int level;
 
-    public Item(String inputSlug, String inputName, int inputLevel){
-        slug = inputSlug;
-        name = inputName;
-        level =inputLevel;
+    public Item(String inSlug, String inName, int inLevel){
+        slug = inSlug;
+        name = inName;
+        level = inLevel;
     }
 
     public String getName(){

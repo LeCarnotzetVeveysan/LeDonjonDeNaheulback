@@ -141,9 +141,9 @@ public class DungeonTableController {
 
                 switch (heroDict.get("class")) {
                     case "warrior" -> toAdd = new Warrior(heroDict);
-                    case "nain" -> toAdd = new Nain(heroDict);
+                    case "nain" -> toAdd = new Dwarf(heroDict);
                     case "mage" -> toAdd = new Mage(heroDict);
-                    case "elfe" -> toAdd = new Elfe(heroDict);
+                    case "elfe" -> toAdd = new Elven(heroDict);
                     case "human" -> toAdd = new Human(heroDict);
                 }
                 updateTableFile(slugList);

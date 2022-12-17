@@ -1,5 +1,5 @@
-item1:grimoire_feu_debutant||1|0|grimoire
-item2:grimoire_elec_debutant||1|0|grimoire
+item1:spellbook_feu_debutant||1|0|spellbook
+item2:spellbook_elec_debutant||1|0|spellbook
 item3:small_mana_potion||1|0|consumable
 item4:small_health_potion||1|0|consumable
 item5:empty

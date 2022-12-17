@@ -5,10 +5,10 @@ public class HeadItem extends Item {
     private final int armor;
     private final int quality;
 
-    public HeadItem(String inputSlug, String inputName, int inputLevel, int inputQuality, int inputArmor){
-        super(inputSlug, inputName, inputLevel);
-        armor = inputArmor;
-        quality = inputQuality;
+    public HeadItem(String inSlug, String inName, int inLevel, int inQuality, int inArmor){
+        super(inSlug, inName, inLevel);
+        armor = inArmor;
+        quality = inQuality;
     }
 
     public int getArmor(){ return armor; }

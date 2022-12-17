@@ -2,3 +2,17 @@ boule_de_feu_mineure:Boule de feu mineure,50,10
 boule_de_feu_moyenne:Boule de feu moyenne,100,25
 eclair_mineur:Eclair mineur,60,15
 eclair_moyen:Eclair moyen,100,25
+grande_boule_de_feu:Grande boule de feu, 150,50
+brasier:Brasier200,75
+alluminette:Alluminette200,60
+tornade_de_feu:Tornade de feu,250,100
+tonnerre_moyen:Tonnerre moyen,150,50
+tonnerre_majeur:Tonnerre majeur,200,100
+petite_vague:Petite vague,60,15
+grande_vague:100,25
+tsunami:Tsunami,200,100
+ouragan:Ouragan,300,150
+stalactite_mineur:Stalactite mineur,50,10
+stalactite_majeur:Stalactite majeur,100,50
+stalactite_geant:Stalactite geant,200,100
+avalanche:Avalanche,500,500

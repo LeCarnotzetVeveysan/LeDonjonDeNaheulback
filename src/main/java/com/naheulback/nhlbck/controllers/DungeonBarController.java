@@ -12,7 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,25 +22,12 @@ import java.util.Random;
 import static com.naheulback.nhlbck.Functions.*;
 
 public class DungeonBarController {
-
-    private static final String resPath = "src/main/resources/com/naheulback/nhlbck/";
-
     @FXML
     private VBox barItem1VB, barItem2VB, barItem3VB, barItem4VB, barItem5VB;
     @FXML
     private StackPane barItem1SP, barItem2SP, barItem3SP, barItem4SP, barItem5SP;
     @FXML
-    private ImageView barFoodButton1IV;
-    @FXML
-    private ImageView barFoodButton2IV;
-    @FXML
-    private ImageView barFoodButton3IV;
-    @FXML
-    private ImageView barFoodButton4IV;
-    @FXML
-    private ImageView barFoodButton5IV;
-    @FXML
-    private ImageView barmanIV;
+    private ImageView barmanIV, barFoodButton1IV, barFoodButton2IV, barFoodButton3IV, barFoodButton4IV, barFoodButton5IV;
     @FXML
     private Label barFoodLabel1;
     @FXML
@@ -85,17 +73,15 @@ public class DungeonBarController {
     private Label hero1ManaBarLB, hero2ManaBarLB, hero3ManaBarLB, hero4ManaBarLB, hero5ManaBarLB, hero6ManaBarLB;
     private ArrayList<ImageView> itemImages;
     private ArrayList<Label> itemLabels, heroHPLabels, heroManaLabels;
-    private ArrayList<VBox> barItems;
     private ArrayList<StackPane> itemStackPanes;
-    private ArrayList<ImageView> heroImages,  heroHPIVs, heroManaIVs;
+    private ArrayList heroHPIVs;
+    private ArrayList<ImageView> heroManaIVs;
     ArrayList<Hero> livingHeroes;
-
-    private String currentHeroName;
     private int currentItem;
 
     private int currentHeroIndex;
     private Hero currentHero;
-    private ArrayList<String> livingHeroSlugs, itemList;
+    private ArrayList<String> itemList;
     @FXML
     private Label coinCountLB;
 
@@ -110,7 +96,7 @@ public class DungeonBarController {
         itemImages = new ArrayList<>(Arrays.asList(barFoodButton1IV, barFoodButton2IV, barFoodButton3IV, barFoodButton4IV, barFoodButton5IV));
         itemLabels = new ArrayList<>(Arrays.asList(barFoodLabel1, barFoodLabel2, barFoodLabel3, barFoodLabel4, barFoodLabel5));
         itemStackPanes = new ArrayList<>(Arrays.asList(barItem1SP, barItem2SP, barItem3SP, barItem4SP, barItem5SP));
-        heroImages = new ArrayList(Arrays.asList(hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV));
+        ArrayList<ImageView> heroImages = new ArrayList<>(Arrays.asList(hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV));
         heroHPIVs = new ArrayList(Arrays.asList(hero1HPBarIV, hero2HPBarIV, hero3HPBarIV, hero4HPBarIV, hero5HPBarIV, hero6HPBarIV));
         heroHPLabels = new ArrayList(Arrays.asList(hero1HPBarLB, hero2HPBarLB, hero3HPBarLB, hero4HPBarLB, hero5HPBarLB, hero6HPBarLB));
         heroManaIVs = new ArrayList<>(Arrays.asList(hero1ManaBarIV, hero2ManaBarIV, hero3ManaBarIV, hero4ManaBarIV, hero5ManaBarIV, hero6ManaBarIV));
@@ -127,24 +113,19 @@ public class DungeonBarController {
         Functions.setBarImages(livingHeroes, heroImages);
         Functions.setHeroHPBars(livingHeroes, heroHPIVs, heroHPLabels, heroManaIVs, heroManaLabels);
 
-        livingHeroSlugs = Game.getLivingHeroSlugs();
         coinCountLB.setText(String.valueOf(Game.getGoldPieces()));
     }
 
     public void onBackButtonClicked() throws IOException { LoadScene.changeScene("dungeon-tavern"); }
 
     @FXML
-    void onFoodMenuClicked() throws IOException {
-        onMenuClicked("food");
-    }
+    void onFoodMenuClicked() throws IOException { onMenuClicked("food"); }
     @FXML
-    void onDrinkMenuClicked() throws IOException {
-        onMenuClicked("drinks");
-    }
+    void onDrinkMenuClicked() throws IOException { onMenuClicked("drinks"); }
 
     private void onMenuClicked(String type) throws IOException {
         barItemsHB.getChildren().clear();
-        barItems = new ArrayList<>(Arrays.asList(barItem1VB, barItem2VB, barItem3VB, barItem4VB, barItem5VB));
+        ArrayList<VBox> barItems = new ArrayList<>(Arrays.asList(barItem1VB, barItem2VB, barItem3VB, barItem4VB, barItem5VB));
         for(VBox validVBox : barItems){
             barItemsHB.getChildren().add(validVBox);
         }
@@ -162,7 +143,7 @@ public class DungeonBarController {
             String[] item = dict.get(itemList.get(i)).split(",");
             HashMap<String, String> healDict = getDictFromFile("armoury", "consumables");
             String[] item2 = healDict.get(itemList.get(i)).split(",");
-            String toShow = item[0] + "\nEffet : + " + item2[0] + " PV, + " + item2[1] + "Mana \n" + item[2];
+            String toShow = item[0] + "\nEffet : + " + item2[0] + " PV, + " + item2[1] + " Mana \n" + item[2];
             itemLabels.get(i).setText(toShow);
         }
         setItemButtonHBSize(barItemsHB);
@@ -187,7 +168,7 @@ public class DungeonBarController {
 
     @FXML
     void onHeroClicked() {
-        if (!currentHeroName.equals("empty")) {
+        if (currentHeroIndex <= livingHeroes.size() - 1) {
             barmanSpeakIV.setVisible(false);
             barmanSpeakLbl.setText("");
             currentHero = Game.getLivingHeroes().get(currentHeroIndex);
@@ -211,7 +192,7 @@ public class DungeonBarController {
         String itemName = itemList.get(currentItem);
         String type = (itemName.contains("vin")||itemName.contains("biere")||itemName.contains("jus")||itemName.contains("liqueur")) ? "drinks" : "food";
         HashMap<String, String> dict = getDictFromFile("game", type);
-        String[] item = dict.get("itemName").split(",");
+        String[] item = dict.get(itemName).split(",");
         double cost = Double.parseDouble(item[1]);
         if (!(currentHero == null)) {
             if (Game.hasEnoughGoldPieces(cost)) {
@@ -240,18 +221,10 @@ public class DungeonBarController {
 
     private void barmanSpeech() {
         switch (new Random().nextInt(5)){
-            case 1 -> {
-                barmanSpeakLbl.setText("Bon choix");
-            }
-            case 2 -> {
-                barmanSpeakLbl.setText("Bon appétit");
-            }
-            case 3 -> {
-                barmanSpeakLbl.setText("Vous avez fait un bon choix");
-            }
-            case 4 -> {
-                barmanSpeakLbl.setText("Vos papilles vont se régaler");
-            }
+            case 1 -> barmanSpeakLbl.setText("Bon choix");
+            case 2 -> barmanSpeakLbl.setText("Bon appétit");
+            case 3 -> barmanSpeakLbl.setText("Vous avez fait un bon choix");
+            case 4 -> barmanSpeakLbl.setText("Vos papilles vont se régaler");
         }
     }
 
@@ -312,68 +285,27 @@ public class DungeonBarController {
 
     @FXML
     void onHero1Hover() {
-        currentHeroName = livingHeroSlugs.get(0);
         currentHeroIndex = 0;
         //setImage
     }
-
-    @FXML
-    void onHero1StoppedHover() {
-
-    }
-
     @FXML
     void onHero2Hover() {
-        currentHeroName = livingHeroSlugs.get(1);
         currentHeroIndex = 1;
     }
-
-    @FXML
-    void onHero2StoppedHover() {
-
-    }
-
     @FXML
     void onHero3Hover() {
-        currentHeroName = livingHeroSlugs.get(2);
         currentHeroIndex = 2;
     }
-
-    @FXML
-    void onHero3StoppedHover() {
-
-    }
-
     @FXML
     void onHero4Hover() {
-        currentHeroName = livingHeroSlugs.get(3);
         currentHeroIndex = 3;
     }
-
-    @FXML
-    void onHero4StoppedHover() {
-
-    }
-
     @FXML
     void onHero5Hover() {
-        currentHeroName = livingHeroSlugs.get(4);
         currentHeroIndex = 4;
     }
-
-    @FXML
-    void onHero5StoppedHover() {
-
-    }
-
     @FXML
     void onHero6Hover() {
-        currentHeroName = livingHeroSlugs.get(5);
         currentHeroIndex = 5;
-    }
-
-    @FXML
-    void onHero6StoppedHover() {
-
     }
 }

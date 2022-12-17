@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class PlayerData {
-
     private final String teamName;
     private static ArrayList<Hero> livingHeroes;
     private static ArrayList<Hero> deadHeroes;
     private final int[] currentLocation;
     private static double goldPieces;
     private static boolean isDefeated;
+    private static boolean hasSucceeded;
 
     public PlayerData(){
 
@@ -21,6 +21,7 @@ public class PlayerData {
         currentLocation = new int[]{0, 0, 0, 0};
         goldPieces = 0.0;
         isDefeated = false;
+        hasSucceeded = false;
 
     }
 
@@ -95,6 +96,8 @@ public class PlayerData {
     public static boolean getIsDefeated(){ return isDefeated; }
     public static void setIsDefeated(boolean input){ isDefeated = input; }
 
+    public static boolean getHasSucceeded(){ return hasSucceeded; }
+    public static void setHasSucceeded(boolean input){ isDefeated = input; }
 
 
 

@@ -2,11 +2,17 @@ package com.naheulback.nhlbck.controllers;
 
 import com.naheulback.nhlbck.Functions;
 import com.naheulback.nhlbck.LoadScene;
+import com.naheulback.nhlbck.classes.GameData;
+import com.naheulback.nhlbck.classes.PlayerData;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -14,11 +20,33 @@ import static com.naheulback.nhlbck.Functions.*;
 
 public class MainMenuController {
 
-    public Button newGameButton;
+    private final String resPath = "src/main/resources/com/naheulback/nhlbck";
     @FXML
     private ImageView newGameBtnIV, instructionsBtnIV, quitBtnIV;
+    @FXML
+    private Label mainLabel;
 
-    public void initialize() {
+    public void initialize() throws FileNotFoundException {
+
+        Font folkard90 = Font.loadFont(new FileInputStream(resPath + "/fonts/folkard.ttf"), 90);
+        Font folkard45 = Font.loadFont(new FileInputStream(resPath + "/fonts/folkard.ttf"), 45);
+        if(PlayerData.getIsDefeated()){
+            mainLabel.setText("Malheureusement, ta quete s'arrete ici.\nVeux-tu retenter ta chance ?");
+            mainLabel.setFont(folkard45);
+            mainLabel.setLayoutX(125);
+        } else {
+            if(PlayerData.getHasSucceeded()){
+                mainLabel.setText("Felicitations. Tu as passe les 10 donjons.\nOn augmente la difficulte ?");
+                mainLabel.setFont(folkard45);
+                mainLabel.setLayoutX(100);
+            } else {
+                mainLabel.setText("LE DONJON DE\nNAHEULBACK");
+                mainLabel.setFont(folkard90);
+                mainLabel.setLayoutX(175);
+            }
+
+        }
+        mainLabel.setTextFill(Color.BLACK);
     }
 
     public void onNewGameBtnClk() throws IOException {
