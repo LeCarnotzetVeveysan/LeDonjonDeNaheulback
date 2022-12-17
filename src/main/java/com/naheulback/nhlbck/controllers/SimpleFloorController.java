@@ -86,8 +86,8 @@ public class SimpleFloorController {
         activeEnemyIndex = -1;
         livingHeroes = Game.getLivingHeroes();
         //Pour les tests de donjons
-        HashMap<String,String> heroDict = Functions.getDictFromFile("hero","lachaud");
-        if(livingHeroes.size() == 0){livingHeroes.add(new Warrior(heroDict));}
+        //HashMap<String,String> heroDict = Functions.getDictFromFile("hero","lachaud");
+        //if(livingHeroes.size() == 0){livingHeroes.add(new Warrior(heroDict));}
         heroIVs = new ArrayList<>(Arrays.asList(hero1IV, hero2IV, hero3IV, hero4IV, hero5IV, hero6IV));
         heroHPBarIVs = new ArrayList<>(Arrays.asList(hero1HPBarIV, hero2HPBarIV, hero3HPBarIV, hero4HPBarIV, hero5HPBarIV,hero6HPBarIV));
         heroHPBarLBs = new ArrayList<>(Arrays.asList(hero1HPBarLB, hero2HPBarLB, hero3HPBarLB, hero4HPBarLB, hero5HPBarLB, hero6HPBarLB));
