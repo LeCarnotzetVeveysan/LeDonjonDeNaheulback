@@ -21,8 +21,8 @@ import static com.naheulback.nhlbck.Game.getDungeon;
 
 public class DungeonTableController {
 
-    private static String resPath = "src/main/resources/com/naheulback/nhlbck/";
-    private static String slug = "empty";
+    private static final String resPath = "src/main/resources/com/naheulback/nhlbck/";
+    private static final String slug = "empty";
     @FXML
     private ImageView mainIV;
     @FXML

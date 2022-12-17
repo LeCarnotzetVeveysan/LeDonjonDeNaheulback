@@ -7,8 +7,8 @@ import java.util.HashMap;
 
 public class Grimoire extends Item {
 
-    private Spell spell1;
-    private Spell spell2;
+    private final Spell spell1;
+    private final Spell spell2;
 
     public Grimoire(String inputSlug, String inputName, int inputLevel) throws IOException {
         super(inputSlug, inputName, inputLevel);

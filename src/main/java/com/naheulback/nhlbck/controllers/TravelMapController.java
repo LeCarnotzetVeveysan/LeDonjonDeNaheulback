@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 public class TravelMapController {
 
-    private static String resPath = "src/main/resources/com/naheulback/nhlbck/";
+    private static final String resPath = "src/main/resources/com/naheulback/nhlbck/";
     private int actualDungeon;
 
     @FXML

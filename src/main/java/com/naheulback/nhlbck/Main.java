@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class Main {
 
-    private Stage mainStage;
+    private final Stage mainStage;
 
     public Main(Stage inputStage){
 

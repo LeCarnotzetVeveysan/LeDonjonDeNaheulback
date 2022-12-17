@@ -2,7 +2,7 @@ package com.naheulback.nhlbck.classes;
 
 public class Weapon extends Item {
 
-    private int power;
+    private final int power;
     private double quality;
     public Weapon(String inputSlug, String inputName, int inputLevel, int inputQuality, int inputPower){
         super(inputSlug, inputName, inputLevel);

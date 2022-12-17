@@ -2,13 +2,13 @@ package com.naheulback.nhlbck.classes;
 
 public abstract class LivingThing {
 
-    private String slug;
-    private String name;
+    private final String slug;
+    private final String name;
     private int health;
-    private int maxHealth;
-    private int attack;
-    private int magic;
-    private int resistance;
+    private final int maxHealth;
+    private final int attack;
+    private final int magic;
+    private final int resistance;
     private boolean isAlive;
     
 

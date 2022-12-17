@@ -5,19 +5,19 @@ import com.naheulback.nhlbck.Game;
 import java.util.ArrayList;
 
 public abstract class Hero extends LivingThing {
-    private String type;
-    private int level;
+    private final String type;
+    private final int level;
     private int experience;
-    private int magic;
+    private final int magic;
     private int mana;
-    private int maxMana;
+    private final int maxMana;
     private Weapon mainWeapon;
     private Weapon throwableWeapon;
     private boolean weaponThrowed;
 
     private HeadItem headItem;
     private BodyItem bodyItem;
-    private ArrayList<Item> inventory;
+    private final ArrayList<Item> inventory;
 
     public Hero(String inputSlug, String inputName, int inputHealth, int inputMaxHealth, int inAttack, int inMagic, int inResistance, Boolean inputIsAlive, String inputType){
 
@@ -152,6 +152,10 @@ public abstract class Hero extends LivingThing {
     public void addItem(Item i){
         inventory.add(i);
     }
+
+    public int getExperience(){ return experience; }
+
+    public void addExperience(int amount){ experience += amount; }
 
 
 

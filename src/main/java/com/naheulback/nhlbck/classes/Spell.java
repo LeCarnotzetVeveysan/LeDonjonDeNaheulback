@@ -2,10 +2,10 @@ package com.naheulback.nhlbck.classes;
 
 public class Spell {
 
-    private String slug;
-    private String name;
-    private int manaCost;
-    private int magicDamage;
+    private final String slug;
+    private final String name;
+    private final int manaCost;
+    private final int magicDamage;
 
     public Spell(String inputSlug, String inputName, int inputManaCost, int inputMagicDamage){
         slug = inputSlug;

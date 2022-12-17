@@ -5,10 +5,10 @@ import java.util.Arrays;
 
 public class PlayerData {
 
-    private String teamName;
+    private final String teamName;
     private static ArrayList<Hero> livingHeroes;
     private static ArrayList<Hero> deadHeroes;
-    private int[] currentLocation;
+    private final int[] currentLocation;
     private static double goldPieces;
 
     public PlayerData(){
@@ -67,11 +67,7 @@ public class PlayerData {
 
     public static boolean hasEnoughGoldPieces(double gold){
 
-        if(goldPieces >= gold){
-            return true;
-        } else {
-            return false;
-        }
+        return goldPieces >= gold;
 
     }
 

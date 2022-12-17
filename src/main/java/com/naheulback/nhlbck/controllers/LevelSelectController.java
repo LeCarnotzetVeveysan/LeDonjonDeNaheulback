@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class LevelSelectController {
 
-    private String resPath = "src/main/resources/com/naheulback/nhlbck";
+    private final String resPath = "src/main/resources/com/naheulback/nhlbck";
     @FXML
     private Label titleLabel, level1Lbl, level2Lbl, level3Lbl, level4Lbl;
 

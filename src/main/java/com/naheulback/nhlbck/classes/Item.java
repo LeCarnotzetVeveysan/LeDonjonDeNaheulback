@@ -2,9 +2,9 @@ package com.naheulback.nhlbck.classes;
 
 public abstract class Item {
 
-    private String slug;
-    private String name;
-    private int level;
+    private final String slug;
+    private final String name;
+    private final int level;
 
     public Item(String inputSlug, String inputName, int inputLevel){
         slug = inputSlug;

@@ -2,8 +2,8 @@ package com.naheulback.nhlbck.classes;
 
 public class HeadItem extends Item {
 
-    private int armor;
-    private int quality;
+    private final int armor;
+    private final int quality;
 
     public HeadItem(String inputSlug, String inputName, int inputLevel, int inputQuality, int inputArmor){
         super(inputSlug, inputName, inputLevel);

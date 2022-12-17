@@ -42,7 +42,7 @@
                             <children>
                                 <ImageView fitHeight="98.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@tavernImages/barItem_info_background.png" />
+                                        <Image url="@tavernImagesAlpha/barItem_info_background.png" />
                                     </image>
                                 </ImageView>
                                 <Label fx:id="armouryItem1Label" text="Ligne1&#10;Ligne2&#10;Ligne3&#10;Ligne4&#10;" wrapText="true">
@@ -65,7 +65,7 @@
                             <children>
                                 <ImageView fitHeight="98.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@tavernImages/barItem_info_background.png" />
+                                        <Image url="@tavernImagesAlpha/barItem_info_background.png" />
                                     </image>
                                 </ImageView>
                                 <Label fx:id="armouryItem2Label" text="Ligne1&#10;Ligne2&#10;Ligne3&#10;Ligne4&#10;" wrapText="true">
@@ -88,7 +88,7 @@
                             <children>
                                 <ImageView fitHeight="98.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@tavernImages/barItem_info_background.png" />
+                                        <Image url="@tavernImagesAlpha/barItem_info_background.png" />
                                     </image>
                                 </ImageView>
                                 <Label fx:id="armouryItem3Label" text="Ligne1&#10;Ligne2&#10;Ligne3&#10;Ligne4&#10;" wrapText="true">
@@ -111,7 +111,7 @@
                             <children>
                                 <ImageView fitHeight="98.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@tavernImages/barItem_info_background.png" />
+                                        <Image url="@tavernImagesAlpha/barItem_info_background.png" />
                                     </image>
                                 </ImageView>
                                 <Label fx:id="armouryItem4Label" text="Ligne1&#10;Ligne2&#10;Ligne3&#10;Ligne4&#10;" wrapText="true">
@@ -134,7 +134,7 @@
                             <children>
                                 <ImageView fitHeight="98.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@tavernImages/barItem_info_background.png" />
+                                        <Image url="@tavernImagesAlpha/barItem_info_background.png" />
                                     </image>
                                 </ImageView>
                                 <Label fx:id="armouryItem5Label" text="Ligne1&#10;Ligne2&#10;Ligne3&#10;Ligne4&#10;" wrapText="true">
@@ -158,14 +158,14 @@
             <children>
                 <ImageView fitHeight="55.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@otherImages/coinbagbackground.png" />
+                        <Image url="@otherImagesAlpha/coinbagbackground.png" />
                     </image>
                 </ImageView>
                 <HBox alignment="CENTER" prefHeight="55.0" prefWidth="134.0" StackPane.alignment="CENTER">
                     <children>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@otherImages/coinbag.png" />
+                                <Image url="@otherImagesAlpha/coinbag.png" />
                             </image>
                         </ImageView>
                         <Label fx:id="coinCountLB" alignment="CENTER" prefHeight="50.0" prefWidth="73.0" text="Label" textAlignment="CENTER" />
@@ -177,7 +177,7 @@
          <children>
             <ImageView fitHeight="160.0" fitWidth="500.0" pickOnBounds="true">
                <image>
-                  <Image url="@otherImages/heroEquipmentRecapBackground.png" />
+                  <Image url="@otherImagesAlpha/heroEquipmentRecapBackground.png" />
                </image>
             </ImageView>
             <VBox alignment="CENTER">

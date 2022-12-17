@@ -60,19 +60,19 @@ public class MainMenuController {
     }
 
     public void onAlphaBtnClk() {
-        GameData.setPictureType("alpha");
+        GameData.setPictureType("Alpha");
         betaBtn.setSelected(false);
         finalBtn.setSelected(false);
     }
 
     public void onBetaBtnClk() {
-        GameData.setPictureType("beta");
+        GameData.setPictureType("Beta");
         alphaBtn.setSelected(false);
         finalBtn.setSelected(false);
     }
 
     public void onFinalBtnClick() {
-        GameData.setPictureType("final");
+        GameData.setPictureType("Final");
         alphaBtn.setSelected(false);
         betaBtn.setSelected(false);
 

@@ -14,7 +14,7 @@ import static java.lang.Math.ceil;
 
 public class Functions {
 
-    private static String resPath = "src/main/resources/com/naheulback/nhlbck/";
+    private static final String resPath = "src/main/resources/com/naheulback/nhlbck/";
 
     public static void setImage(ImageView iv, String folder, String imageName) throws FileNotFoundException {
         InputStream stream = new FileInputStream(resPath + folder + getPictureType() + "/" + imageName + ".png");

@@ -9,7 +9,7 @@
    <children>
       <ImageView fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@menuImages/placeholder.png" />
+            <Image url="@menuImagesAlpha/placeholder.png" />
          </image>
       </ImageView>
       <HBox alignment="CENTER" layoutY="500.0" prefHeight="200.0" prefWidth="1000.0" spacing="69.0">
@@ -18,7 +18,7 @@
                <graphic>
                   <ImageView fx:id="newGameBtnIV" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@menuImages/newgame.png" />
+                        <Image url="@menuImagesAlpha/newgame.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -27,7 +27,7 @@
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@menuImages/savedgame.png" />
+                        <Image url="@menuImagesAlpha/savedgame.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -36,7 +36,7 @@
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@menuImages/instructions.png" />
+                        <Image url="@menuImagesAlpha/instructions.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -45,7 +45,7 @@
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@menuImages/quit.png" />
+                        <Image url="@menuImagesAlpha/quit.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -58,7 +58,7 @@
                <children>
                   <ImageView fitHeight="60.0" fitWidth="354.0" pickOnBounds="true">
                      <image>
-                        <Image url="@otherImages/heroEquipmentRecapBackground.png" />
+                        <Image url="@otherImagesAlpha/heroEquipmentRecapBackground.png" />
                      </image>
                   </ImageView>
                   <HBox fx:id="settingsHB" alignment="CENTER" spacing="10.0">
@@ -82,7 +82,7 @@
                                  <children>
                                     <ImageView fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@otherImages/sound_low.png" />
+                                          <Image url="@otherImagesAlpha/sound_low.png" />
                                        </image></ImageView>
                                     <Slider blockIncrement="1.0" max="10.0" value="5.0" />
                                  </children>
@@ -97,12 +97,12 @@
                <children>
                   <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
                      <image>
-                        <Image url="@otherImages/heroEquipmentRecapBackground.png" />
+                        <Image url="@otherImagesAlpha/heroEquipmentRecapBackground.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@otherImages/save.png" />
+                        <Image url="@otherImagesAlpha/save.png" />
                      </image>
                   </ImageView>
                </children>
@@ -111,12 +111,12 @@
                <children>
                   <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
                      <image>
-                        <Image url="@otherImages/heroEquipmentRecapBackground.png" />
+                        <Image url="@otherImagesAlpha/heroEquipmentRecapBackground.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#onSettingsBtnClk" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@otherImages/cogwheel_icon.png" />
+                        <Image url="@otherImagesAlpha/cogwheel_icon.png" />
                      </image>
                   </ImageView>
                </children>

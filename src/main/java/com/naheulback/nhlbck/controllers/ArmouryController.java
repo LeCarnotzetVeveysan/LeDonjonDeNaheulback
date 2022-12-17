@@ -172,7 +172,7 @@ public class ArmouryController {
             int armourymanX = switch (currentHeroIndex){
                 case 0 -> 2*153;
                 case 1 -> 3*153;
-                case 2 -> 1*153;
+                case 2 -> 153;
                 case 3 -> 4*153;
                 case 4 -> 5*153;
                 case 5 -> 0;

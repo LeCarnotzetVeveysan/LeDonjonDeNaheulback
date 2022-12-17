@@ -15,6 +15,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+
+import static com.naheulback.nhlbck.Game.addGoldPieces;
 
 public class SimpleFloorController {
 
@@ -114,7 +117,7 @@ public class SimpleFloorController {
     private void sceneRefresh() throws FileNotFoundException {
         Functions.setCombatEnemyImages(livingEnemies, enemyIVs, activeEnemy, activeEnemyIV);
         Functions.setEnemyHPBars(livingEnemies, enemyHPBarivs, enemyHPBarlbls);
-        Functions.setEnemyHPBars(new ArrayList<>(Arrays.asList(activeEnemy)),new ArrayList<>(Arrays.asList(activeEnemyHPBarIV)), new ArrayList<>(Arrays.asList(activeEnemyHPBarLB)));
+        Functions.setEnemyHPBars(new ArrayList<>(Collections.singletonList(activeEnemy)),new ArrayList<>(Collections.singletonList(activeEnemyHPBarIV)), new ArrayList<>(Collections.singletonList(activeEnemyHPBarLB)));
         Functions.setCombatHeroImages(livingHeroes, heroIVs, activeHero, activeHeroIV);
         Functions.setHeroHPBars(livingHeroes, heroHPBarIVs, heroHPBarLBs, heroManaIVs,heroManaLabels );
         Functions.setActiveHeroHPBars(activeHero,activeHeroHPBarIV,activeHeroHPBarLB,activeHeroManaBarIV,activeHeroManaBarLB);
@@ -125,15 +128,7 @@ public class SimpleFloorController {
     private void postCombatCheck() throws IOException {
 
         if(!(activeEnemy == null)) {
-            if (activeEnemy.getHealth() <= 0) {
-                activeEnemy.setIsAlive(false);
-                livingEnemies.set(activeEnemyIndex, activeEnemy);
-                Functions.setImage(enemyIVs.get(activeEnemyIndex), "combatImages", activeEnemy.getSlug() + "_dead");
-                activeEnemy = null;
-                if (Game.getLevel() == 1) {
-                    Functions.setEnemyStateInFile(1, activeEnemyIndex, "false");
-                }
-            }
+            if (activeEnemy.getHealth() <= 0) { getEnemyReward(); setDeadEnemy(); }
         }
 
         if(allDeadEnemies()){
@@ -143,16 +138,28 @@ public class SimpleFloorController {
             }
             retrieveActiveHero();
             for(Hero h : livingHeroes){
-                if(!(h == null)) {
-                    h.setWeaponThrowed(false);
-                }
+                if(!(h == null)) { h.setWeaponThrowed(false); }
             }
             throwableWeapons.clear();
-
-        } else {
-            System.out.println("Il y a encore des ennemis vivants");
         }
+    }
 
+    private void setDeadEnemy() throws IOException {
+        activeEnemy.setIsAlive(false);
+        livingEnemies.set(activeEnemyIndex, activeEnemy);
+        Functions.setImage(enemyIVs.get(activeEnemyIndex), "combatImages", activeEnemy.getSlug() + "_dead");
+        activeEnemy = null;
+        if (Game.getLevel() == 1) { Functions.setEnemyStateInFile(1, activeEnemyIndex, "false"); }
+    }
+
+    private void getEnemyReward() {
+        double goldToAdd = activeEnemy.getGoldGain();
+        goldToAdd *= GameData.getRewardMult();
+        addGoldPieces(Math.round(goldToAdd));
+
+        double expToAdd = activeEnemy.getExpGain();
+        expToAdd *= GameData.getRewardMult();
+        activeHero.addExperience((int) Math.round(expToAdd));
     }
 
     private void retrieveActiveHero() {
@@ -212,16 +219,10 @@ public class SimpleFloorController {
             }
 
             if ((activeHero.getType().equals("mage"))) {
-
                 Spell firstSpell = ((Mage) activeHero).getFirstSpell();
                 Spell secondSpell = ((Mage) activeHero).getFirstSpell();
-
-                if(!(firstSpell == null)){
-                    Functions.setImage(secondaryActionButtonIV, "combatImages", firstSpell.getSlug());
-                }
-                if(!(secondSpell == null)){
-                    Functions.setImage(thirdActionButtonIV, "combatImages", secondSpell.getSlug());
-                }
+                if(!(firstSpell == null)){ Functions.setImage(secondaryActionButtonIV, "combatImages", firstSpell.getSlug()); }
+                if(!(secondSpell == null)){ Functions.setImage(thirdActionButtonIV, "combatImages", secondSpell.getSlug());}
             }
         }
     }

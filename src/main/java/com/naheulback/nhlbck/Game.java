@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Game {
-    private Stage mainStage;
+    private final Stage mainStage;
     private static GameData gameData;
     private static PlayerData playerData;
 
@@ -21,12 +21,10 @@ public class Game {
 
     }
 
-
-
     public void main() throws IOException {
 
         LoadScene ls = new LoadScene(mainStage);
-        ls.changeScene("menu-main-menu");
+        LoadScene.changeScene("menu-main-menu");
 
     }
 
@@ -41,7 +39,7 @@ public class Game {
     }
 
     public static int getLevel(){
-        return gameData.getLevel();
+        return GameData.getLevel();
     }
 
     public static int getMaxHeroes(){ return GameData.getMaxHeroes(); }
@@ -62,17 +60,17 @@ public class Game {
 
     public static void setSpeakingHero(int hero){ playerData.setSpeakingHero(hero);}
 
-    public static void addGoldPieces(double amount){ playerData.addGoldPieces(amount); }
+    public static void addGoldPieces(double amount){ PlayerData.addGoldPieces(amount); }
 
-    public static void takeGoldPieces(double amount){ playerData.takeGoldPieces(amount); }
+    public static void takeGoldPieces(double amount){ PlayerData.takeGoldPieces(amount); }
 
-    public static boolean hasEnoughGoldPieces(double amount){ return playerData.hasEnoughGoldPieces(amount);}
+    public static boolean hasEnoughGoldPieces(double amount){ return PlayerData.hasEnoughGoldPieces(amount);}
 
     public static double getGoldPieces(){ return PlayerData.getGoldPieces(); }
 
-    public static void recruitHero(Hero hero){ playerData.recruitHero(hero);}
+    public static void recruitHero(Hero hero){ PlayerData.recruitHero(hero);}
 
-    public static void sitHero(int index){ playerData.sitHero(index); }
+    public static void sitHero(int index){ PlayerData.sitHero(index); }
 
     public static ArrayList<String> getLivingHeroSlugs(){ return PlayerData.getLivingHeroSlugs();}
 }

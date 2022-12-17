@@ -22,7 +22,7 @@ import static com.naheulback.nhlbck.Functions.*;
 
 public class DungeonBarController {
 
-    private static String resPath = "src/main/resources/com/naheulback/nhlbck/";
+    private static final String resPath = "src/main/resources/com/naheulback/nhlbck/";
 
     @FXML
     private VBox barItem1VB, barItem2VB, barItem3VB, barItem4VB, barItem5VB;
@@ -208,7 +208,7 @@ public class DungeonBarController {
             int armourymanX = switch (currentHeroIndex){
                 case 0 -> 2*153;
                 case 1 -> 3*153;
-                case 2 -> 1*153;
+                case 2 -> 153;
                 case 3 -> 4*153;
                 case 4 -> 5*153;
                 case 5 -> 0;
