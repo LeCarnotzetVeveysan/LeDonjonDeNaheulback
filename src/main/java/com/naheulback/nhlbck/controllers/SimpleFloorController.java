@@ -128,6 +128,13 @@ public class SimpleFloorController {
 
     private void postCombatCheck() throws IOException {
 
+        checkHeroHealthPoints();
+
+        if(allDeadHeroes()){
+            PlayerData.setIsDefeated(true);
+            LoadScene.changeScene("results-screen");
+        }
+
         if(!(activeEnemy == null)) {
             if (activeEnemy.getHealth() <= 0) { getEnemyReward(); setDeadEnemy(); }
         }
@@ -145,6 +152,27 @@ public class SimpleFloorController {
         }
     }
 
+    private void checkHeroHealthPoints() throws FileNotFoundException {
+
+        if(!(activeHero == null)) {
+            if (activeHero.getHealth() <= 0) {
+                activeHero.setIsAlive(false);
+                activeHero = null;
+                retrieveActiveHero();
+                updateActionButtons();
+            }
+        }
+        for(Hero h : livingHeroes ){
+            if(!(h == null)) {
+                if (h.getHealth() <= 0) {
+                    h.setIsAlive(false);
+                    h = null;
+                }
+            }
+        }
+        sceneRefresh();
+    }
+
     private void setDeadEnemy() throws IOException {
         activeEnemy.setIsAlive(false);
         livingEnemies.set(activeEnemyIndex, activeEnemy);
@@ -159,9 +187,11 @@ public class SimpleFloorController {
 
         double expToAdd = activeEnemy.getExpGain();
         activeHero.addExperience((int) Math.round(expToAdd));
+        activeHero.setLevel();
         for(Hero h : livingHeroes){
             if(!(h == null)){
                 h.addExperience((int) Math.round(expToAdd));
+                h.setLevel();
             }
         }
     }
@@ -185,6 +215,24 @@ public class SimpleFloorController {
         }
         if(!(activeEnemy == null)){
             if(activeEnemy.getIsAlive()){
+                tempBool = false;
+            }
+        }
+
+        return tempBool;
+    }
+
+    private boolean allDeadHeroes(){
+        boolean tempBool = true;
+        for(Hero h : livingHeroes){
+            if(!(h == null)){
+                if(h.getIsAlive()){
+                    tempBool = false;
+                }
+            }
+        }
+        if(!(activeHero == null)){
+            if(activeHero.getIsAlive()){
                 tempBool = false;
             }
         }
@@ -228,6 +276,11 @@ public class SimpleFloorController {
                 if(!(firstSpell == null)){ Functions.setImage(secondaryActionButtonIV, "combatImages", firstSpell.getSlug()); }
                 if(!(secondSpell == null)){ Functions.setImage(thirdActionButtonIV, "combatImages", secondSpell.getSlug());}
             }
+        } else {
+            actionButtonHB.setDisable(true);
+            actionButtonHB.setVisible(false);
+            inventorySP.setDisable(true);
+            inventorySP.setVisible(false);
         }
     }
 
@@ -240,7 +293,6 @@ public class SimpleFloorController {
     }
 
     public void onHeroClicked() throws FileNotFoundException {
-
         if(currentHeroIndex <= livingHeroes.size() - 1) {
             if (!(livingHeroes.get(currentHeroIndex) == null)) {
                 if (!(activeHeroIndex == -1)) {
@@ -290,8 +342,27 @@ public class SimpleFloorController {
         } else {
             System.out.println("Il n'y a pas d'ennemi actif");
         }
+        enemyAttack();
         postCombatCheck();
         sceneRefresh();
+    }
+
+    private void enemyAttack(){
+
+        if(activeEnemy == null) {
+            for (int i = 0; i < livingEnemies.size(); i++) {
+                if (!((livingEnemies.get(i) == null) || !livingEnemies.get(i).getIsAlive())) {
+                    activeEnemy = livingEnemies.get(i);
+                    livingEnemies.set(i, null);
+                    activeEnemyIndex = i;
+                    break;
+                }
+            }
+        }
+        double damage = activeEnemy.getBaseAttack();
+        damage *= activeHero.getResistanceMultiplier();
+        damage = Math.round(damage);
+        activeHero.removeHealth((int) damage);
     }
 
     private void weaponAttack(Weapon weapon) {
@@ -350,17 +421,21 @@ public class SimpleFloorController {
         } else {
             System.out.println("Il n'y a pas d'ennemi actif");
         }
+        enemyAttack();
         postCombatCheck();
         sceneRefresh();
     }
 
-    public void onThirdActionButtonClicked() {
+    public void onThirdActionButtonClicked() throws IOException {
 
         if(activeHero.getType().equals("mage") && !(((Mage) activeHero).getSecondarySpell() == null)){
             spellAttack(((Mage) activeHero).getSecondarySpell());
         } else {
             combatQuote(activeHero);
         }
+        enemyAttack();
+        postCombatCheck();
+        sceneRefresh();
 
     }
 

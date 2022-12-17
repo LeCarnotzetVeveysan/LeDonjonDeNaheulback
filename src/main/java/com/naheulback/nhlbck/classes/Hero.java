@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public abstract class Hero extends LivingThing {
     private final String type;
-    private final int level;
+    private int level;
     private int experience;
     private final int magic;
     private int mana;
@@ -37,6 +37,17 @@ public abstract class Hero extends LivingThing {
 
     public String toString(){
         return "name : " + super.getName() + ", level : " + level;
+    }
+
+    public void setLevel(){
+        int[] xp = {200,907,1612,2341,3107,3923,4796,5734,6747,7840,9024,10306,11696,13202,14836,16608,18530,20615,22877,2500};
+        int levelToSet = 1;
+        for(int k : xp){
+            if(experience > k){
+                level += 1;
+            }
+        }
+        level = levelToSet;
     }
     public int getMana() { return mana; }
 

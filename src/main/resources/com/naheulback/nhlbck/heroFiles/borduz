@@ -1,0 +1,14 @@
+slug:broduz
+class:human
+name:Honoré Borduz
+health:100
+maxHealth:100
+attack:75
+magic:1
+resistance:75
+cost:1200
+level:4
+xp:1613
+desc:defaultDesc
+quote:defaultQuote
+joke:defaultJoke

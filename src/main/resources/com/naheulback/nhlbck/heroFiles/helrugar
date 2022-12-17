@@ -1,0 +1,14 @@
+slug:helrugar
+class:mage
+name:Helrugar, Izidor dit l'Enflure
+health:150
+maxHealth:200
+attack:1
+magic:150
+resistance:80
+cost:2400
+level:8
+xp:4797
+desc:defaultDesc
+quote:defaultQuote
+joke:defaultJoke

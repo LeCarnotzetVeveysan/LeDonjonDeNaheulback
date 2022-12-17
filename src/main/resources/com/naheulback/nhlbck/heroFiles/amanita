@@ -1,0 +1,14 @@
+slug:amanita
+class:mage
+name:Amanita
+health:1
+maxHealth:1
+attack:1
+magic:1
+resistance:1
+cost:300
+level:5
+xp:
+desc:Je suis Amanita, Mage de niveau
+quote:defaultQuote
+joke:defaultJoke

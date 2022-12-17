@@ -1,0 +1,14 @@
+slug:lucrece
+class:human
+name:Lucrèce Brujah
+health:100
+maxHealth:100
+attack:200
+magic:1
+resistance:50
+cost:3000
+level:10
+xp:6748
+desc:defaultDesc
+quote:defaultQuote
+joke:defaultJoke

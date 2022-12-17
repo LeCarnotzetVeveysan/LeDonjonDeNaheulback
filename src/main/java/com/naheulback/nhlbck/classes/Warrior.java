@@ -4,8 +4,6 @@ import java.util.HashMap;
 
 public class Warrior extends Hero {
 
-    private String saySomething;
-
     public Warrior(HashMap<String, String> inDict) {
         super(inDict.get("slug"), inDict.get("name"), Integer.parseInt(inDict.get("health")),
                 Integer.parseInt(inDict.get("maxHealth")), Integer.parseInt(inDict.get("attack")),

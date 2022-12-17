@@ -1,0 +1,14 @@
+slug:bratux
+class:human
+name:Bratux, Guerrier humain
+health:100
+maxHealth:100
+attack:75
+magic:1
+resistance:75
+cost:2100
+level:7
+xp:1
+desc:defaultDesc
+quote:Vous saviez que je faisais partie de la secte des Cerbères du Néant
+joke:defaultJoke

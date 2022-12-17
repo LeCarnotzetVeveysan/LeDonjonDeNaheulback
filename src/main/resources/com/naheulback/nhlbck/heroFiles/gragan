@@ -1,0 +1,14 @@
+slug:gragan
+class:human
+name:Gragan le Guerrier
+health:50
+maxHealth:50
+attack:50
+magic:1
+resistance:50
+cost:1500
+level:5
+xp:3108
+desc:defaultDesc
+quote:defaultQuote
+joke:defaultJoke

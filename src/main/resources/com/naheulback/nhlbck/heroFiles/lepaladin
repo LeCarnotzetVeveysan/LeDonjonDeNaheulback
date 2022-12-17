@@ -1,14 +1,14 @@
-slug:defaultSlug
-class:defaultClass
-name:defaultName
-health:1
-maxHealth:1
-attack:1
-magic:1
-resistance:1
-cost:1
-level:1
-xp:1
-desc:defaultDesc
-quote:defaultQuote
-joke:defaultJoke
+slug:lepaladin
+class:human
+name:Le paladin
+health:100
+maxHealth:100
+attack:10
+magic:0
+resistance:20
+cost:200
+level:3
+xp:908
+desc:Je suis Le Paladin, paladin de niveau
+quote:à trouver
+joke:à trouver

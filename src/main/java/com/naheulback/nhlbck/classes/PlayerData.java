@@ -10,6 +10,7 @@ public class PlayerData {
     private static ArrayList<Hero> deadHeroes;
     private final int[] currentLocation;
     private static double goldPieces;
+    private static boolean isDefeated;
 
     public PlayerData(){
 
@@ -19,6 +20,7 @@ public class PlayerData {
 
         currentLocation = new int[]{0, 0, 0, 0};
         goldPieces = 0.0;
+        isDefeated = false;
 
     }
 
@@ -90,17 +92,8 @@ public class PlayerData {
     }
 
     public static void sitHero(int index){ livingHeroes.remove(index); }
-
-    public static void heroDies(Hero hero){
-        //int index = livingHeroes.indexOf(hero);
-        deadHeroes.add(hero);
-        livingHeroes.remove(hero);
-    }
-
-    public static void reviveHero(Hero hero){
-        deadHeroes.remove(hero);
-        livingHeroes.add(hero);
-    }
+    public static boolean getIsDefeated(){ return isDefeated; }
+    public static void setIsDefeated(boolean input){ isDefeated = input; }
 
 
 

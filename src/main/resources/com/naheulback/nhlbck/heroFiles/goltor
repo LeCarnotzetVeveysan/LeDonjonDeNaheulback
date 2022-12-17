@@ -1,0 +1,14 @@
+slug:goltor
+class:nain
+name:Goltor l'Intrépide
+health:200
+maxHealth:200
+attack:150
+magic:0
+resistance:150
+cost:6000
+level:20
+xp:22878
+desc:Je suis Goltor l'Intrépide, Nain de niveau
+quote:Je vous ai parlé de ma mission X
+joke:defaultJoke

@@ -1,0 +1,14 @@
+slug:danjeliss
+class:mage
+name:Danjeliss, le Tanneur d'Orques
+health:200
+maxHealth:200
+attack:1
+magic:150
+resistance:200
+cost:2700
+level:9
+xp:5735
+desc:defaultDesc
+quote:defaultQuote
+joke:defaultJoke

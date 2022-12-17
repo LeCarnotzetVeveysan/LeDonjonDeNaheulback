@@ -1,0 +1,14 @@
+slug:tarken
+class:human
+name:Tarken le Terrible Bandit !
+health:50
+maxHealth:100
+attack:25
+magic:0
+resistance:50
+cost:10
+level:1
+xp:1
+desc:defaultDesc
+quote:defaultQuote
+joke:defaultJoke

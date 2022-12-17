@@ -1,0 +1,14 @@
+slug:kzaranagax
+class:mage
+name:Kzaranagax l'Archi-Mage
+health:250
+maxHealth:250
+attack:1
+magic:200
+resistance:1
+cost:4500
+level:15
+xp:13203
+desc:defaultDesc
+quote:defaultQuote
+joke:defaultJoke

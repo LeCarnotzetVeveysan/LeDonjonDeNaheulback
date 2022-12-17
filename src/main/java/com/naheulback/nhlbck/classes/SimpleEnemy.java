@@ -2,8 +2,6 @@ package com.naheulback.nhlbck.classes;
 
 public class SimpleEnemy extends Enemy {
 
-
-
     public SimpleEnemy(String inSlug, String[] inArray, Boolean inAlive){
         super(inSlug, inArray[0],
                 (int) GameData.getStrengthMult()*Integer.parseInt(inArray[2]),

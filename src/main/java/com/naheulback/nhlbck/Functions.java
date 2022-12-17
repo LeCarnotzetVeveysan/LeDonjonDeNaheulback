@@ -70,23 +70,23 @@ public class Functions {
     public static void initTableFiles() throws IOException {
 
         String[] d1t1 = {"tavern1table1","hero1:lenain&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:lebarbare"};
-        String[] d1t2 = {"tavern1table2","hero1:logre&hero2:empty&hero3:lamagicienne&hero4:empty&hero5:lelfe&hero6:empty"};
+        String[] d1t2 = {"tavern1table2","hero1:empty&hero2:empty&hero3:lamagicienne&hero4:empty&hero5:lelfe&hero6:empty"};
         String[] d2t1 = {"tavern2table1","hero1:lepaladin&hero2:empty&hero3:empty&hero4:caspied&hero5:empty&hero6:empty"};
         String[] d2t2 = {"tavern2table2","hero1:empty&hero2:empty&hero3:amanita&hero4:empty&hero5:tarken&hero6:empty"};
         String[] d3t1 = {"tavern3table1","hero1:empty&hero2:empty&hero3:gragan&hero4:empty&hero5:empty&hero6:empty"};
-        String[] d3t2 = {"tavern3table2","hero1:empty&hero2:rizmo&hero3:empty&hero4:empty&hero5:empty&hero6:borduz"};
+        String[] d3t2 = {"tavern3table2","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:borduz"};
         String[] d4t1 = {"tavern4table1","hero1:empty&hero2:empty&hero3:empty&hero4:feigaff&hero5:empty&hero6:lucrece"};
         String[] d4t2 = {"tavern4table2","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
-        String[] d5t1 = {"tavern5table1","hero1:rutagaba&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
+        String[] d5t1 = {"tavern5table1","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
         String[] d5t2 = {"tavern5table2","hero1:empty&hero2:empty&hero3:bratux&hero4:empty&hero5:gerard&hero6:empty"};
-        String[] d6t1 = {"tavern6table1","hero1:songfu&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
+        String[] d6t1 = {"tavern6table1","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
         String[] d6t2 = {"tavern6table2","hero1:empty&hero2:empty&hero3:norelenilia&hero4:empty&hero5:empty&hero6:empty"};
         String[] d7t1 = {"tavern7table1","hero1:empty&hero2:mimolett&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
-        String[] d7t2 = {"tavern7table2","hero1:yolina&hero2:empty&hero3:empty&hero4:helrugar&hero5:empty&hero6:empty"};
+        String[] d7t2 = {"tavern7table2","hero1:empty&hero2:empty&hero3:empty&hero4:helrugar&hero5:empty&hero6:empty"};
         String[] d8t1 = {"tavern8table1","hero1:empty&hero2:empty&hero3:kzaranagax&hero4:empty&hero5:bifftanaen&hero6:empty"};
         String[] d8t2 = {"tavern8table2","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
         String[] d9t1 = {"tavern9table1","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:empty"};
-        String[] d9t2 = {"tavern9table2","hero1:goltor&hero2:empty&hero3:empty&hero4:danjeliss&hero5:empty&hero6:empty"};
+        String[] d9t2 = {"tavern9table2","hero1:empty&hero2:empty&hero3:empty&hero4:danjeliss&hero5:empty&hero6:empty"};
         String[] d10t1 = {"tavern10table1","hero1:empty&hero2:empty&hero3:wuxxus&hero4:empty&hero5:empty&hero6:empty"};
         String[] d10t2 = {"tavern10table2","hero1:empty&hero2:empty&hero3:empty&hero4:empty&hero5:empty&hero6:goltor"};
         ArrayList<String[]> partList = new ArrayList<>(Arrays.asList(d1t1,d1t2,d2t1,d2t2,d3t1,d3t2,d4t1,d4t2,d5t1,d5t2,

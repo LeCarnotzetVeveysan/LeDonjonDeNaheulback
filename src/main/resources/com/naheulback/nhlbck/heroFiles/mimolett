@@ -1,0 +1,14 @@
+slug:mimolett
+class:nain
+name:Mimolett
+health:150
+maxHealth:150
+attack:150
+magic:1
+resistance:100
+cost:2100
+level:7
+xp:3294
+desc:defaultDesc
+quote:Vous saviez que la légende de l'Or du Tourdehim c'était moi
+joke:defaultJoke

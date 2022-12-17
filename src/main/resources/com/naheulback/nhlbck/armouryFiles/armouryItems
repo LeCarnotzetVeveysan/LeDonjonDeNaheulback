@@ -31,7 +31,7 @@ casque_elfique:name|Casque de guerrier elfique,cost|1500,stat|300,effet|+ X res,
 robe_mage_base:name|Robe de mage de base,cost|15,stat|5,effet|+ X mag,desc|Une robe de base
 robe_mage_qualite:name|Robe de mage de qualité,cost|100,stat|25,effet|+ X mag,desc|Une robe de qualité
 robe_mage_ensorcelée:name|Robe de mage ensorcelée,cost|1000,stat|200,effet|+ X mag,desc|Une robe ensorcelée
-robe_mage_tholsadum:name|Robe de l’archimage Tholsadum,cost|6000,stat|1000,effet|+ X mag,desc|Une robe ensorcelée
+robe_mage_tholsadum:name|Robe de l’archimage Tholsadum,cost|6000,stat|1000,effet|+ X mag,desc|La fameuse robe de Tholsadum
 dague_base:name|Dague de base,cost|15,stat|5,effet|+ X atk,desc|Une dague de base
 dague_qualité:name|Dague de qualité,cost|50,stat|20,effet|+ X atk,desc|Une dague de qualité
 dague_luxe:name|Dague de luxe,cost|200,stat|100,effet|+ X atk,desc|Une dague de luxe
@@ -49,4 +49,3 @@ arc_base:name|Arc de basse qualité,cost|30,stat|10,effet|+ X atk,desc|Un arc de
 arc_correct:name|Arc de qualité correct,cost|50,stat|20,effet|+ X atk,desc|Un arc de qualité correcte
 arc_sylvain_imitation:name|Arc d’elfe sylvain (imitation),cost|200,stat|50,effet|+ X atk,desc|Encore une imitation
 arc_sylvain_veritable:name|Arc d’elfe sylvain (veritable),cost|1000,stat|250,effet|+ X atk,desc|Le must !
-

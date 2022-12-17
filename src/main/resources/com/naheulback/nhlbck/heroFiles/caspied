@@ -1,0 +1,14 @@
+slug:caspied
+class:human
+name:Caspied, Prince
+health:100
+maxHealth:100
+attack:20
+magic:0
+resistance:20
+cost:200
+level:3
+xp:908
+desc:Je suis le Prince Caspied, Guerrier de niveau
+quote:Vous saviez que j'étais prince de Belmar ?
+joke:defaultJoke
